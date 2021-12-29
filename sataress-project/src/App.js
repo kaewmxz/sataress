@@ -1,8 +1,6 @@
-import { getAuth } from 'firebase/auth'
-import React, { useState, useEffect }  from 'react';
-import Login from './components/Login';
-import Home from './components/Home';
-
+import React from 'react';
+import './App.css';
+import Login from './components/login';
 function App() {
 
   const [user, setUser] = useState(null);
@@ -14,8 +12,8 @@ function App() {
   }, []);
   console.log(user);
   return (
-    <div className="app">
-      {user ? <Home user={user} /> : <Login />}
+    <div className="App">
+      <Login />
     </div>
   );
 }
