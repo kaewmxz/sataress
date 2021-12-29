@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import {initializeApp} from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth"
 
 const firebaseConfig = {
@@ -11,10 +11,8 @@ const firebaseConfig = {
     measurementId: "G-2X4JEP8GJ1"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 const provider = new GoogleAuthProvider(); 
 export const signIn = () => signInWithRedirect(auth, provider);
-
-export default firebase;
