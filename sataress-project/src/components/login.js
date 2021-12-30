@@ -4,7 +4,7 @@ import GoogleButton from 'react-google-button'
 import {useTheme} from "@material-ui/core/styles"
 import styled from "styled-components"
 import {withTheme} from "@material-ui/core/styles"
-import "./Login.css"
+import "./login.css"
 
 
 const Bg = withTheme(styled.div`

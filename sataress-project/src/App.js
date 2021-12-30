@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import './App.css';
 import Login from './components/Login';
+import Home from './components/Home';
 function App() {
 
   const [user, setUser] = useState(null);
@@ -14,7 +15,7 @@ function App() {
   console.log(user);
   return (
     <div className="App">
-      <Login />
+      {user ? <Home user={user}/> : <Login/> }
     </div>
   );
 }
