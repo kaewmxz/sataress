@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { auth } from "../services/firebase";
+import { Link } from "react-router-dom";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
@@ -21,7 +22,9 @@ const Home = ({ user }) => {
       <button onClick={() => auth.signOut()}>Sign out</button>
       <center>
         {/* Calendar card */}
-        <img src="/image/calendar.png" />
+        <Link to="/Calendar">
+          <img src="/image/calendar.png" />
+        </Link>
         <br />
         <br />
         {/* Gratitude journal button */}

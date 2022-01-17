@@ -3,6 +3,7 @@ import { getAuth } from 'firebase/auth';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
+
 function App() {
 
   const [user, setUser] = useState(null);
