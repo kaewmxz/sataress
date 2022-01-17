@@ -1,5 +1,6 @@
 import {initializeApp} from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth"
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 const firebaseConfig = {
     apiKey: "AIzaSyB4Jdub6rsHGvRgbDWE54jsYlL1RZrt4Ms",
@@ -11,8 +12,19 @@ const firebaseConfig = {
     measurementId: "G-2X4JEP8GJ1"
   };
   // Initialize Firebase
-  initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
 
+const db = getFirestore(app);
 export const auth = getAuth();
 const provider = new GoogleAuthProvider(); 
 export const signIn = () => signInWithRedirect(auth, provider);
+
+/*
+// Get a list of cities from your database
+async function getCities(db) {
+  const citiesCol = collection(db, 'cities');
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
+}*/
+
