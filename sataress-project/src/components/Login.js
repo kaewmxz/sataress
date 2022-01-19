@@ -4,7 +4,7 @@ import GoogleButton from "react-google-button";
 import { useTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core"
+import { Grid } from "@material-ui/core";
 //import ResponsiveImgMaterialUi from "responsive-img-material-ui";
 import "../css/login.css";
 
@@ -33,23 +33,20 @@ const Image = withTheme(styled.div`
     width: 500px;
     height: 500px;
   }
-  `);
+`);
 
 const Login = () => {
   const theme = useTheme();
   return (
     <Bg>
-      <Grid container justify = "center">
-      {/* <ResponsiveImgMaterialUi 
+      <Grid container justify="center">
+        {/* <ResponsiveImgMaterialUi 
       xs="/image/gmail_logo.png">
         </ResponsiveImgMaterialUi> */}
         <Image>
-          <img
-            src="/image/gmail_logo.png"
-            alt=""
-          />
+          <img src="/image/gmail_logo.png" alt="" />
         </Image>
-        </Grid>
+      </Grid>
       <div className="GoogleButton">
         <GoogleButton onClick={signIn}>Sign in with Google</GoogleButton>
       </div>
