@@ -123,13 +123,7 @@ const Home = ({ user }) => {
             sx={{ width: 67, height: 67 }}>O</Avatar>
         </Link>
       </Profile>
-      <Name>
-          Hi,{user.displayName}
-        </Name>
-        <img
-           src = "/image/fire.png"
-           width = "23px"></img>
-      <Name>Hi,</Name>
+      <Name>Hi,{user.displayName}</Name>
       <Fire><img src="/image/fire.png" width="23px"></img></Fire>
       <Streak>Current Streak</Streak>
       <Bg>
