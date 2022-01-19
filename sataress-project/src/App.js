@@ -13,7 +13,7 @@ function App() {
       setUser(user)
     })
   }, []);
-  console.log(user);
+  //console.log(user);
   return (
     <div className="App">
       {user ? <Home user={user}/> : <Login/> }

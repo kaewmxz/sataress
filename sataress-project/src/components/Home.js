@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { auth } from "../services/firebase";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from '@mui/material/Avatar';
 import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { addUser } from "../services/users";
+// import { getUser } from "../services/users";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -44,8 +45,11 @@ text-align: center;
 `);
 
 const Home = ({ user }) => {
-  var name = user.displayName;
-  var uid = user.uid;
+  
+  // add user to firestore
+  addUser({user});
+  // getUser();
+
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
 
@@ -67,7 +71,7 @@ const Home = ({ user }) => {
           </Link>
       </Profile>
       <Name>
-          Hi,{name}
+          Hi,{user.displayName}
         </Name>
         <img
            src = "/image/fire.png"
