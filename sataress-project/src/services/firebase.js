@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth"
+import { GoogleAuthProvider, getAuth, signInWithRedirect, signOut } from "firebase/auth"
 import { getFirestore } from 'firebase/firestore';
 
 
@@ -19,3 +19,4 @@ export const db = getFirestore(app);
 export const auth = getAuth();
 const provider = new GoogleAuthProvider(); 
 export const signIn = () => signInWithRedirect(auth, provider);
+export const logOut = () => signOut(auth);
