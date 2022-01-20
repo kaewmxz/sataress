@@ -1,5 +1,5 @@
 import { db } from "../services/firebase";
-import { addDoc, collection, doc, getDocs } from "firebase/firestore";
+import { addDoc, collection, doc, documentId, DocumentReference, getDocs, setDoc } from "firebase/firestore";
 
 // get user
 // export const getUser = async () => {
@@ -11,21 +11,26 @@ import { addDoc, collection, doc, getDocs } from "firebase/firestore";
 
 // add user 
 export const addUser = async ({user}) => {
-    if (user === undefined) {
-        console.log(user)
-    }
-    else {
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-              email: user.email,
-              name: user.displayName,
-              id: user.uid
-            });
-            if (docRef)
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.log("Error adding document: ", e);
-          }
-    }
+    // if (user === undefined) {
+    //     console.log(user)
+    // }
+    // else {
+      
+        // try {
+        //     // const docRef = await addDoc(collection(db, "users"), {
+        //     //   email: user.email,
+        //     //   name: user.displayName,
+        //     // });
+              
+        //     console.log("Document written with ID: ", docRef);
+        //   } catch (e) {
+        //     console.log("Error adding document: ", e);
+        //   }
+    // }
+  const docRef = await setDoc(doc(db,'users',user.uid), {
+    email: user.email,
+    name: user.displayName,
+  });
+  console.log(docRef);
 }
 
