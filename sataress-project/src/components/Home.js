@@ -6,7 +6,6 @@ import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-<<<<<<< HEAD
 import { addUser } from "../services/users";
 import { getAuth, signOut } from "firebase/auth";
 import { logOut } from "../services/firebase";
@@ -19,14 +18,6 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Paper from "@mui/material/Paper";
-=======
-
-
-import Stack from '@mui/material/Stack';
-import IconButton from '@mui/material/IconButton';
-import LogoutIcon from '@mui/icons-material/Logout';
-
->>>>>>> 216ada748d7ff769dd3112abb0089c9a849c67e5
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -145,7 +136,6 @@ const Home = ({ user }) => {
     setAlignment(newAlignment);
   };
   return (
-<<<<<<< HEAD
     <div>
       <div>
         <Head>
@@ -218,68 +208,6 @@ const Home = ({ user }) => {
         </Paper>
       </Box>
     </div>
-=======
-    <Head>
-      <img src="/image/head.png" alt ="" width="300px"></img>
-      <Profile>
-          <Avatar
-            alt="profile img"
-            src={user.photoURL}
-            sx={{ width: 67, height: 67 }}
-          >
-          </Avatar>
-      </Profile>
-      <Name>
-        Hi,{user.displayName} <button onClick={logOut}>Sign Out</button>
-      </Name>
-      <Fire>
-        <img src="/image/fire.png" width="23px"></img>
-      </Fire>
-      <Streak>Current Streak</Streak>
-      <Logout>
-        <Stack direction="row" alignItems="center">
-          <IconButton size="small">
-            <LogoutIcon fontSize="inherit" />
-          </IconButton>
-        </Stack>
-      </Logout>
-      <Bg>
-        {/* Calendar card */}
-        <Calendar>
-          <Link to="/Calendar">
-            <img src="/image/calendar.png"
-              width="307px"
-              height="182px" />
-          </Link>
-        </Calendar>
-        {/* Gratitude journal button */}
-        <Gratitude>
-          <Link to="/Gratitude">
-            <img src="/image/gratitude.png"
-              width="243px"
-              height="31px" />
-          </Link>
-        </Gratitude>
-        {/* Monthly or Weekly button */}
-        <Toggle>
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-          >
-            <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-            <ToggleButton value="monthly">เดือน</ToggleButton>
-          </ToggleButtonGroup>
-        </Toggle>
-
-        {/* bottom navigation bar*/}
-      <BottomNavigationBar>
-      
-      </BottomNavigationBar>
-      </Bg>
-    </Head>
->>>>>>> 321c1a5e09bdaa66ba6e97cc62faa2c69942801e
   );
 };
 
