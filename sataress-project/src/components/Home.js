@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import PopUp from "./Popup";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+<<<<<<< HEAD
 import { addUser } from "../services/users";
 import { getAuth, signOut } from "firebase/auth";
 import { logOut } from "../services/firebase";
@@ -17,6 +19,14 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Paper from "@mui/material/Paper";
+=======
+
+
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+>>>>>>> 216ada748d7ff769dd3112abb0089c9a849c67e5
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -46,8 +56,8 @@ const Name = withTheme(styled.div`
   position: absolute;
   width: 132px;
   height: 26px;
-  left: 211px;
-  top: 60px;
+  left: 200px;
+  top: 59px;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -55,6 +65,7 @@ const Name = withTheme(styled.div`
   line-height: 26px;
   text-align: center;
 `);
+
 
 const Fire = withTheme(styled.div`
   position: absolute;
@@ -65,17 +76,22 @@ const Fire = withTheme(styled.div`
 `);
 
 const Streak = withTheme(styled.div`
-  position: absolute;
-  width: 70px;
-  height: 12px;
-  left: 244px;
-  top: 105px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 10px;
-  line-height: 12px;
-  text-align: center;
+position: absolute;
+width: 70px;
+left: 244px;
+top: 105px;
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 10px;
+line-height: 12px;
+text-align: center;
+`);
+
+const Logout = withTheme(styled.div`
+position: absolute;
+left: 316px;
+top: 97px;
 `);
 
 const Calendar = withTheme(styled.div`
@@ -91,11 +107,21 @@ const Gratitude = withTheme(styled.div`
 `);
 
 const Toggle = withTheme(styled.div`
-  position: absolute;
-  width: 84px;
-  height: 25px;
-  left: 81px;
-  top: 411px;
+position: absolute;
+left: 130px;
+top: 180px;
+`);
+
+const BottomNavigationBar = withTheme(styled.div`
+
+position: fixed;
+width: 381px;
+height: 74px;
+left: -3px;
+top: 1163px;
+background: #FFE9E9;
+box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
+border-radius: 23px;
 `);
 
 const Home = ({ user }) => {
@@ -105,10 +131,94 @@ const Home = ({ user }) => {
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
   return (
+<<<<<<< HEAD
+    <div>
+      <div>
+        <Head>
+          <img src="/image/head.png" width="300px"></img>
+          <Profile>
+            <Link to="/Calendar">
+              <Avatar
+                alt="Oak Natthakrit"
+                src="/broken-image.jpg"
+                sx={{ width: 67, height: 67 }}
+              >
+                O
+              </Avatar>
+            </Link>
+          </Profile>
+        </Head>
+        <Name>
+          Hi,{user.displayName} <button onClick={logOut}>Sign Out</button>
+        </Name>
+
+        <Fire>
+          <img src="/image/fire.png" width="23px"></img>
+        </Fire>
+        <Streak>Current Streak</Streak>
+        <Bg>
+          {/* Calendar card */}
+          <Calendar>
+            <Link to="/Calendar">
+              <img src="/image/calendar.png" width="307px" height="182px" />
+            </Link>
+          </Calendar>
+          {/* Gratitude journal button */}
+          <Gratitude>
+            <Link to="/Gratitude">
+              <img src="/image/gratitude.png" width="243px" height="31px" />
+            </Link>
+          </Gratitude>
+          {/* Monthly or Weekly button */}
+          <Toggle>
+            <ToggleButtonGroup
+              color="primary"
+              value={alignment}
+              exclusive
+              onChange={handleChange}
+            >
+              <ToggleButton value="weekly">สัปดาห์</ToggleButton>
+              <ToggleButton value="monthly">เดือน</ToggleButton>
+            </ToggleButtonGroup>
+          </Toggle>
+        </Bg>
+      </div>
+      <Box sx={{ pb: 7 }}>
+        <CssBaseline />
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="Recents" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+            <BottomNavigationAction
+              component={Link}
+              to="/Moodtrack"
+              label="Moodtracker"
+              icon={<FavoriteIcon />}
+            />
+            <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
+          </BottomNavigation>
+        </Paper>
+      </Box>
+    </div>
+=======
     <Head>
       <img src="/image/head.png" alt ="" width="300px"></img>
       <Profile>
@@ -126,17 +236,28 @@ const Home = ({ user }) => {
         <img src="/image/fire.png" width="23px"></img>
       </Fire>
       <Streak>Current Streak</Streak>
+      <Logout>
+        <Stack direction="row" alignItems="center">
+          <IconButton size="small">
+            <LogoutIcon fontSize="inherit" />
+          </IconButton>
+        </Stack>
+      </Logout>
       <Bg>
         {/* Calendar card */}
         <Calendar>
           <Link to="/Calendar">
-            <img src="/image/calendar.png" width="307px" height="182px" />
+            <img src="/image/calendar.png"
+              width="307px"
+              height="182px" />
           </Link>
         </Calendar>
         {/* Gratitude journal button */}
         <Gratitude>
           <Link to="/Gratitude">
-            <img src="/image/gratitude.png" width="243px" height="31px" />
+            <img src="/image/gratitude.png"
+              width="243px"
+              height="31px" />
           </Link>
         </Gratitude>
         {/* Monthly or Weekly button */}
@@ -152,28 +273,13 @@ const Home = ({ user }) => {
           </ToggleButtonGroup>
         </Toggle>
 
-        {/* <Box sx={{ pb: 7 }}>
-          <CssBaseline />
-          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-            <BottomNavigation showLabels >
-              <BottomNavigationAction label="Recents" icon={<FavoriteIcon />} />
-              <BottomNavigationAction
-                label="Favorites"
-                icon={<FavoriteIcon />}
-              />
-              <BottomNavigationAction
-                component={Link}
-                to="/Moodtrack"
-                label="Moodtracker"
-                icon={<FavoriteIcon />}
-              />
-              <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
-              <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
-            </BottomNavigation>
-          </Paper>
-        </Box> */}
+        {/* bottom navigation bar*/}
+      <BottomNavigationBar>
+      
+      </BottomNavigationBar>
       </Bg>
     </Head>
+>>>>>>> 321c1a5e09bdaa66ba6e97cc62faa2c69942801e
   );
 };
 
