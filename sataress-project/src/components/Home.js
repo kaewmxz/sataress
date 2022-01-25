@@ -111,73 +111,78 @@ const Home = ({ user }) => {
   };
 
   return (
-    <Head>
-      <img src="/image/head.png" width="300px"></img>
-      <Profile>
-        <Link to="/Calendar">
-          <Avatar
-            alt="Oak Natthakrit"
-            src="/broken-image.jpg"
-            sx={{ width: 67, height: 67 }}
-          >
-            O
-          </Avatar>
-        </Link>
-      </Profile>
-      <Name>Hi,{user.displayName} <button onClick={logOut}>Sign Out</button></Name>
-      
-      <Fire>
-        <img src="/image/fire.png" width="23px"></img>
-      </Fire>
-      <Streak>Current Streak</Streak>
-      <Bg>
-        {/* Calendar card */}
-        <Calendar>
-          <Link to="/Calendar">
-            <img src="/image/calendar.png" width="307px" height="182px" />
-          </Link>
-        </Calendar>
-        {/* Gratitude journal button */}
-        <Gratitude>
-          <Link to="/Gratitude">
-            <img src="/image/gratitude.png" width="243px" height="31px" />
-          </Link>
-        </Gratitude>
-        {/* Monthly or Weekly button */}
-        <Toggle>
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-          >
-            <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-            <ToggleButton value="monthly">เดือน</ToggleButton>
-          </ToggleButtonGroup>
-        </Toggle>
+    <div>
+      <div>
+        <Head>
+          <img src="/image/head.png" width="300px"></img>
+          <Profile>
+            <Link to="/Calendar">
+              <Avatar
+                alt="Oak Natthakrit"
+                src="/broken-image.jpg"
+                sx={{ width: 67, height: 67 }}
+              >
+                O
+              </Avatar>
+            </Link>
+          </Profile>
+        </Head>
+        <Name>
+          Hi,{user.displayName} <button onClick={logOut}>Sign Out</button>
+        </Name>
 
-        {/* <Box sx={{ pb: 7 }}>
-          <CssBaseline />
-          <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-            <BottomNavigation showLabels >
-              <BottomNavigationAction label="Recents" icon={<FavoriteIcon />} />
-              <BottomNavigationAction
-                label="Favorites"
-                icon={<FavoriteIcon />}
-              />
-              <BottomNavigationAction
-                component={Link}
-                to="/Moodtrack"
-                label="Moodtracker"
-                icon={<FavoriteIcon />}
-              />
-              <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
-              <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
-            </BottomNavigation>
-          </Paper>
-        </Box> */}
-      </Bg>
-    </Head>
+        <Fire>
+          <img src="/image/fire.png" width="23px"></img>
+        </Fire>
+        <Streak>Current Streak</Streak>
+        <Bg>
+          {/* Calendar card */}
+          <Calendar>
+            <Link to="/Calendar">
+              <img src="/image/calendar.png" width="307px" height="182px" />
+            </Link>
+          </Calendar>
+          {/* Gratitude journal button */}
+          <Gratitude>
+            <Link to="/Gratitude">
+              <img src="/image/gratitude.png" width="243px" height="31px" />
+            </Link>
+          </Gratitude>
+          {/* Monthly or Weekly button */}
+          <Toggle>
+            <ToggleButtonGroup
+              color="primary"
+              value={alignment}
+              exclusive
+              onChange={handleChange}
+            >
+              <ToggleButton value="weekly">สัปดาห์</ToggleButton>
+              <ToggleButton value="monthly">เดือน</ToggleButton>
+            </ToggleButtonGroup>
+          </Toggle>
+        </Bg>
+      </div>
+      <Box sx={{ pb: 7 }}>
+        <CssBaseline />
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation showLabels>
+            <BottomNavigationAction label="Recents" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+            <BottomNavigationAction
+              component={Link}
+              to="/Moodtrack"
+              label="Moodtracker"
+              icon={<FavoriteIcon />}
+            />
+            <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Archive" icon={<FavoriteIcon />} />
+          </BottomNavigation>
+        </Paper>
+      </Box>
+    </div>
   );
 };
 
