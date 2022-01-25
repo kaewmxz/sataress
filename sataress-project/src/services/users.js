@@ -1,5 +1,5 @@
 import { db } from "../services/firebase";
-import { addDoc, collection, doc, documentId, DocumentReference, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc, query, where } from "firebase/firestore";
 
 // get user
 // export const getUser = async () => {
@@ -8,6 +8,20 @@ import { addDoc, collection, doc, documentId, DocumentReference, getDocs, setDoc
 //   console.log(`${doc.id} => ${doc.data()}`);
 // });
 // }
+
+// export const getUser = async ({user}) => {
+//   const docRef = doc(db, "users", user.uid);
+//   const docSnap = await getDoc(docRef);
+//   const name = docSnap.data().firstname;
+//   if (docSnap.exists()) {
+//     const name = docSnap.data().firstname;
+//     console.log("Document data:", name);
+//   } else {
+//     // doc.data() will be undefined in this case
+//     console.log("No such document!");
+//   }
+// }
+
 
 // add user 
 export const addUser = async ({user}) => {
@@ -27,10 +41,19 @@ export const addUser = async ({user}) => {
         //     console.log("Error adding document: ", e);
         //   }
     // }
-  const docRef = await setDoc(doc(db,'users',user.uid), {
+  // split name into firstname and lastname
+  const str = user.displayName;
+  const res = str.split(' ', 2);
+
+  const data = {
+    id: user.uid,
     email: user.email,
-    name: user.displayName,
-  });
-  console.log(docRef);
+    firstname: res[0],
+    lastname: res[1],
+    photo: user.photoURL
+  }
+  await setDoc(doc(db,'users',user.uid), data, {merge : true});
+  console.log(data);
+  return <div>{data.firstname}</div>;
 }
 

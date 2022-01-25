@@ -8,7 +8,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { addUser } from "../services/users";
 import { getAuth, signOut } from "firebase/auth";
 import { logOut } from "../services/firebase";
-// import { getUser } from "../services/users";
+//import { getUser } from "../services/users";
 import { createTheme } from "@mui/material/styles";
 
 import Box from "@mui/material/Box";
@@ -100,8 +100,7 @@ const Toggle = withTheme(styled.div`
 
 const Home = ({ user }) => {
   // add user to firestore
-  addUser({ user });
-  // getUser();
+  addUser({user});
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -109,23 +108,20 @@ const Home = ({ user }) => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-
   return (
     <Head>
-      <img src="/image/head.png" width="300px"></img>
+      <img src="/image/head.png" alt ="" width="300px"></img>
       <Profile>
-        <Link to="/Calendar">
           <Avatar
-            alt="Oak Natthakrit"
-            src="/broken-image.jpg"
+            alt="profile img"
+            src={user.photoURL}
             sx={{ width: 67, height: 67 }}
           >
-            O
           </Avatar>
-        </Link>
       </Profile>
-      <Name>Hi,{user.displayName} <button onClick={logOut}>Sign Out</button></Name>
-      
+      <Name>
+        Hi,{user.displayName} <button onClick={logOut}>Sign Out</button>
+      </Name>
       <Fire>
         <img src="/image/fire.png" width="23px"></img>
       </Fire>

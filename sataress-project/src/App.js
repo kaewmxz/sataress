@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAuth } from 'firebase/auth';
+import { auth } from './services/firebase';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -9,7 +9,7 @@ function App() {
   const [user, setUser] = useState(null || window.localStorage.getItem('user') === 'user');
 
   useEffect(() => {
-    getAuth().onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       setUser(user);
       window.localStorage.setItem('user','user');
     })
