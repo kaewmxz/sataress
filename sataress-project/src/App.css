@@ -19,3 +19,20 @@ top: 0px;
 background: linear-gradient(180deg, rgba(255, 189, 189, 0.3) 0%, rgba(254, 68, 10, 0.3) 44.27%);
 backdrop-filter: blur(4px);
 }
+
+.navbar {
+    border-bottom: solid 1px #EBEBEB;
+  }
+  .bottom-tab-nav {
+    border-top: solid 1px #EBEBEB;
+  }
+  .nav-link,
+  .bottom-nav-link {
+    color: #55575b;
+  }
+  .bottom-nav-link.active {
+    color: #922c88;
+  }
+  .bottom-tab-label {
+    font-size: 12px;
+  }
