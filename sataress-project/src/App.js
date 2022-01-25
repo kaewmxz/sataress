@@ -8,11 +8,12 @@ import Navigation from './Navigation';
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null || window.localStorage.getItem('user') === 'user');
 
   useEffect(() => {
     getAuth().onAuthStateChanged(user => {
-      setUser(user)
+      setUser(user);
+      window.localStorage.setItem('user','user');
     })
   }, []);
   console.log(user);

@@ -54,10 +54,10 @@ const Name = withTheme(styled.div`
 
 const Fire = withTheme(styled.div`
   position: absolute;
-width: 23px;
-height: 30px;
-left: 211px;
-top: 93px;
+  width: 23px;
+  height: 30px;
+  left: 211px;
+  top: 93px;
 `);
 
 const Streak = withTheme(styled.div`
@@ -80,15 +80,15 @@ top: 97px;
 `);
 
 const Calendar = withTheme(styled.div`
-position: absolute;
-left: 36px;
-top: -70px;
+  position: absolute;
+  left: 36px;
+  top: -70px;
 `);
 
 const Gratitude = withTheme(styled.div`
-position: absolute;
-left: 71px;
-top: 123px;
+  position: absolute;
+  left: 71px;
+  top: 123px;
 `);
 
 const Toggle = withTheme(styled.div`
@@ -110,8 +110,10 @@ border-radius: 23px;
 `);
 
 const Home = ({ user }) => {
-  var name = user.displayName;
-  var uid = user.uid;
+  // add user to firestore
+  addUser({ user });
+  // getUser();
+
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
 
@@ -128,6 +130,7 @@ const Home = ({ user }) => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+
   return (
     <Head>
       <img src="/image/head.png" width="300px"></img>
@@ -136,11 +139,17 @@ const Home = ({ user }) => {
           <Avatar
             alt="Oak Natthakrit"
             src="/broken-image.jpg"
-            sx={{ width: 67, height: 67 }}>O</Avatar>
+            sx={{ width: 67, height: 67 }}
+          >
+            O
+          </Avatar>
         </Link>
       </Profile>
-      <Name>Hi,{name}</Name>
-      <Fire><img src="/image/fire.png" width="23px"></img></Fire>
+      <Name>Hi,{user.displayName} <button onClick={logOut}>Sign Out</button></Name>
+      
+      <Fire>
+        <img src="/image/fire.png" width="23px"></img>
+      </Fire>
       <Streak>Current Streak</Streak>
       <Logout>
         <Stack direction="row" alignItems="center">
@@ -172,7 +181,8 @@ const Home = ({ user }) => {
             color="primary"
             value={alignment}
             exclusive
-            onChange={handleChange}>
+            onChange={handleChange}
+          >
             <ToggleButton value="weekly">สัปดาห์</ToggleButton>
             <ToggleButton value="monthly">เดือน</ToggleButton>
           </ToggleButtonGroup>
@@ -186,4 +196,5 @@ const Home = ({ user }) => {
     </Head>
   );
 };
+
 export default Home;
