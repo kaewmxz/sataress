@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PopUp from "./Popup";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
@@ -8,10 +7,13 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 
-import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { logOut } from "../services/firebase";
 
+import LabelBottomNavigation from './Navigation';
+import PopupGratitude from "./PopupGratitude";
+import PopupSignout from "./PopupSignout"
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -97,22 +99,10 @@ left: 130px;
 top: 180px;
 `);
 
-const BottomNavigationBar = withTheme(styled.div`
-
-position: fixed;
-width: 381px;
-height: 74px;
-left: -3px;
-top: 1163px;
-background: #FFE9E9;
-box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
-border-radius: 23px;
-`);
-
 const Home = ({ user }) => {
-  // add user to firestore
-  addUser({ user });
-  // getUser();
+//   add user to firestore
+//   addUser({ user });
+//    getUser();
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -132,6 +122,7 @@ const Home = ({ user }) => {
   };
 
   return (
+    <div>
     <Head>
       <img src="/image/head.png" width="300px"></img>
       <Profile>
@@ -145,18 +136,16 @@ const Home = ({ user }) => {
           </Avatar>
         </Link>
       </Profile>
-      <Name>Hi,{user.displayName} <button onClick={logOut}>Sign Out</button></Name>
+      </Head>
+      <Name>Hi, {user.displayName}</Name>
       
       <Fire>
         <img src="/image/fire.png" width="23px"></img>
       </Fire>
       <Streak>Current Streak</Streak>
       <Logout>
-        <Stack direction="row" alignItems="center">
-          <IconButton size="small">
-            <LogoutIcon fontSize="inherit" />
-          </IconButton>
-        </Stack>
+          <PopupSignout>
+          </PopupSignout>
       </Logout>
       <Bg>
         {/* Calendar card */}
@@ -169,11 +158,7 @@ const Home = ({ user }) => {
         </Calendar>
         {/* Gratitude journal button */}
         <Gratitude>
-          <Link to="/Gratitude">
-            <img src="/image/gratitude.png"
-              width="243px"
-              height="31px" />
-          </Link>
+              <PopupGratitude></PopupGratitude>
         </Gratitude>
         {/* Monthly or Weekly button */}
         <Toggle>
@@ -189,11 +174,10 @@ const Home = ({ user }) => {
         </Toggle>
 
         {/* bottom navigation bar*/}
-      <BottomNavigationBar>
-      
-      </BottomNavigationBar>
+        <LabelBottomNavigation>
+        </LabelBottomNavigation>
       </Bg>
-    </Head>
+    </div>
   );
 };
 

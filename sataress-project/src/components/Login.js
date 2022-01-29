@@ -9,7 +9,7 @@ import { Grid } from "@material-ui/core";
 import "../css/login.css";
 
 const Bg = withTheme(styled.div`
-  position: fixed;
+  position: absolute;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
@@ -20,35 +20,21 @@ const Bg = withTheme(styled.div`
   backdrop-filter: blur(4px);
 `);
 
-const Image = withTheme(styled.div`
-  ${(props) => props.theme.breakpoints.width("sm")} {
-    width: 10px;
-    height: 10px;
-  }
-  ${(props) => props.theme.breakpoints.width("md")} {
-    width: 100px;
-    height: 100px;
-  }
-  ${(props) => props.theme.breakpoints.width("lg")} {
-    width: 500px;
-    height: 500px;
-  }
-`);
 
 const Login = () => {
   const theme = useTheme();
   return (
     <Bg>
       <Grid container justify="center">
-        {/* <ResponsiveImgMaterialUi 
-      xs="/image/gmail_logo.png">
-        </ResponsiveImgMaterialUi> */}
-        <Image>
-          <img src="/image/gmail_logo.png" alt="" />
-        </Image>
+      
+          <br />
+          <img src="/image/blogo.png"  />
+ 
       </Grid>
       <div className="GoogleButton">
+        <center>
         <GoogleButton onClick={signIn}>Sign in with Google</GoogleButton>
+        </center>
       </div>
     </Bg>
   );

@@ -1,47 +1,48 @@
-import React from 'react';
-import { Nav, NavItem} from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import * as React from 'react';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import FolderIcon from '@mui/icons-material/Folder';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-const tabs = [{
-    route: "/home",
-    icon: faHome,
-    label: "Home"
-  },{
-    route: "/search",
-    icon: faSearch,
-    label: "Search"
-  },{
-    route: "/login",
-    icon: faUserCircle,
-    label: "Login"
-  }]
+// const BottomNavigationBar = withTheme(styled.div`
+// position: fixed;
+// width: 381px;
+// height: 74px;
+// left: -3px;
+// top: 1163px;
+// background: #FFE9E9;
+// box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
+// border-radius: 23px;
+// `);
 
-const Navigation = (props) => {
-	return (
-        <div>
-        {/* Bottom Tab Navigator*/}
-        <nav className="navbar fixed-bottom navbar-light bottom-tab-nav" role="navigation">
-        <Nav className="w-100">
-          <div className=" d-flex flex-row justify-content-around w-100">
-            {
-              tabs.map((tab, index) =>(
-                <NavItem key={`tab-${index}`}>
-                  <NavLink to={tab.route} className="nav-link bottom-nav-link" activeClassName="active">
-                    <div className="row d-flex flex-column justify-content-center align-items-center">
-                      <FontAwesomeIcon size="lg" icon={tab.icon}/>
-                      <div className="bottom-tab-label">{tab.label}</div>
-                    </div>
-                  </NavLink>
-                </NavItem>
-              ))
-            }
-          </div>
-        </Nav>
-      </nav>
-      </div>
-    )
+
+export default function LabelBottomNavigation() {
+  const [value, setValue] = React.useState('recents');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
-export default Navigation;
+  return (
+    <BottomNavigation sx={{ width: 500 }} value={value} onChange={handleChange}>
+      <BottomNavigationAction
+        label="Recents"
+        value="recents"
+        icon={<RestoreIcon />}
+      />
+      <BottomNavigationAction
+        label="Favorites"
+        value="favorites"
+        icon={<FavoriteIcon />}
+      />
+      <BottomNavigationAction
+        label="Nearby"
+        value="nearby"
+        icon={<LocationOnIcon />}
+      />
+      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+    </BottomNavigation>
+  );
+}
