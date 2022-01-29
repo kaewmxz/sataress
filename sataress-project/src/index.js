@@ -14,8 +14,8 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="Calendar" element={<Calendar />} />
       <Route path="Moodtrack" element={<Moodtrack />} />
-      <Route path="/home" element={Home} />
-      <Route path="/login" element={Login} />
+      <Route path="/Home" element={<Home />} />
+      <Route path="/Login" element={<Login />}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
