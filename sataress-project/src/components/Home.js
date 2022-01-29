@@ -14,7 +14,6 @@ import { createTheme } from "@mui/material/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
 
@@ -22,8 +21,7 @@ import LabelBottomNavigation from './Navigation';
 import PopupGratitude from "./popup/PopupGratitude";
 import PopupSignout from "./popup/PopupSignout"
 import { addUser, getUsers } from "../services/users";
-import { logOut } from "../services/firebase";
-import Moodtrack from "./Moodtrack";
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -157,12 +155,13 @@ const Home =  ({ user }) => {
     <Head>
       <img src="/image/head.png" width="300px"></img>
       <Profile>
-        <Link to="/Moodtrack">
+        <Link to="/Calendar">
           <Avatar
             alt=""
             src= {image}
             sx={{ width: 67, height: 67 }}
           >
+            O
           </Avatar>
         </Link>
       </Profile>
