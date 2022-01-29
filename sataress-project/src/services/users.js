@@ -1,5 +1,13 @@
 import { db } from "../services/firebase";
-import { collection, doc, getDocs, setDoc, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  query,
+  where,
+} from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 // get user
 // export const getUser = async () => {
@@ -22,38 +30,44 @@ import { collection, doc, getDocs, setDoc, query, where } from "firebase/firesto
 //   }
 // }
 
+// add user
+export const addUser = async ({ user }) => {
+  // if (user === undefined) {
+  //     console.log(user)
+  // }
+  // else {
 
-// add user 
-export const addUser = async ({user}) => {
-    // if (user === undefined) {
-    //     console.log(user)
-    // }
-    // else {
-      
-        // try {
-        //     // const docRef = await addDoc(collection(db, "users"), {
-        //     //   email: user.email,
-        //     //   name: user.displayName,
-        //     // });
-              
-        //     console.log("Document written with ID: ", docRef);
-        //   } catch (e) {
-        //     console.log("Error adding document: ", e);
-        //   }
-    // }
+  // try {
+  //     // const docRef = await addDoc(collection(db, "users"), {
+  //     //   email: user.email,
+  //     //   name: user.displayName,
+  //     // });
+
+  //     console.log("Document written with ID: ", docRef);
+  //   } catch (e) {
+  //     console.log("Error adding document: ", e);
+  //   }
+  // }
   // split name into firstname and lastname
   const str = user.displayName;
-  const res = str.split(' ', 2);
+  const res = str.split(" ", 2);
 
   const data = {
     id: user.uid,
     email: user.email,
     firstname: res[0],
     lastname: res[1],
-    photo: user.photoURL
-  }
-  await setDoc(doc(db,'users',user.uid), data, {merge : true});
+    photo: user.photoURL,
+  };
+  await setDoc(doc(db, "users", user.uid), data, { merge: true });
   console.log(data);
-  return <div>{data.firstname}</div>;
-}
+};
 
+//Get firstname
+const auth = getAuth();
+let firstname = "";
+onAuthStateChanged(auth, (user) => {
+  firstname = user.displayName.split(" ")[0];
+});
+
+export { firstname };

@@ -3,7 +3,6 @@ import { auth } from './services/firebase';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
 
@@ -15,7 +14,6 @@ function App() {
       window.localStorage.setItem('user','user');
     })
   }, []);
-  console.log(user);
 
   return (
     <div className="App">

@@ -1,23 +1,21 @@
-import React, { useState } from "react";
-import PopUp from "./Popup";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { addUser } from "../services/users";
-import { getAuth, signOut } from "firebase/auth";
-import { logOut } from "../services/firebase";
-//import { getUser } from "../services/users";
-import { createTheme } from "@mui/material/styles";
-
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Avatar from "@mui/material/Avatar";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
 import Paper from "@mui/material/Paper";
+import { createTheme } from "@mui/material/styles";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { logOut } from "../services/firebase";
+import { addUser, firstname } from "../services/users";
+
+import PopUp from "./Popup";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -57,7 +55,6 @@ const Name = withTheme(styled.div`
   text-align: center;
 `);
 
-
 const Fire = withTheme(styled.div`
   position: absolute;
   width: 23px;
@@ -67,22 +64,22 @@ const Fire = withTheme(styled.div`
 `);
 
 const Streak = withTheme(styled.div`
-position: absolute;
-width: 70px;
-left: 244px;
-top: 105px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 10px;
-line-height: 12px;
-text-align: center;
+  position: absolute;
+  width: 70px;
+  left: 244px;
+  top: 105px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
 `);
 
 const Logout = withTheme(styled.div`
-position: absolute;
-left: 316px;
-top: 97px;
+  position: absolute;
+  left: 316px;
+  top: 97px;
 `);
 
 const Calendar = withTheme(styled.div`
@@ -98,27 +95,26 @@ const Gratitude = withTheme(styled.div`
 `);
 
 const Toggle = withTheme(styled.div`
-position: absolute;
-left: 130px;
-top: 180px;
+  position: absolute;
+  left: 130px;
+  top: 180px;
 `);
 
 const BottomNavigationBar = withTheme(styled.div`
-
-position: fixed;
-width: 381px;
-height: 74px;
-left: -3px;
-top: 1163px;
-background: #FFE9E9;
-box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
-border-radius: 23px;
+  position: fixed;
+  width: 381px;
+  height: 74px;
+  left: -3px;
+  top: 1163px;
+  background: #ffe9e9;
+  box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
+  border-radius: 23px;
 `);
 
 const Home = ({ user }) => {
   // add user to firestore
-  addUser({user});
-
+  addUser({ user });
+  console.log(firstname)
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
 
@@ -135,6 +131,7 @@ const Home = ({ user }) => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
+
   return (
     <div>
       <div>
@@ -153,7 +150,7 @@ const Home = ({ user }) => {
           </Profile>
         </Head>
         <Name>
-          Hi,{user.displayName} <button onClick={logOut}>Sign Out</button>
+          Hi,{firstname} <button onClick={logOut}>Sign Out</button>
         </Name>
 
         <Fire>
