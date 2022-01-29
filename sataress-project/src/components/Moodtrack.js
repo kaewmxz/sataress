@@ -1,6 +1,6 @@
 import React from "react";
-import "./style.css";
-import Chat from "./Chat"
+import "./chatbot/style.css"
+import Chat from "./chatbot/Chat"
 
 const Moodtrack = () => {
   return (

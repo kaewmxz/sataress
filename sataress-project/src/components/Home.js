@@ -23,6 +23,7 @@ import PopupGratitude from "./PopupGratitude";
 import PopupSignout from "./PopupSignout"
 import { addUser, getUsers } from "../services/users";
 import { logOut } from "../services/firebase";
+import Moodtrack from "./Moodtrack"
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -156,7 +157,7 @@ const Home =  ({ user }) => {
     <Head>
       <img src="/image/head.png" width="300px"></img>
       <Profile>
-        <Link to="/Calendar">
+        <Link to="/Moodtrack">
           <Avatar
             alt=""
             src= {image}
