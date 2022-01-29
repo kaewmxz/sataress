@@ -3,23 +3,24 @@ import { auth } from './services/firebase';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 
 function App() {
 
-  const [user, setUser] = useState(null || window.localStorage.getItem('user') === 'user');
+  const [user, setUser] = useState(null);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      setUser(user);
-      window.localStorage.setItem('user','user');
-    })
+        auth.onAuthStateChanged(user=> {
+          setUser(user);
+          setLoad(false)
+      })
+  //console.log(user);
   }, []);
-  console.log(user);
-
+ 
   return (
     <div className="App">
-      {user ? <Home user={user} /> : <Login />}
+      { user ? <Home user={user} /> : <Login />}
     </div>
   );
 }

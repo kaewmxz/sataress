@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PopUp from "./Popup";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -6,12 +6,11 @@ import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { addUser } from "../services/users";
+import { addUser, getUsers } from "../services/users";
 import { getAuth, signOut } from "firebase/auth";
-import { logOut } from "../services/firebase";
-//import { getUser } from "../services/users";
+import { logOut, db } from "../services/firebase";
 import { createTheme } from "@mui/material/styles";
-
+import { doc, getDoc} from "firebase/firestore";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -115,9 +114,28 @@ box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
 border-radius: 23px;
 `);
 
-const Home = ({ user }) => {
+const Home =  ({ user }) => {
   // add user to firestore
   addUser({user});
+  const [name,setName] = useState("");
+  const [image,setImage] = useState("");
+  //const userRef = doc(db, 'users',user.uid);
+  
+  useEffect(() => {
+    // const getUsers = async () => {
+    //   const userSnap = await getDoc(userRef);
+    //   const userData = userSnap.data().firstname;
+    //   //console.log(userData);
+    //   setName(userData)
+    // }
+    // getUsers();
+    const getFirstname = async () => {
+      const [p,b] = await getUsers({user});
+      setName(p)
+      setImage(b)
+    }
+    getFirstname()
+  }, [])
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -143,17 +161,17 @@ const Home = ({ user }) => {
           <Profile>
             <Link to="/Calendar">
               <Avatar
-                alt="Oak Natthakrit"
-                src="/broken-image.jpg"
+                alt=""
+                src= {image}
                 sx={{ width: 67, height: 67 }}
               >
-                O
               </Avatar>
             </Link>
           </Profile>
         </Head>
-        <Name>
-          Hi,{user.displayName} <button onClick={logOut}>Sign Out</button>
+        <Name id = "name">
+          Hi,{name}
+          <button onClick={logOut}>Sign Out</button>
         </Name>
 
         <Fire>

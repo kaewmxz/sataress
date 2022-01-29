@@ -48,7 +48,9 @@ const Login = () => {
         </Image>
       </Grid>
       <div className="GoogleButton">
-        <GoogleButton onClick={signIn}>Sign in with Google</GoogleButton>
+        <GoogleButton onClick={signIn}>
+          Sign in with Google
+        </GoogleButton>
       </div>
     </Bg>
   );
