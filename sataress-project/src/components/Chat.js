@@ -4,49 +4,73 @@ import axios from "axios";
 import "./style.css";
 import Messages from "./Messages";
 
-const Chat = props => {
+let replyMap = new Map();
+
+const Chat = (props) => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
 
-  const handleMessageSubmit = message => {
+  const handleMessageSubmit = async (message) => {
     const data = {
-      message
+      message,
     };
-
-    axios
-      .post("https://e589-2001-fb1-10-85a8-831-73ff-37e0-5de6.ngrok.io/chatbot", data)
-      .then(response => {
+    try {
+      const response = await axios.post("http://localhost:4000/chatbot", data);
+      for (
+        let i = 0;
+        i < response.data["message"]["fulfillmentMessages"].length;
+        i++
+      ) {
         const responseData = {
-          text: response.data["message"]["fulfillmentMessages"] != "" ? response.map.data["message"]["fulfillmentMessages"]() : "Sorry, I can't get it. Can you please repeat once?",
-          isBot: true
+          text: response.data.message.fulfillmentMessages[i].text.text,
+          isBot: true,
         };
-
-        setResponses(responses => [...responses, responseData]);
-        console.log(response.data)
-        console.log(responseData)
-      })
-      .catch(error => {
-        console.log("Error: ", error);
-      });
+        setResponses((responses) => [...responses, responseData]);
+      }
+      return response.data.message;
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
-  const handleMessageChange = event => {
+  const handleMessageChange = (event) => {
     setCurrentMessage(event.target.value);
   };
 
-  const handleSubmit = event => {
+  const extractReply = (reply) => {
+    if (reply.action == "Greeting.Greeting-custom") {
+      replyMap["activity"] = reply.parameters.fields.activty.stringValue;
+    } else if (reply.action == "Greeting.Greeting-custom.Tendtobehappy-yes") {
+      replyMap["mood"] = "happy";
+    } else if (
+      reply.action ==
+      "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom"
+    ) {
+      replyMap["intensity"] = reply.parameters.fields.number.numberValue;
+    } else if (
+      reply.action ==
+      "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
+    ) {
+      replyMap["thoughts"] = reply.queryText;
+    } else {
+    }
+  };
+
+  const handleSubmit = async (event) => {
     const message = {
       text: currentMessage,
-      isBot: false
+      isBot: false,
     };
+    let reply;
     if (event.key == "Enter") {
-      setResponses(responses => [...responses, message]);
-      handleMessageSubmit(message.text);
+      setResponses((responses) => [...responses, message]);
+      reply = await handleMessageSubmit(message.text);
+      extractReply(reply);
+      console.log(replyMap);
       setCurrentMessage("");
     }
-    
   };
-  
+
   return (
     <div className="chatSection">
       <div className="botContainer">

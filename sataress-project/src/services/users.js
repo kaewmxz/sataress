@@ -1,12 +1,11 @@
 import { db } from "../services/firebase";
 import { collection, doc, getDoc, setDoc, query, where, getDocs } from "firebase/firestore";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
 
 // add user 
 export const addUser = async ({user}) => {
   // split name into firstname and lastname
   const str = user.displayName;
-  const res = str.split(' ', 2);
+  const res = str.split(" ", 2);
 
   const data = {
     id: user.uid,
