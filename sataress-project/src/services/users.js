@@ -1,36 +1,28 @@
 import { db } from "../services/firebase";
-import { addDoc, collection, doc, documentId, DocumentReference, getDocs, setDoc } from "firebase/firestore";
-
-// get user
-// export const getUser = async () => {
-//   const querySnapshot = await getDocs(collection(db, "users"));
-//   querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data()}`);
-// });
-// }
+import { collection, doc, getDoc, setDoc, query, where, getDocs } from "firebase/firestore";
 
 // add user 
 export const addUser = async ({user}) => {
-    // if (user === undefined) {
-    //     console.log(user)
-    // }
-    // else {
-      
-        // try {
-        //     // const docRef = await addDoc(collection(db, "users"), {
-        //     //   email: user.email,
-        //     //   name: user.displayName,
-        //     // });
-              
-        //     console.log("Document written with ID: ", docRef);
-        //   } catch (e) {
-        //     console.log("Error adding document: ", e);
-        //   }
-    // }
-  const docRef = await setDoc(doc(db,'users',user.uid), {
+  // split name into firstname and lastname
+  const str = user.displayName;
+  const res = str.split(" ", 2);
+
+  const data = {
+    id: user.uid,
     email: user.email,
-    name: user.displayName,
-  });
-  console.log(docRef);
+    firstname: res[0],
+    lastname: res[1],
+    photo: user.photoURL
+  }
+  await setDoc(doc(db,'users',user.uid), data, {merge : true});
+  //console.log(data);
 }
 
+// get user firstname
+export const getUsers = async ({user}) => {
+  const userRef = doc(db, 'users',user.uid);
+  const userSnap = await getDoc(userRef);
+  const userData = userSnap.data().firstname;
+  const userPhoto = userSnap.data().photo;
+  return [userData, userPhoto];
+}

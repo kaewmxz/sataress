@@ -32,9 +32,15 @@ const Login = () => {
  
       </Grid>
       <div className="GoogleButton">
+<<<<<<< HEAD
         <center>
         <GoogleButton onClick={signIn}>Sign in with Google</GoogleButton>
         </center>
+=======
+        <GoogleButton onClick={signIn}>
+          Sign in with Google
+        </GoogleButton>
+>>>>>>> 083a47c97cf1ed983cfe58f9d41c498c542d7d29
       </div>
     </Bg>
   );
