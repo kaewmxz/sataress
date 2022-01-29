@@ -18,15 +18,9 @@ function App() {
   }, []);
  
   return (
-<<<<<<< HEAD
       <div className="App">
         {user ? <Home user={user} /> : <Login />}
       </div>
-=======
-    <div className="App">
-      { user ? <Home user={user} /> : <Login />}
-    </div>
->>>>>>> 083a47c97cf1ed983cfe58f9d41c498c542d7d29
   );
 }
 
