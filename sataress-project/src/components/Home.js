@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
@@ -23,6 +23,8 @@ import PopupGratitude from "./PopupGratitude";
 import PopupSignout from "./PopupSignout"
 import { addUser, getUsers } from "../services/users";
 import { logOut } from "../services/firebase";
+import { AuthContext } from "./Auth";
+import Login from "./Login";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -119,15 +121,15 @@ const Toggle = withTheme(styled.div`
 //   border-radius: 23px;
 // `);
 
-const Home =  ({ user }) => {
+const Home =  () => {
+  const { currentUser } = useContext(AuthContext);
   // add user to firestore
-  addUser({user});
+  addUser({currentUser});
   const [name,setName] = useState("");
   const [image,setImage] = useState("");
-  
   useEffect(() => {
     const getFirstname = async () => {
-      const [p,b] = await getUsers({user});
+      const [p,b] = await getUsers({currentUser});
       setName(p)
       setImage(b)
     }
@@ -153,7 +155,9 @@ const Home =  ({ user }) => {
 
   return (
     <div>
-    <Head>
+      {currentUser ? (
+        <div>
+            <Head>
       <img src="/image/head.png" width="300px"></img>
       <Profile>
         <Link to="/Calendar">
@@ -207,6 +211,9 @@ const Home =  ({ user }) => {
         <LabelBottomNavigation>
         </LabelBottomNavigation>
       </Bg>
+          </div>
+      ) : <Login/>}
+    
     </div>
   );
 };
