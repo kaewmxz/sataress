@@ -3,17 +3,17 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
+const saveMood = require("./moodResult");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
 app.use(cors());
 app.use(morgan("dev"));
 
-app.post("/chatbot", jsonParser, urlEncoded, function (req, res, next) {
-  res.header({"Content-Type": "application/json"});
-  next;
+app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
   console.log("message " + message);
 
@@ -24,10 +24,23 @@ app.post("/chatbot", jsonParser, urlEncoded, function (req, res, next) {
     .catch((error) => {
       console.log("Something went wrong: " + error);
       res.send({
-        error: "Error occured here"
+        error: "Error occured here",
       });
     });
 });
+
+app.post("/mood-result", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  saveMood(result)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.use("/", router);
 
 const port = process.env.PORT || 4000;
 

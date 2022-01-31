@@ -19,12 +19,13 @@ import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import LabelBottomNavigation from './Navigation';
-import PopupGratitude from "./PopupGratitude";
-import PopupSignout from "./PopupSignout"
+import PopupGratitude from "./popup/PopupGratitude";
+import PopupSignout from "./popup/PopupSignout"
 import { addUser, getUsers } from "../services/users";
 import { logOut } from "../services/firebase";
 import { AuthContext } from "./Auth";
 import Login from "./Login";
+import Moodtrack from "./Moodtrack";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -160,13 +161,12 @@ const Home =  () => {
             <Head>
       <img src="/image/head.png" width="300px"></img>
       <Profile>
-        <Link to="/Calendar">
+        <Link to="/Moodtrack">
           <Avatar
             alt=""
             src= {image}
             sx={{ width: 67, height: 67 }}
           >
-            O
           </Avatar>
         </Link>
       </Profile>
