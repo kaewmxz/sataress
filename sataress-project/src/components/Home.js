@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
+=======
+
+import React, { useState, useEffect, useContext } from "react";
+>>>>>>> 90c987d940a6cbc9d78b5a5d484971d19ee7b288
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
@@ -23,7 +28,12 @@ import PopupGratitude from "./popup/PopupGratitude";
 import PopupSignout from "./popup/PopupSignout";
 import { addUser, getUsers } from "../services/users";
 import { logOut } from "../services/firebase";
+import { AuthContext } from "./Auth";
+import Login from "./Login";
 import Moodtrack from "./Moodtrack";
+import { getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
+import { errorPrefix } from "@firebase/util";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -119,20 +129,46 @@ const Toggle = withTheme(styled.div`
 //   border-radius: 23px;
 // `);
 
-const Home =  ({ user }) => {
+const Home =  () => {
+  const { currentUser } = useContext(AuthContext);
+  const auth = getAuth();
+  
   // add user to firestore
-  addUser({ user });
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-
+  //addUser({currentUser});
+  const [name,setName] = useState("");
+  const [image,setImage] = useState("");
   useEffect(() => {
-    const getFirstname = async () => {
-      const [p, b] = await getUsers({ user });
-      setName(p);
-      setImage(b);
-    };
-    getFirstname();
-  }, []);
+    const firstname = localStorage.getItem('firstname');
+    const photo = localStorage.getItem('photo');
+    setName(firstname)
+    setImage(photo)
+    // const getFirstname = async () => {
+    //   const [p,b] = await getUsers({currentUser});
+    //   setName(p)
+    //   setImage(b)
+      
+    // }
+    getRedirectResult(auth)
+    .then((result) => {
+      const user = result.user;
+      const str = user.displayName;
+      const res = str.split(" ", 2);
+      const data = {
+        id: user.uid,
+        email: user.email,
+        firstname: res[0],
+        lastname: res[1],
+        photo: user.photoURL
+      }
+      localStorage.setItem("firstname",res[0]);
+      localStorage.setItem("photo",user.photoURL);
+      axios.post("http://localhost:4000/users", data).catch((err) => console.log(err))
+      window.location.reload();
+    }).catch((error) => {
+      console.log(error)
+    });
+    // getFirstname()
+  }, [])
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -192,13 +228,20 @@ const Home =  ({ user }) => {
 
   return (
     <div>
-      <Head>
-        <img src="/image/head.png" width="300px"></img>
-        <Profile>
-          <Link to="/Moodtrack">
-            <Avatar alt="" src={image} sx={{ width: 67, height: 67 }}></Avatar>
-          </Link>
-        </Profile>
+      {currentUser ? (
+        <div>
+            <Head>
+      <img src="/image/head.png" width="300px"></img>
+      <Profile>
+        <Link to="/Moodtrack">
+          <Avatar
+            alt=""
+            src= {image}
+            sx={{ width: 67, height: 67 }}
+          >
+          </Avatar>
+        </Link>
+      </Profile>
       </Head>
       <Name>Hi, {name} {moodBar}</Name>
       <Fire>
@@ -240,6 +283,9 @@ const Home =  ({ user }) => {
         /> */}
         
       </Bg>
+          </div>
+      ) : <Login/>}
+    
     </div>
   );
 };

@@ -1,12 +1,16 @@
-import React from "react";
-import { signIn } from "../services/firebase";
+import React, { useContext } from "react";
+//import { signIn } from "../services/firebase";
 import GoogleButton from "react-google-button";
 import { useTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthContext } from "./Auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 //import ResponsiveImgMaterialUi from "responsive-img-material-ui";
 import "../css/login.css";
+import axios from "axios";
 
 const Bg = withTheme(styled.div`
   position: absolute;
@@ -23,6 +27,30 @@ const Bg = withTheme(styled.div`
 
 const Login = () => {
   const theme = useTheme();
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+
+  const googleLogin = () => {
+     signInWithRedirect(auth,provider);
+    //   try {
+    //     axios.post("http://localhost:4000/users", user)
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }).catch((error) => {
+    //   console.log(error.message)
+    // });
+  }
+
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) {
+    return (
+      <Routes>
+        <Route path ="/" element={<Navigate replace to ="/home"/>}></Route>
+      </Routes>
+    )
+  }
+
   return (
     <Bg>
       <Grid container justify="center">
@@ -33,7 +61,7 @@ const Login = () => {
       </Grid>
       <div className="GoogleButton">
         <center>
-        <GoogleButton onClick={signIn}>Sign in with Google</GoogleButton>
+        <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
         </center>
       </div>
     </Bg>

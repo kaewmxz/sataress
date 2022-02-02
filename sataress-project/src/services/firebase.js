@@ -17,8 +17,8 @@ const firebaseConfig = {
 
 export const db = getFirestore();
 export const auth = getAuth();
-const provider = new GoogleAuthProvider();
-export const signIn = () => signInWithRedirect(auth, provider);
+export const provider = new GoogleAuthProvider();
+// export const signIn = () => signInWithRedirect(auth, provider);
 export const logOut = () => signOut(auth);
 
 // export default firebaseConfig;
