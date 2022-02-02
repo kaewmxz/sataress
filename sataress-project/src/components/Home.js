@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-=======
 
 import React, { useState, useEffect, useContext } from "react";
->>>>>>> 90c987d940a6cbc9d78b5a5d484971d19ee7b288
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Avatar from "@mui/material/Avatar";
