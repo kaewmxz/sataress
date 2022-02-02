@@ -1,5 +1,4 @@
 import React, {useContext} from "react";
-import "./style.css";
 import { AuthContext } from "./Auth";
 import "./chatbot/style.css"
 import Chat from "./chatbot/Chat"

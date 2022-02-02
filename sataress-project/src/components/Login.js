@@ -7,9 +7,10 @@ import { withTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
-import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 //import ResponsiveImgMaterialUi from "responsive-img-material-ui";
 import "../css/login.css";
+import axios from "axios";
 
 const Bg = withTheme(styled.div`
   position: absolute;
@@ -30,16 +31,15 @@ const Login = () => {
   const provider = new GoogleAuthProvider();
 
   const googleLogin = () => {
-    signInWithRedirect(auth,provider).then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      console.log(user)
-    }).catch((error) => {
-      console.log(error.message)
-    });
+     signInWithRedirect(auth,provider);
+    //   try {
+    //     axios.post("http://localhost:4000/users", user)
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }).catch((error) => {
+    //   console.log(error.message)
+    // });
   }
 
   const { currentUser } = useContext(AuthContext);

@@ -26,6 +26,9 @@ import { logOut } from "../services/firebase";
 import { AuthContext } from "./Auth";
 import Login from "./Login";
 import Moodtrack from "./Moodtrack";
+import { getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
+import { errorPrefix } from "@firebase/util";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -124,17 +127,43 @@ const Toggle = withTheme(styled.div`
 
 const Home =  () => {
   const { currentUser } = useContext(AuthContext);
+  const auth = getAuth();
+  
   // add user to firestore
-  addUser({currentUser});
+  //addUser({currentUser});
   const [name,setName] = useState("");
   const [image,setImage] = useState("");
   useEffect(() => {
-    const getFirstname = async () => {
-      const [p,b] = await getUsers({currentUser});
-      setName(p)
-      setImage(b)
-    }
-    getFirstname()
+    const firstname = localStorage.getItem('firstname');
+    const photo = localStorage.getItem('photo');
+    setName(firstname)
+    setImage(photo)
+    // const getFirstname = async () => {
+    //   const [p,b] = await getUsers({currentUser});
+    //   setName(p)
+    //   setImage(b)
+      
+    // }
+    getRedirectResult(auth)
+    .then((result) => {
+      const user = result.user;
+      const str = user.displayName;
+      const res = str.split(" ", 2);
+      const data = {
+        id: user.uid,
+        email: user.email,
+        firstname: res[0],
+        lastname: res[1],
+        photo: user.photoURL
+      }
+      localStorage.setItem("firstname",res[0]);
+      localStorage.setItem("photo",user.photoURL);
+      axios.post("http://localhost:4000/users", data).catch((err) => console.log(err))
+      window.location.reload();
+    }).catch((error) => {
+      console.log(error)
+    });
+    // getFirstname()
   }, [])
 
   // These two const used for the weekly/monthly togglebuttons
