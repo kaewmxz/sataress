@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -13,14 +12,15 @@ import Paper from "@mui/material/Paper";
 import { createTheme } from "@mui/material/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Plot from "react-plotly.js";
+import axios from "axios";
 
+import IconButton from "@mui/material/IconButton";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-import IconButton from '@mui/material/IconButton';
-import LogoutIcon from '@mui/icons-material/Logout';
-
-import LabelBottomNavigation from './Navigation';
+import LabelBottomNavigation from "./Navigation";
 import PopupGratitude from "./popup/PopupGratitude";
-import PopupSignout from "./popup/PopupSignout"
+import PopupSignout from "./popup/PopupSignout";
 import { addUser, getUsers } from "../services/users";
 import { logOut } from "../services/firebase";
 import Moodtrack from "./Moodtrack";
@@ -108,7 +108,6 @@ const Toggle = withTheme(styled.div`
   top: 180px;
 `);
 
-
 // const BottomNavigationBar = withTheme(styled.div`
 //   position: fixed;
 //   width: 381px;
@@ -122,18 +121,18 @@ const Toggle = withTheme(styled.div`
 
 const Home =  ({ user }) => {
   // add user to firestore
-  addUser({user});
-  const [name,setName] = useState("");
-  const [image,setImage] = useState("");
-  
+  addUser({ user });
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+
   useEffect(() => {
     const getFirstname = async () => {
-      const [p,b] = await getUsers({user});
-      setName(p)
-      setImage(b)
-    }
-    getFirstname()
-  }, [])
+      const [p, b] = await getUsers({ user });
+      setName(p);
+      setImage(b);
+    };
+    getFirstname();
+  }, []);
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -152,43 +151,73 @@ const Home =  ({ user }) => {
     setAlignment(newAlignment);
   };
 
+  // function getmoodBar() {
+  //   const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
+  //   return axios
+  //     .get("http://localhost:4000/mood/", { params: { id: id } })
+  //     .then((response) => response.data.message)
+  //     .catch((err) => console.error(err));
+  // }
+  // const moodBar = getmoodBar();
+  // getmoodBar().then(function (result) {
+  //   console.log(result); // "initResolve"
+  //   moodBar = result;
+  // });
+
+  const getmoodBar = async () => {
+    const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
+    try {
+      const response = await axios.get("http://localhost:4000/mood/", {
+        params: { id: id },
+      });
+      return response.data.message;
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
+
+  const moodBar = async () => {
+    return await getmoodBar();
+  };
+
+  // console.log(await getmoodBar());
+
+  // try {
+  //   (async () => {
+  //     connection = await getmoodBar();
+  //   })();
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
   return (
     <div>
-    <Head>
-      <img src="/image/head.png" width="300px"></img>
-      <Profile>
-        <Link to="/Moodtrack">
-          <Avatar
-            alt=""
-            src= {image}
-            sx={{ width: 67, height: 67 }}
-          >
-          </Avatar>
-        </Link>
-      </Profile>
+      <Head>
+        <img src="/image/head.png" width="300px"></img>
+        <Profile>
+          <Link to="/Moodtrack">
+            <Avatar alt="" src={image} sx={{ width: 67, height: 67 }}></Avatar>
+          </Link>
+        </Profile>
       </Head>
-      <Name>Hi, {name}</Name>
-      
+      <Name>Hi, {name} {moodBar}</Name>
       <Fire>
         <img src="/image/fire.png" width="23px"></img>
       </Fire>
       <Streak>Current Streak</Streak>
       <Logout>
-          <PopupSignout>
-          </PopupSignout>
+        <PopupSignout></PopupSignout>
       </Logout>
       <Bg>
         {/* Calendar card */}
         <Calendar>
           <Link to="/Calendar">
-            <img src="/image/calendar.png"
-              width="307px"
-              height="182px" />
+            <img src="/image/calendar.png" width="307px" height="182px" />
           </Link>
         </Calendar>
         {/* Gratitude journal button */}
         <Gratitude>
-              <PopupGratitude></PopupGratitude>
+          <PopupGratitude></PopupGratitude>
         </Gratitude>
         {/* Monthly or Weekly button */}
         <Toggle>
@@ -204,8 +233,12 @@ const Home =  ({ user }) => {
         </Toggle>
 
         {/* bottom navigation bar*/}
-        <LabelBottomNavigation>
-        </LabelBottomNavigation>
+        <LabelBottomNavigation></LabelBottomNavigation>
+        {/* <Plot
+          data={moodBar}
+          layout={{ width: 320, height: 240, title: "plot" }}
+        /> */}
+        
       </Bg>
     </div>
   );

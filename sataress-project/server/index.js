@@ -6,12 +6,18 @@ const morgan = require("morgan");
 const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
-const saveMood = require("./moodResult");
+const { saveMood, getMood } = require("./mood");
+const { response } = require("express");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
 app.use(cors());
 app.use(morgan("dev"));
+app.disable("etag");
+// app.get("/*", function (req, res, next) {
+//   res.setHeader("Last-Modified", new Date().toUTCString());
+//   next();
+// });
 
 app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
@@ -32,6 +38,18 @@ app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
 app.post("/mood-result", jsonParser, urlEncoded, function (req, res, next) {
   const result = req.body;
   saveMood(result)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.get("/mood", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getMood(id)
     .then((response) => {
       res.send({ message: response });
     })
