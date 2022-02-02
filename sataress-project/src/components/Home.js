@@ -12,8 +12,15 @@ import Paper from "@mui/material/Paper";
 import { createTheme } from "@mui/material/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import Plot from "react-plotly.js";
-import axios from "axios";
+import {
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Legend,
+  Tooltip,
+  Bar,
+} from "recharts";
 
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -123,47 +130,58 @@ const Toggle = withTheme(styled.div`
 //   box-shadow: inset 0px 4px 4px rgba(251, 24, 24, 0.36);
 //   border-radius: 23px;
 // `);
-
-const Home =  () => {
+const Home = () => {
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
-  
+
   // add user to firestore
   //addUser({currentUser});
-  const [name,setName] = useState("");
-  const [image,setImage] = useState("");
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [moodBar, setmoodBar] = useState([]);
   useEffect(() => {
-    const firstname = localStorage.getItem('firstname');
-    const photo = localStorage.getItem('photo');
-    setName(firstname)
-    setImage(photo)
+    const firstname = localStorage.getItem("firstname");
+    const photo = localStorage.getItem("photo");
+    const fetchmoodBar = async () => {
+      const result = await axios.get("http://localhost:4000/mood/", {
+        params: { id: localStorage.getItem("uid") },
+      });
+
+      setmoodBar(result.data.message);
+    };
+
+    fetchmoodBar();
+    setName(firstname);
+    setImage(photo);
     // const getFirstname = async () => {
     //   const [p,b] = await getUsers({currentUser});
     //   setName(p)
     //   setImage(b)
-      
+
     // }
     getRedirectResult(auth)
-    .then((result) => {
-      const user = result.user;
-      const str = user.displayName;
-      const res = str.split(" ", 2);
-      const data = {
-        id: user.uid,
-        email: user.email,
-        firstname: res[0],
-        lastname: res[1],
-        photo: user.photoURL
-      }
-      localStorage.setItem("firstname",res[0]);
-      localStorage.setItem("photo",user.photoURL);
-      axios.post("http://localhost:4000/users", data).catch((err) => console.log(err))
-      window.location.reload();
-    }).catch((error) => {
-      console.log(error)
-    });
+      .then((result) => {
+        const user = result.user;
+        const str = user.displayName;
+        const res = str.split(" ", 2);
+        const data = {
+          id: user.uid,
+          email: user.email,
+          firstname: res[0],
+          lastname: res[1],
+          photo: user.photoURL,
+        };
+        localStorage.setItem("firstname", res[0]);
+        localStorage.setItem("photo", user.photoURL);
+        localStorage.setItem("photo", user.uid);
+        axios
+          .post("http://localhost:4000/users", data)
+          .catch((err) => console.log(err));
+        window.location.reload();
+      })
+      .catch((error) => {});
     // getFirstname()
-  }, [])
+  }, []);
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -181,7 +199,7 @@ const Home =  () => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-
+  // console.log(moodBar);
   // function getmoodBar() {
   //   const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
   //   return axios
@@ -207,9 +225,16 @@ const Home =  () => {
     }
   };
 
-  const moodBar = async () => {
-    return await getmoodBar();
-  };
+  // const extractmoodBar = (bar) => {
+  //   moodsBar = bar;
+  //   return moodsBar
+  // };
+
+  // const moodBar = async () => {
+  //   let bar;
+  //   bar = await getmoodBar();
+  //   extractmoodBar(bar);
+  // };
 
   // console.log(await getmoodBar());
 
@@ -220,67 +245,72 @@ const Home =  () => {
   // } catch (err) {
   //   console.log(err);
   // }
-
+  console.log(moodBar);
   return (
     <div>
       {currentUser ? (
         <div>
-            <Head>
-      <img src="/image/head.png" width="300px"></img>
-      <Profile>
-        <Link to="/Moodtrack">
-          <Avatar
-            alt=""
-            src= {image}
-            sx={{ width: 67, height: 67 }}
-          >
-          </Avatar>
-        </Link>
-      </Profile>
-      </Head>
-      <Name>Hi, {name} {moodBar}</Name>
-      <Fire>
-        <img src="/image/fire.png" width="23px"></img>
-      </Fire>
-      <Streak>Current Streak</Streak>
-      <Logout>
-        <PopupSignout></PopupSignout>
-      </Logout>
-      <Bg>
-        {/* Calendar card */}
-        <Calendar>
-          <Link to="/Calendar">
-            <img src="/image/calendar.png" width="307px" height="182px" />
-          </Link>
-        </Calendar>
-        {/* Gratitude journal button */}
-        <Gratitude>
-          <PopupGratitude></PopupGratitude>
-        </Gratitude>
-        {/* Monthly or Weekly button */}
-        <Toggle>
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-          >
-            <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-            <ToggleButton value="monthly">เดือน</ToggleButton>
-          </ToggleButtonGroup>
-        </Toggle>
+          <Head>
+            <img src="/image/head.png" width="300px"></img>
+            <Profile>
+              <Link to="/Moodtrack">
+                <Avatar
+                  alt=""
+                  src={image}
+                  sx={{ width: 67, height: 67 }}
+                ></Avatar>
+              </Link>
+            </Profile>
+          </Head>
+          <Name>Hi, {name}</Name>
+          <Fire>
+            <img src="/image/fire.png" width="23px"></img>
+          </Fire>
+          <Streak>Current Streak</Streak>
+          <Logout>
+            <PopupSignout></PopupSignout>
+          </Logout>
+          <Bg>
+            {/* Calendar card */}
+            <Calendar>
+              <Link to="/Calendar">
+                <img src="/image/calendar.png" width="307px" height="182px" />
+              </Link>
+            </Calendar>
+            {/* Gratitude journal button */}
+            <Gratitude>
+              <PopupGratitude></PopupGratitude>
+            </Gratitude>
+            {/* Monthly or Weekly button */}
+            <Toggle>
+              <ToggleButtonGroup
+                color="primary"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+              >
+                <ToggleButton value="weekly">สัปดาห์</ToggleButton>
+                <ToggleButton value="monthly">เดือน</ToggleButton>
+              </ToggleButtonGroup>
+            </Toggle>
 
-        {/* bottom navigation bar*/}
-        <LabelBottomNavigation></LabelBottomNavigation>
-        {/* <Plot
-          data={moodBar}
-          layout={{ width: 320, height: 240, title: "plot" }}
-        /> */}
-        
-      </Bg>
-          </div>
-      ) : <Login/>}
-    
+            {/* bottom navigation bar*/}
+            <LabelBottomNavigation></LabelBottomNavigation>
+
+            <BarChart width={730} height={250} data={moodBar}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="mood" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="count" fill="#8884d8" />
+            </BarChart>
+            
+          </Bg>
+        </div>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 };
