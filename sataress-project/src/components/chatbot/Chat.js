@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import {Link} from "react-router-dom";
 import "./style.css";
 import Messages from "./Messages";
+
+import styled from "styled-components";
+import { withTheme } from "@material-ui/core/styles";
+import Avatar from "@mui/material/Avatar";
+import DoDisturbOnSharpIcon from '@mui/icons-material/DoDisturbOnSharp';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 let replyMap = new Map();
 
@@ -71,15 +77,103 @@ const Chat = (props) => {
     }
   };
 
-  return (
-    <div className="chatSection">
-      <div className="botContainer">
-        <div className="messagesContainer">
-          <Messages messages={responses} />
-        </div>
+  const theme = createTheme({
+    palette: {
+      gray: {
+        main: '#757575',
+      },
+  },
+});
 
+  const Bg = withTheme(styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 189, 189, 0.3) 0%,
+    rgba(254, 68, 10, 0.3) 44.27%
+  );
+  backdrop-filter: blur(4px);
+  background
+`);
+
+const ChatHeader = withTheme(styled.div`
+width: 375px;
+height: 100px;
+left: 0px;
+top: 0px;
+background: rgba(255, 189, 189, 0.6);
+border-radius: 20px 20px 0px 0px;
+`);
+
+const BotProfile = withTheme(styled.div`
+  position: absolute;
+  left: 320px;
+  top: 25px;
+`);
+
+const BotName = withTheme(styled.div`
+  position: absolute;
+  width:30vw;
+  top: 5px;
+  left: -30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #A6A6A6;
+  line-height: 41px;
+`);
+
+const Closebutton = withTheme(styled.div`
+position: absolute;
+  top: 38px;
+  left: 610px;
+`);
+
+const ChatSection = withTheme(styled.div`
+position:relative;
+z-index: -1;
+width: 375px;
+height: 812px;
+background: #FFFFFF;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+border-radius: 20px;
+`);
+
+const ChatBottom = withTheme(styled.div`
+position: absolute;
+width: 375px;
+height: 89px;
+left: 0px;
+top: 723px;
+background: rgba(255, 189, 189, 0.6);
+border-radius: 0px 0px 20px 20px;
+`);
+
+  return (
+    <Bg>
+    <ChatHeader>
+      <BotProfile>
+    <Avatar sx = {{width:50,height:50}}>
+      <img src = "./image/plogo.png" width= "52px"/>
+    </Avatar>
+    <BotName>Nong Krati</BotName>
+    </BotProfile>
+    <Closebutton>
+    <ThemeProvider theme={theme}>
+    <Link to="/">
+    <DoDisturbOnSharpIcon sx = {{width: 15}} color = "gray"/>
+    </Link>
+       </ThemeProvider>
+       </Closebutton>
+    <ChatSection>
+    <div className="messagesContainer">
+          <Messages messages={responses} />
         {/*The input section is 👇*/}
-        <div className="inputSection">
+        <ChatBottom>
           <input
             type="text"
             value={currentMessage}
@@ -118,9 +212,11 @@ const Chat = (props) => {
               </g>
             </svg>
           </div>
+        </ChatBottom>
         </div>
-      </div>
-    </div>
+    </ChatSection>
+    </ChatHeader>
+    </Bg>
   );
 };
 
