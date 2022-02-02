@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import { Timestamp } from "firebase/firestore"; 
+
 import "./style.css";
 import Messages from "./Messages";
 
@@ -21,7 +23,10 @@ const Chat = (props) => {
       message,
     };
     try {
-      const response = await axios.post("http://localhost:4000/chatbot", data);
+      const response = await axios.post(
+        "http://localhost:4000/moodtrack",
+        data
+      );
       for (
         let i = 0;
         i < response.data["message"]["fulfillmentMessages"].length;
@@ -58,6 +63,13 @@ const Chat = (props) => {
       "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
     ) {
       replyMap["thoughts"] = reply.queryText;
+      replyMap["date"] = Timestamp.now();
+      replyMap["uid"] = props.uid;
+      axios
+        .post("http://localhost:4000/mood-result", replyMap)
+        .catch((error) => {
+          console.log("Error: ", error);
+        });
     } else {
     }
   };
@@ -71,9 +83,9 @@ const Chat = (props) => {
     if (event.key == "Enter") {
       setResponses((responses) => [...responses, message]);
       reply = await handleMessageSubmit(message.text);
+      setCurrentMessage("");
       extractReply(reply);
       console.log(replyMap);
-      setCurrentMessage("");
     }
   };
 

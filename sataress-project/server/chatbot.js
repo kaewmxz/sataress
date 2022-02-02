@@ -1,6 +1,6 @@
 const dialogflow = require("@google-cloud/dialogflow");
 
-const dialogflowConfig = require("./config");
+const dialogflowConfig = require("./configs/dialogflowConfig");
 const uuid = require('uuid');
 const projectId = dialogflowConfig.project_id;
 const configuration = {
@@ -43,17 +43,6 @@ async function talkToChatbot(message) {
     });
 
   return response;
-  // // Send request and log result
-  // const responses = await sessionClient.detectIntent(botRequest);
-  // console.log('Detected intent');
-  // const result = responses[0].queryResult;
-  // console.log(`  Query: ${result.queryText}`);
-  // console.log(`  Response: ${result.fulfillmentMessages}`);
-  // if (result.intent) {
-  //   console.log(`  Intent: ${result.intent.displayName}`);
-  // } else {
-  //   console.log('  No intent matched.');
-  // }
 }
 
 module.exports = talkToChatbot;

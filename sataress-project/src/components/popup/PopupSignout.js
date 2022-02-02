@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -10,11 +10,20 @@ import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { logOut } from "../../services/firebase";
+import { signOut, getAuth } from 'firebase/auth';
 
 
 export default function PopupSignout() {
   const [open, setOpen] = React.useState(false);
+  const auth = getAuth();
+  const signOutHandle = () => {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      window.location.replace("/")
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -64,7 +73,7 @@ return (
             m: 1,
          }}>
         <Stack spacing = {2} >
-            <Button onClick={logOut} variant="contained" color="Yesbutton">ใช่</Button>
+            <Button onClick={signOutHandle} variant="contained" color="Yesbutton">ใช่</Button>
             <Button onClick={handleClose} variant="contained" color="Nobutton">ไม่</Button>
           </Stack>
         </Box>
