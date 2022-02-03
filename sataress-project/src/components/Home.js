@@ -15,7 +15,7 @@ import {
   Bar,
 } from "recharts";
 
-import BottomNavigationBar from './BottomNavigationBar ';
+import BottomNavigationBar from "./BottomNavigationBar ";
 import IconButton from "@mui/material/IconButton";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PopupGratitude from "./popup/PopupGratitude";
@@ -34,7 +34,11 @@ const Bg = withTheme(styled.div`
   width: 100vw;
   height: 100vh;
   top: 217px;
-  background: linear-gradient(180deg, rgba(254, 68, 10, 0) 7.81%, #FFBDBD 95.83%);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 68, 10, 0) 7.81%,
+    #ffbdbd 95.83%
+  );
 `);
 
 const Head = withTheme(styled.div`
@@ -56,16 +60,16 @@ const Name = withTheme(styled.div`
   font-style: normal;
   font-weight: bold;
   text-align: center;
-  ${(props) => props.theme.breakpoints.up("xs")}{
+  ${(props) => props.theme.breakpoints.up("xs")} {
     font-size: 16px;
   }
-  ${(props) => props.theme.breakpoints.up("md")}{
+  ${(props) => props.theme.breakpoints.up("md")} {
     font-size: 16px;
   }
-  ${(props) => props.theme.breakpoints.up("lg")}{
+  ${(props) => props.theme.breakpoints.up("lg")} {
     font-size: 16px;
   }
-  ${(props) => props.theme.breakpoints.up("xl")}{
+  ${(props) => props.theme.breakpoints.up("xl")} {
     font-size: 16px;
   }
 `);
@@ -116,29 +120,28 @@ const Toggle = withTheme(styled.div`
 `);
 
 const GraphBox = withTheme(styled.div`
-position: absolute;
-width: 307px;
-height: 182px;
-left: 55px;
-top: 250px;
+  position: absolute;
+  width: 307px;
+  height: 182px;
+  left: 55px;
+  top: 250px;
 
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 17px;
-
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 17px;
 `);
 
 const NavigateBar = withTheme(styled.div`
   position: absolute;
-  top:620px;
+  top: 620px;
 `);
-
-const Home =  () => {
+let moodBar = [];
+const Home = () => {
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
 
   // add user to firestore
-  //addUser({currentUser});
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [moodBar, setmoodBar] = useState([]);
@@ -156,12 +159,7 @@ const Home =  () => {
     fetchmoodBar();
     setName(firstname);
     setImage(photo);
-    // const getFirstname = async () => {
-    //   const [p,b] = await getUsers({currentUser});
-    //   setName(p)
-    //   setImage(b)
 
-    // }
     getRedirectResult(auth)
       .then((result) => {
         const user = result.user;
@@ -176,7 +174,7 @@ const Home =  () => {
         };
         localStorage.setItem("firstname", res[0]);
         localStorage.setItem("photo", user.photoURL);
-        localStorage.setItem("photo", user.uid);
+        localStorage.setItem("uid", user.uid);
         axios
           .post("http://localhost:4000/users", data)
           .catch((err) => console.log(err));
@@ -202,112 +200,74 @@ const Home =  () => {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-  // console.log(moodBar);
-  // function getmoodBar() {
-  //   const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
-  //   return axios
-  //     .get("http://localhost:4000/mood/", { params: { id: id } })
-  //     .then((response) => response.data.message)
-  //     .catch((err) => console.error(err));
-  // }
-  // const moodBar = getmoodBar();
-  // getmoodBar().then(function (result) {
-  //   console.log(result); // "initResolve"
-  //   moodBar = result;
-  // });
 
-  const getmoodBar = async () => {
-    const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
-    try {
-      const response = await axios.get("http://localhost:4000/mood/", {
-        params: { id: id },
-      });
-      return response.data.message;
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
-
-  // const extractmoodBar = (bar) => {
-  //   moodsBar = bar;
-  //   return moodsBar
-  // };
-
-  // const moodBar = async () => {
-  //   let bar;
-  //   bar = await getmoodBar();
-  //   extractmoodBar(bar);
-  // };
-
-  // console.log(await getmoodBar());
-
-  // try {
-  //   (async () => {
-  //     connection = await getmoodBar();
-  //   })();
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  console.log(moodBar);
   return (
     <div>
       {currentUser ? (
         <div>
-            <Head>
-      <img src="/image/head.png" width="300px"></img>
-      <Profile>
-        <Link to="/Moodtrack">
-          <Avatar
-            alt=""
-            src= {image}
-            sx={{ width: 67, height: 67 }}
-          >
-          </Avatar>
-        </Link>
-      </Profile>
-      </Head>
-      <Name>Hi, {name} {moodBar}</Name>
-      <Fire>
-        <img src="/image/fire.png" width="23px"></img>
-      </Fire>
-      <Streak>Current Streak</Streak>
-      <Logout>
-        <PopupSignout>
-        </PopupSignout>
-      </Logout>
-      <Bg>
-        {/* Calendar card */}
-        <Calendar>
-          <Link to="/Calendar">
-            <img src="/image/calendar.png" width="307px" height="182px" />
-          </Link>
-        </Calendar>
-        {/* Gratitude journal button */}
-        <Gratitude>
-          <PopupGratitude></PopupGratitude>
-        </Gratitude>
-        {/* Monthly or Weekly button */}
-        <Toggle>
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-          >
-            <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-            <ToggleButton value="monthly">เดือน</ToggleButton>
-          </ToggleButtonGroup>
-        </Toggle>
-        <GraphBox></GraphBox>
+          <Head>
+            <img src="/image/head.png" width="300px"></img>
+            <Profile>
+              <Link to="/Moodtrack">
+                <Avatar
+                  alt=""
+                  src={image}
+                  sx={{ width: 67, height: 67 }}
+                ></Avatar>
+              </Link>
+            </Profile>
+          </Head>
+          <Name>
+            Hi, {name} 
+          </Name>
+          <Fire>
+            <img src="/image/fire.png" width="23px"></img>
+          </Fire>
+          <Streak>Current Streak</Streak>
+          <Logout>
+            <PopupSignout></PopupSignout>
+          </Logout>
+          <Bg>
+            {/* Calendar card */}
+            <Calendar>
+              <Link to="/Calendar">
+                <img src="/image/calendar.png" width="307px" height="182px" />
+              </Link>
+            </Calendar>
+            {/* Gratitude journal button */}
+            <Gratitude>
+              <PopupGratitude></PopupGratitude>
+            </Gratitude>
+            {/* Monthly or Weekly button */}
+            <Toggle>
+              <ToggleButtonGroup
+                color="primary"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+              >
+                <ToggleButton value="weekly">สัปดาห์</ToggleButton>
+                <ToggleButton value="monthly">เดือน</ToggleButton>
+              </ToggleButtonGroup>
+            </Toggle>
+            <GraphBox>
+              {/* <BarChart width={730} height={250} data={moodBar}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mood" />
+                <YAxis />
+                <Bar dataKey="count" fill="#8884d8" />
+              </BarChart> */}
+            </GraphBox>
 
-        {/* bottom navigation bar*/}
-        <NavigateBar>
-          <BottomNavigationBar />
-        </NavigateBar>
-      </Bg>
-          </div>
-      ) : <Login/>}
-    
+            {/* bottom navigation bar*/}
+            <NavigateBar>
+              <BottomNavigationBar />
+            </NavigateBar>
+          </Bg>
+        </div>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 };
