@@ -5,27 +5,40 @@ import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import {
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Bar,
+} from "recharts";
 
-import BottomNavigationBar from './BottomNavigationBar ';
-import IconButton from "@mui/material/IconButton";
-import LogoutIcon from "@mui/icons-material/Logout";
+import BottomNavigationBar from "./BottomNavigationBar ";
+// import IconButton from "@mui/material/IconButton";
+// import LogoutIcon from "@mui/icons-material/Logout";
 import PopupGratitude from "./popup/PopupGratitude";
-import PopupSignout from "./popup/PopupSignout";
-import { addUser, getUsers } from "../services/users";
-import { logOut } from "../services/firebase";
+import PopupSignout from "./popup/PopupSignout"
 import { AuthContext } from "./Auth";
 import Login from "./Login";
-import Moodtrack from "./Moodtrack";
-import { getAuth, getRedirectResult, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
-import { errorPrefix } from "@firebase/util";
+import ReactWordcloud from 'react-wordcloud';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
+import './home.css'
 
 const Bg = withTheme(styled.div`
   position: absolute;
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
   top: 217px;
-  background: linear-gradient(180deg, rgba(254, 68, 10, 0) 7.81%, #FFBDBD 95.83%);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 68, 10, 0) 7.81%,
+    #ffbdbd 95.83%
+  );
 `);
 
 const Head = withTheme(styled.div`
@@ -47,16 +60,16 @@ const Name = withTheme(styled.div`
   font-style: normal;
   font-weight: bold;
   text-align: center;
-  ${(props) => props.theme.breakpoints.up("xs")}{
+  ${(props) => props.theme.breakpoints.up("xs")} {
     font-size: 16px;
   }
-  ${(props) => props.theme.breakpoints.up("md")}{
+  ${(props) => props.theme.breakpoints.up("md")} {
     font-size: 16px;
   }
-  ${(props) => props.theme.breakpoints.up("lg")}{
+  ${(props) => props.theme.breakpoints.up("lg")} {
     font-size: 16px;
   }
-  ${(props) => props.theme.breakpoints.up("xl")}{
+  ${(props) => props.theme.breakpoints.up("xl")} {
     font-size: 16px;
   }
 `);
@@ -107,16 +120,28 @@ const Toggle = withTheme(styled.div`
 `);
 
 const GraphBox = withTheme(styled.div`
-position: absolute;
-width: 307px;
-height: 182px;
-left: 55px;
-top: 250px;
+  position: absolute;
+  width: 307px;
+  height: 182px;
+  left: 55px;
+  top: 250px;
 
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 17px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 17px;
+`);
+const GraphBox1 = withTheme(styled.div`
+  position: absolute;
+  width: 307px;
+  height: 182px;
+  left: 55px;
+  top: 500px;
 
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 17px;
 `);
 
 const NavigateBar = withTheme(styled.div`
@@ -124,46 +149,61 @@ const NavigateBar = withTheme(styled.div`
   top:620px;
 `);
 
-const Home =  () => {
+const Home = () => {
+  // get datetime
+  const date = new Date();
+  const dateTime = [date.getMonth()+1 , date.getDate().toString(), date.getFullYear().toString()];
+
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
-  
-  // add user to firestore
-  //addUser({currentUser});
   const [name,setName] = useState("");
   const [image,setImage] = useState("");
+  const [moodBar, setmoodBar] = useState([]);
+  const [gratitude, setGratitude] = useState([]);
+  const username = currentUser.displayName;
+  const str = username.split(" ",2);
+  const nickname = str[0];
   useEffect(() => {
-    const firstname = localStorage.getItem('firstname');
-    const photo = localStorage.getItem('photo');
-    setName(firstname)
-    setImage(photo)
-    // const getFirstname = async () => {
-    //   const [p,b] = await getUsers({currentUser});
-    //   setName(p)
-    //   setImage(b)
-      
-    // }
-    getRedirectResult(auth)
-    .then((result) => {
+    if (currentUser) {
+      setName(nickname)
+      setImage(currentUser.photoURL)
+      getRedirectResult(auth)
+      .then((result) => {
       const user = result.user;
-      const str = user.displayName;
-      const res = str.split(" ", 2);
       const data = {
         id: user.uid,
         email: user.email,
-        firstname: res[0],
-        lastname: res[1],
-        photo: user.photoURL
+        firstname: str[0],
+        lastname: str[1],
+        photo: user.photoURL,
+        date: dateTime.join('/'),
       }
-      localStorage.setItem("firstname",res[0]);
-      localStorage.setItem("photo",user.photoURL);
       axios.post("http://localhost:4000/users", data).catch((err) => console.log(err))
-      window.location.reload();
     }).catch((error) => {
-      console.log(error)
+      //console.log(error)
     });
-    // getFirstname()
+      const fetchmoodBar = async () => {
+        const result = await axios.get("http://localhost:4000/mood/", {
+          params: { id: currentUser.uid },
+        });
+
+        setmoodBar(result.data.message);
+      };
+      const fetchgratitude = async () => {
+        const result = await axios.get("http://localhost:4000/gratitude/", {
+          params: { id: currentUser.uid },
+        });
+
+        setGratitude(result.data.message);
+      };
+      fetchmoodBar();
+      fetchgratitude();
+    }
   }, [])
+
+  const SimpleWordcloud = () => {
+    return <ReactWordcloud words={gratitude}/>
+  } 
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -182,104 +222,76 @@ const Home =  () => {
     setAlignment(newAlignment);
   };
 
-  // function getmoodBar() {
-  //   const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
-  //   return axios
-  //     .get("http://localhost:4000/mood/", { params: { id: id } })
-  //     .then((response) => response.data.message)
-  //     .catch((err) => console.error(err));
-  // }
-  // const moodBar = getmoodBar();
-  // getmoodBar().then(function (result) {
-  //   console.log(result); // "initResolve"
-  //   moodBar = result;
-  // });
-
-  const getmoodBar = async () => {
-    const id = "5g377b9WoOMBNr6ryq76L5YWImW2";
-    try {
-      const response = await axios.get("http://localhost:4000/mood/", {
-        params: { id: id },
-      });
-      return response.data.message;
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
-
-  const moodBar = async () => {
-    return await getmoodBar();
-  };
-
-  // console.log(await getmoodBar());
-
-  // try {
-  //   (async () => {
-  //     connection = await getmoodBar();
-  //   })();
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
   return (
     <div>
       {currentUser ? (
         <div>
-            <Head>
-      <img src="/image/head.png" width="300px"></img>
-      <Profile>
-        <Link to="/Moodtrack">
-          <Avatar
-            alt=""
-            src= {image}
-            sx={{ width: 67, height: 67 }}
-          >
-          </Avatar>
-        </Link>
-      </Profile>
-      </Head>
-      <Name>Hi, {name} {moodBar}</Name>
-      <Fire>
-        <img src="/image/fire.png" width="23px"></img>
-      </Fire>
-      <Streak>Current Streak</Streak>
-      <Logout>
-        <PopupSignout>
-        </PopupSignout>
-      </Logout>
-      <Bg>
-        {/* Calendar card */}
-        <Calendar>
-          <Link to="/Calendar">
-            <img src="/image/calendar.png" width="307px" height="182px" />
-          </Link>
-        </Calendar>
-        {/* Gratitude journal button */}
-        <Gratitude>
-          <PopupGratitude></PopupGratitude>
-        </Gratitude>
-        {/* Monthly or Weekly button */}
-        <Toggle>
-          <ToggleButtonGroup
-            color="primary"
-            value={alignment}
-            exclusive
-            onChange={handleChange}
-          >
-            <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-            <ToggleButton value="monthly">เดือน</ToggleButton>
-          </ToggleButtonGroup>
-        </Toggle>
-        <GraphBox></GraphBox>
+          <Head>
+            <img src="/image/head.png" width="300px"></img>
+            <Profile>
+              <Link to="/Moodtrack">
+                <Avatar
+                  alt=""
+                  src={image}
+                  sx={{ width: 67, height: 67 }}
+                ></Avatar>
+              </Link>
+            </Profile>
+          </Head>
+          <Name>
+            Hi, {name} 
+          </Name>
+          <Fire>
+            <img src="/image/fire.png" width="23px"></img>
+          </Fire>
+          <Streak>Current Streak</Streak>
+          <Logout>
+            <PopupSignout></PopupSignout>
+          </Logout>
+          <Bg>
+            {/* Calendar card */}
+            <Calendar>
+              <Link to="/Calendar">
+                <img src="/image/calendar.png" width="307px" height="182px" />
+              </Link>
+            </Calendar>
+            {/* Gratitude journal button */}
+            <Gratitude>
+              <PopupGratitude></PopupGratitude>
+            </Gratitude>
+            {/* Monthly or Weekly button */}
+            <Toggle>
+              <ToggleButtonGroup
+                color="primary"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+              >
+                <ToggleButton value="weekly">สัปดาห์</ToggleButton>
+                <ToggleButton value="monthly">เดือน</ToggleButton>
+              </ToggleButtonGroup>
+            </Toggle>
+            <GraphBox>
+              <BarChart width={307} height={182} data={moodBar}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mood" />
+                <YAxis />
+                <Bar dataKey="count" fill="#8884d8" />
+              </BarChart>
+            </GraphBox>
+            <GraphBox1>
+            <SimpleWordcloud/>
+            </GraphBox1>
 
-        {/* bottom navigation bar*/}
-        <NavigateBar>
-          <BottomNavigationBar />
-        </NavigateBar>
-      </Bg>
-          </div>
-      ) : <Login/>}
-    
+            {/* bottom navigation bar*/}
+            <NavigateBar>
+              <BottomNavigationBar />
+            </NavigateBar>
+          </Bg>
+        </div>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 };

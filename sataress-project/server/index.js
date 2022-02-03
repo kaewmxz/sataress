@@ -9,6 +9,7 @@ const talkToChatbot = require("./chatbot");
 const { saveMood, getMood } = require("./mood");
 const { response } = require("express");
 const addUsers = require("./addUser");
+const {addGratitude, getGratitude} = require("./gratitude");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
@@ -68,6 +69,30 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     console.log(error);
   })
 })
+
+app.post("/gratitude-result", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  console.log(result);
+  addGratitude(result)
+  .then((response) => {
+    res.send({ message: response});
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
+
+app.get("/gratitude", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getGratitude(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
 
 app.use("/", router);
 

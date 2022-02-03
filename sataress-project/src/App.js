@@ -7,33 +7,13 @@ import { AuthProvider } from './components/Auth';
 import Calendar from './components/Calendar';
 import Moodtrack from './components/Moodtrack';
 
-// function App() {
-
-//   const [user, setUser] = useState(null);
-//   const [load, setLoad] = useState(true);
-
-//   useEffect(() => {
-//         auth.onAuthStateChanged(user=> {
-//           setUser(user);
-//           setLoad(false)
-//       })
-//   //console.log(user);
-//   }, []);
- 
-//   return (
-//       <div className="App">
-//         {user ? <Home user={user} /> : <Login />}
-//       </div>
-//   );
-// }
-
 function App() {
 
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login/>}/>
+          <Route exact path="*" element={<Login/>}/>
           <Route exact path="/home" element={<Home/>}/>
           <Route path="Calendar" element={<Calendar />} />
           <Route path="Moodtrack" element={<Moodtrack />} />

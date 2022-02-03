@@ -47,6 +47,7 @@ async function getMood(id) {
   }
   let moods_arr = [];
   let moods_dict = {};
+  let res = [];
   snapshot.forEach((doc) => {
     moods_arr.push(doc.data().mood);
   });
@@ -54,16 +55,21 @@ async function getMood(id) {
     acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
     return acc;
   }, {});
-  var x = [], y = [];
-  for (var property in moods_dict) {
-    if (!moods_dict.hasOwnProperty(property)) {
-      continue;
-    }
 
-    x.push(property);
-    y.push(moods_dict[property]);
+  for (const [mood, count] of Object.entries(moods_dict)) {
+    res.push({mood, count});
   }
-  const res = {x, y, 'type' : 'bar'}
+  // var x = [], y = [];
+  // for (var property in moods_dict) {
+  //   if (!moods_dict.hasOwnProperty(property)) {
+  //     continue;
+  //   }
+
+  //   x.push(property);
+  //   y.push(moods_dict[property]);
+  // }
+  // const res = {x, y}
+  console.log(res);
   return res;
 }
 

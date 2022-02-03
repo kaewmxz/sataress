@@ -8,11 +8,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from "axios";
+import { AuthContext } from '../Auth';
 
 
 
 export default function PopupGratitude() {
   const [open, setOpen] = React.useState(false);
+  const { currentUser } = React.useContext(AuthContext);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,6 +24,18 @@ export default function PopupGratitude() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmit = async (e) => {
+    const data = { 
+      gratitude: e.target[0].value,
+      id: currentUser.uid    
+    };
+    try {
+      await axios.post("http://localhost:4000/gratitude-result", data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const theme = createTheme({
     palette: {
@@ -33,7 +48,6 @@ export default function PopupGratitude() {
     },
   },
 });
-
 return (
   <div>
     <Button onClick={handleClickOpen}>
@@ -49,6 +63,7 @@ return (
           {"คุณรู้สึกขอบคุณกับสิ่งใดในวันนี้"}
         </DialogTitle>
       </ThemeProvider>
+      <form onSubmit={handleSubmit}>
       <DialogContent>
         <Box
           sx={{
@@ -57,18 +72,20 @@ return (
             '& .MuiTextField-root': { width: '32ch' },
           }}
           mt={2}>
-          <TextField />
+          <TextField required>
+            <input type="text"></input>
+          </TextField>
         </Box>
       </DialogContent>
       <DialogActions>
         <ThemeProvider theme={theme}>
           <Stack mt={2} spacing={2}>
-            <Button onClick={handleClose} variant="contained" color="Addbutton">บันทึก</Button>
+            <Button type="submit" variant="contained" color="Addbutton">บันทึก</Button>
           </Stack>
         </ThemeProvider>
       </DialogActions>
+      </form>
     </Dialog>
-
   </div>
 );
 }
