@@ -12,6 +12,7 @@ import "../css/login.css";
 
 const Bg = withTheme(styled.div`
   position: absolute;
+  boarder: none;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
@@ -20,7 +21,6 @@ const Bg = withTheme(styled.div`
     rgba(254, 68, 10, 0.3) 44.27%
   );
   backdrop-filter: blur(4px);
-  background
 `);
 
 const Login = () => {
@@ -42,7 +42,6 @@ const Login = () => {
   }
 
   return (
-    <div>
       <Bg>
         <div className="container">
           <div className="logo">
@@ -57,7 +56,6 @@ const Login = () => {
           </div>
         </div>
       </Bg >
-    </div >
   );
 };
 export default Login;

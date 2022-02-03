@@ -25,7 +25,7 @@ import axios from "axios";
 import ReactWordcloud from 'react-wordcloud';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import './home.css'
+import '../css/home.css'
 
 const Bg = withTheme(styled.div`
   position: absolute;
@@ -145,8 +145,8 @@ const GraphBox1 = withTheme(styled.div`
 `);
 
 const NavigateBar = withTheme(styled.div`
-  position: absolute;
-  top: 620px;
+  position: relative;
+  top:620px;
 `);
 
 const Home = () => {
