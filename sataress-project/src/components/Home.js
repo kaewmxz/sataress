@@ -25,7 +25,7 @@ import axios from "axios";
 import ReactWordcloud from 'react-wordcloud';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-import './home.css'
+import '../css/home.css'
 
 const Bg = withTheme(styled.div`
   position: absolute;
