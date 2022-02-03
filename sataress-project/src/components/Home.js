@@ -120,7 +120,7 @@ border-radius: 17px;
 `);
 
 const NavigateBar = withTheme(styled.div`
-  position: absolute;
+  position: relative;
   top:620px;
 `);
 
