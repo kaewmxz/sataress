@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Timestamp } from "firebase/firestore";
-
+import { AuthContext } from "../Auth";
 import "./style.css";
 import Messages from "./Messages";
 
@@ -89,9 +88,10 @@ const ChatBottom = withTheme(styled.div`
   border-radius: 0px 0px 20px 20px;
 `);
 
-const Chat = (props) => {
+const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
+  const { currentUser } = useContext(AuthContext);
 
   const handleMessageSubmit = async (message) => {
     const data = {
@@ -137,9 +137,11 @@ const Chat = (props) => {
       reply.action ==
       "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
     ) {
+      const date = new Date();
+      const dateTime = [date.getMonth()+1 , date.getDate().toString(), date.getFullYear().toString()];
       replyMap["thoughts"] = reply.queryText;
-      replyMap["date"] = Timestamp.now();
-      replyMap["uid"] = props.uid;
+      replyMap["date"] = dateTime.join('/');
+      replyMap["id"] = currentUser.uid;
       axios
         .post("http://localhost:4000/mood-result", replyMap)
         .catch((error) => {

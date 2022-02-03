@@ -22,6 +22,10 @@ import { AuthContext } from "./Auth";
 import Login from "./Login";
 import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
+import ReactWordcloud from 'react-wordcloud';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
+
 
 const Bg = withTheme(styled.div`
   position: absolute;
@@ -125,6 +129,18 @@ const GraphBox = withTheme(styled.div`
     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 17px;
 `);
+const GraphBox1 = withTheme(styled.div`
+  position: absolute;
+  width: 307px;
+  height: 182px;
+  left: 55px;
+  top: 500px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 17px;
+`);
 
 const NavigateBar = withTheme(styled.div`
   position: absolute;
@@ -132,11 +148,16 @@ const NavigateBar = withTheme(styled.div`
 `);
 
 const Home = () => {
+  // get datetime
+  const date = new Date();
+  const dateTime = [date.getMonth()+1 , date.getDate().toString(), date.getFullYear().toString()];
+
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
   const [name,setName] = useState("");
   const [image,setImage] = useState("");
   const [moodBar, setmoodBar] = useState([]);
+  const [gratitude, setGratitude] = useState([]);
   const username = currentUser.displayName;
   const str = username.split(" ",2);
   const nickname = str[0];
@@ -152,7 +173,8 @@ const Home = () => {
         email: user.email,
         firstname: str[0],
         lastname: str[1],
-        photo: user.photoURL
+        photo: user.photoURL,
+        date: dateTime.join('/'),
       }
       axios.post("http://localhost:4000/users", data).catch((err) => console.log(err))
     }).catch((error) => {
@@ -165,9 +187,21 @@ const Home = () => {
 
         setmoodBar(result.data.message);
       };
+      const fetchgratitude = async () => {
+        const result = await axios.get("http://localhost:4000/gratitude/", {
+          params: { id: currentUser.uid },
+        });
+
+        setGratitude(result.data.message);
+      };
       fetchmoodBar();
+      fetchgratitude();
     }
   }, [])
+
+  const SimpleWordcloud = () => {
+    return <ReactWordcloud words={gratitude}/>
+  } 
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -243,6 +277,9 @@ const Home = () => {
                 <Bar dataKey="count" fill="#8884d8" />
               </BarChart>
             </GraphBox>
+            <GraphBox1>
+            <SimpleWordcloud/>
+            </GraphBox1>
 
             {/* bottom navigation bar*/}
             <NavigateBar>

@@ -13,9 +13,13 @@ async function addUsers(result) {
   
     const db = getFirestore();
     // Add a new document in collection "moodtrack" with ID 'test'
-    const userRef = db.collection("users").doc(result.id);
-    const res = await userRef.set(result, {merge : true});
-  
+    const userRef = db.collection("users");
+    let res = [];
+    const snapshot = await userRef.where("id", "==", result.id).get();
+    if (snapshot.empty) {
+      res = await db.collection('users').doc(result.id).set(result);
+    }
+    console.log(res)
     return res;
   }
   

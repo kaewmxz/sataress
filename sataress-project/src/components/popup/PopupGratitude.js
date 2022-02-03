@@ -31,12 +31,12 @@ export default function PopupGratitude() {
       id: currentUser.uid    
     };
     try {
-      await axios.post("http://localhost:4000/gratitude", data);
+      await axios.post("http://localhost:4000/gratitude-result", data);
     } catch (error) {
       console.log(error);
     }
   }
-  
+
   const theme = createTheme({
     palette: {
       Addbutton: {
