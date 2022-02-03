@@ -25,10 +25,12 @@ import axios from "axios";
 import ReactWordcloud from 'react-wordcloud';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
-
+import './home.css'
 
 const Bg = withTheme(styled.div`
   position: absolute;
+  margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
   top: 217px;
