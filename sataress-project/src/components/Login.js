@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-//import { signIn } from "../services/firebase";
 import GoogleButton from "react-google-button";
 import { useTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -7,10 +6,9 @@ import { withTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
-import { getAuth, signInWithRedirect, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 //import ResponsiveImgMaterialUi from "responsive-img-material-ui";
 import "../css/login.css";
-import axios from "axios";
 
 const Bg = withTheme(styled.div`
   position: absolute;
@@ -32,14 +30,6 @@ const Login = () => {
 
   const googleLogin = () => {
      signInWithRedirect(auth,provider);
-    //   try {
-    //     axios.post("http://localhost:4000/users", user)
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }).catch((error) => {
-    //   console.log(error.message)
-    // });
   }
 
   const { currentUser } = useContext(AuthContext);

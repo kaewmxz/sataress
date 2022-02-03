@@ -8,6 +8,7 @@ const router = require("express").Router();
 const talkToChatbot = require("./chatbot");
 const saveMood = require("./moodResult");
 const addUsers = require("./addUser");
+const addGratitude = require("./addGratitude");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
@@ -44,6 +45,18 @@ app.post("/mood-result", jsonParser, urlEncoded, function (req, res, next) {
 app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
   const result = req.body;
   addUsers(result)
+  .then((response) => {
+    res.send({ message: response});
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+})
+
+app.post("/gratitude", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  console.log(result);
+  addGratitude(result)
   .then((response) => {
     res.send({ message: response});
   })

@@ -33,8 +33,8 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login/>}/>
-          <Route exact path="/home" element={<Home/>}/>
+          <Route path="*" element={<Login/>}/>
+          <Route path="/home" element={<Home/>}/>
           <Route path="Calendar" element={<Calendar />} />
           <Route path="Moodtrack" element={<Moodtrack />} />
         </Routes>
