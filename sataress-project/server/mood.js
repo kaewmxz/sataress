@@ -59,6 +59,7 @@ async function getMood(id) {
   for (const [mood, count] of Object.entries(moods_dict)) {
     res.push({mood, count});
   }
+  // Seperate key and value into two arrays
   // var x = [], y = [];
   // for (var property in moods_dict) {
   //   if (!moods_dict.hasOwnProperty(property)) {
