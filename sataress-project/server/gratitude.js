@@ -42,7 +42,7 @@ async function getGratitude(id) {
     grat_arr.push(doc.data().gratitude);
   });
   grats_dict = grat_arr.reduce((acc, val) => {
-    acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
+    acc[val] = acc[val] === undefined ? 1 : 1;
     return acc;
   }, {});
 

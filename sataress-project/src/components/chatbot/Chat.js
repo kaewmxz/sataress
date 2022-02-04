@@ -138,9 +138,13 @@ const Chat = () => {
       "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
     ) {
       const date = new Date();
-      const dateTime = [date.getMonth()+1 , date.getDate().toString(), date.getFullYear().toString()];
+      const dateTime = [
+        date.getMonth() + 1,
+        date.getDate().toString(),
+        date.getFullYear().toString(),
+      ];
       replyMap["thoughts"] = reply.queryText;
-      replyMap["date"] = dateTime.join('/');
+      replyMap["date"] = dateTime.join("/");
       replyMap["id"] = currentUser.uid;
       axios
         .post("http://localhost:4000/mood-result", replyMap)
@@ -168,22 +172,22 @@ const Chat = () => {
 
   return (
     <Bg>
-      <ChatHeader>
-        <BotProfile>
-          <Avatar sx={{ width: 50, height: 50 }}>
-            <img src="./image/plogo.png" width="52px" />
-          </Avatar>
-          <BotName>Nong Krati</BotName>
-        </BotProfile>
-        <Closebutton>
-          <ThemeProvider theme={theme}>
-            <Link to="/">
-              <DoDisturbOnSharpIcon sx={{ width: 15 }} color="gray" />
-            </Link>
-          </ThemeProvider>
-        </Closebutton>
-      </ChatHeader>
       <ChatSection>
+        <ChatHeader>
+          <BotProfile>
+            <Avatar sx={{ width: 50, height: 50 }}>
+              <img src="./image/plogo.png" width="52px" />
+            </Avatar>
+            <BotName>Nong Krati</BotName>
+          </BotProfile>
+          <Closebutton>
+            <ThemeProvider theme={theme}>
+              <Link to="/">
+                <DoDisturbOnSharpIcon sx={{ width: 15 }} color="gray" />
+              </Link>
+            </ThemeProvider>
+          </Closebutton>
+        </ChatHeader>
         <div className="messagesContainer">
           <Messages messages={responses} />
           {/*The input section is 👇*/}
