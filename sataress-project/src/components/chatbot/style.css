@@ -1,39 +1,27 @@
-.chatSection {
-  margin: auto;
-  width: 80%;
-  height: 80vh;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 20px;
-}
-
-/* On mouse-over, add a deeper shadow */
-.chatSection:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-
 .messagesSection {
   height: 90%;
+  min-height: 70vh;
+  max-height: 70vh;
+  margin-top: 0px;
+  overflow-y: auto;
 }
 
 .messageInputField {
-  margin-left: 10px;
+  margin-top: 20px;
+  margin-left: -30px;
   font-size: 18px;
   outline:none;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
   border-bottom-style: hidden;
-  width: 90%;
+  border-top-right-radius: 30px 30px;
+  border-bottom-left-radius: 30px 30px;
+  border-top-left-radius: 30px 30px;
+  width: 82%;
 }
 
-.messagesSection {
-  min-height: 70vh;
-  max-height: 70vh;
-  margin-top: 20px;
-  overflow-y: auto;
-}
+
 
 /* Message component styles here 👇 */
 .botCard {
@@ -43,6 +31,7 @@
   border-bottom-left-radius: 30px 30px;
   background-color: grey;
   margin-left: 5px;
+  margin-top: 10px;
   color: white;
   margin-bottom: 10px;
 }
@@ -55,6 +44,7 @@
   float: right;
   background-color: #6C63FF;
   margin-right: 5px;
+  margin-top: 10px;
   color: white;
 }
 
