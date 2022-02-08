@@ -6,7 +6,7 @@ import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
-
+import { Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
 // import IconButton from "@mui/material/IconButton";
 // import LogoutIcon from "@mui/icons-material/Logout";
@@ -157,6 +157,7 @@ const NavigateBar = withTheme(styled.div`
 `);
 
 const Home = () => {
+  const navigate = useNavigate();
   // get datetime
   const date = new Date();
   const dateTime = [
@@ -164,7 +165,6 @@ const Home = () => {
     date.getDate().toString(),
     date.getFullYear().toString(),
   ];
-
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
   const [name, setName] = useState("");
@@ -229,9 +229,9 @@ const Home = () => {
   };
 
   // These two const used for the weekly/monthly togglebuttons
-  const [alignment, setAlignment] = React.useState("web");
+  const [alignment, setAlignment] = useState("web");
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);

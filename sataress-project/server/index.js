@@ -81,6 +81,7 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     .catch((error) => {
       console.log(error);
     });
+  next()
 });
 
 app.post(
