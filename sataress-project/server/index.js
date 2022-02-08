@@ -6,10 +6,10 @@ const morgan = require("morgan");
 const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
-const { saveMood, getMood } = require("./mood");
+const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { response } = require("express");
 const addUsers = require("./addUser");
-const {addGratitude, getGratitude} = require("./gratitude");
+const { addGratitude, getGratitude } = require("./gratitude");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
@@ -59,28 +59,46 @@ app.get("/mood", (req, res, next) => {
       console.log("Something went wrong: " + error);
     });
 });
+
+app.get("/mood-intense", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getMoodIntense(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
 app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
   const result = req.body;
   addUsers(result)
-  .then((response) => {
-    res.send({ message: response});
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-})
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
-app.post("/gratitude-result", jsonParser, urlEncoded, function (req, res, next) {
-  const result = req.body;
-  console.log(result);
-  addGratitude(result)
-  .then((response) => {
-    res.send({ message: response});
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-})
+app.post(
+  "/gratitude-result",
+  jsonParser,
+  urlEncoded,
+  function (req, res, next) {
+    const result = req.body;
+    console.log(result);
+    addGratitude(result)
+      .then((response) => {
+        res.send({ message: response });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+);
 
 app.get("/gratitude", (req, res, next) => {
   const id = req.query.id;

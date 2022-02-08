@@ -5,27 +5,21 @@ import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import {
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Bar,
-} from "recharts";
+import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
 
 import BottomNavigationBar from "./BottomNavigationBar ";
 // import IconButton from "@mui/material/IconButton";
 // import LogoutIcon from "@mui/icons-material/Logout";
 import PopupGratitude from "./popup/PopupGratitude";
-import PopupSignout from "./popup/PopupSignout"
+import PopupSignout from "./popup/PopupSignout";
 import { AuthContext } from "./Auth";
 import Login from "./Login";
 import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
-import ReactWordcloud from 'react-wordcloud';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-import './home.css'
+import ReactWordcloud from "react-wordcloud";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
+import "../css/home.css";
 
 const Bg = withTheme(styled.div`
   position: absolute;
@@ -144,50 +138,78 @@ const GraphBox1 = withTheme(styled.div`
   border-radius: 17px;
 `);
 
-const NavigateBar = withTheme(styled.div`
+const GraphBox2 = withTheme(styled.div`
   position: absolute;
+  width: 307px;
+  height: 182px;
+  left: 55px;
+  top: 700px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 17px;
+`);
+
+const NavigateBar = withTheme(styled.div`
+  position: relative;
   top: 620px;
 `);
 
 const Home = () => {
   // get datetime
   const date = new Date();
-  const dateTime = [date.getMonth()+1 , date.getDate().toString(), date.getFullYear().toString()];
+  const dateTime = [
+    date.getMonth() + 1,
+    date.getDate().toString(),
+    date.getFullYear().toString(),
+  ];
 
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
-  const [name,setName] = useState("");
-  const [image,setImage] = useState("");
-  const [moodBar, setmoodBar] = useState([]);
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [moodCount, setmoodCount] = useState([]);
+  const [moodIntense, setmoodIntense] = useState([]);
   const [gratitude, setGratitude] = useState([]);
   const username = currentUser.displayName;
-  const str = username.split(" ",2);
+  const str = username.split(" ", 2);
   const nickname = str[0];
   useEffect(() => {
     if (currentUser) {
-      setName(nickname)
-      setImage(currentUser.photoURL)
+      setName(nickname);
+      setImage(currentUser.photoURL);
       getRedirectResult(auth)
-      .then((result) => {
-      const user = result.user;
-      const data = {
-        id: user.uid,
-        email: user.email,
-        firstname: str[0],
-        lastname: str[1],
-        photo: user.photoURL,
-        date: dateTime.join('/'),
-      }
-      axios.post("http://localhost:4000/users", data).catch((err) => console.log(err))
-    }).catch((error) => {
-      //console.log(error)
-    });
-      const fetchmoodBar = async () => {
+        .then((result) => {
+          const user = result.user;
+          const data = {
+            id: user.uid,
+            email: user.email,
+            firstname: str[0],
+            lastname: str[1],
+            photo: user.photoURL,
+            date: dateTime.join("/"),
+          };
+          axios
+            .post("http://localhost:4000/users", data)
+            .catch((err) => console.log(err));
+        })
+        .catch((error) => {
+          //console.log(error)
+        });
+      const fetchmoodCount = async () => {
         const result = await axios.get("http://localhost:4000/mood/", {
           params: { id: currentUser.uid },
         });
 
-        setmoodBar(result.data.message);
+        setmoodCount(result.data.message);
+      };
+      const fetchmoodIntense = async () => {
+        const result = await axios.get("http://localhost:4000/mood-intense/", {
+          params: { id: currentUser.uid },
+        });
+
+        setmoodIntense(result.data.message);
       };
       const fetchgratitude = async () => {
         const result = await axios.get("http://localhost:4000/gratitude/", {
@@ -196,14 +218,15 @@ const Home = () => {
 
         setGratitude(result.data.message);
       };
-      fetchmoodBar();
+      fetchmoodCount();
+      fetchmoodIntense();
       fetchgratitude();
     }
-  }, [])
+  }, []);
 
   const SimpleWordcloud = () => {
-    return <ReactWordcloud words={gratitude}/>
-  } 
+    return <ReactWordcloud words={gratitude} />;
+  };
 
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = React.useState("web");
@@ -238,9 +261,7 @@ const Home = () => {
               </Link>
             </Profile>
           </Head>
-          <Name>
-            Hi, {name} 
-          </Name>
+          <Name>Hi, {name}</Name>
           <Fire>
             <img src="/image/fire.png" width="23px"></img>
           </Fire>
@@ -272,7 +293,7 @@ const Home = () => {
               </ToggleButtonGroup>
             </Toggle>
             <GraphBox>
-              <BarChart width={307} height={182} data={moodBar}>
+              <BarChart width={307} height={182} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
                 <YAxis />
@@ -280,9 +301,16 @@ const Home = () => {
               </BarChart>
             </GraphBox>
             <GraphBox1>
-            <SimpleWordcloud/>
+              <BarChart width={307} height={182} data={moodIntense}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mood" />
+                <YAxis />
+                <Bar dataKey="average" fill="#8884d8" />
+              </BarChart>
             </GraphBox1>
-
+            <GraphBox2>
+              <SimpleWordcloud />
+            </GraphBox2>
             {/* bottom navigation bar*/}
             <NavigateBar>
               <BottomNavigationBar />
