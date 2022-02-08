@@ -37,6 +37,21 @@ const Bg = withTheme(styled.div`
 
 const Head = withTheme(styled.div`
   position: absolute;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 109.5px;
+  }
+  ${(props) => props.theme.breakpoints.up("md")} {
+    margin-left: 292.5px;
+  }
+  ${(props) => props.theme.breakpoints.up("lg")} {
+    margin-left: 449.5px;
+  }
+  ${(props) => props.theme.breakpoints.up("xl")} {
+    margin-left: 769.5px;
+  }
 `);
 
 const Profile = withTheme(styled.div`
@@ -54,17 +69,20 @@ const Name = withTheme(styled.div`
   font-style: normal;
   font-weight: bold;
   text-align: center;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    font-size: 16px;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 115px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    font-size: 16px;
+    margin-left: 295px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    font-size: 16px;
+    margin-left: 455px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    font-size: 16px;
+    margin-left: 775px;
   }
 `);
 
@@ -74,6 +92,21 @@ const Fire = withTheme(styled.div`
   height: 30px;
   left: 220px;
   top: 80px;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 115px;
+  }
+  ${(props) => props.theme.breakpoints.up("md")} {
+    margin-left: 295px;
+  }
+  ${(props) => props.theme.breakpoints.up("lg")} {
+    margin-left: 455px;
+  }
+  ${(props) => props.theme.breakpoints.up("xl")} {
+    margin-left: 775px;
+  }
 `);
 
 const Streak = withTheme(styled.div`
@@ -87,69 +120,158 @@ const Streak = withTheme(styled.div`
   font-size: 10px;
   line-height: 12px;
   text-align: center;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 115px;
+  }
+  ${(props) => props.theme.breakpoints.up("md")} {
+    margin-left: 295px;
+  }
+  ${(props) => props.theme.breakpoints.up("lg")} {
+    margin-left: 455px;
+  }
+  ${(props) => props.theme.breakpoints.up("xl")} {
+    margin-left: 775px;
+  }
 `);
+
 
 const Logout = withTheme(styled.div`
   position: absolute;
   left: 320px;
   top: 82px;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 115px;
+  }
+  ${(props) => props.theme.breakpoints.up("md")} {
+    margin-left: 295px;
+  }
+  ${(props) => props.theme.breakpoints.up("lg")} {
+    margin-left: 455px;
+  }
+  ${(props) => props.theme.breakpoints.up("xl")} {
+    margin-left: 775px;
+  }
 `);
 
 const Calendar = withTheme(styled.div`
-  position: absolute;
-  left: 52px;
-  top: -70px;
+position: absolute;
+width: 320.7px;
+height: 182px;
+left: 47px;
+top: -70px;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 99.5px;
+  }
+  ${(props) => props.theme.breakpoints.up("md")} {
+    margin-left: 279.5px;
+  }
+  ${(props) => props.theme.breakpoints.up("lg")} {
+    margin-left: 439.5px;
+  }
+  ${(props) => props.theme.breakpoints.up("xl")} {
+    margin-left: 759.5px;
+  }
+`);
+
+const Graph = withTheme(styled.div`
+position: absolute;
+width: 320.7px;
+height: 182px;
+left: 47px;
+top: 130px;
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 17px;
+${(props) => props.theme.breakpoints.down("xs")} {
+  margin-left: 0px;
+}
+${(props) => props.theme.breakpoints.up("sm")} {
+  margin-left: 99.5px;
+}
+${(props) => props.theme.breakpoints.up("md")} {
+  margin-left: 279.5px;
+}
+${(props) => props.theme.breakpoints.up("lg")} {
+  margin-left: 439.5px;
+}
+${(props) => props.theme.breakpoints.up("xl")} {
+  margin-left: 759.5px;
+}
 `);
 
 const Gratitude = withTheme(styled.div`
   position: absolute;
   left: 78px;
-  top: 123px;
+  top: 332px;
+  ${(props) => props.theme.breakpoints.down("xs")} {
+    margin-left: 0px;
+  }
+  ${(props) => props.theme.breakpoints.up("sm")} {
+    margin-left: 105px;
+  }
+  ${(props) => props.theme.breakpoints.up("md")} {
+    margin-left: 285px;
+  }
+  ${(props) => props.theme.breakpoints.up("lg")} {
+    margin-left: 445px;
+  }
+  ${(props) => props.theme.breakpoints.up("xl")} {
+    margin-left: 765px;
+  }
 `);
 
-const Toggle = withTheme(styled.div`
-  position: absolute;
-  left: 138px;
-  top: 180px;
-`);
+// const Toggle = withTheme(styled.div`
+//   position: absolute;
+//   left: 138px;
+//   top: 180px;
+// `);
 
-const GraphBox = withTheme(styled.div`
-  position: absolute;
-  width: 307px;
-  height: 182px;
-  left: 55px;
-  top: 250px;
+// const GraphBox = withTheme(styled.div`
+//   position: absolute;
+//   width: 307px;
+//   height: 182px;
+//   left: 55px;
+//   top: 250px;
 
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 17px;
-`);
-const GraphBox1 = withTheme(styled.div`
-  position: absolute;
-  width: 307px;
-  height: 182px;
-  left: 55px;
-  top: 500px;
+//   background: #ffffff;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+//     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 17px;
+// `);
+// const GraphBox1 = withTheme(styled.div`
+//   position: absolute;
+//   width: 307px;
+//   height: 182px;
+//   left: 55px;
+//   top: 500px;
 
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 17px;
-`);
+//   background: #ffffff;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+//     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 17px;
+// `);
 
-const GraphBox2 = withTheme(styled.div`
-  position: absolute;
-  width: 307px;
-  height: 182px;
-  left: 55px;
-  top: 700px;
+// const GraphBox2 = withTheme(styled.div`
+//   position: absolute;
+//   width: 307px;
+//   height: 182px;
+//   left: 55px;
+//   top: 700px;
 
-  background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 17px;
-`);
+//   background: #ffffff;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+//     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 17px;
+// `);
 
 const NavigateBar = withTheme(styled.div`
   position: relative;
@@ -273,15 +395,20 @@ const Home = () => {
             {/* Calendar card */}
             <Calendar>
               <Link to="/Calendar">
-                <img src="/image/calendar.png" width="307px" height="182px" />
+                <img src="/image/calendar.png" width="320.7px" height="182px" />
               </Link>
             </Calendar>
+            {/* {Graph card} */}
+            <Graph>
+              <Link to ="/">
+                </Link>
+            </Graph>
             {/* Gratitude journal button */}
             <Gratitude>
               <PopupGratitude></PopupGratitude>
             </Gratitude>
             {/* Monthly or Weekly button */}
-            <Toggle>
+            {/* <Toggle>
               <ToggleButtonGroup
                 color="primary"
                 value={alignment}
@@ -291,8 +418,8 @@ const Home = () => {
                 <ToggleButton value="weekly">สัปดาห์</ToggleButton>
                 <ToggleButton value="monthly">เดือน</ToggleButton>
               </ToggleButtonGroup>
-            </Toggle>
-            <GraphBox>
+            </Toggle> */}
+            {/* <GraphBox>
               <BarChart width={307} height={182} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
@@ -308,9 +435,9 @@ const Home = () => {
                 <Bar dataKey="average" fill="#8884d8" />
               </BarChart>
             </GraphBox1>
-            <GraphBox2>
-              <SimpleWordcloud />
-            </GraphBox2>
+            <GraphBox2> */}
+              {/* <SimpleWordcloud />
+            </GraphBox2> */}
             {/* bottom navigation bar*/}
             <NavigateBar>
               <BottomNavigationBar />
