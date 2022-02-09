@@ -36,7 +36,7 @@ const Login = () => {
   if (currentUser) {
     return (
       <Routes>
-        <Route path ="/" element={<Navigate replace to ="/home"/>}></Route>
+        <Route path ="/" element={<Navigate replace to ="/Home"/>}></Route>
       </Routes>
     )
   }

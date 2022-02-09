@@ -6,6 +6,7 @@ import Home from './components/Home';
 import { AuthProvider } from './components/Auth';
 import Calendar from './components/Calendar';
 import Moodtrack from './components/Moodtrack';
+import Landpage from './components/Landpage';
 
 function App() {
 
@@ -14,9 +15,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="*" element={<Login/>}/>
-          <Route exact path="/home" element={<Home/>}/>
-          <Route path="Calendar" element={<Calendar />} />
-          <Route path="Moodtrack" element={<Moodtrack />} />
+          <Route exact path="/Home" element={<Landpage/>}/>
+          <Route exact path="/Calendar" element={<Calendar />} />
+          <Route exact path="/Moodtrack" element={<Moodtrack />} />
         </Routes>
       </Router>
     </AuthProvider>
