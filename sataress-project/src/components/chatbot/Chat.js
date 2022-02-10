@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth";
@@ -100,6 +100,9 @@ const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const { currentUser } = useContext(AuthContext);
+  useEffect(() => {
+    handleMessageSubmit("บันทึกอารมณ์");
+  }, []);
 
   const handleMessageSubmit = async (message) => {
     const data = {
