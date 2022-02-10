@@ -24,8 +24,8 @@ import "../css/home.css";
 
 const Bg = withTheme(styled.div`
 position: fixed;
-width: 100vw;
-height: 100vh;
+width: 100%;
+height: 100%;
 top: 217px;
 z-index:-1;
 background: linear-gradient(180deg, rgba(254, 68, 10, 0) 17.83%, #FFBDBD 95.83%);
@@ -35,6 +35,7 @@ const Head = withTheme(styled.div`
   position: absolute;
   left: 0px;
   top: 0px;
+
 `);
 
 const Profile = withTheme(styled.div`
@@ -51,24 +52,24 @@ const Name = withTheme(styled.div`
   font-weight: bold;
   top: 47px;
   ${(props) => props.theme.breakpoints.up("xs")} {
-    margin-left: 280px;
     font-size: 20px;
+    margin-left:320px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 393px;
     font-size: 24px;
+    right: 50px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 718px;
     font-size: 28px;
+    right: 70px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 1020px;
     font-size: 30px;
+    right: 100px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 1580px;
     font-size: 32px;
+    right: 120px;
   }
 `);
 
@@ -78,23 +79,23 @@ const Fire = withTheme(styled.div`
   height: 30px;
   top: 75px;
 ${(props) => props.theme.breakpoints.up("xs")} {
-  margin-left: 256.77px;
+  margin-left:310px;
   font-size: 20px;
 }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left:397px;
+    right: 230px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 708px;
+    right: 245px;
     margin-top:5px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 990px;
+    right: 285px;
     margin-top:10px;
 
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 1567px;
+    right: 310px;
     margin-top:20px;
   }
 `);
@@ -108,32 +109,32 @@ const Streak = withTheme(styled.div`
   line-height: 12px;
   text-align: center;
   ${(props) => props.theme.breakpoints.up("xs")} {
-    margin-left: 295px;
+    margin-left: 340px;
     font-size: 10px;
     width: 68.94px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 428px;
     font-size:12px;
     width: 90px;
+    right: 140px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 747px;
     font-size: 16px;
     margin-top:5px;
     width: 135px;
+    right: 120px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 1036px;
     font-size: 20px;
     margin-top:10px;
     width: 137px;
+    right: 145px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 1608px;
     font-size: 24px;
     margin-top:20px;
     width: 188px;
+    right: 133px;
   }
 `);
 
@@ -142,22 +143,22 @@ const Logout = withTheme(styled.div`
   position: absolute;
   top: 77px;
   ${(props) => props.theme.breakpoints.up("xs")} {
-    margin-left: 370px;
+    margin-left: 410px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 519px;
+    right: 110px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 870px;
     margin-top:5px;
+    right: 105px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 1181px;
     margin-top:10px;
+    right: 120px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 1791px;
     margin-top:20px;
+    right: 120px;
   }
 `);
 
@@ -370,7 +371,6 @@ const Home = () => {
               </Link>
             </Profile>
           </Head>
-         
             <Name>Hi, {name}</Name>
             <Fire>
               <img src="/image/fire.png" width="23px"></img>
@@ -382,25 +382,25 @@ const Home = () => {
 
           {/* Calendar card */}
             <Grid container justifyContent="center" alignItems="center">
-                <Calendar>
+              <Calendar>
                   <Link to="/Calendar">
                     <img src="/image/calendar.png" width="320.7px" height="182px" />
                   </Link>
-            </Calendar>
+              </Calendar>
             {/* {Graph card} */}
-            <Graph>
-              <Link to="/">
-              </Link>
-            </Graph>
-            {/* {Article card} */}
-            <Article>
-              <Link to="/">
-              </Link>
-            </Article>
-            {/* Gratitude journal button */}
-            <Gratitude>
-              <PopupGratitude></PopupGratitude>
-            </Gratitude>
+              <Graph>
+                <Link to="/">
+                </Link>
+              </Graph>
+              {/* {Article card} */}
+              <Article>
+                <Link to="/">
+                </Link>
+              </Article>
+              {/* Gratitude journal button */}
+              <Gratitude>
+                <PopupGratitude></PopupGratitude>
+              </Gratitude>
             </Grid>
             {/* Monthly or Weekly button */}
       {/* <Toggle>
@@ -434,9 +434,7 @@ const Home = () => {
       {/* <SimpleWordcloud />
             </GraphBox2> */}
       {/* bottom navigation bar*/}
-      <NavigateBar>
-        <BottomNavigationBar />
-      </NavigateBar>
+      <BottomNavigationBar />
     </div>
   ) : (
     <Login />
