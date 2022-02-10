@@ -6,6 +6,7 @@ import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
+import { Grid, Container } from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate} from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
 // import IconButton from "@mui/material/IconButton";
@@ -22,67 +23,52 @@ import "tippy.js/animations/scale.css";
 import "../css/home.css";
 
 const Bg = withTheme(styled.div`
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  top: 217px;
-  background: linear-gradient(
-    180deg,
-    rgba(254, 68, 10, 0) 7.81%,
-    #ffbdbd 95.83%
-  );
+position: fixed;
+width: 100vw;
+height: 100vh;
+top: 217px;
+z-index:-1;
+background: linear-gradient(180deg, rgba(254, 68, 10, 0) 17.83%, #FFBDBD 95.83%);
 `);
 
 const Head = withTheme(styled.div`
   position: absolute;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 109.5px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 292.5px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 449.5px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 769.5px;
-  }
+  left: 0px;
+  top: 0px;
 `);
 
 const Profile = withTheme(styled.div`
   position: absolute;
-  left: 28px;
-  top: 38px;
+  left: 33px;
+  top: 36px;
 `);
 
 const Name = withTheme(styled.div`
   position: absolute;
-  width: 132px;
-  left: 208px;
-  top: 50px;
+  width: 200px;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  text-align: center;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
+  top: 47px;
+  ${(props) => props.theme.breakpoints.up("xs")} {
+    margin-left: 280px;
+    font-size: 20px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 115px;
+    margin-left: 393px;
+    font-size: 24px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 295px;
+    margin-left: 718px;
+    font-size: 28px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 455px;
+    margin-left: 1020px;
+    font-size: 30px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 775px;
+    margin-left: 1580px;
+    font-size: 32px;
   }
 `);
 
@@ -90,72 +76,88 @@ const Fire = withTheme(styled.div`
   position: absolute;
   width: 23px;
   height: 30px;
-  left: 220px;
-  top: 80px;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
-  }
+  top: 75px;
+${(props) => props.theme.breakpoints.up("xs")} {
+  margin-left: 256.77px;
+  font-size: 20px;
+}
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 115px;
+    margin-left:397px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 295px;
+    margin-left: 708px;
+    margin-top:5px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 455px;
+    margin-left: 990px;
+    margin-top:10px;
+
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 775px;
+    margin-left: 1567px;
+    margin-top:20px;
   }
 `);
 
 const Streak = withTheme(styled.div`
   position: absolute;
-  width: 70px;
-  left: 248px;
-  top: 90px;
+  top: 85px;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: 10px;
   line-height: 12px;
   text-align: center;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
+  ${(props) => props.theme.breakpoints.up("xs")} {
+    margin-left: 295px;
+    font-size: 10px;
+    width: 68.94px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 115px;
+    margin-left: 428px;
+    font-size:12px;
+    width: 90px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 295px;
+    margin-left: 747px;
+    font-size: 16px;
+    margin-top:5px;
+    width: 135px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 455px;
+    margin-left: 1036px;
+    font-size: 20px;
+    margin-top:10px;
+    width: 137px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 775px;
+    margin-left: 1608px;
+    font-size: 24px;
+    margin-top:20px;
+    width: 188px;
   }
 `);
 
 
 const Logout = withTheme(styled.div`
   position: absolute;
-  left: 320px;
-  top: 82px;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
+  top: 77px;
+  ${(props) => props.theme.breakpoints.up("xs")} {
+    margin-left: 370px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 115px;
+    margin-left: 519px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 295px;
+    margin-left: 870px;
+    margin-top:5px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 455px;
+    margin-left: 1181px;
+    margin-top:10px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 775px;
+    margin-left: 1791px;
+    margin-top:20px;
   }
 `);
 
@@ -163,71 +165,55 @@ const Calendar = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-left: 47px;
-top: -70px;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 99.5px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 279.5px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 439.5px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 759.5px;
-  }
+top: 132px;
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 17px;
 `);
 
 const Graph = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-left: 47px;
-top: 130px;
+top: 336px;
 background: #FFFFFF;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 17px;
-${(props) => props.theme.breakpoints.down("xs")} {
-  margin-left: 0px;
-}
-${(props) => props.theme.breakpoints.up("sm")} {
-  margin-left: 99.5px;
-}
-${(props) => props.theme.breakpoints.up("md")} {
-  margin-left: 279.5px;
-}
-${(props) => props.theme.breakpoints.up("lg")} {
-  margin-left: 439.5px;
-}
-${(props) => props.theme.breakpoints.up("xl")} {
-  margin-left: 759.5px;
-}
+`);
+
+const Article = withTheme(styled.div`
+position: absolute;
+width: 320.7px;
+height: 182px;
+top: 545px;
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 17px;
 `);
 
 const Gratitude = withTheme(styled.div`
   position: absolute;
-  left: 78px;
-  top: 332px;
-  ${(props) => props.theme.breakpoints.down("xs")} {
-    margin-left: 0px;
-  }
+  top: 740px;
+`);
+
+const GridLayout = withTheme(styled(Grid)`
+${(props) => props.theme.breakpoints.only("xs")} {
+  padding:0px;
+}
   ${(props) => props.theme.breakpoints.up("sm")} {
-    margin-left: 105px;
+    padding:0px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-left: 285px;
+    padding:0px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-left: 445px;
+    padding:0px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-left: 765px;
+    padding:0px;
   }
 `);
+
 
 // const Toggle = withTheme(styled.div`
 //   position: absolute;
@@ -274,8 +260,8 @@ const Gratitude = withTheme(styled.div`
 // `);
 
 const NavigateBar = withTheme(styled.div`
-  position: relative;
-  top: 620px;
+  position: fixed;
+  bottom:0;
 `);
 
 const Home = () => {
@@ -371,6 +357,7 @@ const Home = () => {
     <div>
       {currentUser ? (
         <div>
+          <Bg />
           <Head>
             <img src="/image/head.png" width="300px"></img>
             <Profile>
@@ -383,32 +370,40 @@ const Home = () => {
               </Link>
             </Profile>
           </Head>
-          <Name>Hi, {name}</Name>
-          <Fire>
-            <img src="/image/fire.png" width="23px"></img>
-          </Fire>
-          <Streak>Current Streak</Streak>
-          <Logout>
-            <PopupSignout></PopupSignout>
-          </Logout>
-          <Bg>
-            {/* Calendar card */}
-            <Calendar>
-              <Link to="/Calendar">
-                <img src="/image/calendar.png" width="320.7px" height="182px" />
-              </Link>
+         
+            <Name>Hi, {name}</Name>
+            <Fire>
+              <img src="/image/fire.png" width="23px"></img>
+            </Fire>
+            <Streak>Current Streak</Streak>
+            <Logout>
+              <PopupSignout></PopupSignout>
+            </Logout>
+
+          {/* Calendar card */}
+            <Grid container justifyContent="center" alignItems="center">
+                <Calendar>
+                  <Link to="/Calendar">
+                    <img src="/image/calendar.png" width="320.7px" height="182px" />
+                  </Link>
             </Calendar>
             {/* {Graph card} */}
             <Graph>
-              <Link to ="/">
-                </Link>
+              <Link to="/">
+              </Link>
             </Graph>
+            {/* {Article card} */}
+            <Article>
+              <Link to="/">
+              </Link>
+            </Article>
             {/* Gratitude journal button */}
             <Gratitude>
               <PopupGratitude></PopupGratitude>
             </Gratitude>
+            </Grid>
             {/* Monthly or Weekly button */}
-            {/* <Toggle>
+      {/* <Toggle>
               <ToggleButtonGroup
                 color="primary"
                 value={alignment}
@@ -419,7 +414,7 @@ const Home = () => {
                 <ToggleButton value="monthly">เดือน</ToggleButton>
               </ToggleButtonGroup>
             </Toggle> */}
-            {/* <GraphBox>
+      {/* <GraphBox>
               <BarChart width={307} height={182} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
@@ -436,18 +431,19 @@ const Home = () => {
               </BarChart>
             </GraphBox1>
             <GraphBox2> */}
-              {/* <SimpleWordcloud />
+      {/* <SimpleWordcloud />
             </GraphBox2> */}
-            {/* bottom navigation bar*/}
-            <NavigateBar>
-              <BottomNavigationBar />
-            </NavigateBar>
-          </Bg>
-        </div>
-      ) : (
-        <Login />
-      )}
+      {/* bottom navigation bar*/}
+      <NavigateBar>
+        <BottomNavigationBar />
+      </NavigateBar>
     </div>
+  ) : (
+    <Login />
+  )
+}
+    </div >
+
   );
 };
 
