@@ -167,9 +167,6 @@ position: absolute;
 width: 320.7px;
 height: 182px;
 top: 132px;
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 17px;
 `);
 
 const Graph = withTheme(styled.div`
@@ -177,9 +174,6 @@ position: absolute;
 width: 320.7px;
 height: 182px;
 top: 336px;
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 17px;
 `);
 
 const Article = withTheme(styled.div`
@@ -187,9 +181,6 @@ position: absolute;
 width: 320.7px;
 height: 182px;
 top: 545px;
-background: #FFFFFF;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 17px;
 `);
 
 const Gratitude = withTheme(styled.div`
@@ -381,10 +372,14 @@ const Home = () => {
             </Logout>
 
           {/* Calendar card */}
-            <Grid container justifyContent="center" alignItems="center">
+            <Grid container>
+              <Grid 
+              item justifyContent="center" alignItems="center"
+              xs = {6}
+              sm = {6}>
               <Calendar>
                   <Link to="/Calendar">
-                    <img src="/image/calendar.png" width="320.7px" height="182px" />
+                    <img src="/image/calendar.png" width="320.7px" height="183px" />
                   </Link>
               </Calendar>
             {/* {Graph card} */}
@@ -401,6 +396,7 @@ const Home = () => {
               <Gratitude>
                 <PopupGratitude></PopupGratitude>
               </Gratitude>
+              </Grid>
             </Grid>
             {/* Monthly or Weekly button */}
       {/* <Toggle>
