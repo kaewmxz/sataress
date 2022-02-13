@@ -64,7 +64,7 @@ export default function BottomNavigationBar() {
               <HomeIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>
-            <Link to="/">
+            <Link to="/Intervention">
               <HealthAndSafetyIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>

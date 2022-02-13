@@ -7,7 +7,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
 import { Grid, Container } from '@material-ui/core';
-import { Routes, Route, Navigate, useNavigate} from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
 // import IconButton from "@mui/material/IconButton";
 // import LogoutIcon from "@mui/icons-material/Logout";
@@ -56,19 +56,19 @@ const Name = withTheme(styled.div`
     margin-left:320px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    font-size: 24px;
+    font-size: 20px;
     right: 50px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    font-size: 28px;
+    font-size: 24px;
     right: 70px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    font-size: 30px;
+    font-size: 26px;
     right: 100px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    font-size: 32px;
+    font-size: 30px;
     right: 120px;
   }
 `);
@@ -114,24 +114,24 @@ const Streak = withTheme(styled.div`
     width: 68.94px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    font-size:12px;
+    font-size:10px;
     width: 90px;
     right: 140px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    font-size: 16px;
+    font-size: 14px;
     margin-top:5px;
     width: 135px;
     right: 120px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    font-size: 20px;
+    font-size: 16px;
     margin-top:10px;
     width: 137px;
     right: 145px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    font-size: 24px;
+    font-size: 20px;
     margin-top:20px;
     width: 188px;
     right: 133px;
@@ -167,6 +167,7 @@ position: absolute;
 width: 320.7px;
 height: 182px;
 top: 132px;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `);
 
 const Graph = withTheme(styled.div`
@@ -174,6 +175,7 @@ position: absolute;
 width: 320.7px;
 height: 182px;
 top: 336px;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
 `);
 
 const Article = withTheme(styled.div`
@@ -362,44 +364,54 @@ const Home = () => {
               </Link>
             </Profile>
           </Head>
-            <Name>Hi, {name}</Name>
-            <Fire>
-              <img src="/image/fire.png" width="23px"></img>
-            </Fire>
-            <Streak>Current Streak</Streak>
-            <Logout>
-              <PopupSignout></PopupSignout>
-            </Logout>
+          <Name>Hi, {name}</Name>
+          <Fire>
+            <img src="/image/fire.png" width="23px"></img>
+          </Fire>
+          <Streak>Current Streak</Streak>
+          <Logout>
+            <PopupSignout></PopupSignout>
+          </Logout>
 
           {/* Calendar card */}
-            <Grid container>
-              <Grid 
-              item justifyContent="center" alignItems="center"
-              xs = {6}
-              sm = {6}>
+          <Grid container
+          justifyContent="center"
+          xs = {7}
+          sm = {8}
+          md = {9}
+          lg = {10}
+          xl = {12}>
+            <Grid item>
               <Calendar>
-                  <Link to="/Calendar">
-                    <img src="/image/calendar.png" width="320.7px" height="183px" />
-                  </Link>
+                <Link to="/Calendar">
+                  <img src="/image/calendar.png" width="320.7px" height="183px" />
+                </Link>
               </Calendar>
+            </Grid>
             {/* {Graph card} */}
+            <Grid item>
               <Graph>
                 <Link to="/">
+                  <img src="/image/graph.png" width="320.7px" height="183px" />
                 </Link>
               </Graph>
-              {/* {Article card} */}
+            </Grid>
+            {/* {Article card} */}
+            <Grid item>
               <Article>
                 <Link to="/">
                 </Link>
               </Article>
-              {/* Gratitude journal button */}
+            </Grid>
+            {/* Gratitude journal button */}
+            <Grid item style={{marginLeft:25.56}}>
               <Gratitude>
                 <PopupGratitude></PopupGratitude>
               </Gratitude>
-              </Grid>
             </Grid>
-            {/* Monthly or Weekly button */}
-      {/* <Toggle>
+          </Grid>
+          {/* Monthly or Weekly button */}
+          {/* <Toggle>
               <ToggleButtonGroup
                 color="primary"
                 value={alignment}
@@ -410,7 +422,7 @@ const Home = () => {
                 <ToggleButton value="monthly">เดือน</ToggleButton>
               </ToggleButtonGroup>
             </Toggle> */}
-      {/* <GraphBox>
+          {/* <GraphBox>
               <BarChart width={307} height={182} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
@@ -427,15 +439,15 @@ const Home = () => {
               </BarChart>
             </GraphBox1>
             <GraphBox2> */}
-      {/* <SimpleWordcloud />
+          {/* <SimpleWordcloud />
             </GraphBox2> */}
-      {/* bottom navigation bar*/}
-      <BottomNavigationBar />
-    </div>
-  ) : (
-    <Login />
-  )
-}
+          {/* bottom navigation bar*/}
+          <BottomNavigationBar />
+        </div>
+      ) : (
+        <Login />
+      )
+      }
     </div >
 
   );
