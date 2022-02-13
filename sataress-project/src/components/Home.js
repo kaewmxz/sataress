@@ -6,8 +6,8 @@ import { withTheme } from "@material-ui/core/styles";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
-import { Grid, Container } from '@material-ui/core';
-import { Routes, Route, Navigate, useNavigate} from 'react-router-dom';
+import { Grid, Container } from "@material-ui/core";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 // import IconButton from "@mui/material/IconButton";
 // import LogoutIcon from "@mui/icons-material/Logout";
@@ -23,19 +23,22 @@ import "tippy.js/animations/scale.css";
 import "../css/home.css";
 
 const Bg = withTheme(styled.div`
-position: fixed;
-width: 100%;
-height: 100%;
-top: 217px;
-z-index:-1;
-background: linear-gradient(180deg, rgba(254, 68, 10, 0) 17.83%, #FFBDBD 95.83%);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 217px;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 68, 10, 0) 17.83%,
+    #ffbdbd 95.83%
+  );
 `);
 
 const Head = withTheme(styled.div`
   position: absolute;
   left: 0px;
   top: 0px;
-
 `);
 
 const Profile = withTheme(styled.div`
@@ -53,7 +56,7 @@ const Name = withTheme(styled.div`
   top: 47px;
   ${(props) => props.theme.breakpoints.up("xs")} {
     font-size: 20px;
-    margin-left:320px;
+    margin-left: 320px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
     font-size: 24px;
@@ -78,25 +81,24 @@ const Fire = withTheme(styled.div`
   width: 23px;
   height: 30px;
   top: 75px;
-${(props) => props.theme.breakpoints.up("xs")} {
-  margin-left:310px;
-  font-size: 20px;
-}
+  ${(props) => props.theme.breakpoints.up("xs")} {
+    margin-left: 310px;
+    font-size: 20px;
+  }
   ${(props) => props.theme.breakpoints.up("sm")} {
     right: 230px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
     right: 245px;
-    margin-top:5px;
+    margin-top: 5px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
     right: 285px;
-    margin-top:10px;
-
+    margin-top: 10px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
     right: 310px;
-    margin-top:20px;
+    margin-top: 20px;
   }
 `);
 
@@ -114,30 +116,29 @@ const Streak = withTheme(styled.div`
     width: 68.94px;
   }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    font-size:12px;
+    font-size: 12px;
     width: 90px;
     right: 140px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
     font-size: 16px;
-    margin-top:5px;
+    margin-top: 5px;
     width: 135px;
     right: 120px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
     font-size: 20px;
-    margin-top:10px;
+    margin-top: 10px;
     width: 137px;
     right: 145px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
     font-size: 24px;
-    margin-top:20px;
+    margin-top: 20px;
     width: 188px;
     right: 133px;
   }
 `);
-
 
 const Logout = withTheme(styled.div`
   position: absolute;
@@ -149,38 +150,38 @@ const Logout = withTheme(styled.div`
     right: 110px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    margin-top:5px;
+    margin-top: 5px;
     right: 105px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-top:10px;
+    margin-top: 10px;
     right: 120px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-top:20px;
+    margin-top: 20px;
     right: 120px;
   }
 `);
 
 const Calendar = withTheme(styled.div`
-position: absolute;
-width: 320.7px;
-height: 182px;
-top: 132px;
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 132px;
 `);
 
 const Graph = withTheme(styled.div`
-position: absolute;
-width: 320.7px;
-height: 182px;
-top: 336px;
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 336px;
 `);
 
 const Article = withTheme(styled.div`
-position: absolute;
-width: 320.7px;
-height: 182px;
-top: 545px;
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 545px;
 `);
 
 const Gratitude = withTheme(styled.div`
@@ -189,23 +190,22 @@ const Gratitude = withTheme(styled.div`
 `);
 
 const GridLayout = withTheme(styled(Grid)`
-${(props) => props.theme.breakpoints.only("xs")} {
-  padding:0px;
-}
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
   ${(props) => props.theme.breakpoints.up("sm")} {
-    padding:0px;
+    padding: 0px;
   }
   ${(props) => props.theme.breakpoints.up("md")} {
-    padding:0px;
+    padding: 0px;
   }
   ${(props) => props.theme.breakpoints.up("lg")} {
-    padding:0px;
+    padding: 0px;
   }
   ${(props) => props.theme.breakpoints.up("xl")} {
-    padding:0px;
+    padding: 0px;
   }
 `);
-
 
 // const Toggle = withTheme(styled.div`
 //   position: absolute;
@@ -253,7 +253,7 @@ ${(props) => props.theme.breakpoints.only("xs")} {
 
 const NavigateBar = withTheme(styled.div`
   position: fixed;
-  bottom:0;
+  bottom: 0;
 `);
 
 const Home = () => {
@@ -362,44 +362,37 @@ const Home = () => {
               </Link>
             </Profile>
           </Head>
-            <Name>Hi, {name}</Name>
-            <Fire>
-              <img src="/image/fire.png" width="23px"></img>
-            </Fire>
-            <Streak>Current Streak</Streak>
-            <Logout>
-              <PopupSignout></PopupSignout>
-            </Logout>
+          <Name>Hi, {name}</Name>
+          <Fire>
+            <img src="/image/fire.png" width="23px"></img>
+          </Fire>
+          <Streak>Current Streak</Streak>
+          <Logout>
+            <PopupSignout></PopupSignout>
+          </Logout>
 
           {/* Calendar card */}
-            <Grid container>
-              <Grid 
-              item justifyContent="center" alignItems="center"
-              xs = {6}
-              sm = {6}>
-              <Calendar>
-                  <Link to="/Calendar">
-                    <img src="/image/calendar.png" width="320.7px" height="183px" />
-                  </Link>
-              </Calendar>
+          <Grid container justifyContent="center" alignItems="center">
+            <Calendar>
+              <Link to="/Calendar">
+                <img src="/image/calendar.png" width="320.7px" height="183px" />
+              </Link>
+            </Calendar>
             {/* {Graph card} */}
-              <Graph>
-                <Link to="/">
-                </Link>
-              </Graph>
-              {/* {Article card} */}
-              <Article>
-                <Link to="/">
-                </Link>
-              </Article>
-              {/* Gratitude journal button */}
-              <Gratitude>
-                <PopupGratitude></PopupGratitude>
-              </Gratitude>
-              </Grid>
-            </Grid>
-            {/* Monthly or Weekly button */}
-      {/* <Toggle>
+            <Graph>
+              <Link to="/"></Link>
+            </Graph>
+            {/* {Article card} */}
+            <Article>
+              <Link to="/"></Link>
+            </Article>
+            {/* Gratitude journal button */}
+            <Gratitude>
+              <PopupGratitude></PopupGratitude>
+            </Gratitude>
+          </Grid>
+          {/* Monthly or Weekly button */}
+          {/* <Toggle>
               <ToggleButtonGroup
                 color="primary"
                 value={alignment}
@@ -410,7 +403,7 @@ const Home = () => {
                 <ToggleButton value="monthly">เดือน</ToggleButton>
               </ToggleButtonGroup>
             </Toggle> */}
-      {/* <GraphBox>
+          {/* <GraphBox>
               <BarChart width={307} height={182} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
@@ -427,17 +420,15 @@ const Home = () => {
               </BarChart>
             </GraphBox1>
             <GraphBox2> */}
-      {/* <SimpleWordcloud />
+          {/* <SimpleWordcloud />
             </GraphBox2> */}
-      {/* bottom navigation bar*/}
-      <BottomNavigationBar />
+          {/* bottom navigation bar*/}
+          <BottomNavigationBar />
+        </div>
+      ) : (
+        <Login />
+      )}
     </div>
-  ) : (
-    <Login />
-  )
-}
-    </div >
-
   );
 };
 
