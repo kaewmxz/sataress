@@ -1,31 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Avatar from "@mui/material/Avatar";
 import { withTheme } from "@material-ui/core/styles";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { BarChart, CartesianGrid, XAxis, YAxis, Bar } from "recharts";
-<<<<<<< HEAD
-import { Grid, Container } from '@material-ui/core';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-=======
-import { Grid, Container } from "@material-ui/core";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
->>>>>>> 639858e36d74bdfc9977d67ba6f5bcfa79ecb288
+import { Grid } from '@material-ui/core';
+import {useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
-// import IconButton from "@mui/material/IconButton";
-// import LogoutIcon from "@mui/icons-material/Logout";
 import PopupGratitude from "./popup/PopupGratitude";
-import PopupSignout from "./popup/PopupSignout";
 import { AuthContext } from "./Auth";
 import Login from "./Login";
 import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
-import ReactWordcloud from "react-wordcloud";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
 import "../css/home.css";
+import Head from "./Head";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -40,155 +26,8 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-const Head = withTheme(styled.div`
-  position: absolute;
-  left: 0px;
-  top: 0px;
-`);
-
-const Profile = withTheme(styled.div`
-  position: absolute;
-  left: 33px;
-  top: 36px;
-`);
-
-const Name = withTheme(styled.div`
-  position: absolute;
-  width: 200px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  top: 47px;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    font-size: 20px;
-    margin-left: 320px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    font-size: 20px;
-    right: 50px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    font-size: 24px;
-    right: 70px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    font-size: 26px;
-    right: 100px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    font-size: 30px;
-    right: 120px;
-  }
-`);
-
-const Fire = withTheme(styled.div`
-  position: absolute;
-  width: 23px;
-  height: 30px;
-  top: 75px;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    margin-left: 310px;
-    font-size: 20px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    right: 230px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    right: 245px;
-    margin-top: 5px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    right: 285px;
-    margin-top: 10px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    right: 310px;
-    margin-top: 20px;
-  }
-`);
-
-const Streak = withTheme(styled.div`
-  position: absolute;
-  top: 85px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  line-height: 12px;
-  text-align: center;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    margin-left: 340px;
-    font-size: 10px;
-    width: 68.94px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-<<<<<<< HEAD
-    font-size:10px;
-=======
-    font-size: 12px;
->>>>>>> 639858e36d74bdfc9977d67ba6f5bcfa79ecb288
-    width: 90px;
-    right: 140px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-<<<<<<< HEAD
-    font-size: 14px;
-    margin-top:5px;
-=======
-    font-size: 16px;
-    margin-top: 5px;
->>>>>>> 639858e36d74bdfc9977d67ba6f5bcfa79ecb288
-    width: 135px;
-    right: 120px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-<<<<<<< HEAD
-    font-size: 16px;
-    margin-top:10px;
-=======
-    font-size: 20px;
-    margin-top: 10px;
->>>>>>> 639858e36d74bdfc9977d67ba6f5bcfa79ecb288
-    width: 137px;
-    right: 145px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-<<<<<<< HEAD
-    font-size: 20px;
-    margin-top:20px;
-=======
-    font-size: 24px;
-    margin-top: 20px;
->>>>>>> 639858e36d74bdfc9977d67ba6f5bcfa79ecb288
-    width: 188px;
-    right: 133px;
-  }
-`);
-
-const Logout = withTheme(styled.div`
-  position: absolute;
-  top: 77px;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    margin-left: 410px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    right: 110px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    margin-top: 5px;
-    right: 105px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    margin-top: 10px;
-    right: 120px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    margin-top: 20px;
-    right: 120px;
-  }
-`);
 
 const Calendar = withTheme(styled.div`
-<<<<<<< HEAD
 position: absolute;
 width: 320.7px;
 height: 182px;
@@ -202,19 +41,6 @@ width: 320.7px;
 height: 182px;
 top: 336px;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
-=======
-  position: absolute;
-  width: 320.7px;
-  height: 182px;
-  top: 132px;
-`);
-
-const Graph = withTheme(styled.div`
-  position: absolute;
-  width: 320.7px;
-  height: 182px;
-  top: 336px;
->>>>>>> 639858e36d74bdfc9977d67ba6f5bcfa79ecb288
 `);
 
 const Article = withTheme(styled.div`
@@ -390,27 +216,7 @@ const Home = () => {
       {currentUser ? (
         <div>
           <Bg />
-          <Head>
-            <img src="/image/head.png" width="300px"></img>
-            <Profile>
-              <Link to="/Moodtrack">
-                <Avatar
-                  alt=""
-                  src={image}
-                  sx={{ width: 67, height: 67 }}
-                ></Avatar>
-              </Link>
-            </Profile>
-          </Head>
-          <Name>Hi, {name}</Name>
-          <Fire>
-            <img src="/image/fire.png" width="23px"></img>
-          </Fire>
-          <Streak>Current Streak</Streak>
-          <Logout>
-            <PopupSignout></PopupSignout>
-          </Logout>
-
+          <Head/>
           {/* Calendar card */}
           <Grid container
           justifyContent="center"
