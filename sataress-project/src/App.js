@@ -7,6 +7,7 @@ import { AuthProvider } from './components/Auth';
 import Calendar from './components/Calendar';
 import Moodtrack from './components/Moodtrack';
 import Landpage from './components/Landpage';
+import Interventions from './components/Interventions';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/Home" element={<Landpage/>}/>
           <Route exact path="/Calendar" element={<Calendar />} />
           <Route exact path="/Moodtrack" element={<Moodtrack />} />
+          <Route exact path="/Interventions" element={<Interventions />} />
         </Routes>
       </Router>
     </AuthProvider>

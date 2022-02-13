@@ -74,7 +74,7 @@ export default function BottomNavigationBar() {
                 <img src="./image/wlogo.png" width="85"></img>
               </Fab>
             </Link>
-            <Link to="/">
+            <Link to="/Interventions">
               <MenuBookIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>
