@@ -8,6 +8,7 @@ import Calendar from './components/Calendar';
 import Moodtrack from './components/Moodtrack';
 import Landpage from './components/Landpage';
 import Interventions from './components/Interventions';
+import Log from './components/Log'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/Calendar" element={<Calendar />} />
           <Route exact path="/Moodtrack" element={<Moodtrack />} />
           <Route exact path="/Interventions" element={<Interventions />} />
+          <Route exact path="/Log" element={<Log />} />
         </Routes>
       </Router>
     </AuthProvider>

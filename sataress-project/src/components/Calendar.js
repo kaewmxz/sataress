@@ -1,29 +1,41 @@
-import React, {useContext} from "react";
-import { Routes, Route, Navigate} from 'react-router-dom';
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { withTheme } from "@material-ui/core/styles";
+import { Grid, Container } from '@material-ui/core';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import BottomNavigationBar from "./BottomNavigationBar ";
+import Head from "./Head";
 import { AuthContext } from "./Auth";
 
-// getCurrentDatetime.month;
-
-// calendar == month;
-
-// getCalendarInfo;
-
+const Bg = withTheme(styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 217px;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 68, 10, 0) 17.83%,
+    #ffbdbd 95.83%
+  );
+`);
 
 const Calendar = () => {
   const { currentUser } = useContext(AuthContext);
   if (!currentUser) {
     return (
       <Routes>
-        <Route path ="/" element={<Navigate replace to ="/"/>}></Route>
+        <Route path="/" element={<Navigate replace to="/" />}></Route>
       </Routes>
     )
   }
   return (
-    <div className="Calendar">
-      <center>Hi, this is calendar page.</center>
+    <div>
+      <Bg />
+      <Head />
+      <BottomNavigationBar/>
     </div>
   );
 };
 export default Calendar;
-
-

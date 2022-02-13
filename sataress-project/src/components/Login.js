@@ -7,8 +7,7 @@ import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
-//import ResponsiveImgMaterialUi from "responsive-img-material-ui";
-import "../css/login.css";
+
 
 const Bg = withTheme(styled.div`
   position: absolute;

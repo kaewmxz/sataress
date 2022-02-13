@@ -64,7 +64,7 @@ export default function BottomNavigationBar() {
               <HomeIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>
-            <Link to="/Intervention">
+            <Link to="/Interventions">
               <HealthAndSafetyIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>
@@ -74,11 +74,11 @@ export default function BottomNavigationBar() {
                 <img src="./image/wlogo.png" width="85"></img>
               </Fab>
             </Link>
-            <Link to="/Interventions">
+            <Link to="/Log">
               <MenuBookIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>
-            <Link to="/">
+            <Link to="/Calendar">
               <CalendarTodayIcon color="Black"
                 sx={{ fontSize: 40, mt: 3, ml: 4 }} />
             </Link>

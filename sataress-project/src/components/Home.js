@@ -190,10 +190,6 @@ const Home = () => {
     }
   }, []);
 
-  const SimpleWordcloud = () => {
-    return <ReactWordcloud words={gratitude} />;
-  };
-
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = useState("web");
 

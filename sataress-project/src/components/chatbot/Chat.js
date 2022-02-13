@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import "./style.css";
 import Messages from "./Messages";
-import { Grid } from '@material-ui/core';
-import Box from '@mui/material/Box';
+
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import Avatar from "@mui/material/Avatar";
@@ -26,37 +25,22 @@ const theme = createTheme({
 });
 
 const Bg = withTheme(styled.div`
-position: fixed;
-width: 100%;
-height: 100%;
-top: 217px;
-z-index:-1;
-background: linear-gradient(180deg, rgba(254, 68, 10, 0) 17.83%, #FFBDBD 95.83%);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 189, 189, 0.3) 0%,
+    rgba(254, 68, 10, 0.3) 44.27%
+  );
+  backdrop-filter: blur(4px);
 `);
 
 const ChatHeader = withTheme(styled.div`
+  width: 375px;
   height: 80px;
   background: rgba(255, 189, 189, 0.6);
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    width: 375px;
-    border-radius: 20px 20px 0px 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    width: 450px;
-    border-radius: 20px 20px 0px 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    width: 500px;
-    border-radius: 20px 20px 0px 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    width: 600px;
-    border-radius: 20px 20px 0px 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    width: 700px;
-    border-radius: 20px 20px 0px 0px;
-  }
+  border-radius: 20px 20px 0px 0px;
 `);
 
 const BotProfile = withTheme(styled.div`
@@ -84,51 +68,26 @@ const Closebutton = withTheme(styled.div`
   left: 320px;
 `);
 
-
 const ChatSection = withTheme(styled.div`
   position: relative;
   z-index: -1;
+  top: 40px;
+  width: 375px;
+  height: 812px;
   background: #ffffff;
-  transition: 0.3s; 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
   border-radius: 20px;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    width: 375px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    width: 450px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    width: 500px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    width: 600px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    width: 700px;
-  }
 `);
 
 const ChatBottom = withTheme(styled.div`
-  position: relative;
+  position: absolute;
   width: 375px;
   height: 65px;
+  left: 0px;
+  top: 747px;
   background: rgba(255, 189, 189, 0.6);
   border-radius: 0px 0px 20px 20px;
-  ${(props) => props.theme.breakpoints.up("xs")} {
-    width: 375px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    width: 450px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    width: 500px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    width: 600px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    width: 700px;
-  }
 `);
 
 const SendButton = withTheme(styled.div`
@@ -223,10 +182,8 @@ const Chat = () => {
   };
 
   return (
-    <div>
-    <Bg/>
-    <Box sx = {{justifyContent: "center"}}>
-      <ChatSection style = {{justifyContent:"center", alignItems:"center"}}>
+    <Bg>
+      <ChatSection>
         <ChatHeader>
           <BotProfile>
             <Avatar sx={{ width: 50, height: 50 }}>
@@ -283,8 +240,7 @@ const Chat = () => {
           </ChatBottom>
         </div>
       </ChatSection>
-      </Box>
-      </div>
+    </Bg>
   );
 };
 

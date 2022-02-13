@@ -41,7 +41,8 @@ ${(props) => props.theme.breakpoints.up("xl")} {
 }
 `);
 
-const Interventions = () => {
+
+const Log = () => {
   const { currentUser } = useContext(AuthContext);
   if (!currentUser) {
     return (
@@ -55,12 +56,10 @@ const Interventions = () => {
       <Bg />
       <Head />
       <Grid container justify="center">
-      <Title style = {{marginTop:130}}>Interventions</Title>
+      <Title style = {{marginTop:130}}>Gratitude journal</Title>
       </Grid>
       <BottomNavigationBar/>
     </div>
   );
 };
-export default Interventions;
-
-
+export default Log;
