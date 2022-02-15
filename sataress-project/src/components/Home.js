@@ -11,7 +11,7 @@ import Login from "./Login";
 import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
 import "../css/home.css";
-import Head from "./Head";
+import Header from "./Head";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -212,7 +212,7 @@ const Home = () => {
       {currentUser ? (
         <div>
           <Bg />
-          <Head/>
+          <Header/>
           {/* Calendar card */}
           <Grid container
           justifyContent="center"
@@ -220,7 +220,7 @@ const Home = () => {
           sm = {8}
           md = {9}
           lg = {10}
-          xl = {12}>
+          xl = {10}>
             <Grid item>
               <Calendar>
                 <Link to="/Calendar">

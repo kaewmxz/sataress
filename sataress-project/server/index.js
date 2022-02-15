@@ -9,7 +9,7 @@ const talkToChatbot = require("./chatbot");
 const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { response } = require("express");
 const addUsers = require("./addUser");
-const { addGratitude, getGratitude } = require("./gratitude");
+const { addGratitude, getGratitude, getGratitudeTable } = require("./gratitude");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
@@ -107,6 +107,18 @@ app.get("/gratitude", (req, res, next) => {
   getGratitude(id)
     .then((response) => {
       res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.get("/gratitude-table", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getGratitudeTable(id)
+    .then((response) => {
+      res.send({message: response});
     })
     .catch((error) => {
       console.log("Something went wrong: " + error);

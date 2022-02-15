@@ -5,7 +5,7 @@ import { withTheme } from "@material-ui/core/styles";
 import { Grid, Container } from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
-import Head from "./Head";
+import Header from "./Head";
 import { AuthContext } from "./Auth";
 
 const Bg = withTheme(styled.div`
@@ -53,7 +53,7 @@ const Interventions = () => {
   return (
     <div>
       <Bg />
-      <Head />
+      <Header />
       <Grid container justify="center">
       <Title style = {{marginTop:130}}>Interventions</Title>
       </Grid>
