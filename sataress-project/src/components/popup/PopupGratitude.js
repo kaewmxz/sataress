@@ -26,18 +26,19 @@ export default function PopupGratitude() {
 
   const handleSubmit = async (e) => {
     const date = new Date();
-    let dateTime = [
-      date.getMonth() + 1,
-      date.getDate().toString(),
-      date.getFullYear().toString(),
-    ];
+    let time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    let day = date.getDate().toString() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear().toString();
+    if(date.getMinutes() < 10){
+      time = date.getHours() + ':0' + date.getMinutes() + ":" + date.getSeconds();
+      }
+    let dateTime = day + " " + time;
     const data = {
       gratitude: e.target[0].value,
-      date: dateTime.join("/"),
+      date: dateTime,
       id: currentUser.uid,
     };
     try {
-      await axios.post("http://localhost:4000/gratitude-result", data);
+      await axios.post("http://localhost:4000/gratitude-result/", data);
     } catch (error) {
       console.log(error);
     }

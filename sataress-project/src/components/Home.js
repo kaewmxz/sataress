@@ -163,30 +163,30 @@ const Home = () => {
         .catch((error) => {
           //console.log(error)
         });
-      const fetchmoodCount = async () => {
-        const result = await axios.get("http://localhost:4000/mood/", {
-          params: { id: currentUser.uid },
-        });
+      // const fetchmoodCount = async () => {
+      //   const result = await axios.get("http://localhost:4000/mood/", {
+      //     params: { id: currentUser.uid },
+      //   });
 
-        setmoodCount(result.data.message);
-      };
-      const fetchmoodIntense = async () => {
-        const result = await axios.get("http://localhost:4000/mood-intense/", {
-          params: { id: currentUser.uid },
-        });
+      //   setmoodCount(result.data.message);
+      // };
+      // const fetchmoodIntense = async () => {
+      //   const result = await axios.get("http://localhost:4000/mood-intense/", {
+      //     params: { id: currentUser.uid },
+      //   });
 
-        setmoodIntense(result.data.message);
-      };
-      const fetchgratitude = async () => {
-        const result = await axios.get("http://localhost:4000/gratitude/", {
-          params: { id: currentUser.uid },
-        });
+      //   setmoodIntense(result.data.message);
+      // };
+      // const fetchgratitude = async () => {
+      //   const result = await axios.get("http://localhost:4000/gratitude/", {
+      //     params: { id: currentUser.uid },
+      //   });
 
-        setGratitude(result.data.message);
-      };
-      fetchmoodCount();
-      fetchmoodIntense();
-      fetchgratitude();
+      //   setGratitude(result.data.message);
+      // };
+      // fetchmoodCount();
+      // fetchmoodIntense();
+      // fetchgratitude();
     }
   }, []);
 
