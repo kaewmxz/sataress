@@ -13,6 +13,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 
 let replyMap = new Map();
+let replyMap1 = new Map();
+let replyMap2 = new Map();
+let replyMap3 = new Map();
 const theme = createTheme({
   palette: {
     gray: {
@@ -134,19 +137,95 @@ const Chat = () => {
     setCurrentMessage(event.target.value);
   };
 
+  // const extractReply = (reply) => {
+  //   if (reply.action == "Greeting.Greeting-custom") {
+  //     replyMap["activity"] = reply.parameters.fields.activty.stringValue;
+  //   } else if (reply.action == "Greeting.Greeting-custom.Tendtobehappy-yes") {
+  //     replyMap["mood"] = "happy";
+  //   } else if (
+  //     reply.action ==
+  //     "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom"
+  //   ) {
+  //     replyMap["intensity"] = reply.parameters.fields.number.numberValue;
+  //   } else if (
+  //     reply.action ==
+  //     "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
+  //   ) {
+  //     const date = new Date();
+  //     const dateTime = [
+  //       date.getMonth() + 1,
+  //       date.getDate().toString(),
+  //       date.getFullYear().toString(),
+  //     ];
+  //     replyMap["thoughts"] = reply.queryText;
+  //     replyMap["date"] = dateTime.join("/");
+  //     replyMap["id"] = currentUser.uid;
+  //     axios
+  //       .post("http://localhost:4000/mood-result", replyMap)
+  //       .catch((error) => {
+  //         console.log("Error: ", error);
+  //       });
+  //   } else {
+  //   }
+  // };
+
   const extractReply = (reply) => {
     if (reply.action == "Greeting.Greeting-custom") {
       replyMap["activity"] = reply.parameters.fields.activty.stringValue;
-    } else if (reply.action == "Greeting.Greeting-custom.Tendtobehappy-yes") {
-      replyMap["mood"] = "happy";
+    } else if (
+      reply.action == "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom"
+    ) {
+      replyMap["mood"] = "Fearful";
     } else if (
       reply.action ==
-      "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom"
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom"
     ) {
       replyMap["intensity"] = reply.parameters.fields.number.numberValue;
     } else if (
       reply.action ==
-      "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom"
+    ) {
+      replyMap1["activity"] = replyMap["activity"];
+      replyMap1["mood"] = "Angry";
+    } else if (
+      reply.action ==
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom.ff-angry-yes-custom"
+    ) {
+      if (reply.parameters.fields.number.numberValue != null) {
+        replyMap1["intensity"] = reply.parameters.fields.number.numberValue;
+      } else {
+      }
+    } else if (
+      reply.action ==
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom.ff-angry-yes-custom.ff-ag-sad-custom"
+    ) {
+      replyMap2["activity"] = replyMap["activity"];
+      replyMap2["mood"] = "Sad";
+    } else if (
+      reply.action ==
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom.ff-angry-yes-custom.ff-ag-sad-custom.ff-ag-sad-yes-custom"
+    ) {
+      if (reply.parameters.fields.number.numberValue != null) {
+        replyMap2["intensity"] = reply.parameters.fields.number.numberValue;
+      } else {
+      }
+    } else if (
+      reply.action ==
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom.ff-angry-yes-custom.ff-ag-sad-custom.ff-ag-sad-yes-custom.ff-ag-sad-any-custom"
+    ) {
+      replyMap3["activity"] = replyMap["activity"];
+      replyMap3["mood"] = "Neutral";
+    } else if (
+      reply.action ==
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom.ff-angry-yes-custom.ff-ag-sad-custom.ff-ag-sad-yes-custom.ff-ag-sad-any-custom.ff-ag-sad-any-neutral-custom"
+    ) {
+      if (reply.parameters.fields.number.numberValue != null) {
+        replyMap3["intensity"] = reply.parameters.fields.number.numberValue;
+      } else {
+      }
+    } else if (
+      reply.action ==
+      "Moodtrack.Moodtrack-custom.Tend-to-be-fearful-custom.Fearful-yes-custom.Fearful-thoughts-custom.ff-angry-yes-custom.ff-ag-sad-custom.ff-ag-sad-yes-custom.ff-ag-sad-any-custom.ff-ag-sad-any-neutral-custom.ff-ag-sad-any-neutral-rate-custom"
     ) {
       const date = new Date();
       const dateTime = [
@@ -157,8 +236,32 @@ const Chat = () => {
       replyMap["thoughts"] = reply.queryText;
       replyMap["date"] = dateTime.join("/");
       replyMap["id"] = currentUser.uid;
+      replyMap1["thoughts"] = reply.queryText;
+      replyMap1["date"] = dateTime.join("/");
+      replyMap1["id"] = currentUser.uid;
+      replyMap2["thoughts"] = reply.queryText;
+      replyMap2["date"] = dateTime.join("/");
+      replyMap2["id"] = currentUser.uid;
+      replyMap3["thoughts"] = reply.queryText;
+      replyMap3["date"] = dateTime.join("/");
+      replyMap3["id"] = currentUser.uid;
       axios
         .post("http://localhost:4000/mood-result", replyMap)
+        .catch((error) => {
+          console.log("Error: ", error);
+        });
+      axios
+        .post("http://localhost:4000/mood-result", replyMap1)
+        .catch((error) => {
+          console.log("Error: ", error);
+        });
+        axios
+        .post("http://localhost:4000/mood-result", replyMap2)
+        .catch((error) => {
+          console.log("Error: ", error);
+        });
+        axios
+        .post("http://localhost:4000/mood-result", replyMap3)
         .catch((error) => {
           console.log("Error: ", error);
         });
@@ -178,6 +281,9 @@ const Chat = () => {
       reply = await handleMessageSubmit(message.text);
       extractReply(reply);
       console.log(replyMap);
+      console.log(replyMap1);
+      console.log(replyMap2);
+      console.log(replyMap3);
     }
   };
 
@@ -243,6 +349,5 @@ const Chat = () => {
     </Bg>
   );
 };
-
 
 export default Chat;

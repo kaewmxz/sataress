@@ -1,21 +1,21 @@
 const { getFirestore } = require("firebase-admin/firestore");
 
 async function addGratitude(result) {
-    var admin = require("firebase-admin");
-    var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
-  
-    if (admin.apps.length === 0) {
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-      });
-    }
-  
-    const db = getFirestore();
-    // Add a new document in collection "gratitude"
-    const res = db.collection("gratitude").add(result);
-    return res;
+  var admin = require("firebase-admin");
+  var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
+
+  if (admin.apps.length === 0) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+  }
+
+  const db = getFirestore();
+  // Add a new document in collection "gratitude"
+  const res = db.collection("gratitude").add(result);
+  return res;
 }
-  
+
 async function getGratitude(id) {
   var admin = require("firebase-admin");
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
@@ -45,7 +45,7 @@ async function getGratitude(id) {
   }, {});
 
   for (const [text, value] of Object.entries(grats_dict)) {
-    res.push({text, value});
+    res.push({ text, value });
   }
   console.log(res);
   return res;
@@ -76,7 +76,7 @@ async function getGratitudeTable(id) {
   return grat_arr;
 }
 
-async function deleteGratitude(id,date) {
+async function deleteGratitude(result) {
   var admin = require("firebase-admin");
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
 
@@ -88,23 +88,52 @@ async function deleteGratitude(id,date) {
 
   const db = getFirestore();
   const gratitude = db.collection("gratitude");
-  await gratitude.where("id", "==", id).where("date", "==", date).get().then(querySnapshot => {
-    querySnapshot.forEach((doc) => {
-      doc.ref.delete().then(() => {
-        console.log("Deleted success");
-      }).catch((err) => {
-        console.log(err);
-      })
-    })
-  }).catch((err) => {
-    console.log(err)
-  })
-  // snapshot.forEach((doc) => {
-  //   doc.delete();
-  //   console.log(`deleted: ${doc.date}`);
-  // });
-  // return snapshot;
+  // await gratitude
+  //   .where("id", "==", result.id)
+  //   .where("date", "==", result.date[0])
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       doc.ref
+  //         .delete()
+  //         .then(() => {
+  //           console.log("Deleted success");
+  //         })
+  //         .catch((err) => {
+  //           console.log(err);
+  //         });
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  try {
+    for (let i = 0; i < result.date.length; i++) {
+      const snapshot = await gratitude
+        .where("id", "==", result.id)
+        .where("date", "==", result.date[i])
+        .get();
+      if (snapshot.empty) {
+        console.log("No matching documents.");
+        return;
+      }
+
+      snapshot.forEach((doc) => {
+        // console.log(`deleted`);
+        doc.ref.delete();
+      });
+    }
+    return "Deleted success";
+  } catch (er) {
+    return er;
+  }
+
+
 }
 
-module.exports = {addGratitude, getGratitude, getGratitudeTable, deleteGratitude};
-  
+module.exports = {
+  addGratitude,
+  getGratitude,
+  getGratitudeTable,
+  deleteGratitude,
+};

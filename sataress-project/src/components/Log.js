@@ -193,12 +193,13 @@ const Log = () => {
   
   const EnhancedTableToolbar = (props) => {
     const { numSelected } = props;
+    // const data = { id: currentUser.uid, date: selected};
+    // console.log(data)
     const deleteGratitude = () => {
       // console.log(currentUser.uid)
       // console.log(selected)
-      axios.post("http://localhost:4000/gratitude-delete/", {
-        params: { id: currentUser.uid, date: selected}
-      });
+      axios.post("http://localhost:4000/gratitude-delete", { id: currentUser.uid, date: selected});
+      window.location.reload();
     }
   
     return (
