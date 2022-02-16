@@ -140,7 +140,6 @@ app.post("/gratitude-delete", jsonParser, urlEncoded, function(req, res, next) {
     .catch((error) => {
       console.log("Something went wrong: " +error);
     });
-  // next();
 });
 
 

@@ -216,6 +216,7 @@ const Home = () => {
           {/* Calendar card */}
           <Grid container
           justifyContent="center"
+          alignItems="center"
           xs = {7}
           sm = {8}
           md = {9}

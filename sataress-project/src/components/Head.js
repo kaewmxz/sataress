@@ -20,14 +20,13 @@ const Head = withTheme(styled.div`
 
   const Name = withTheme(styled.div`
     position: absolute;
-    width: 200px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     top: 47px;
     ${(props) => props.theme.breakpoints.up("xs")} {
-      font-size: 20px;
-      margin-left: 320px;
+      font-size: 18px;
+      right: 30px;
     }
     ${(props) => props.theme.breakpoints.up("sm")} {
       font-size: 20px;
@@ -53,22 +52,21 @@ const Head = withTheme(styled.div`
     height: 30px;
     top: 75px;
     ${(props) => props.theme.breakpoints.up("xs")} {
-      margin-left: 310px;
-      font-size: 20px;
+      right: 110px;
     }
     ${(props) => props.theme.breakpoints.up("sm")} {
-      right: 230px;
+      right: 138px;
     }
     ${(props) => props.theme.breakpoints.up("md")} {
-      right: 245px;
+      right: 180px;
       margin-top: 5px;
     }
     ${(props) => props.theme.breakpoints.up("lg")} {
-      right: 285px;
+      right: 230px;
       margin-top: 10px;
     }
     ${(props) => props.theme.breakpoints.up("xl")} {
-      right: 310px;
+      right: 265px;
       margin-top: 20px;
     }
   `);
@@ -82,32 +80,32 @@ const Head = withTheme(styled.div`
     line-height: 12px;
     text-align: center;
     ${(props) => props.theme.breakpoints.up("xs")} {
-      margin-left: 340px;
+      right: 40px;
       font-size: 10px;
       width: 68.94px;
     }
     ${(props) => props.theme.breakpoints.up("sm")} {
       font-size: 10px;
       width: 90px;
-      right: 140px;
+      right: 55px;
     }
     ${(props) => props.theme.breakpoints.up("md")} {
       font-size: 14px;
       margin-top: 5px;
       width: 135px;
-      right: 120px;
+      right: 60px;
     }
     ${(props) => props.theme.breakpoints.up("lg")} {
       font-size: 16px;
       margin-top: 10px;
       width: 137px;
-      right: 145px;
+      right: 105px;
     }
     ${(props) => props.theme.breakpoints.up("xl")} {
       font-size: 20px;
       margin-top: 20px;
       width: 188px;
-      right: 133px;
+      right: 100px;
     }
   `);
 
@@ -115,22 +113,22 @@ const Head = withTheme(styled.div`
     position: absolute;
     top: 77px;
     ${(props) => props.theme.breakpoints.up("xs")} {
-      margin-left: 410px;
+      right: 10px;
     }
     ${(props) => props.theme.breakpoints.up("sm")} {
-      right: 110px;
+      right: 40px;
     }
     ${(props) => props.theme.breakpoints.up("md")} {
       margin-top: 5px;
-      right: 105px;
+      right: 50px;
     }
     ${(props) => props.theme.breakpoints.up("lg")} {
       margin-top: 10px;
-      right: 120px;
+      right: 90px;
     }
     ${(props) => props.theme.breakpoints.up("xl")} {
       margin-top: 20px;
-      right: 120px;
+      right: 100px;
     }
   `);
 

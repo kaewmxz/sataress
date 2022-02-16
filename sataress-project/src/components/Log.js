@@ -25,6 +25,23 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { visuallyHidden } from '@mui/utils';
 import axios from "axios";
+import { autocompleteClasses } from "@mui/material";
+
+const Table1 = withTheme(styled.div`
+position: absolute;
+${(props) => props.theme.breakpoints.only("xs")} {
+  margin-top: 200px;
+  margin-left: 50px;
+}
+${(props) => props.theme.breakpoints.up("sm")} {
+}
+${(props) => props.theme.breakpoints.up("md")} {
+}
+${(props) => props.theme.breakpoints.up("lg")} {
+}
+${(props) => props.theme.breakpoints.up("xl")} {
+}
+`);
 
 const Bg = withTheme(styled.div`
     position: fixed;
@@ -65,7 +82,7 @@ const Log = () => {
   const { currentUser } = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('Gratitude');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -145,7 +162,7 @@ const Log = () => {
       label: 'Date',
     },
     {
-      id: 'calories',
+      id: 'Gratitude',
       numeric: true,
       disablePadding: false,
       label: 'Gratitude',
@@ -229,7 +246,7 @@ const Log = () => {
             id="tableTitle"
             component="div"
           >
-            Gratitude
+            Gratitude Journal
           </Typography>
         )}
   
@@ -255,12 +272,17 @@ const Log = () => {
   useEffect(() => { 
     if(currentUser) {
       const fetchTable = async () => {
-        const result = await axios.get("http://localhost:4000/gratitude-table/", {
+        try {
+          const result = await axios.get("http://localhost:4000/gratitude-table/", {
           params: { id: currentUser.uid },
         });
         setData(result.data.message);
+      } catch(err) {
+        console.log(err);
+      }
       };
       fetchTable();
+      
     }
   }, [])
 
@@ -273,79 +295,81 @@ const Log = () => {
   }
 
   let rows = [];
-  for (let i = 0; i < data.length; i++) {
-    rows.push(createData(data[i].date,data[i].gratitude));
-    
+  try {
+    for (let i = 0; i < data.length; i++) {
+      rows.push(createData(data[i].date,data[i].gratitude));
+    }
+    // console.log(rows);
+  } catch (err) {
+    // console.log(err);
   }
-  console.log(rows);
   return (
     <div>
       <Bg />
       <Head />
-      <Grid container justify="center">
-      <Title style = {{marginTop:130}}>Gratitude journal</Title>
-      </Grid>
-      <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
-          <Table>
-            <EnhancedTableHead/>
-            <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.date);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+      <Paper sx={{width: "80%", maxWidth: "100%", mx:"auto", my:25, p:3}}>
+        <Grid container>
+          <Grid item xs={12}>
+            <EnhancedTableToolbar numSelected={selected.length} />
+            <TableContainer>
+              <Table>
+                <EnhancedTableHead/>
+                <TableBody>
+                  {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+                    rows.slice().sort(getComparator(order, orderBy)) */}
+                  {stableSort(rows, getComparator(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, index) => {
+                      const isItemSelected = isSelected(row.date);
+                      const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.date)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.date}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                      >
-                        {row.date}
-                      </TableCell>
-                      <TableCell>{row.gratitude}</TableCell>
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[1, 10, 20]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+                      return (
+                        <TableRow
+                          hover
+                          onClick={(event) => handleClick(event, row.date)}
+                          role="checkbox"
+                          aria-checked={isItemSelected}
+                          tabIndex={-1}
+                          key={row.date}
+                          selected={isItemSelected}
+                        >
+                          <TableCell padding="checkbox">
+                            <Checkbox
+                              color="primary"
+                              checked={isItemSelected}
+                              inputProps={{
+                                'aria-labelledby': labelId,
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell
+                            component="th"
+                            id={labelId}
+                            scope="row"
+                            padding="none"
+                          >
+                            {row.date}
+                          </TableCell>
+                          <TableCell>{row.gratitude}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <TablePagination
+              rowsPerPageOptions={[1, 10, 20]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+          </Grid>
+        </Grid>
       </Paper>
-    </Box>
-
+    
       <BottomNavigationBar/>
     </div>
   );
