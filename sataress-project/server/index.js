@@ -9,7 +9,12 @@ const talkToChatbot = require("./chatbot");
 const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { response } = require("express");
 const addUsers = require("./addUser");
-const { addGratitude, getGratitude } = require("./gratitude");
+const {
+  addGratitude,
+  getGratitude,
+  getGratitudeTable,
+  deleteGratitude,
+} = require("./gratitude");
 var jsonParser = bodyParser.json();
 var urlEncoded = bodyParser.urlencoded({ extended: true });
 
@@ -81,7 +86,7 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     .catch((error) => {
       console.log(error);
     });
-  next()
+  next();
 });
 
 app.post(
@@ -112,6 +117,31 @@ app.get("/gratitude", (req, res, next) => {
       console.log("Something went wrong: " + error);
     });
 });
+
+app.get("/gratitude-table", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getGratitudeTable(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.post("/gratitude-delete", jsonParser, urlEncoded, function(req, res, next) {
+  const result = req.body;
+  deleteGratitude(result)
+    .then((response) => {
+      console.log(response);
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " +error);
+    });
+});
+
 
 app.use("/", router);
 
