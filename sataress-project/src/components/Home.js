@@ -216,11 +216,11 @@ const Home = () => {
           {/* Calendar card */}
           <Grid container
           justifyContent="center"
-          xs = {7}
-          sm = {8}
+          xs = {6}
+          sm = {7}
           md = {9}
           lg = {10}
-          xl = {12}>
+          xl = {11}>
             <Grid item>
               <Calendar>
                 <Link to="/Calendar">

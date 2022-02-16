@@ -7,13 +7,13 @@ import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
-
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 const Bg = withTheme(styled.div`
-  position: absolute;
-  boarder: none;
-  width: 100vw;
-  height: 100vh;
+  position:fixed ;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(
     180deg,
     rgba(255, 189, 189, 0.3) 0%,
@@ -22,39 +22,60 @@ const Bg = withTheme(styled.div`
   backdrop-filter: blur(4px);
 `);
 
+const Logo = withTheme(styled.div`
+  position: relative;
+  justify-content:center;
+  display:flex;
+  
+`);
+
+const GButton = withTheme(styled.div`
+    position: relative;
+`);
+
+
 const Login = () => {
   const theme = useTheme();
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
 
   const googleLogin = () => {
-     signInWithRedirect(auth,provider);
+    signInWithRedirect(auth, provider);
   }
 
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
     return (
       <Routes>
-        <Route path ="/" element={<Navigate replace to ="/Home"/>}></Route>
+        <Route path="/" element={<Navigate replace to="/Home" />}></Route>
       </Routes>
     )
   }
 
   return (
-      <Bg>
-        <div className="container">
-          <div className="logo">
-            <center>
-              <img src="/image/blogo.png" width="290" height="290" />
-            </center>
-          </div>
-          <div className="GoogleButton">
-            <center>
-              <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
-            </center>
-          </div>
-        </div>
-      </Bg >
+    <div>
+      <Bg />
+      <Box sx={{ flexGrow: 1, overflow: 'hidden'}}>
+        <Paper sx={{ maxWidth: 229, my: 1, mx: "auto", p: 2 }}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <Logo>
+                <img src="/image/Logo.png" width="300" />
+              </Logo>
+            </Grid>
+          </Grid>
+        </Paper>
+        <Paper sx={{ maxWidth: 229, my: 1, mx: "auto", p: 2 }}>
+        <Grid container wrap="nowrap" spacing={2}>
+          <Grid item >
+          <GButton>
+            <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
+          </GButton>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Box>
+    </div >
   );
 };
 export default Login;

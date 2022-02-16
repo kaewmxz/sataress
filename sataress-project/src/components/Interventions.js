@@ -8,6 +8,7 @@ import BottomNavigationBar from "./BottomNavigationBar ";
 import Head from "./Head";
 import { AuthContext } from "./Auth";
 
+
 const Bg = withTheme(styled.div`
   position: fixed;
   width: 100%;
@@ -26,19 +27,37 @@ position: absolute;
 font-family: Roboto;
 font-style: normal;
 font-weight: normal;
-font-size: 35px;
 line-height: 41px;
 color: #000000;
 ${(props) => props.theme.breakpoints.only("xs")} {
+  font-size: 32px;
 }
 ${(props) => props.theme.breakpoints.up("sm")} {
+  font-size: 32px;
 }
 ${(props) => props.theme.breakpoints.up("md")} {
+  font-size: 35px;
 }
 ${(props) => props.theme.breakpoints.up("lg")} {
+  font-size: 38px;
 }
 ${(props) => props.theme.breakpoints.up("xl")} {
+  font-size: 38px;
 }
+`);
+
+const Boxbreathing = withTheme(styled.div`
+position: absolute;
+width: 320.7px;
+height: 182px;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`);
+
+const Progressive = withTheme(styled.div`
+position: absolute;
+width: 320.7px;
+height: 182px;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
 `);
 
 const Interventions = () => {
@@ -55,9 +74,19 @@ const Interventions = () => {
       <Bg />
       <Head />
       <Grid container justify="center">
-      <Title style = {{marginTop:130}}>Interventions</Title>
+        <Title style={{ marginTop: 135 }}>Interventions</Title>
+          <Boxbreathing style={{ marginTop: 205 }}>
+            <Link to="/Boxbreathing">
+              <img src="/image/BoxBreathing.png" width="311px" height="228px" />
+            </Link>
+          </Boxbreathing>
+          <Progressive style={{ marginTop: 460 }}>
+            <Link to="/Progressive">
+              <img src="/image/Progressive.png" width="311px" height="228px" />
+            </Link>
+          </Progressive>
       </Grid>
-      <BottomNavigationBar/>
+      <BottomNavigationBar />
     </div>
   );
 };
