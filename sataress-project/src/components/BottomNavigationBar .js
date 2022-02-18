@@ -25,7 +25,7 @@ export default function BottomNavigationBar() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, }} elevation={10}>
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={10}>
           <BottomNavigation>
             <Link to="/">
               <HomeIcon color="Black"
@@ -36,9 +36,9 @@ export default function BottomNavigationBar() {
                 sx={{ fontSize: 35, mx: 2, mt: 1.5 }} />
             </Link>
             <Link to="/Moodtrack">
-              <Fab size="medium"
+              <Fab size="large"
                 sx={{ mx: 2, mt: -3 }}>
-                <img src="./image/wlogo.png" width="70"></img>
+                <img src="./image/transparent_bg.png" width="70"></img>
               </Fab>
             </Link>
             <Link to="/Log">

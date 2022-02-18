@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Container } from '@material-ui/core';
+import { Grid,} from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Head from "../Head";
@@ -51,9 +51,9 @@ const Boxbreathing = () => {
             <Head />
             <Grid container justify="center">
                 <Image style={{ marginTop: 205 }}>
-                    <img src="/image/BoxBreathing.png" width="311px" height="228px" />
+                    <img src="/image/boxBreathing.png" width="311px" height="228px" />
                 </Image>
-                <Card sx={{ maxWidth: 500, marginTop: 60 }}>
+                <Card sx={{ maxWidth: 500, marginTop: 60 ,marginBottom:5}}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             Box breathing
@@ -69,14 +69,14 @@ const Boxbreathing = () => {
                             neque a, .
                         </Typography>
                         <br />
-                        <Stack direction="row" spacing={2}>
+                        <Stack>
                             <Button
-                                style={{ fontSize: 18, color: "#FE440A" }} endIcon={<SlideshowOutlinedIcon />}>Play</Button>
+                                style={{ fontSize: 18, color: "#FE440A"}} endIcon={<SlideshowOutlinedIcon />}>Play</Button>
                         </Stack>
                     </CardContent>
                 </Card>
             </Grid>
-            <BottomNavigationBar />
+            <BottomNavigationBar/>
         </div>
     );
 };

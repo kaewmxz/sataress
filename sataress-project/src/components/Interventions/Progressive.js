@@ -50,9 +50,9 @@ const Progressive = () => {
             <Head />
             <Grid container justify="center">
                 <Image style={{ marginTop: 205 }}>
-                    <img src="/image/Progressive.png" width="311px" height="228px" />
+                    <img src="/image/progressive.png" width="311px" height="228px" />
                 </Image>
-                <Card sx={{ maxWidth: 500, marginTop: 60 }}>
+                <Card sx={{ maxWidth: 500, marginTop: 60,marginBottom:5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             Progressive muscle relaxation
@@ -68,7 +68,7 @@ const Progressive = () => {
                             neque a, .
                         </Typography>
                         <br />
-                        <Stack direction="row" spacing={2}>
+                        <Stack>
                             <Button
                                 style={{ fontSize: 18, color: "#FE440A" }} endIcon={<SlideshowOutlinedIcon />}>Play</Button>
                         </Stack>

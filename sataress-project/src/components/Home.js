@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid } from '@material-ui/core';
-import {useNavigate } from 'react-router-dom';
+import { Grid, Box} from '@material-ui/core';
 import BottomNavigationBar from "./BottomNavigationBar ";
 import PopupGratitude from "./popup/PopupGratitude";
 import { AuthContext } from "./Auth";
@@ -31,28 +30,42 @@ const Calendar = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-top: 132px;
+top: 142px;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+${(props) => props.theme.breakpoints.only("xs")} {
+  padding: 0px;
+}
 `);
 
 const Graph = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-top: 336px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+top: 346px;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+${(props) => props.theme.breakpoints.only("xs")} {
+  padding: 0px;
+}
 `);
 
 const Article = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 545px;
+  top: 550px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
 `);
 
 const Gratitude = withTheme(styled.div`
   position: absolute;
-  top: 740px;
+  top: 754px;
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
+  
 `);
 
 const GridLayout = withTheme(styled(Grid)`
@@ -73,57 +86,7 @@ const GridLayout = withTheme(styled(Grid)`
   }
 `);
 
-// const Toggle = withTheme(styled.div`
-//   position: absolute;
-//   left: 138px;
-//   top: 180px;
-// `);
-
-// const GraphBox = withTheme(styled.div`
-//   position: absolute;
-//   width: 307px;
-//   height: 182px;
-//   left: 55px;
-//   top: 250px;
-
-//   background: #ffffff;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-//     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 17px;
-// `);
-// const GraphBox1 = withTheme(styled.div`
-//   position: absolute;
-//   width: 307px;
-//   height: 182px;
-//   left: 55px;
-//   top: 500px;
-
-//   background: #ffffff;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-//     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 17px;
-// `);
-
-// const GraphBox2 = withTheme(styled.div`
-//   position: absolute;
-//   width: 307px;
-//   height: 182px;
-//   left: 55px;
-//   top: 700px;
-
-//   background: #ffffff;
-//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
-//     inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-//   border-radius: 17px;
-// `);
-
-const NavigateBar = withTheme(styled.div`
-  position: fixed;
-  bottom: 0;
-`);
-
 const Home = () => {
-  const navigate = useNavigate();
   // get datetime
   const date = new Date();
   const dateTime = [
@@ -135,9 +98,6 @@ const Home = () => {
   const auth = getAuth();
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-  const [moodCount, setmoodCount] = useState([]);
-  const [moodIntense, setmoodIntense] = useState([]);
-  const [gratitude, setGratitude] = useState([]);
   const username = currentUser.displayName;
   const str = username.split(" ", 2);
   const nickname = str[0];
@@ -163,134 +123,43 @@ const Home = () => {
         .catch((error) => {
           //console.log(error)
         });
-      // const fetchmoodCount = async () => {
-      //   const result = await axios.get("http://localhost:4000/mood/", {
-      //     params: { id: currentUser.uid },
-      //   });
-
-      //   setmoodCount(result.data.message);
-      // };
-      // const fetchmoodIntense = async () => {
-      //   const result = await axios.get("http://localhost:4000/mood-intense/", {
-      //     params: { id: currentUser.uid },
-      //   });
-
-      //   setmoodIntense(result.data.message);
-      // };
-      // const fetchgratitude = async () => {
-      //   const result = await axios.get("http://localhost:4000/gratitude/", {
-      //     params: { id: currentUser.uid },
-      //   });
-
-      //   setGratitude(result.data.message);
-      // };
-      // fetchmoodCount();
-      // fetchmoodIntense();
-      // fetchgratitude();
     }
   }, []);
 
-  // These two const used for the weekly/monthly togglebuttons
-  const [alignment, setAlignment] = useState("web");
-
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
 
   return (
     <div>
       {currentUser ? (
         <div>
           <Bg />
-          <Header/>
+          <Header />
           {/* Calendar card */}
-          <Grid container
-          justifyContent="center"
-<<<<<<< HEAD
-          xs = {6}
-          sm = {7}
-          md = {9}
-          lg = {10}
-          xl = {11}>
-=======
-          alignItems="center"
-          xs = {7}
-          sm = {8}
-          md = {9}
-          lg = {10}
-          xl = {10}>
->>>>>>> ac535b1a4fc834d0c71a00a654e65c3c8b68c5bd
-            <Grid item>
+
+          <Box component="span">
+            <Grid container justify="center">
               <Calendar>
                 <Link to="/Calendar">
                   <img src="/image/calendar.png" width="320.7px" height="183px" />
                 </Link>
               </Calendar>
-            </Grid>
-            {/* {Graph card} */}
-            <Grid item>
+              {/* {Graph card} */}
               <Graph>
-                <Link to="/">
+                <Link to="/Graph">
                   <img src="/image/graph.png" width="320.7px" height="183px" />
                 </Link>
               </Graph>
-            </Grid>
-            {/* {Article card} */}
-            <Grid item>
+              {/* {Article card} */}
               <Article>
-                <Link to="/">
+                <Link to="/Article">
+                  <img src="/image/article.png" width="320.7px" height="183px" />
                 </Link>
               </Article>
-            </Grid>
-            {/* Gratitude journal button */}
-            <Grid item style={{marginLeft:25.56}}>
-              <Gratitude>
-                <PopupGratitude></PopupGratitude>
+              {/* Gratitude journal button */}
+              <Gratitude style={{ paddingBottom: 100 }}>
+                <PopupGratitude/>
               </Gratitude>
             </Grid>
-          </Grid>
-          {/* Monthly or Weekly button */}
-          {/* <Toggle>
-              <ToggleButtonGroup
-                color="primary"
-                value={alignment}
-                exclusive
-                onChange={handleChange}
-              >
-                <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-                <ToggleButton value="monthly">เดือน</ToggleButton>
-              </ToggleButtonGroup>
-            </Toggle> */}
-          {/* <GraphBox>
-              <BarChart width={307} height={182} data={moodCount}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mood" />
-                <YAxis />
-                <Bar dataKey="count" fill="#8884d8" />
-              </BarChart>
-            </GraphBox>
-            <GraphBox1>
-              <BarChart width={307} height={182} data={moodIntense}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mood" />
-                <YAxis />
-                <Bar dataKey="average" fill="#8884d8" />
-              </BarChart>
-            </GraphBox1>
-            <GraphBox2> */}
-          {/* <SimpleWordcloud />
-            </GraphBox2> */}
-          {/* bottom navigation bar*/}
+          </Box>
           <BottomNavigationBar />
         </div>
       ) : (

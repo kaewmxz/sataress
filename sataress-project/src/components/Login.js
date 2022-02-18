@@ -8,7 +8,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 
 const Bg = withTheme(styled.div`
   position:fixed ;
@@ -24,8 +23,7 @@ const Bg = withTheme(styled.div`
 
 const Logo = withTheme(styled.div`
   position: relative;
-  justify-content:center;
-  display:flex;
+  top:20px;
   
 `);
 
@@ -55,26 +53,18 @@ const Login = () => {
   return (
     <div>
       <Bg />
-      <Box sx={{ flexGrow: 1, overflow: 'hidden'}}>
-        <Paper sx={{ maxWidth: 229, my: 1, mx: "auto", p: 2 }}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <Logo>
-                <img src="/image/Logo.png" width="300" />
+        <Box sx={{ maxWidth: 250, mx:"auto"}}>
+          <Grid container>
+            <Grid item xs = {12}>
+              <Logo style={{marginLeft:-30}}>
+                <img src="/image/Logo.png" width="300"/>
               </Logo>
+              <GButton>
+                <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
+              </GButton>
             </Grid>
           </Grid>
-        </Paper>
-        <Paper sx={{ maxWidth: 229, my: 1, mx: "auto", p: 2 }}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item >
-          <GButton>
-            <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
-          </GButton>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Box>
+        </Box>
     </div >
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container , Box} from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
@@ -51,13 +51,19 @@ position: absolute;
 width: 320.7px;
 height: 182px;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+${(props) => props.theme.breakpoints.only("xs")} {
+  padding-left:10px;
+}
 `);
 
 const Progressive = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+${(props) => props.theme.breakpoints.only("xs")} {
+  padding-left:10px;
+}
 `);
 
 const Interventions = () => {
@@ -73,20 +79,22 @@ const Interventions = () => {
     <div>
       <Bg />
       <Header />
-      <Grid container justify="center">
+      <Box>
+      <Grid container justify="center" direction = "row">
         <Title style={{ marginTop: 135 }}>Interventions</Title>
           <Boxbreathing style={{ marginTop: 205 }}>
             <Link to="/Boxbreathing">
               <img src="/image/BoxBreathing.png" width="311px" height="228px" />
             </Link>
           </Boxbreathing>
-          <Progressive style={{ marginTop: 460 }}>
+          <Progressive style={{ marginTop: 460, paddingBottom:130}}>
             <Link to="/Progressive">
               <img src="/image/Progressive.png" width="311px" height="228px" />
             </Link>
           </Progressive>
       </Grid>
-      <BottomNavigationBar />
+      </Box>
+      <BottomNavigationBar/>
     </div>
   );
 };

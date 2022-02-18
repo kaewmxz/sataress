@@ -11,6 +11,8 @@ import Interventions from './components/Interventions';
 import Log from './components/Log';
 import Boxbreathing from './components/Interventions/Boxbreathing';
 import Progressive from './components/Interventions/Progressive';
+import Graph from './components/Graph';
+import Article from './components/Article'
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
           <Route exact path="/Interventions" element={<Interventions />} />
           <Route exact path="/Boxbreathing" element={<Boxbreathing />} />\
           <Route exact path="/Progressive" element={<Progressive />} />
+          <Route exact path="/Graph" element={<Graph />} />
+          <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Log" element={<Log />} />
         </Routes>
       </Router>

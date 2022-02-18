@@ -292,9 +292,7 @@ const Chat = () => {
       <ChatSection>
         <ChatHeader>
           <BotProfile>
-            <Avatar sx={{ width: 50, height: 50 }}>
-              <img src="./image/plogo.png" width="52px" />
-            </Avatar>
+              <img src="./image/transparent_bg.png" width="52px" />
           </BotProfile>
           <BotName>Nong Krati</BotName>
           <ThemeProvider theme={theme}>
