@@ -7,6 +7,10 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -34,6 +38,41 @@ const Article = () => {
     <div>
       <Bg />
       <Header />
+      <Grid container justify="center" direction = "row">
+      <Card sx={{ width: 345, mt:17, mx:0, p:0}}>
+      <CardMedia
+        component="img"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+        alt="green iguana"
+      />
+        <Typography gutterBottom variant="h5" component="div">
+          Yoga
+        </Typography>
+    </Card>
+    <Card sx={{ width: 345, mt:2, mx:0, p:0}}>
+      <CardMedia
+        component="img"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+        alt="green iguana"
+      />
+        <Typography gutterBottom variant="h5" component="div">
+          Boxing
+        </Typography>
+    </Card>
+    <Card sx={{ width: 345, mt:2, mx:0, p:0, mb:11 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image="/static/images/cards/contemplative-reptile.jpg"
+        alt="green iguana"
+      />
+        <Typography gutterBottom variant="h5" component="div">
+          Muay Thai
+        </Typography>
+    </Card>
+    </Grid>
       <BottomNavigationBar/>
     </div>
   );

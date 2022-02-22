@@ -23,6 +23,7 @@ const Bg = withTheme(styled.div`
     rgba(254, 68, 10, 0) 17.83%,
     #ffbdbd 95.83%
   );
+  align-items:center;
 `);
 
 

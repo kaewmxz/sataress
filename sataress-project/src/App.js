@@ -4,7 +4,7 @@ import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
 import { AuthProvider } from './components/Auth';
-import Calendar from './components/Calendar';
+import Calendar from './components/calendar/Calendar';
 import Moodtrack from './components/Moodtrack';
 import Landpage from './components/Landpage';
 import Interventions from './components/Interventions';

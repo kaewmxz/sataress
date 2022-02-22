@@ -23,8 +23,19 @@ const Bg = withTheme(styled.div`
 
 const Logo = withTheme(styled.div`
   position: relative;
-  top:20px;
-  
+`);
+
+const Text = withTheme(styled.div`
+position: relative;
+width: 240px;
+bottom:40px;
+left: 5px;
+font-family: Roboto Mono;
+font-style: bold;
+font-weight: 500;
+font-size: 18px;
+text-align: right;
+color: #FFFFFF;
 `);
 
 const GButton = withTheme(styled.div`
@@ -53,18 +64,19 @@ const Login = () => {
   return (
     <div>
       <Bg />
-        <Box sx={{ maxWidth: 250, mx:"auto"}}>
-          <Grid container>
-            <Grid item xs = {12}>
-              <Logo style={{marginLeft:-30}}>
-                <img src="/image/Logo.png" width="300"/>
-              </Logo>
-              <GButton>
-                <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
-              </GButton>
+      <Box sx = {{width:370, height:600,mx:"auto", paddingY:"auto"}}>
+        <Grid container justifyContent="center">
+            <Logo>
+              <img src="/image/Logo.png" width="320" />
+            </Logo>
+            <Text>“Your illness is not your identity.
+              Your chemistry is not your character.”
+               — Rick Warren</Text>
+            <GButton>
+              <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
+            </GButton>
             </Grid>
-          </Grid>
-        </Box>
+      </Box>
     </div >
   );
 };
