@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
+const talkDASS = require("./chat_dass")
 const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { response } = require("express");
 const addUsers = require("./addUser");
@@ -31,6 +32,22 @@ app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   console.log("message " + message);
 
   talkToChatbot(message)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+      res.send({
+        error: "Error occured here",
+      });
+    });
+});
+
+app.post("/dass-21", jsonParser, urlEncoded, function (req, res, next) {
+  const message = req.body.message;
+  console.log("message " + message);
+
+  talkDASS(message)
     .then((response) => {
       res.send({ message: response });
     })
