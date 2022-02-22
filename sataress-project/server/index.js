@@ -8,7 +8,7 @@ const router = require("express").Router();
 const talkToChatbot = require("./chatbot");
 const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { response } = require("express");
-const addUsers = require("./addUser");
+const { addUsers, getUserFirstTime } = require("./addUser");
 const {
   addGratitude,
   getGratitude,
@@ -86,7 +86,18 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     .catch((error) => {
       console.log(error);
     });
-  next();
+});
+
+app.get("/user-firstTime", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getUserFirstTime(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
 });
 
 app.post(

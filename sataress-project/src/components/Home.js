@@ -12,6 +12,7 @@ import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
+import Dass from "./Dass";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -127,24 +128,17 @@ const Home = () => {
   // get datetime
   const date = new Date();
   const dateTime = [
-    date.getMonth() + 1,
     date.getDate().toString(),
-    date.getFullYear().toString(),
+    (date.getMonth() + 1),
+    date.getFullYear().toString()
   ];
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [moodCount, setmoodCount] = useState([]);
-  const [moodIntense, setmoodIntense] = useState([]);
-  const [gratitude, setGratitude] = useState([]);
+  const [firstTime, setFirstTime] = useState(true);
   const username = currentUser.displayName;
   const str = username.split(" ", 2);
-  const nickname = str[0];
   useEffect(() => {
     if (currentUser) {
-      setName(nickname);
-      setImage(currentUser.photoURL);
       getRedirectResult(auth)
         .then((result) => {
           const user = result.user;
@@ -155,58 +149,30 @@ const Home = () => {
             lastname: str[1],
             photo: user.photoURL,
             date: dateTime.join("/"),
+            firstTime: false,
           };
           axios
-            .post("http://localhost:4000/users", data)
+            .post("http://localhost:4000/users/", data)
             .catch((err) => console.log(err));
         })
         .catch((error) => {
           //console.log(error)
         });
-      // const fetchmoodCount = async () => {
-      //   const result = await axios.get("http://localhost:4000/mood/", {
-      //     params: { id: currentUser.uid },
-      //   });
-
-      //   setmoodCount(result.data.message);
-      // };
-      // const fetchmoodIntense = async () => {
-      //   const result = await axios.get("http://localhost:4000/mood-intense/", {
-      //     params: { id: currentUser.uid },
-      //   });
-
-      //   setmoodIntense(result.data.message);
-      // };
-      // const fetchgratitude = async () => {
-      //   const result = await axios.get("http://localhost:4000/gratitude/", {
-      //     params: { id: currentUser.uid },
-      //   });
-
-      //   setGratitude(result.data.message);
-      // };
-      // fetchmoodCount();
-      // fetchmoodIntense();
-      // fetchgratitude();
+      const getUser = async () => {
+        const result = await axios.get("http://localhost:4000/user-firstTime", {
+        params: { id: currentUser.uid },
+      });
+      setFirstTime(result.data.message[0].firstTime);
+      }
+      getUser();
     }
   }, []);
-
-  // These two const used for the weekly/monthly togglebuttons
-  const [alignment, setAlignment] = useState("web");
-
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
-
+  
+  if (firstTime) {
+    return (
+     <Dass/>
+    )
+  }
   return (
     <div>
       {currentUser ? (

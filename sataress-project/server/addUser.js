@@ -22,6 +22,31 @@ async function addUsers(result) {
     console.log(res)
     return res;
   }
+
+  async function getUserFirstTime(id) {
+    var admin = require("firebase-admin");
+    var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
   
-  module.exports = addUsers;
+    if (admin.apps.length === 0) {
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+      });
+    }
+  
+    const db = getFirestore();
+    const gratitude = db.collection("users");
+    const snapshot = await gratitude.where("id", "==", id).get();
+    if (snapshot.empty) {
+      console.log("No matching documents.");
+      return;
+    }
+    let grat_arr = [];
+    snapshot.forEach((doc) => {
+      grat_arr.push(doc.data());
+    });
+    console.log(grat_arr);
+    return grat_arr;
+  }
+  
+module.exports = {addUsers,getUserFirstTime};
   
