@@ -3,13 +3,15 @@ h1, p {
 }
 .chatSection {
   position: relative;
-  margin:auto;
+  margin-top:22px;
   width: 80%;
+  padding-bottom: 30px;
   height: 80vh;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 20px;
+  border-radius: 17px;
   background-color: #ffff;
+  
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -24,14 +26,11 @@ h1, p {
   justify-content: space-between;
 }
 
-.messagesSection {
-  height: 90%;
-}
-
+/* กรอบล่าง*/
 .messageInputField {
   margin-left: 10px;
   font-size: 18px;
-  outline:none;
+  outline:salmon;
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
@@ -39,45 +38,48 @@ h1, p {
   width: 90%;
 }
 
+/* ช่องพิมพ์*/
 .inputSection {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 7px;
+  margin-top: 17px;
+  margin-left:15px;
 }
 
 .messagesSection {
-  min-height: 70vh;
-  max-height: 70vh;
-  margin-top: 20px;
-  overflow-y: auto;
+  min-height: 75vh;
+  max-height: 75vh;
+  margin-top: 10px;
+  overflow-y: scroll;
 }
 
 /* Message component styles here 👇 */
 .botCard {
-  width: 80%;
+  width: auto;
   border-bottom-right-radius: 30px 30px;
   border-top-right-radius: 30px 30px;
   border-bottom-left-radius: 30px 30px;
   background-color: grey;
-  margin-left: 5px;
+  margin-left: 17px;
+  float: left;
   color: white;
   margin-bottom: 10px;
 }
 
 .userCard {
-  width: 80%;
+  width: auto;
   border-bottom-right-radius: 30px 30px;
   border-top-left-radius: 30px 30px;
   border-bottom-left-radius: 30px 30px;
   float: right;
   background-color: #6C63FF;
-  margin-right: 5px;
+  margin-bottom: 10px;
   color: white;
 }
 
 .messagesSection::-webkit-scrollbar {
-  display: none;
+  display: block;
 }
 
 .messagesSection {
@@ -99,10 +101,10 @@ h1, p {
   }
 
   .userCard {
-    width: 50%;
+    width: auto;
   }
 
   .botCard {
-    width: 50%;
+    width: auto;
   }
 }
