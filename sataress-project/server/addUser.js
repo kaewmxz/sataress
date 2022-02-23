@@ -38,14 +38,14 @@ async function addUsers(result) {
     const snapshot = await gratitude.where("id", "==", id).get();
     if (snapshot.empty) {
       console.log("No matching documents.");
-      return;
+      return "";
     }
-    let grat_arr = [];
+    let arr = [];
     snapshot.forEach((doc) => {
-      grat_arr.push(doc.data());
+      arr.push(doc.data());
     });
-    console.log(grat_arr);
-    return grat_arr;
+    console.log(arr);
+    return arr;
   }
   
 module.exports = {addUsers,getUserFirstTime};

@@ -8,7 +8,6 @@ import Moodtrack from './components/Moodtrack';
 import Landpage from './components/Landpage';
 import Interventions from './components/Interventions';
 import Dass from './components/Dass';
-import Test from './components/test';
 import Log from './components/Log';
 import Boxbreathing from './components/Interventions/Boxbreathing';
 import Progressive from './components/Interventions/Progressive';
@@ -32,7 +31,6 @@ function App() {
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Log" element={<Log />} />
           <Route exact path="/Assessment" element={<Dass />} />
-          <Route exact path="/Test" element={<Test />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -27,6 +27,8 @@ app.disable("etag");
 //   next();
 // });
 
+app.use(express.static('build'));
+
 app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
   console.log("message " + message);
