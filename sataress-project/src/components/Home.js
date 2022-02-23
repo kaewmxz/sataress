@@ -132,7 +132,7 @@ const Home = () => {
             axios
               .post("http://localhost:4000/users", data)
               .catch((err) => console.log(err));
-            navigate("/Assessment");
+            navigate("/DASS21");
             //   <Switch>
             //   <Route path="Home" render={() => <Redirect to="Assessment" />} />
             // </Switch>
