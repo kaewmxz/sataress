@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
-import Home from './components/Home';
 import { AuthProvider } from './components/Auth';
 import Calendar from './components/calendar/Calendar';
 import Moodtrack from './components/Moodtrack';
+import DASS21 from  './components/DASS-21';
 import Landpage from './components/Landpage';
 import Interventions from './components/Interventions';
+import Dass from './components/Dass';
 import Log from './components/Log';
 import Boxbreathing from './components/Interventions/Boxbreathing';
 import Progressive from './components/Interventions/Progressive';
@@ -24,12 +25,14 @@ function App() {
           <Route exact path="/Home" element={<Landpage/>}/>
           <Route exact path="/Calendar" element={<Calendar />} />
           <Route exact path="/Moodtrack" element={<Moodtrack />} />
+          <Route exact path="/DASS21" element={<DASS21 />} />
           <Route exact path="/Interventions" element={<Interventions />} />
           <Route exact path="/Boxbreathing" element={<Boxbreathing />} />\
           <Route exact path="/Progressive" element={<Progressive />} />
           <Route exact path="/Graph" element={<Graph />} />
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Log" element={<Log />} />
+          <Route exact path="/Assessment" element={<Dass />} />
         </Routes>
       </Router>
     </AuthProvider>

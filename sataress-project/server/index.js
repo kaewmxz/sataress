@@ -6,9 +6,11 @@ const morgan = require("morgan");
 const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
+const talkDASS = require("./chat_dass")
 const { saveMood, getMood, getMoodIntense } = require("./mood");
+const { saveDass } = require("./dass");
 const { response } = require("express");
-const addUsers = require("./addUser");
+const { addUsers, getUserFirstTime } = require("./addUser");
 const {
   addGratitude,
   getGratitude,
@@ -26,6 +28,8 @@ app.disable("etag");
 //   next();
 // });
 
+app.use(express.static('build'));
+
 app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
   console.log("message " + message);
@@ -42,9 +46,36 @@ app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
     });
 });
 
+app.post("/dass-21", jsonParser, urlEncoded, function (req, res, next) {
+  const message = req.body.message;
+  console.log("message " + message);
+
+  talkDASS(message)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+      res.send({
+        error: "Error occured here",
+      });
+    });
+});
+
 app.post("/mood-result", jsonParser, urlEncoded, function (req, res, next) {
   const result = req.body;
   saveMood(result)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.post("/dass-result", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  saveDass(result)
     .then((response) => {
       res.send({ message: response });
     })
@@ -86,7 +117,18 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     .catch((error) => {
       console.log(error);
     });
-  next();
+});
+
+app.get("/user-firstTime", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getUserFirstTime(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
 });
 
 app.post(
