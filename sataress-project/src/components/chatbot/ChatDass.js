@@ -10,7 +10,7 @@ import { withTheme } from "@material-ui/core/styles";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
-
+import { Routes, Route, Navigate } from "react-router-dom";
 let replyMap = new Map();
 
 const theme = createTheme({
@@ -57,7 +57,15 @@ const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const { currentUser } = useContext(AuthContext);
+
   useEffect(() => {
+    if (!currentUser) {
+      return (
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/" />}></Route>
+        </Routes>
+      );
+    }
     handleMessageSubmit("ประเมิน");
   }, []);
 
@@ -233,8 +241,6 @@ const Chat = () => {
     } else {
     }
   };
-
- 
 
   const handleSubmit = async (event) => {
     const message = {

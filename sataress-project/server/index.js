@@ -6,11 +6,11 @@ const morgan = require("morgan");
 const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
-const talkDASS = require("./chat_dass")
+const talkDASS = require("./chat_dass");
 const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { saveDass } = require("./dass");
 const { response } = require("express");
-const { addUsers, getUserFirstTime } = require("./addUser");
+const { addUsers, addBiweek, updateBiweek, getUserFirstTime, getBiweek} = require("./users");
 const {
   addGratitude,
   getGratitude,
@@ -28,7 +28,7 @@ app.disable("etag");
 //   next();
 // });
 
-app.use(express.static('build'));
+app.use(express.static("build"));
 
 app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
@@ -119,10 +119,45 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     });
 });
 
+app.post("/bi-week", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  addBiweek(result)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+app.post("/bi-week-update", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  updateBiweek(result)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
+
+
 app.get("/user-firstTime", (req, res, next) => {
   const id = req.query.id;
   console.log(id);
   getUserFirstTime(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.get("/bi-week-check", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getBiweek(id)
     .then((response) => {
       res.send({ message: response });
     })
@@ -172,18 +207,22 @@ app.get("/gratitude-table", (req, res, next) => {
     });
 });
 
-app.post("/gratitude-delete", jsonParser, urlEncoded, function(req, res, next) {
-  const result = req.body;
-  deleteGratitude(result)
-    .then((response) => {
-      console.log(response);
-      res.send({ message: response });
-    })
-    .catch((error) => {
-      console.log("Something went wrong: " +error);
-    });
-});
-
+app.post(
+  "/gratitude-delete",
+  jsonParser,
+  urlEncoded,
+  function (req, res, next) {
+    const result = req.body;
+    deleteGratitude(result)
+      .then((response) => {
+        console.log(response);
+        res.send({ message: response });
+      })
+      .catch((error) => {
+        console.log("Something went wrong: " + error);
+      });
+  }
+);
 
 app.use("/", router);
 
