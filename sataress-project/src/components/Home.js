@@ -11,6 +11,8 @@ import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
+// import Dass from "./Dass";
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -91,42 +93,68 @@ const Home = () => {
   // get datetime
   const date = new Date();
   const dateTime = [
-    date.getMonth() + 1,
     date.getDate().toString(),
-    date.getFullYear().toString(),
+    (date.getMonth() + 1),
+    date.getFullYear().toString()
   ];
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [firstTime, setFirstTime] = useState(true);
   const username = currentUser.displayName;
   const str = username.split(" ", 2);
-  const nickname = str[0];
+  let navigate = useNavigate();
   useEffect(() => {
     if (currentUser) {
-      setName(nickname);
-      setImage(currentUser.photoURL);
-      getRedirectResult(auth)
-        .then((result) => {
-          const user = result.user;
-          const data = {
-            id: user.uid,
-            email: user.email,
-            firstname: str[0],
-            lastname: str[1],
-            photo: user.photoURL,
-            date: dateTime.join("/"),
-          };
-          axios
-            .post("http://localhost:4000/users", data)
-            .catch((err) => console.log(err));
-        })
-        .catch((error) => {
-          //console.log(error)
-        });
+      const getUser = async () => {
+        const result = await axios.get("http://localhost:4000/user-firstTime", {
+        params: { id: currentUser.uid },
+      });
+        console.log(result);
+        try{
+          setFirstTime(result.data.message[0].firstTime);
+        } catch {
+          console.log("Empty data");
+        }
+        if (result.data.message === "") {
+          console.log("check")
+          getRedirectResult(auth)
+          .then((result) => {
+            const user = result.user;
+            const data = {
+              id: user.uid,
+              email: user.email,
+              firstname: str[0],
+              lastname: str[1],
+              photo: user.photoURL,
+              date: dateTime.join("/"),
+              firstTime: false,
+            };
+            axios
+              .post("http://localhost:4000/users", data)
+              .catch((err) => console.log(err));
+            navigate("/Assessment");
+            //   <Switch>
+            //   <Route path="Home" render={() => <Redirect to="Assessment" />} />
+            // </Switch>
+          })
+          .catch((error) => {
+            //console.log(error)
+          });
+        }
+        
+      }
+      getUser();
     }
+    // if (firstTime) {
+    //   console.log("fisrt time");
+    //   return (
+    //   //  <Dass/>
+    //   <Routes>
+    //     <Route path="/Home" element={<Navigate replace to="/Assessment" />}></Route>
+    //   </Routes>
+    //   )
+    // }
   }, []);
-
 
   return (
     <div>

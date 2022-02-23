@@ -215,7 +215,7 @@ const Log = () => {
     const deleteGratitude = () => {
       // console.log(currentUser.uid)
       // console.log(selected)
-      axios.post("http://localhost:4000/gratitude-delete", { id: currentUser.uid, date: selected});
+      axios.post("https://senior-projects.herokuapp.com/gratitude-delete", { id: currentUser.uid, date: selected});
       window.location.reload();
     }
   
@@ -273,7 +273,7 @@ const Log = () => {
     if(currentUser) {
       const fetchTable = async () => {
         try {
-          const result = await axios.get("http://localhost:4000/gratitude-table/", {
+          const result = await axios.get("https://senior-projects.herokuapp.com/gratitude-table", {
           params: { id: currentUser.uid },
         });
         setData(result.data.message);

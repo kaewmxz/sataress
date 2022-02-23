@@ -10,7 +10,7 @@ const talkDASS = require("./chat_dass")
 const { saveMood, getMood, getMoodIntense } = require("./mood");
 const { saveDass } = require("./dass");
 const { response } = require("express");
-const addUsers = require("./addUser");
+const { addUsers, getUserFirstTime } = require("./addUser");
 const {
   addGratitude,
   getGratitude,
@@ -27,6 +27,8 @@ app.disable("etag");
 //   res.setHeader("Last-Modified", new Date().toUTCString());
 //   next();
 // });
+
+app.use(express.static('build'));
 
 app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
@@ -115,7 +117,18 @@ app.post("/users", jsonParser, urlEncoded, function (req, res, next) {
     .catch((error) => {
       console.log(error);
     });
-  next();
+});
+
+app.get("/user-firstTime", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getUserFirstTime(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
 });
 
 app.post(
