@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Box} from '@material-ui/core';
+import { Grid, Box } from "@material-ui/core";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import PopupGratitude from "./popup/PopupGratitude";
 import { AuthContext } from "./Auth";
@@ -12,7 +12,7 @@ import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
 // import Dass from "./Dass";
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -25,30 +25,29 @@ const Bg = withTheme(styled.div`
     rgba(254, 68, 10, 0) 17.83%,
     #ffbdbd 95.83%
   );
-  align-items:center;
+  align-items: center;
 `);
 
-
 const Calendar = withTheme(styled.div`
-position: absolute;
-width: 320.7px;
-height: 182px;
-top: 142px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-${(props) => props.theme.breakpoints.only("xs")} {
-  padding: 0px;
-}
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 142px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
 `);
 
 const Graph = withTheme(styled.div`
-position: absolute;
-width: 320.7px;
-height: 182px;
-top: 346px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-${(props) => props.theme.breakpoints.only("xs")} {
-  padding: 0px;
-}
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 346px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
 `);
 
 const Article = withTheme(styled.div`
@@ -68,7 +67,6 @@ const Gratitude = withTheme(styled.div`
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
-  
 `);
 
 const GridLayout = withTheme(styled(Grid)`
@@ -93,9 +91,9 @@ const Home = () => {
   // get datetime
   const date = new Date();
   const dateTime = [
+    date.getMonth() + 1,
     date.getDate().toString(),
-    (date.getMonth() + 1),
-    date.getFullYear().toString()
+    date.getFullYear().toString(),
   ];
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
@@ -107,53 +105,77 @@ const Home = () => {
     if (currentUser) {
       const getUser = async () => {
         const result = await axios.get("http://localhost:4000/user-firstTime", {
-        params: { id: currentUser.uid },
-      });
+          params: { id: currentUser.uid },
+        });
         console.log(result);
-        try{
+        try {
           setFirstTime(result.data.message[0].firstTime);
         } catch {
           console.log("Empty data");
         }
         if (result.data.message === "") {
-          console.log("check")
+          console.log("check");
           getRedirectResult(auth)
-          .then((result) => {
-            const user = result.user;
-            const data = {
-              id: user.uid,
-              email: user.email,
-              firstname: str[0],
-              lastname: str[1],
-              photo: user.photoURL,
-              date: dateTime.join("/"),
-              firstTime: false,
-            };
-            axios
-              .post("http://localhost:4000/users", data)
-              .catch((err) => console.log(err));
-            navigate("/DASS21");
-            //   <Switch>
-            //   <Route path="Home" render={() => <Redirect to="Assessment" />} />
-            // </Switch>
-          })
-          .catch((error) => {
-            //console.log(error)
-          });
+            .then((result) => {
+              const user = result.user;
+              const data = {
+                id: user.uid,
+                email: user.email,
+                firstname: str[0],
+                lastname: str[1],
+                photo: user.photoURL,
+                date: date,
+                firstTime: false,
+              };
+              axios
+                .post("http://localhost:4000/users", data)
+                .catch((err) => console.log(err));
+              axios
+                .post("http://localhost:4000/bi-week", data)
+                .catch((err) => console.log(err));
+
+              navigate("/DASS21");
+            })
+            .catch((error) => {
+              //console.log(error)
+            });
         }
-        
-      }
+      };
+      const checkBiweek = async () => {
+        const result = await axios.get("http://localhost:4000/bi-week-check", {
+          params: { id: currentUser.uid },
+        });
+        // console.log(result);
+        try {
+          const date1 = new Date(result.data.message[0].date);
+          const date2 = new Date();
+          const diffTime = Math.abs(date2 - date1);
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          console.log(diffDays)
+          if (diffDays > 13) {
+            // update date in database
+            try {
+              axios
+                .post("http://localhost:4000/bi-week-update", {
+                  id: currentUser.uid,
+                  date: date,
+                })
+                .catch((err) => console.log(err));
+            } catch (e) {
+              console.log(e);
+            }
+
+            //navigate to DASS-21
+            navigate("/DASS21");
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      };
       getUser();
+      checkBiweek();
     }
-    // if (firstTime) {
-    //   console.log("fisrt time");
-    //   return (
-    //   //  <Dass/>
-    //   <Routes>
-    //     <Route path="/Home" element={<Navigate replace to="/Assessment" />}></Route>
-    //   </Routes>
-    //   )
-    // }
+
   }, []);
 
   return (
@@ -168,7 +190,11 @@ const Home = () => {
             <Grid container justify="center">
               <Calendar>
                 <Link to="/Calendar">
-                  <img src="/image/calendar.png" width="320.7px" height="183px" />
+                  <img
+                    src="/image/calendar.png"
+                    width="320.7px"
+                    height="183px"
+                  />
                 </Link>
               </Calendar>
               {/* {Graph card} */}
@@ -180,12 +206,16 @@ const Home = () => {
               {/* {Article card} */}
               <Article>
                 <Link to="/Article">
-                  <img src="/image/article.png" width="320.7px" height="183px" />
+                  <img
+                    src="/image/article.png"
+                    width="320.7px"
+                    height="183px"
+                  />
                 </Link>
               </Article>
               {/* Gratitude journal button */}
               <Gratitude style={{ paddingBottom: 100 }}>
-                <PopupGratitude/>
+                <PopupGratitude />
               </Gratitude>
             </Grid>
           </Box>
