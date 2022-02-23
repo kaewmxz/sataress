@@ -1,10 +1,9 @@
 h1, p {
   font-family: Lato;
 }
-
 .chatSection {
   position: relative;
-  margin: auto;
+  margin:auto;
   width: 80%;
   height: 80vh;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -18,13 +17,6 @@ h1, p {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.heading {
-  font-size: 30px;
-  font-family: 'Fira Code';
-  text-align: center;
-  padding:20px;
-  position: relative;
-}
 
 .botContainer {
   display: flex;

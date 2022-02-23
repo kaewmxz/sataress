@@ -7,7 +7,7 @@ import Messages from "./Messages";
 import { Grid, Container, Box } from '@material-ui/core';
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import DoDisturbOnSharpIcon from "@mui/icons-material/DoDisturbOnSharp";
+import DoNotDisturbOnIcon from '@mui/icons-material/DoNotDisturbOn';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 
@@ -38,6 +38,10 @@ background: linear-gradient(
 backdrop-filter: blur(4px);
 `);
 
+const Title = withTheme(styled.div`
+position: relative;
+  `);
+  
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -228,9 +232,15 @@ const Chat = () => {
   return (
     <div>
       <Bg />
-      <div className="heading">
-        hi
-      </div>
+      <Grid container justifyContent="center" direction="column">
+          <Title>
+            <img src="../image/transparent_bg.png"
+              width={70} />  
+            <Link to="/">
+              <DoNotDisturbOnIcon sx={{ paddingLeft: 10, fontSize: 15 }} />
+            </Link>
+          </Title>
+      </Grid>
       <div className="chatSection">
         <div className="botContainer">
           <div className="messagesContainer">
@@ -248,14 +258,7 @@ const Chat = () => {
               className="messageInputField"
             />
             <div onTap={handleSubmit}>
-              <svg
-                style={{ marginRight: "10px" }}
-                id="Capa_1"
-                enableBackground="new 0 0 512.004 512.004"
-                height="25"
-                viewBox="0 0 512.004 512.004"
-                width="25"
-                xmlns="http://www.w3.org/2000/svg"
+              <SendIcon sx={{ marginRight: 2 }}
               >
                 <g>
                   <path
@@ -275,7 +278,7 @@ const Chat = () => {
                     fill="#d9e6fc"
                   />
                 </g>
-              </svg>
+              </SendIcon>
             </div>
           </div>
         </div>
