@@ -8,6 +8,7 @@ const router = require("express").Router();
 const talkToChatbot = require("./chatbot");
 const talkDASS = require("./chat_dass")
 const { saveMood, getMood, getMoodIntense } = require("./mood");
+const { saveDass } = require("./dass");
 const { response } = require("express");
 const addUsers = require("./addUser");
 const {
@@ -62,6 +63,17 @@ app.post("/dass-21", jsonParser, urlEncoded, function (req, res, next) {
 app.post("/mood-result", jsonParser, urlEncoded, function (req, res, next) {
   const result = req.body;
   saveMood(result)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.post("/dass-result", jsonParser, urlEncoded, function (req, res, next) {
+  const result = req.body;
+  saveDass(result)
     .then((response) => {
       res.send({ message: response });
     })

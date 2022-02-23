@@ -6,6 +6,7 @@ import Home from './components/Home';
 import { AuthProvider } from './components/Auth';
 import Calendar from './components/calendar/Calendar';
 import Moodtrack from './components/Moodtrack';
+import DASS21 from  './components/DASS-21';
 import Landpage from './components/Landpage';
 import Interventions from './components/Interventions';
 import Log from './components/Log';
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/Home" element={<Landpage/>}/>
           <Route exact path="/Calendar" element={<Calendar />} />
           <Route exact path="/Moodtrack" element={<Moodtrack />} />
+          <Route exact path="/DASS21" element={<DASS21 />} />
           <Route exact path="/Interventions" element={<Interventions />} />
           <Route exact path="/Boxbreathing" element={<Boxbreathing />} />\
           <Route exact path="/Progressive" element={<Progressive />} />
