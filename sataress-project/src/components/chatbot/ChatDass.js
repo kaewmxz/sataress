@@ -231,6 +231,9 @@ const Chat = () => {
         date.getDate().toString(),
         date.getFullYear().toString(),
       ];
+      replyMap["stress"] = replyMap["1"] + replyMap["6"] + replyMap["8"] + replyMap["11"] + replyMap["12"] + replyMap["14"] + replyMap["18"];
+      replyMap["anxiety"] = replyMap["2"] + replyMap["4"] + replyMap["7"] + replyMap["9"] + replyMap["15"] + replyMap["19"] + replyMap["20"];
+      replyMap["depression"] = replyMap["3"] + replyMap["5"] + replyMap["10"] + replyMap["13"] + replyMap["16"] + replyMap["17"] + replyMap["21"]
       replyMap["date"] = dateTime.join("/");
       replyMap["id"] = currentUser.uid;
       axios
