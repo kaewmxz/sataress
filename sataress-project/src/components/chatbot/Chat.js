@@ -22,7 +22,7 @@ const theme = createTheme({
       main: "#757575",
     },
     pink: {
-      main: "#f06292",
+      main: "#FF8080",
     },
   },
 });
@@ -280,7 +280,7 @@ const Chat = () => {
               />
               <div onTap={handleSubmit}>
                 <SendIcon sx={{ marginRight: 2 }}
-                  color = "gray"
+                  color = "pink"
                 >
                   <g>
                     <path

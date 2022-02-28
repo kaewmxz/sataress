@@ -47,8 +47,8 @@ export default function PopupGratitude() {
   const theme = createTheme({
     palette: {
       Addbutton: {
-        main: "#bdbdbd",
-        contrastText: "#ffcdd2",
+        main: "#ef9a9a",
+        contrastText: "#ffff",
       },
       secondary: {
         main: "#ef9a9a",
@@ -74,7 +74,6 @@ export default function PopupGratitude() {
                 flexDirection: "column",
                 "& .MuiTextField-root": { width: "32ch" },
               }}
-              mt={2}
             >
               <TextField required>
                 <input type="text"></input>
@@ -83,8 +82,9 @@ export default function PopupGratitude() {
           </DialogContent>
           <DialogActions>
             <ThemeProvider theme={theme}>
-              <Stack mt={2} spacing={2}>
-                <Button type="submit" variant="contained" color="Addbutton">
+              <Stack mt={1} mb={1} >
+                <Button type="submit" variant="contained" color="Addbutton"
+                sx = {{marginRight:13,marginTop:-2}}>
                   บันทึก
                 </Button>
               </Stack>

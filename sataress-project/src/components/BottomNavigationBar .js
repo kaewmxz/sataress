@@ -8,6 +8,7 @@ import Fab from '@mui/material/Fab';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
+import { makeStyles } from '@mui/styles';
 
 const theme = createTheme({
   palette: {
@@ -20,13 +21,23 @@ const theme = createTheme({
   },
 });
 
+const useStyles = makeStyles({
+  root: {
+    background: "#FFE9E9",
+    boxShadow: "inset 0px 4px 4px rgba(251, 24, 24, 0.36)",
+    borderRadius: 9,
+  },
+});
+
 
 export default function BottomNavigationBar() {
+  const classes = useStyles();
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0}} elevation={10}>
-          <BottomNavigation>
+        <Paper className={classes.root} sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+          elevation={10}>
+          <BottomNavigation className={classes.root}>
             <Link to="/">
               <HomeIcon color="Black"
                 sx={{ fontSize: 35, mx: 2, mt: 1.5 }} />

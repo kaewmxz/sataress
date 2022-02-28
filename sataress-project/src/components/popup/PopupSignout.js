@@ -36,12 +36,12 @@ export default function PopupSignout() {
   const theme = createTheme({
     palette: {
       Yesbutton: {
-        main: '#e57373',
-        contrastText: '#ffebee',
+        main: '#ef9a9a',
+        contrastText: '#ffff',
       },
       Nobutton: {
-        main: '#f8bbd0',
-        contrastText: '#757575',
+        main: '#B9B9B9',
+        contrastText: '#ffff',
       },
     secondary: {
       main: '#ef9a9a',
@@ -58,7 +58,7 @@ return (
       open={open}
       onClose={handleClose}>
       <ThemeProvider theme={theme}>
-        <DialogTitle mt={2} color="secondary">
+        <DialogTitle color="secondary">
           {"ต้องการออกจากระบบหรือไม่"}
         </DialogTitle>
       </ThemeProvider>
@@ -70,10 +70,11 @@ return (
             alignItems: 'center',
             flexDirection: 'row',
             p: 1,
-            m: 1,
          }}>
-        <Stack spacing = {2} >
-            <Button onClick={signOutHandle} variant="contained" color="Yesbutton">ใช่</Button>
+        <Stack spacing = {1} mr = {6} >
+            <Button onClick={signOutHandle} variant="contained" color="Yesbutton"
+            sx ={{marginTop:-2}}
+            style = {{minWidth:'150px'}}>ใช่</Button>
             <Button onClick={handleClose} variant="contained" color="Nobutton">ไม่</Button>
           </Stack>
         </Box>
