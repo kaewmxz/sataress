@@ -105,6 +105,7 @@ const Log = () => {
 
     setSelected(newSelected);
   };
+  console.log(selected);
   
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -215,7 +216,7 @@ const Log = () => {
     const deleteGratitude = () => {
       // console.log(currentUser.uid)
       // console.log(selected)
-      axios.post("https://senior-projects.herokuapp.com/gratitude-delete", { id: currentUser.uid, date: selected});
+      axios.post("http://localhost:4000/gratitude-delete", { id: currentUser.uid, date: selected});
       window.location.reload();
     }
   

@@ -37,8 +37,9 @@ export default function PopupGratitude() {
       date: dateTime,
       id: currentUser.uid,
     };
+    console.log(e.target[0].value);
     try {
-      await axios.post("http://localhost:4000/gratitude-result/", data);
+      await axios.post("http://localhost:4000/gratitude-result", data);
     } catch (error) {
       console.log(error);
     }

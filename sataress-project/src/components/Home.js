@@ -153,18 +153,6 @@ const Home = () => {
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
           console.log(diffDays)
           if (diffDays > 13) {
-            // update date in database
-            try {
-              axios
-                .post("http://localhost:4000/bi-week-update", {
-                  id: currentUser.uid,
-                  date: date,
-                })
-                .catch((err) => console.log(err));
-            } catch (e) {
-              console.log(e);
-            }
-
             //navigate to DASS-21
             navigate("/DASS21");
           }
