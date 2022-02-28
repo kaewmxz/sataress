@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   root: {
     background: "#FFE9E9",
     boxShadow: "inset 0px 4px 4px rgba(251, 24, 24, 0.36)",
-    borderRadius: 9,
+    borderRadius: 5,
   },
 });
 
