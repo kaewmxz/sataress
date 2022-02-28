@@ -60,7 +60,7 @@ h1, p {
   border-bottom-right-radius: 30px 30px;
   border-top-right-radius: 30px 30px;
   border-bottom-left-radius: 30px 30px;
-  background-color: grey;
+  background-color: #B9B9B9;
   margin-left: 17px;
   float: left;
   color: white;
@@ -73,7 +73,7 @@ h1, p {
   border-top-left-radius: 30px 30px;
   border-bottom-left-radius: 30px 30px;
   float: right;
-  background-color: #6C63FF;
+  background-color: #FFB2B2;
   margin-bottom: 10px;
   color: white;
 }

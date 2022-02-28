@@ -21,7 +21,7 @@ const theme = createTheme({
       main: "#757575",
     },
     pink: {
-      main: "#f06292",
+      main: "#FF8080",
     },
   },
 });
@@ -318,7 +318,9 @@ const Chat = () => {
                 className="messageInputField"
               />
               <div onTap={handleSubmit}>
-                <SendIcon sx={{ marginRight: 2 }} color="gray">
+                <SendIcon sx={{ marginRight: 2 }}
+                  color = "pink"
+                >
                   <g>
                     <path
                       d="m511.35 52.881-122 400c-3.044 9.919-14.974 13.828-23.29 7.67-7.717-5.727-203.749-151.217-214.37-159.1l-142.1-54.96c-5.79-2.24-9.6-7.81-9.59-14.02.01-6.21 3.85-11.77 9.65-13.98l482-184c5.824-2.232 12.488-.626 16.67 4.17 3.37 3.87 4.55 9.24 3.03 14.22z"

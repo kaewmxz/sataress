@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Box} from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
@@ -13,6 +13,7 @@ import axios from 'axios';
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -36,32 +37,49 @@ const GraphBox1 = withTheme(styled.div`
   position: absolute;
   width: 307px;
   height: 182px;
-  top: 230px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 17px;
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
 `);
 const GraphBox2 = withTheme(styled.div`
   position: absolute;
   width: 307px;
   height: 182px;
-  top: 450px;
-
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 17px;
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
 `);
 
 const GraphBox3 = withTheme(styled.div`
   position: absolute;
   width: 307px;
   height: 182px;
-  top: 670px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 17px;
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
 `);
 
+const theme = createTheme({
+  palette: {
+    Wbutton: {
+      main: "#FF8080",
+      contrastText: "#ffff",
+    },
+    Mbutton: {
+      main: "#FF8080",
+      contrastText: "#ffff",
+    },
+  },
+});
 const Graph = () => {
   const { currentUser } = useContext(AuthContext);
   const [moodCount, setmoodCount] = useState([]);
@@ -116,40 +134,42 @@ const Graph = () => {
       <Bg />
       <Header />
       {/* Monthly or Weekly button */}
-      <Box component="span">
-            <Grid container justify="center">
-      <Toggle>
-        <ToggleButtonGroup
-          color="primary"
-          value={alignment}
-          exclusive
-          onChange={handleChange}
-        >
-          <ToggleButton value="weekly">สัปดาห์</ToggleButton>
-          <ToggleButton value="monthly">เดือน</ToggleButton>
-        </ToggleButtonGroup>
-      </Toggle>
-      <GraphBox1>
-        <BarChart width={307} height={182} data={moodCount}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="mood" />
-          <YAxis />
-          <Bar dataKey="count" fill="#8884d8" />
-        </BarChart>
-      </GraphBox1>
-      <GraphBox2>
-        <BarChart width={307} height={182} data={moodIntense}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="mood" />
-          <YAxis />
-          <Bar dataKey="average" fill="#8884d8" />
-        </BarChart>
-      </GraphBox2>
-      <GraphBox3>
-        <SimpleWordcloud />
-      </GraphBox3>
-      </Grid>
-      </Box>
+      <ThemeProvider theme={theme}>
+        <Box component="span">
+          <Grid container justify="center" direction="row">
+            <Toggle>
+              <ToggleButtonGroup
+                color="primary"
+                value={alignment}
+                exclusive
+                onChange={handleChange}
+              >
+                <ToggleButton color = "Wbutton" value="weekly">สัปดาห์</ToggleButton>
+                <ToggleButton color = "Mbutton" value="monthly">เดือน</ToggleButton>
+              </ToggleButtonGroup>
+            </Toggle>
+            <GraphBox1 style={{ marginTop: 230 }}>
+              <BarChart width={307} height={182} data={moodCount}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mood" />
+                <YAxis />
+                <Bar dataKey="count" fill="#8884d8" />
+              </BarChart>
+            </GraphBox1>
+            <GraphBox2 style={{ marginTop: 450 }}>
+              <BarChart width={307} height={182} data={moodIntense}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="mood" />
+                <YAxis />
+                <Bar dataKey="average" fill="#8884d8" />
+              </BarChart>
+            </GraphBox2>
+            <GraphBox3 style={{ marginTop: 670 }}>
+              <SimpleWordcloud />
+            </GraphBox3 >
+          </Grid>
+        </Box>
+      </ThemeProvider>
       <BottomNavigationBar />
     </div>
   );

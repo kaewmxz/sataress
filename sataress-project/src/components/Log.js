@@ -27,22 +27,6 @@ import { visuallyHidden } from '@mui/utils';
 import axios from "axios";
 import { autocompleteClasses } from "@mui/material";
 
-const Table1 = withTheme(styled.div`
-position: absolute;
-${(props) => props.theme.breakpoints.only("xs")} {
-  margin-top: 200px;
-  margin-left: 50px;
-}
-${(props) => props.theme.breakpoints.up("sm")} {
-}
-${(props) => props.theme.breakpoints.up("md")} {
-}
-${(props) => props.theme.breakpoints.up("lg")} {
-}
-${(props) => props.theme.breakpoints.up("xl")} {
-}
-`);
-
 const Bg = withTheme(styled.div`
     position: fixed;
     width: 100%;
@@ -55,28 +39,6 @@ const Bg = withTheme(styled.div`
       #ffbdbd 95.83%
     );
   `);
-
-const Title = withTheme(styled.div`
-    position: absolute;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 35px;
-    line-height: 41px;
-    color: #000000;
-    ${(props) => props.theme.breakpoints.only("xs")} {
-    }
-    ${(props) => props.theme.breakpoints.up("sm")} {
-    }
-    ${(props) => props.theme.breakpoints.up("md")} {
-    }
-    ${(props) => props.theme.breakpoints.up("lg")} {
-    }
-    ${(props) => props.theme.breakpoints.up("xl")} {
-    }
-  `);
-
-
 
 const Log = () => {
   const { currentUser } = useContext(AuthContext);
@@ -161,12 +123,14 @@ const Log = () => {
       numeric: false,
       disablePadding: true,
       label: 'Date',
+      fontFamily:'Roboto',
     },
     {
       id: 'Gratitude',
       numeric: true,
       disablePadding: false,
       label: 'Gratitude',
+      fontFamily:'Roboto',
     },
   ];
   
@@ -233,7 +197,7 @@ const Log = () => {
       >
         {numSelected > 0 ? (
           <Typography
-            sx={{ flex: '1 1 100%' }}
+            sx={{ flex: '1 1 100%',fontFamily: "Roboto" }}
             color="inherit"
             variant="subtitle1"
             component="div"
@@ -242,7 +206,7 @@ const Log = () => {
           </Typography>
         ) : (
           <Typography
-            sx={{ flex: '1 1 100%' }}
+            sx={{ flex: '1 1 100%' ,fontFamily: "Roboto"}}
             variant="h6"
             id="tableTitle"
             component="div"
@@ -370,7 +334,6 @@ const Log = () => {
           </Grid>
         </Grid>
       </Paper>
-    
       <BottomNavigationBar/>
     </div>
   );
