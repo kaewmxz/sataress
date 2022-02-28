@@ -69,24 +69,6 @@ const Gratitude = withTheme(styled.div`
   }
 `);
 
-const GridLayout = withTheme(styled(Grid)`
-  ${(props) => props.theme.breakpoints.only("xs")} {
-    padding: 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("sm")} {
-    padding: 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("md")} {
-    padding: 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("lg")} {
-    padding: 0px;
-  }
-  ${(props) => props.theme.breakpoints.up("xl")} {
-    padding: 0px;
-  }
-`);
-
 const Home = () => {
   // get datetime
   const date = new Date();
@@ -214,7 +196,7 @@ const Home = () => {
                 </Link>
               </Article>
               {/* Gratitude journal button */}
-              <Gratitude style={{ paddingBottom: 100 }}>
+              <Gratitude style={{ paddingBottom: 90 }}>
                 <PopupGratitude />
               </Gratitude>
             </Grid>
