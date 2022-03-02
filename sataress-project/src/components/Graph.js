@@ -164,7 +164,7 @@ const Graph = () => {
                 <Bar dataKey="average" fill="#8884d8" />
               </BarChart>
             </GraphBox2>
-            <GraphBox3 style={{ marginTop: 670 }}>
+            <GraphBox3 style={{ marginTop: 670}}>
               <SimpleWordcloud />
             </GraphBox3 >
           </Grid>
