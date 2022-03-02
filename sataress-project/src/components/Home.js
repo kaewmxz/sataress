@@ -115,12 +115,19 @@ const Home = () => {
               axios
                 .post("http://localhost:4000/bi-week", data)
                 .catch((err) => console.log(err));
-
-              navigate("/DASS21");
             })
             .catch((error) => {
               //console.log(error)
             });
+        }
+        const dassFirstTime = await axios.get(
+          "http://localhost:4000/dass-firstTime",
+          {
+            params: { id: currentUser.uid },
+          }
+        );
+        if (dassFirstTime.data.message === "") {
+          navigate("/DASS21");
         }
       };
       const checkBiweek = async () => {
@@ -133,7 +140,7 @@ const Home = () => {
           const date2 = new Date();
           const diffTime = Math.abs(date2 - date1);
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-          console.log(diffDays)
+          console.log(diffDays);
           if (diffDays > 13) {
             //navigate to DASS-21
             navigate("/DASS21");
@@ -145,7 +152,6 @@ const Home = () => {
       getUser();
       checkBiweek();
     }
-
   }, []);
 
   return (

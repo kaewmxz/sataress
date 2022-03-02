@@ -35,6 +35,7 @@ export default function PopupGratitude() {
     const data = {
       gratitude: e.target[0].value,
       date: dateTime,
+      dateToCheck: date,
       id: currentUser.uid,
     };
     console.log(e.target[0].value);

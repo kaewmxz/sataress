@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Box } from '@material-ui/core';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Grid, Box } from "@material-ui/core";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
-import axios from 'axios';
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
+import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
@@ -103,7 +103,7 @@ const Graph = () => {
       };
       const fetchgratitude = async () => {
         const result = await axios.get("http://localhost:4000/gratitude/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, days: alignment },
         });
 
         setGratitude(result.data.message);
@@ -114,19 +114,43 @@ const Graph = () => {
     }
   }, []);
   const SimpleWordcloud = () => {
-    return <ReactWordcloud words={gratitude} />;
+    return <ReactWordcloud style={{maxWidth: 300, maxHeight: 180, paddingBottom: 100}} words={gratitude} />;
   };
   // These two const used for the weekly/monthly togglebuttons
-  const [alignment, setAlignment] = useState("web");
+  const [alignment, setAlignment] = useState([]);
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
+    const fetchmoodCount = async () => {
+      const result = await axios.get("http://localhost:4000/mood/", {
+        params: { id: currentUser.uid, days: alignment },
+      });
+      setmoodCount(result.data.message);
+    };
+    const fetchmoodIntense = async () => {
+      const result = await axios.get("http://localhost:4000/mood-intense/", {
+        params: { id: currentUser.uid, days: alignment },
+      });
+
+      setmoodIntense(result.data.message);
+    };
+    const fetchgratitude = async () => {
+      const result = await axios.get("http://localhost:4000/gratitude/", {
+        params: { id: currentUser.uid, days: alignment },
+      });
+
+      setGratitude(result.data.message);
+    };
+    fetchmoodCount();
+    fetchmoodIntense();
+    fetchgratitude();
   };
+  console.log(alignment);
   if (!currentUser) {
     return (
       <Routes>
         <Route path="/" element={<Navigate replace to="/" />}></Route>
       </Routes>
-    )
+    );
   }
 
   return (
@@ -144,8 +168,12 @@ const Graph = () => {
                 exclusive
                 onChange={handleChange}
               >
-                <ToggleButton color = "Wbutton" value="weekly">สัปดาห์</ToggleButton>
-                <ToggleButton color = "Mbutton" value="monthly">เดือน</ToggleButton>
+                <ToggleButton color="Wbutton" value={7}>
+                  สัปดาห์
+                </ToggleButton>
+                <ToggleButton color="Mbutton" value={30}>
+                  เดือน
+                </ToggleButton>
               </ToggleButtonGroup>
             </Toggle>
             <GraphBox1 style={{ marginTop: 230 }}>
@@ -164,9 +192,15 @@ const Graph = () => {
                 <Bar dataKey="average" fill="#8884d8" />
               </BarChart>
             </GraphBox2>
+<<<<<<< HEAD
             <GraphBox3 style={{ marginTop: 670}}>
               <SimpleWordcloud />
             </GraphBox3 >
+=======
+            <GraphBox3 style={{ marginTop: 670 }}>
+              <SimpleWordcloud  />
+            </GraphBox3>
+>>>>>>> 04383b8d57b1027091eadb35158440da289e4f19
           </Grid>
         </Box>
       </ThemeProvider>
