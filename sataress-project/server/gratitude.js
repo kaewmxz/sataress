@@ -16,7 +16,7 @@ async function addGratitude(result) {
   return res;
 }
 
-async function getGratitude(id) {
+async function getGratitude(id, days) {
   var admin = require("firebase-admin");
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
 
@@ -36,9 +36,22 @@ async function getGratitude(id) {
   let grat_arr = [];
   let grats_dict = {};
   let res = [];
-  snapshot.forEach((doc) => {
-    grat_arr.push(doc.data().gratitude);
-  });
+  if (days != undefined) {
+    snapshot.forEach((doc) => {
+      const date1 = new Date(doc.data().dateToCheck);
+      const date2 = new Date();
+      const diffTime = Math.abs(date2 - date1);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays <= days) {
+        grat_arr.push(doc.data().gratitude);
+      }
+    });
+  } else {
+    snapshot.forEach((doc) => {
+      grat_arr.push(doc.data().gratitude);
+    });
+  }
+
   grats_dict = grat_arr.reduce((acc, val) => {
     acc[val] = acc[val] === undefined ? 1 : 1;
     return acc;
@@ -127,8 +140,6 @@ async function deleteGratitude(result) {
   } catch (er) {
     return er;
   }
-
-
 }
 
 module.exports = {

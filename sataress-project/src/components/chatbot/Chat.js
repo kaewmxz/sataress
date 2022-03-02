@@ -155,6 +155,7 @@ const Chat = () => {
       ];
       replyMap["thoughts"] = reply.queryText;
       replyMap["date"] = dateTime.join("/");
+      replyMap["dateToCheck"] = date;
       replyMap["id"] = currentUser.uid;
       axios
         .post("http://localhost:4000/mood-result", replyMap)

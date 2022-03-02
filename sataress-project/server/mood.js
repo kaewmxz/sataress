@@ -27,7 +27,7 @@ async function saveMood(result) {
   return res;
 }
 
-async function getMood(id) {
+async function getMood(id, days) {
   var admin = require("firebase-admin");
 
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
@@ -48,17 +48,37 @@ async function getMood(id) {
   let moods_arr = [];
   let moods_dict = {};
   let res = [];
-  snapshot.forEach((doc) => {
-    moods_arr.push(doc.data().mood);
-  });
-  moods_dict = moods_arr.reduce((acc, val) => {
-    acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
-    return acc;
-  }, {});
 
+  if (days != undefined) {
+    snapshot.forEach((doc) => {
+      const date1 = new Date(doc.data().dateToCheck);
+      const date2 = new Date();
+      const diffTime = Math.abs(date2 - date1);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays <= days) {
+        moods_arr = moods_arr.concat(doc.data().mood);
+      }
+    });
+  } else {
+    snapshot.forEach((doc) => {
+      moods_arr = moods_arr.concat(doc.data().mood);
+    });
+  }
+
+  for (var i = 0; i < moods_arr.length; i++) {
+    moods_dict[moods_arr[i]] = (moods_dict[moods_arr[i]] || 0) + 1;
+  }
   for (const [mood, count] of Object.entries(moods_dict)) {
     res.push({ mood, count });
   }
+
+  // console.log(moods_arr)
+  // console.log(moods_arr)
+  // moods_dict = moods_arr.reduce((acc, val) => {
+  //   acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
+  //   return acc;
+  // }, {});
+
   // Seperate key and value into two arrays
   // var x = [], y = [];
   // for (var property in moods_dict) {
@@ -70,11 +90,12 @@ async function getMood(id) {
   //   y.push(moods_dict[property]);
   // }
   // const res = {x, y}
+
   console.log(res);
   return res;
 }
 
-async function getMoodIntense(id) {
+async function getMoodIntense(id, days) {
   var admin = require("firebase-admin");
 
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
@@ -92,18 +113,41 @@ async function getMoodIntense(id) {
     console.log("No matching documents.");
     return;
   }
+  let arr = [];
   let moods_arr = [];
+  let intensity_arr = [];
   let moods_dict = {};
   let res = [];
-  snapshot.forEach((doc) => {
-    const mood = doc.data().mood;
-    const intensity = doc.data().intensity;
-    const dict = { [mood]: intensity };
-    moods_arr.push(dict);
-  });
+
+  // snapshot.forEach((doc) => {
+  //   moods_arr = moods_arr.concat(doc.data().mood);
+  //   intensity_arr = intensity_arr.concat(doc.data().intensity);
+  // });
+
+  if (days != undefined) {
+    snapshot.forEach((doc) => {
+      const date1 = new Date(doc.data().dateToCheck);
+      const date2 = new Date();
+      const diffTime = Math.abs(date2 - date1);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays <= days) {
+        moods_arr = moods_arr.concat(doc.data().mood);
+        intensity_arr = intensity_arr.concat(doc.data().intensity);
+      }
+    });
+  } else {
+    snapshot.forEach((doc) => {
+      moods_arr = moods_arr.concat(doc.data().mood);
+      intensity_arr = intensity_arr.concat(doc.data().intensity);
+    });
+  }
+
+  for (var i = 0; i < moods_arr.length; i++) {
+    arr.push({ [moods_arr[i]]: intensity_arr[i] });
+  }
 
   var avg = Array.from(
-    moods_arr.reduce(
+    arr.reduce(
       (acc, obj) =>
         Object.keys(obj).reduce(
           (acc, key) =>
@@ -119,6 +163,7 @@ async function getMoodIntense(id) {
       average: values.reduce((a, b) => a + b) / values.length,
     })
   );
+
   // moods_dict = moods_arr.reduce((acc, val) => {
   //   acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
   //   return acc;
@@ -140,6 +185,7 @@ async function getMoodIntense(id) {
   // }
   // const res = {x, y}
   // console.log(res);
+  console.log(avg);
   return avg;
 }
 

@@ -8,7 +8,7 @@ const router = require("express").Router();
 const talkToChatbot = require("./chatbot");
 const talkDASS = require("./chat_dass");
 const { saveMood, getMood, getMoodIntense } = require("./mood");
-const { saveDass } = require("./dass");
+const { saveDass, getDassFirstTime } = require("./dass");
 const { response } = require("express");
 const { addUsers, addBiweek, updateBiweek, getUserFirstTime, getBiweek} = require("./users");
 const {
@@ -86,8 +86,9 @@ app.post("/dass-result", jsonParser, urlEncoded, function (req, res, next) {
 
 app.get("/mood", (req, res, next) => {
   const id = req.query.id;
-  console.log(id);
-  getMood(id)
+  const days = req.query.days;
+  // console.log(id);
+  getMood(id, days)
     .then((response) => {
       res.send({ message: response });
     })
@@ -98,8 +99,9 @@ app.get("/mood", (req, res, next) => {
 
 app.get("/mood-intense", (req, res, next) => {
   const id = req.query.id;
-  console.log(id);
-  getMoodIntense(id)
+  const days = req.query.days;
+  // console.log(id);
+  getMoodIntense(id, days)
     .then((response) => {
       res.send({ message: response });
     })
@@ -154,6 +156,18 @@ app.get("/user-firstTime", (req, res, next) => {
     });
 });
 
+app.get("/dass-firstTime", (req, res, next) => {
+  const id = req.query.id;
+  console.log(id);
+  getDassFirstTime(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
 app.get("/bi-week-check", (req, res, next) => {
   const id = req.query.id;
   console.log(id);
@@ -185,8 +199,9 @@ app.post(
 
 app.get("/gratitude", (req, res, next) => {
   const id = req.query.id;
+  const days = req.query.days;
   console.log(id);
-  getGratitude(id)
+  getGratitude(id,days)
     .then((response) => {
       res.send({ message: response });
     })

@@ -238,7 +238,7 @@ const Log = () => {
     if(currentUser) {
       const fetchTable = async () => {
         try {
-          const result = await axios.get("https://senior-projects.herokuapp.com/gratitude-table", {
+          const result = await axios.get("http://localhost:4000/gratitude-table", {
           params: { id: currentUser.uid },
         });
         setData(result.data.message);
