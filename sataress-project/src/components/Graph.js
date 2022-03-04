@@ -192,15 +192,9 @@ const Graph = () => {
                 <Bar dataKey="average" fill="#8884d8" />
               </BarChart>
             </GraphBox2>
-<<<<<<< HEAD
-            <GraphBox3 style={{ marginTop: 670}}>
-              <SimpleWordcloud />
-            </GraphBox3 >
-=======
             <GraphBox3 style={{ marginTop: 670 }}>
               <SimpleWordcloud  />
             </GraphBox3>
->>>>>>> 04383b8d57b1027091eadb35158440da289e4f19
           </Grid>
         </Box>
       </ThemeProvider>
