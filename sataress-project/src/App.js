@@ -8,12 +8,12 @@ import Moodtrack from './components/Moodtrack';
 import DASS21 from  './components/DASS-21';
 import Landpage from './components/Landpage';
 import Interventions from './components/Interventions';
-import Dass from './components/Dass';
 import Log from './components/Log';
 import Boxbreathing from './components/Interventions/Boxbreathing';
 import Progressive from './components/Interventions/Progressive';
 import Graph from './components/Graph';
 import Article from './components/Article'
+import CalendarLogs from './components/calendar/CalendarLogs'
 
 function App() {
 
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/Graph" element={<Graph />} />
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Log" element={<Log />} />
-          <Route exact path="/Assessment" element={<Dass />} />
+          <Route exact path="/CalendarLogs" element={<CalendarLogs />} />
         </Routes>
       </Router>
     </AuthProvider>

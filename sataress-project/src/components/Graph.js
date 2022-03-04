@@ -114,7 +114,12 @@ const Graph = () => {
     }
   }, []);
   const SimpleWordcloud = () => {
-    return <ReactWordcloud style={{maxWidth: 300, maxHeight: 180, paddingBottom: 100}} words={gratitude} />;
+    return (
+      <ReactWordcloud
+        style={{ maxWidth: 300, maxHeight: 180, paddingBottom: 100 }}
+        words={gratitude}
+      />
+    );
   };
   // These two const used for the weekly/monthly togglebuttons
   const [alignment, setAlignment] = useState([]);
@@ -193,7 +198,7 @@ const Graph = () => {
               </BarChart>
             </GraphBox2>
             <GraphBox3 style={{ marginTop: 670 }}>
-              <SimpleWordcloud  />
+              <SimpleWordcloud />
             </GraphBox3>
           </Grid>
         </Box>

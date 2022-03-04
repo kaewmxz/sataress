@@ -11,7 +11,6 @@ import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
-// import Dass from "./Dass";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 const Bg = withTheme(styled.div`
