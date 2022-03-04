@@ -95,6 +95,67 @@ async function getMood(id, days) {
   return res;
 }
 
+async function getMoodLogs(id,date) {
+  var admin = require("firebase-admin");
+  var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
+
+  if (admin.apps.length === 0) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+  }
+
+  const db = getFirestore();
+  const gratitude = db.collection("moodtrack");
+  const snapshot = await gratitude.where("id", "==", id).get();
+  if (snapshot.empty) {
+    console.log("No matching documents.");
+    return;
+  }
+  let arr = [];
+  snapshot.forEach((doc) => {
+    const date1 = new Date(doc.data().dateToCheck);
+    const date2 = new Date(date);
+    if (date1.getDate() == date2.getDate()){
+      arr.push(doc.data());
+    }
+    
+  });
+  console.log(arr);
+  return arr;
+}
+
+async function getMoodDates(id,date) {
+  var admin = require("firebase-admin");
+  var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
+
+  if (admin.apps.length === 0) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+  }
+
+  const db = getFirestore();
+  const gratitude = db.collection("moodtrack");
+  const snapshot = await gratitude.where("id", "==", id).get();
+  if (snapshot.empty) {
+    console.log("No matching documents.");
+    return;
+  }
+  let arr = [];
+  snapshot.forEach((doc) => {
+    const date3 = new Date(doc.data().dateToCheck);
+    const date1 = new Date(date[0]);
+    const date2 = new Date(date[1]);
+    if (date1 < date3 < date2){
+      arr.push(doc.data().dateToCheck);
+    }
+    
+  });
+  console.log(arr);
+  return arr;
+}
+
 async function getMoodIntense(id, days) {
   var admin = require("firebase-admin");
 
@@ -189,4 +250,4 @@ async function getMoodIntense(id, days) {
   return avg;
 }
 
-module.exports = { saveMood, getMood, getMoodIntense };
+module.exports = { saveMood, getMood, getMoodIntense, getMoodLogs, getMoodDates };

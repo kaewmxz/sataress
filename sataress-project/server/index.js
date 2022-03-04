@@ -7,7 +7,7 @@ const router = require("express").Router();
 
 const talkToChatbot = require("./chatbot");
 const talkDASS = require("./chat_dass");
-const { saveMood, getMood, getMoodIntense } = require("./mood");
+const { saveMood, getMood, getMoodIntense, getMoodLogs, getMoodDates } = require("./mood");
 const { saveDass, getDassFirstTime } = require("./dass");
 const { response } = require("express");
 const { addUsers, addBiweek, updateBiweek, getUserFirstTime, getBiweek} = require("./users");
@@ -89,6 +89,32 @@ app.get("/mood", (req, res, next) => {
   const days = req.query.days;
   // console.log(id);
   getMood(id, days)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.get("/mood-logs", (req, res, next) => {
+  const id = req.query.id;
+  const date = req.query.date;
+  // console.log(id);
+  getMoodLogs(id, date)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.get("/mood-dates", (req, res, next) => {
+  const id = req.query.id;
+  const date = req.query.date;
+  // console.log(id);
+  getMoodDates(id, date)
     .then((response) => {
       res.send({ message: response });
     })
