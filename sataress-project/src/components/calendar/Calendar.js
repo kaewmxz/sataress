@@ -55,8 +55,16 @@ const Calendarcard = () => {
   const [date, setDate] = React.useState(new Date());
   const [daysWithDot, setDaysWithDot] = useState([]);
   let navigate = useNavigate();
-  console.log(date)
+  console.log(date);
   // const classes = styles();
+
+  useEffect(() => {
+    if (currentUser) {
+      onPickerViewChange();
+
+    }
+  }, []);
+
   if (!currentUser) {
     return (
       <Routes>
@@ -66,12 +74,15 @@ const Calendarcard = () => {
   }
 
   const onPickerViewChange = async (date) => {
-    const variables = [moment(date).clone().startOf("month").format("M/D/YYYY"),moment(date).clone().endOf("month").format("MM/D/YYYY")];
-      // fromDate: moment(date).clone().startOf("month").format("M/D/YYYY"),
-      // toDate: moment(date).clone().endOf("month").format("MM/D/YYYY"),
-    
+    const variables = [
+      moment(date).clone().startOf("month").format("M/D/YYYY"),
+      moment(date).clone().endOf("month").format("MM/D/YYYY"),
+    ];
+    // fromDate: moment(date).clone().startOf("month").format("M/D/YYYY"),
+    // toDate: moment(date).clone().endOf("month").format("MM/D/YYYY"),
+
     console.log(variables);
-    
+
     try {
       const result = await axios.get("http://localhost:4000/mood-dates", {
         params: { id: currentUser.uid, date: variables },
@@ -79,6 +90,7 @@ const Calendarcard = () => {
       setDaysWithDot(
         result.data.message.map((day) => moment(day).format("YYYY/MM/DD"))
       );
+      
     } catch (err) {
       console.log(err);
     }
@@ -100,9 +112,15 @@ const Calendarcard = () => {
   //   return dayComponent;
   // };
 
-  const handleClick = () => {
-    navigate("/CalendarLogs", { state: { date: date } });
+  const handleChange = (newDate) => {
+    setDate(newDate);
+    // const dateToPass = [];
+    // dateToPass.push(date)
+    // setTimeout(() => navigate("/CalendarLogs", { state: { date: date } }), 1000);
+    navigate("/CalendarLogs", { state: { date: newDate } });
   };
+
+  console.log(daysWithDot);
   return (
     <div>
       <Bg />
@@ -120,9 +138,8 @@ const Calendarcard = () => {
               // date={date}
               minDate={minDate}
               maxDate={maxDate}
-              // onMonthChange={onPickerViewChange}
-              onChange={(newDate) => setDate(newDate)}
-              onClick={handleClick()}
+              onMonthChange={onPickerViewChange}
+              onChange={(newDate) => handleChange(newDate)}
               views={["day"]}
             />
           </Grid>
