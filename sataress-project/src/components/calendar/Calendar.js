@@ -56,7 +56,15 @@ export default function Calendarcard() {
   const [date, setDate] = React.useState(new Date());
   const [daysWithDot, setDaysWithDot] = useState([]);
   let navigate = useNavigate();
-  console.log(date)
+  console.log(date);
+  // const classes = styles();
+
+  useEffect(() => {
+    if (currentUser) {
+      onPickerViewChange();
+
+    }
+  }, []);
 
   if (!currentUser) {
     return (
@@ -67,7 +75,10 @@ export default function Calendarcard() {
   }
 
   const onPickerViewChange = async (date) => {
-    const variables = [moment(date).clone().startOf("month").format("M/D/YYYY"), moment(date).clone().endOf("month").format("MM/D/YYYY")];
+    const variables = [
+      moment(date).clone().startOf("month").format("M/D/YYYY"),
+      moment(date).clone().endOf("month").format("MM/D/YYYY"),
+    ];
     // fromDate: moment(date).clone().startOf("month").format("M/D/YYYY"),
     // toDate: moment(date).clone().endOf("month").format("MM/D/YYYY"),
 
@@ -80,6 +91,7 @@ export default function Calendarcard() {
       setDaysWithDot(
         result.data.message.map((day) => moment(day).format("YYYY/MM/DD"))
       );
+      
     } catch (err) {
       console.log(err);
     }
@@ -101,16 +113,19 @@ export default function Calendarcard() {
     return dayComponent;
   };
 
+  const handleChange = (newDate) => {
+    setDate(newDate);
+    // const dateToPass = [];
+    // dateToPass.push(date)
+    // setTimeout(() => navigate("/CalendarLogs", { state: { date: date } }), 1000);
+    navigate("/CalendarLogs", { state: { date: newDate } });
+  };
+
+  console.log(daysWithDot);
   return (
     <div>
       <Bg />
       <Header />
-      {/* Another lib */}
-      {/* <Calendar
-        value={selectedDay}
-        onChange={setSelectedDay}
-        shouldHighlightWeekends
-      /> */}
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Grid container justify="center" style={{ marginTop: 130 }}>
             <Grid item xs={12} md={6}>
@@ -119,9 +134,9 @@ export default function Calendarcard() {
                 minDate={minDate}
                 maxDate={maxDate}
                 // onMonthChange={onPickerViewChange}
-                onChange={(newDate) => setDate(newDate)}
-                // onClick={handleClick()}
-                views={["day"]}
+                onMonthChange={onPickerViewChange}
+              onChange={(newDate) => handleChange(newDate)}
+              views={["day"]}
               />
             </Grid>
           </Grid>
