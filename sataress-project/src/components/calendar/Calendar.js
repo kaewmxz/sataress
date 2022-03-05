@@ -272,6 +272,7 @@ export default function CustomCalendar() {
         <div>
           <Bg/>
           <Header/>
+          <Grid container justify="center" style={{ marginTop: 130 }}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={materialTheme}>
                     <DatePicker
@@ -284,6 +285,8 @@ export default function CustomCalendar() {
                     />
                 </ThemeProvider>
             </MuiPickersUtilsProvider>
+       
+            </Grid>
             <BottomNavigationBar/>
           </div>
     );}
