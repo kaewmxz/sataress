@@ -149,8 +149,9 @@ async function getMoodDates(id, date) {
     const date3 = new Date(doc.data().dateToCheck);
     const date1 = new Date(date[0]);
     const date2 = new Date(date[1]);
+    // console.log(date3.getDate())
     if (date1 <= date3 && date3 <= date2) {
-      arr.push(doc.data().dateToCheck);
+      arr.push(date3.getDate());
     }
   });
   console.log(arr);
