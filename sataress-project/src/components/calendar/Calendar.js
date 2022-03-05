@@ -91,7 +91,7 @@
 //       setDaysWithDot(
 //         result.data.message.map((day) => moment(day).format("YYYY/MM/DD"))
 //       );
-      
+
 //     } catch (err) {
 //       console.log(err);
 //     }
@@ -146,13 +146,13 @@
 //   );
 // };
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import DateFnsUtils from "@date-io/date-fns";
-import {DatePicker, MuiPickersUtilsProvider,} from '@material-ui/pickers';
-import {Paper, Grid} from "@material-ui/core";
-import {createMuiTheme} from "@material-ui/core";
-import {ThemeProvider} from "@material-ui/styles";
-import {makeStyles} from "@material-ui/core/styles";
+import { DatePicker, MuiPickersUtilsProvider, } from '@material-ui/pickers';
+import { Paper, Grid } from "@material-ui/core";
+import { createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Header from "../Head";
@@ -161,15 +161,19 @@ import { withTheme } from "@material-ui/core/styles";
 import { CalendarPicker } from '@mui/lab';
 
 const materialTheme = createMuiTheme({
-    overrides: {
-        MuiPickersToolbar: {
-            toolbar: {backgroundColor: "#8bc34a",},
-        },
-        MuiPickersCalendarHeader: {
-            switchHeader: {
-                backgroundColor: "white",
-                color: "#1b5e20",
-        },},},});
+  overrides: {
+    MuiPickersToolbar: {
+      toolbar: { backgroundColor: "#8bc34a", },
+    },
+    //สีชื่อเดือน
+    MuiPickersCalendarHeader: {
+      switchHeader: {
+        backgroundColor: "white",
+        color: "#1b5e20",
+      },
+    },
+  },
+});
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -185,108 +189,111 @@ const Bg = withTheme(styled.div`
 `);
 
 export const styles = makeStyles(() => ({ //define CSS for different date types
-    notInThisMonthDayPaper: {
-        width: "35px",
-        height: "35px",
-        backgroundColor: "#eeeeee",
-        margin: "3px",
-        boxShadow: "none",
-        borderRadius: 0,
-        padding: "1px",
-    },
-    normalDayPaper: {
-        width: "35px",
-        height: "35px",
-        backgroundColor: "#e8f5e9",
-        margin: "3px",
-        boxShadow: "none",
-        borderRadius: 0,
-        padding: "1px",
-        cursor: "pointer",
-    },
-    selectedDayPaper: {
-        width: "31px",
-        height: "31px",
-        backgroundColor: "#f9fbe7",
-        margin: "3px",
-        boxShadow: "none",
-        borderRadius: 0,
-        borderStyle: "solid",
-        borderWidth: "2px",
-        borderColor: "lime",
-        padding: "1px",
-        cursor: "pointer",
-    },
-    todayPaper: {
-        width: "35px",
-        height: "35px",
-        backgroundColor: "lightGreen",
-        margin: "3px",
-        boxShadow: "none",
-        borderRadius: 0,
-        padding: "1px",
-        cursor: "pointer",
-        color: " white",
-    },}));
+  notInThisMonthDayPaper: {
+    width: "35px",
+    height: "35px",
+    backgroundColor: "#eeeeee",
+    margin: "3px",
+    boxShadow: "none",
+    borderRadius: 20,
+    padding: "1px",
+  },
+  normalDayPaper: {
+    width: "35px",
+    height: "35px",
+    backgroundColor: "#e8f5e9",
+    margin: "3px",
+    boxShadow: "none",
+    borderRadius: 20,
+    padding: "1px",
+    cursor: "pointer",
+  },
+  selectedDayPaper: {
+    width: "31px",
+    height: "31px",
+    backgroundColor: "#f9fbe7",
+    margin: "3px",
+    boxShadow: "none",
+    borderRadius: 20,
+    borderStyle: "solid",
+    borderWidth: "2px",
+    borderColor: "lime",
+    padding: "1px",
+    cursor: "pointer",
+  },
+  todayPaper: {
+    width: "35px",
+    height: "35px",
+    backgroundColor: "lightGreen",
+    margin: "3px",
+    boxShadow: "none",
+    borderRadius: 20,
+    padding: "1px",
+    cursor: "pointer",
+    color: " white",
+  },
+}));
 export default function CustomCalendar() {
-    const [selectedDate, handleDateChange] = useState(new Date());
-    const classes = styles(); // import those CSS
-    const today = new Date(); // just Date object of today
-    const sunnyDays = [1, 6, 10, 24, 15] // array of sunny days 1st,6th etc
-    
-    function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
-        //generate boolean 
-        const isSunny = sunnyDays.includes(day.getDate()); 
-        const isSelected = day.getDate() === selectedDate.getDate();
-        const isToday = day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
+  const [selectedDate, handleDateChange] = useState(new Date());
+  const classes = styles(); // import those CSS
+  const today = new Date(); // just Date object of today
+  const sunnyDays = [1, 6, 10, 24, 15] // array of sunny days 1st,6th etc
 
-        let dateTile
-        if (isInCurrentMonth) { //conditionally return appropriate Element of date tile.
-            if (isSunny) {
-                dateTile = (
-                    <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
-                        <Grid item><WbSunnyIcon style={{color: "orange"}}/></Grid>
-                        <Grid item>
-                            {day.getDate()}
-                        </Grid>
-                    </Paper>)
-            } else {
-                dateTile = (
-                  <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>   
-                  <Grid item><br/></Grid>
-                    <Grid item> {day.getDate()}</Grid>
-                </Paper>)
-            }
+  function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
+    //generate boolean 
+    const isSunny = sunnyDays.includes(day.getDate());
+    const isSelected = day.getDate() === selectedDate.getDate();
+    const isToday = day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
 
-        } else {
-            dateTile = (<Paper className={classes.notInThisMonthDayPaper}>
-                <Grid item><br/></Grid>
-                <Grid item style={{color: "lightGrey"}}>
-                    {day.getDate()}
-                </Grid>
-            </Paper>)
-        }
-        return dateTile
-    }
-    return (
-        <div>
-          <Bg/>
-          <Header/>
-          <Grid container justify="center" style={{ marginTop: 130 }}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <ThemeProvider theme={materialTheme}>
-                    <DatePicker
-                      disableToolbar={true}
-                        value={selectedDate}
-                        onChange={handleDateChange}
-                        variant="static"
-                        // using our function 
-                        renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => getDayElement(day, selectedDate, isInCurrentMonth, dayComponent)}
-                    />
-                </ThemeProvider>
-            </MuiPickersUtilsProvider>
-       
+    let dateTile
+    if (isInCurrentMonth) { //conditionally return appropriate Element of date tile.
+      if (isSunny) {
+        dateTile = (
+          <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
+            <Grid item></Grid>
+            <Grid item style={{marginLeft:"9px", marginTop:"9px"}}>
+              {day.getDate()}
             </Grid>
-            <BottomNavigationBar/>
-          </div>
-    );}
+          </Paper>)
+      } else {
+        dateTile = (
+          <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
+            <Grid item></Grid>
+            <Grid item style={{marginLeft:"9px",marginTop:"9px"}}> 
+            {day.getDate()}
+            </Grid>
+          </Paper>)
+      }
+
+    } else {
+      dateTile = (<Paper className={classes.notInThisMonthDayPaper}>
+        <Grid item></Grid>
+        <Grid item style={{ color: "lightGrey" , marginLeft:"9px",marginTop:"9px"}}>
+          {day.getDate()}
+        </Grid>
+      </Paper>)
+    }
+    return dateTile
+  }
+  return (
+    <div>
+      <Bg />
+      <Header />
+      <Grid container justify="center" style={{ marginTop: 140 }}>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <ThemeProvider theme={materialTheme}>
+            <DatePicker
+              disableToolbar={true}
+              value={selectedDate}
+              onChange={handleDateChange}
+              variant="static"
+              // using our function 
+              renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => getDayElement(day, selectedDate, isInCurrentMonth, dayComponent)}
+            />
+          </ThemeProvider>
+        </MuiPickersUtilsProvider>
+      </Grid>
+      <BottomNavigationBar />
+    </div>
+  );
+}
