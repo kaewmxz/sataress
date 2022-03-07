@@ -1,22 +1,3 @@
-// import React, { useState, useEffect, useContext } from "react";
-// import { Link } from "react-router-dom";
-// import styled from "styled-components";
-// import { withTheme } from "@material-ui/core/styles";
-// import { Grid, Container, createTheme } from "@material-ui/core";
-// import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-// import BottomNavigationBar from "../BottomNavigationBar ";
-// import Header from "../Head";
-// import { AuthContext } from "../Auth";
-// import "./DatePicker.css";
-// import { Calendar } from "react-modern-calendar-datepicker";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
-// import CalendarPicker from "@mui/lab/CalendarPicker";
-// import { makeStyles } from "@mui/styles";
-// import moment from "moment";
-// import axios from "axios";
-// import { ThemeProvider } from "styled-components";
-
 // const minDate = new Date("2022-01-01T00:00:00.000");
 // const maxDate = new Date("2022-12-31T00:00:00.000");
 
@@ -146,50 +127,57 @@
 //   );
 // };
 
-import React, { useState } from 'react';
 import DateFnsUtils from "@date-io/date-fns";
-import { DatePicker, MuiPickersUtilsProvider, } from '@material-ui/pickers';
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Paper, Grid } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/core/styles";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Header from "../Head";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-
+import React, { useState, useEffect, useContext } from "react";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../Auth";
+import "./DatePicker.css";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import moment from "moment";
+import axios from "axios";
 
 const materialTheme = createMuiTheme({
   overrides: {
     MuiPickersToolbar: {
-      toolbar: { backgroundColor: "#8bc34a", },
+      toolbar: { backgroundColor: "#8bc34a" },
     },
-    //สีชื่อเดือน
+    //bg calendar header
     MuiPickersCalendarHeader: {
       switchHeader: {
-        backgroundColor: "white",
-        color: "#1b5e20",
+        backgroundColor: "transparent",
+        color:"#69A454",
+      },
+      //day style
+      dayLabel:{
+        fontWeight:"bold",
+        padding:"2px",
+      },
+      iconButton:{
+        color:"#69A454",
       },
     },
-    MuiPickersDay: {
-      day: {
-        color: 'black',
-
-      },
-      daySelected: {
-        backgroundColor: '#33abb6',
-      },
-      dayDisabled: {
-        color: '#ccc',
-      },
-      current: {
-        color: 'red',
-      },
-    },
-    MuiPickersModal: {
-      dialogAction: {
-        color: '#33abb6',
-        backgroundColor: 'black',
+    //bg calendar body
+    MuiPickersStaticWrapper:{
+      staticWrapperRoot:{
+        backgroundColor:"transparent",
       },
     },
   },
@@ -208,7 +196,8 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-export const styles = makeStyles(() => ({ //define CSS for different date types
+export const styles = makeStyles(() => ({
+  //define CSS for different date types
   notInThisMonthDayPaper: {
     width: "35px",
     height: "35px",
@@ -244,75 +233,161 @@ export const styles = makeStyles(() => ({ //define CSS for different date types
   todayPaper: {
     width: "35px",
     height: "35px",
-    backgroundColor: "lightGreen",
+    backgroundColor: "#FAB1B1",
     margin: "3px",
     boxShadow: "none",
     borderRadius: 20,
     padding: "1px",
     cursor: "pointer",
-    color: " white",
+    color: "white",
   },
 }));
+
+const minDate = new Date("2022-01-01T00:00:00.000");
+const maxDate = new Date("2022-12-31T00:00:00.000");
+
 export default function CustomCalendar() {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  let navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+  const [selectedDate, setDate] = useState(new Date());
   const classes = styles(); // import those CSS
   const today = new Date(); // just Date object of today
-  const sunnyDays = [1, 6, 10, 24, 15] // array of sunny days 1st,6th etc
+  const sunnyDays = [1, 6, 10, 24, 15]; // array of sunny days 1st,6th etc
+  let days = [];
+  const [daysWithDot, setDaysWithDot] = useState([]);
+  console.log(today);
+
+  useEffect(() => {
+    if (currentUser) {
+      onPickerViewChange();
+    }
+  }, []);
+
+  if (!currentUser) {
+    return (
+      <Routes>
+        <Route path="/" element={<Navigate replace to="/" />}></Route>
+      </Routes>
+    );
+  }
+
+  const onPickerViewChange = async (date) => {
+    const variables = [
+      moment(date).clone().startOf("month").format("M/D/YYYY"),
+      moment(date).clone().endOf("month").format("MM/D/YYYY"),
+    ];
+
+    console.log(variables);
+
+    try {
+      const result = await axios.get("http://localhost:4000/mood-dates", {
+        params: { id: currentUser.uid, date: variables },
+      });
+
+      console.log(result);
+      // setDaysWithDot(
+      //   result.data.message)
+      // );
+      setDaysWithDot(result.data.message.map((day) => day));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleChange = (newDate) => {
+    setDate(newDate);
+    // const dateToPass = [];
+    // dateToPass.push(date)
+    // setTimeout(() => navigate("/CalendarLogs", { state: { date: date } }), 1000);
+    navigate("/CalendarLogs", { state: { date: newDate } });
+  };
+  console.log(daysWithDot);
 
   function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
-    //generate boolean 
+    //generate boolean
     const isSunny = sunnyDays.includes(day.getDate());
     const isSelected = day.getDate() === selectedDate.getDate();
-    const isToday = day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
-
-    let dateTile
-    if (isInCurrentMonth) { //conditionally return appropriate Element of date tile.
+    const isToday =
+      day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
+    let dateTile;
+    if (isInCurrentMonth) {
+      //conditionally return appropriate Element of date tile.
       if (isSunny) {
         dateTile = (
-          <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
-            <Grid item></Grid>
-            <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
-              {day.getDate()}
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item  style={{ marginLeft: "5px", marginTop: "5px" }}>
+              <WbSunnyIcon style={{ color: "orange" }} />
             </Grid>
-          </Paper>)
+            <Grid item>
+              {/* {day.getDate()} */}
+            </Grid>
+          </Paper>
+        );
       } else {
         dateTile = (
-          <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
             <Grid item></Grid>
             <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
               {day.getDate()}
             </Grid>
-          </Paper>)
+          </Paper>
+        );
       }
-
     } else {
-      dateTile = (<Paper className={classes.notInThisMonthDayPaper}>
-        <Grid item></Grid>
-        <Grid item style={{ color: "lightGrey", marginLeft: "9px", marginTop: "9px" }}>
-          {day.getDate()}
-        </Grid>
-      </Paper>)
+      dateTile = (
+        <Paper className={classes.notInThisMonthDayPaper}>
+          <Grid item></Grid>
+          <Grid
+            item
+            style={{ color: "lightGrey", marginLeft: "9px", marginTop: "9px" }}
+          >
+            {day.getDate()}
+          </Grid>
+        </Paper>
+      );
     }
-    return dateTile
+    return dateTile;
   }
   return (
     <div>
       <Bg />
       <Header />
-      <Grid container justify="center" style={{ marginTop: 140 }}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <ThemeProvider theme={materialTheme}>
-            <DatePicker
-              disableToolbar={true}
-              value={selectedDate}
-              onChange={handleDateChange}
-              variant="static"
-              // using our function 
-              renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => getDayElement(day, selectedDate, isInCurrentMonth, dayComponent)}
-            />
-          </ThemeProvider>
-        </MuiPickersUtilsProvider>
-      </Grid>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <Grid container justify="center" style={{ marginTop: 145 }}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <ThemeProvider theme={materialTheme}>
+              <DatePicker
+                disableToolbar={true}
+                minDate={minDate}
+                maxDate={maxDate}
+                value={selectedDate}
+                onChange={(newDate) => handleChange(newDate)}
+                onMonthChange={onPickerViewChange}
+                variant="static"
+                // disablePast={true}
+                disableFuture={true}
+                // using our function
+                renderDay={(
+                  day,
+                  selectedDate,
+                  isInCurrentMonth,
+                  dayComponent
+                ) =>
+                  getDayElement(
+                    day,
+                    selectedDate,
+                    isInCurrentMonth,
+                    dayComponent
+                  )
+                }
+              />
+            </ThemeProvider>
+          </MuiPickersUtilsProvider>
+        </Grid>
+      </LocalizationProvider>
       <BottomNavigationBar />
     </div>
   );
