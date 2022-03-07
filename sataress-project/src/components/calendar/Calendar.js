@@ -159,7 +159,7 @@ import axios from "axios";
 const materialTheme = createMuiTheme({
   overrides: {
     MuiPickersToolbar: {
-      toolbar: { backgroundColor: "#8bc34a", },
+      toolbar: { backgroundColor: "#8bc34a" },
     },
     //สีชื่อเดือน
     MuiPickersCalendarHeader: {
@@ -184,7 +184,8 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-export const styles = makeStyles(() => ({ //define CSS for different date types
+export const styles = makeStyles(() => ({
+  //define CSS for different date types
   notInThisMonthDayPaper: {
     width: "35px",
     height: "35px",
@@ -229,6 +230,10 @@ export const styles = makeStyles(() => ({ //define CSS for different date types
     color: " white",
   },
 }));
+
+const minDate = new Date("2022-01-01T00:00:00.000");
+const maxDate = new Date("2022-12-31T00:00:00.000");
+
 export default function CustomCalendar() {
   let navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
@@ -238,6 +243,7 @@ export default function CustomCalendar() {
   const sunnyDays = [1, 6, 10, 24, 15]; // array of sunny days 1st,6th etc
   let days = [];
   const [daysWithDot, setDaysWithDot] = useState([]);
+  console.log(today);
 
   useEffect(() => {
     if (currentUser) {
@@ -251,66 +257,6 @@ export default function CustomCalendar() {
         <Route path="/" element={<Navigate replace to="/" />}></Route>
       </Routes>
     );
-  }
-
-  function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
-    //generate boolean
-    const isSunny = sunnyDays.includes(day.getDate());
-    const isSelected = day.getDate() === selectedDate.getDate();
-    const isToday =
-      day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
-
-    let dateTile;
-    if (isInCurrentMonth) {
-      //conditionally return appropriate Element of date tile.
-      if (isSunny) {
-        dateTile = (
-          <Paper
-            className={
-              isSelected
-                ? classes.selectedDayPaper
-                : isToday
-                ? classes.todayPaper
-                : classes.normalDayPaper
-            }
-          >
-            <Grid item>
-              <WbSunnyIcon style={{ color: "orange" }} />
-            </Grid>
-            <Grid item>{day.getDate()}</Grid>
-          </Paper>
-        );
-      } else {
-        dateTile = (
-          <Paper
-            className={
-              isSelected
-                ? classes.selectedDayPaper
-                : isToday
-                ? classes.todayPaper
-                : classes.normalDayPaper
-            }
-          >
-            <Grid item>
-              <br />
-            </Grid>
-            <Grid item> {day.getDate()}</Grid>
-          </Paper>
-        );
-      }
-    } else {
-      dateTile = (
-        <Paper className={classes.notInThisMonthDayPaper}>
-          <Grid item>
-            <br />
-          </Grid>
-          <Grid item style={{ color: "lightGrey" }}>
-            {day.getDate()}
-          </Grid>
-        </Paper>
-      );
-    }
-    return dateTile;
   }
 
   const onPickerViewChange = async (date) => {
@@ -330,6 +276,7 @@ export default function CustomCalendar() {
       // setDaysWithDot(
       //   result.data.message)
       // );
+      setDaysWithDot(result.data.message.map((day) => day));
     } catch (err) {
       console.log(err);
     }
@@ -344,40 +291,53 @@ export default function CustomCalendar() {
   console.log(daysWithDot);
 
   function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
-    //generate boolean 
-    const isSunny = sunnyDays.includes(day.getDate());
+    //generate boolean
+    const isSunny = daysWithDot.includes(day.getDate());
     const isSelected = day.getDate() === selectedDate.getDate();
-    const isToday = day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
-
-    let dateTile
-    if (isInCurrentMonth) { //conditionally return appropriate Element of date tile.
+    const isToday =
+      day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
+    let dateTile;
+    if (isInCurrentMonth) {
+      //conditionally return appropriate Element of date tile.
       if (isSunny) {
         dateTile = (
-          <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
-            <Grid item><WbSunnyIcon style={{color:"orange"}}/></Grid>
-            <Grid item style={{marginLeft:"9px", marginTop:"9px"}}>
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item>
+              <WbSunnyIcon style={{ color: "orange" }} />
+            </Grid>
+            <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
               {day.getDate()}
             </Grid>
-          </Paper>)
+          </Paper>
+        );
       } else {
         dateTile = (
-          <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
             <Grid item></Grid>
-            <Grid item style={{marginLeft:"9px",marginTop:"9px"}}> 
-            {day.getDate()}
+            <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              {day.getDate()}
             </Grid>
-          </Paper>)
+          </Paper>
+        );
       }
-
     } else {
-      dateTile = (<Paper className={classes.notInThisMonthDayPaper}>
-        <Grid item></Grid>
-        <Grid item style={{ color: "lightGrey" , marginLeft:"9px",marginTop:"9px"}}>
-          {day.getDate()}
-        </Grid>
-      </Paper>)
+      dateTile = (
+        <Paper className={classes.notInThisMonthDayPaper}>
+          <Grid item></Grid>
+          <Grid
+            item
+            style={{ color: "lightGrey", marginLeft: "9px", marginTop: "9px" }}
+          >
+            {day.getDate()}
+          </Grid>
+        </Paper>
+      );
     }
-    return dateTile
+    return dateTile;
   }
   return (
     <div>
@@ -389,12 +349,14 @@ export default function CustomCalendar() {
             <ThemeProvider theme={materialTheme}>
               <DatePicker
                 disableToolbar={true}
+                minDate={minDate}
+                maxDate={maxDate}
                 value={selectedDate}
                 onChange={(newDate) => handleChange(newDate)}
                 onMonthChange={onPickerViewChange}
                 variant="static"
                 // disablePast={true}
-                // disableFuture={true}
+                disableFuture={true}
                 // using our function
                 renderDay={(
                   day,
