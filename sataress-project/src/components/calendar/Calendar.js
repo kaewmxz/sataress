@@ -153,12 +153,11 @@ import { Paper, Grid } from "@material-ui/core";
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/core/styles";
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Header from "../Head";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { CalendarPicker } from '@mui/lab';
+
 
 const materialTheme = createMuiTheme({
   overrides: {
@@ -170,6 +169,27 @@ const materialTheme = createMuiTheme({
       switchHeader: {
         backgroundColor: "white",
         color: "#1b5e20",
+      },
+    },
+    MuiPickersDay: {
+      day: {
+        color: 'black',
+
+      },
+      daySelected: {
+        backgroundColor: '#33abb6',
+      },
+      dayDisabled: {
+        color: '#ccc',
+      },
+      current: {
+        color: 'red',
+      },
+    },
+    MuiPickersModal: {
+      dialogAction: {
+        color: '#33abb6',
+        backgroundColor: 'black',
       },
     },
   },
@@ -251,7 +271,7 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
             <Grid item></Grid>
-            <Grid item style={{marginLeft:"9px", marginTop:"9px"}}>
+            <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
               {day.getDate()}
             </Grid>
           </Paper>)
@@ -259,8 +279,8 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper className={isSelected ? classes.selectedDayPaper : isToday ? classes.todayPaper : classes.normalDayPaper}>
             <Grid item></Grid>
-            <Grid item style={{marginLeft:"9px",marginTop:"9px"}}> 
-            {day.getDate()}
+            <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              {day.getDate()}
             </Grid>
           </Paper>)
       }
@@ -268,7 +288,7 @@ export default function CustomCalendar() {
     } else {
       dateTile = (<Paper className={classes.notInThisMonthDayPaper}>
         <Grid item></Grid>
-        <Grid item style={{ color: "lightGrey" , marginLeft:"9px",marginTop:"9px"}}>
+        <Grid item style={{ color: "lightGrey", marginLeft: "9px", marginTop: "9px" }}>
           {day.getDate()}
         </Grid>
       </Paper>)
