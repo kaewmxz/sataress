@@ -76,7 +76,7 @@ async function getGratitudeTable(id) {
 
   const db = getFirestore();
   const gratitude = db.collection("gratitude");
-  const snapshot = await gratitude.where("id", "==", id).get();
+  const snapshot = await gratitude.where("id", "==", id).orderBy('date','desc').get();
   if (snapshot.empty) {
     console.log("No matching documents.");
     return;
