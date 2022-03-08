@@ -18,6 +18,7 @@ import TextField from "@mui/material/TextField";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import moment from "moment";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -84,6 +85,11 @@ const theme = createTheme({
     },
   },
 });
+
+const date = new Date();
+const minDate = new Date("2022-01-01T00:00:00.000");
+const maxDate = new Date("2022-12-31T00:00:00.000");
+
 const Graph = () => {
   const { currentUser } = useContext(AuthContext);
   const [moodCount, setmoodCount] = useState([]);
@@ -93,23 +99,30 @@ const Graph = () => {
 
   useEffect(() => {
     if (currentUser) {
+      const variables = [
+        moment(date).clone().startOf("month").format("M/D/YYYY"),
+        moment(date).clone().endOf("month").format("MM/D/YYYY"),
+      ];
+
       const fetchmoodCount = async () => {
         const result = await axios.get("http://localhost:4000/mood/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, range: variables },
         });
 
         setmoodCount(result.data.message);
       };
+
       const fetchmoodIntense = async () => {
         const result = await axios.get("http://localhost:4000/mood-intense/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, range: variables },
         });
 
         setmoodIntense(result.data.message);
       };
+
       const fetchgratitude = async () => {
         const result = await axios.get("http://localhost:4000/gratitude/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, range: variables },
         });
 
         setGratitude(result.data.message);
@@ -128,36 +141,36 @@ const Graph = () => {
       />
     );
   };
+  console.log(value);
 
-  // These two const used for the weekly/monthly togglebuttons
-  // const [alignment, setAlignment] = useState([]);
-  // const handleChange = (event, newAlignment) => {
-  //   setAlignment(newAlignment);
-  //   const fetchmoodCount = async () => {
-  //     const result = await axios.get("http://localhost:4000/mood/", {
-  //       params: { id: currentUser.uid, days: alignment },
-  //     });
-  //     setmoodCount(result.data.message);
-  //   };
-  //   const fetchmoodIntense = async () => {
-  //     const result = await axios.get("http://localhost:4000/mood-intense/", {
-  //       params: { id: currentUser.uid, days: alignment },
-  //     });
+  const handleSubmit = async (values) => {
+    const fetchmoodCount = async () => {
+      const result = await axios.get("http://localhost:4000/mood/", {
+        params: { id: currentUser.uid, range: values },
+      });
 
-  //     setmoodIntense(result.data.message);
-  //   };
-  //   const fetchgratitude = async () => {
-  //     const result = await axios.get("http://localhost:4000/gratitude/", {
-  //       params: { id: currentUser.uid, days: alignment },
-  //     });
+      setmoodCount(result.data.message);
+    };
 
-  //     setGratitude(result.data.message);
-  //   };
-  //   fetchmoodCount();
-  //   fetchmoodIntense();
-  //   fetchgratitude();
-  // };
-  // console.log(alignment);
+    const fetchmoodIntense = async () => {
+      const result = await axios.get("http://localhost:4000/mood-intense/", {
+        params: { id: currentUser.uid, range: values },
+      });
+
+      setmoodIntense(result.data.message);
+    };
+
+    const fetchgratitude = async () => {
+      const result = await axios.get("http://localhost:4000/gratitude/", {
+        params: { id: currentUser.uid, range: values },
+      });
+
+      setGratitude(result.data.message);
+    };
+    fetchmoodCount();
+    fetchmoodIntense();
+    fetchgratitude();
+  };
 
   if (!currentUser) {
     return (
@@ -175,30 +188,20 @@ const Graph = () => {
       <ThemeProvider theme={theme}>
         <Box component="span">
           <Grid container justify="center" direction="row">
-            {/* <Toggle>
-              <ToggleButtonGroup
-                color="primary"
-                value={alignment}
-                exclusive
-                onChange={handleChange}
-              >
-                <ToggleButton color="Wbutton" value={7}>
-                  สัปดาห์
-                </ToggleButton>
-                <ToggleButton color="Mbutton" value={30}>
-                  เดือน
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Toggle> */}
-
             {/* Time range */}
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
-                startText="Check-in"
-                endText="Check-out"
+                startText="Beginning date"
+                endText="End date"
                 value={value}
+                minDate={minDate}
+                maxDate={maxDate}
+                disableFuture={true}
                 onChange={(newValue) => {
                   setValue(newValue);
+                }}
+                onAccept={(newValue) => {
+                  handleSubmit(newValue);
                 }}
                 renderInput={(startProps, endProps) => (
                   <React.Fragment>
@@ -209,7 +212,6 @@ const Graph = () => {
                 )}
               />
             </LocalizationProvider>
-
 
             <GraphBox1 style={{ marginTop: 230 }}>
               <BarChart width={307} height={182} data={moodCount}>

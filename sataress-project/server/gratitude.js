@@ -16,7 +16,7 @@ async function addGratitude(result) {
   return res;
 }
 
-async function getGratitude(id, days) {
+async function getGratitude(id, range) {
   var admin = require("firebase-admin");
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
 
@@ -36,13 +36,19 @@ async function getGratitude(id, days) {
   let grat_arr = [];
   let grats_dict = {};
   let res = [];
-  if (days != undefined) {
+  if (range != undefined) {
     snapshot.forEach((doc) => {
-      const date1 = new Date(doc.data().dateToCheck);
-      const date2 = new Date();
-      const diffTime = Math.abs(date2 - date1);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays <= days) {
+      // const date1 = new Date(doc.data().dateToCheck);
+      // const date2 = new Date();
+      // const diffTime = Math.abs(date2 - date1);
+      // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      // if (diffDays <= days) {
+      //   grat_arr.push(doc.data().gratitude);
+      // }
+      const date3 = new Date(doc.data().dateToCheck);
+      const date1 = new Date(range[0]);
+      const date2 = new Date(range[1]);
+      if (date1 <= date3 && date3 <= date2) {
         grat_arr.push(doc.data().gratitude);
       }
     });
@@ -101,25 +107,7 @@ async function deleteGratitude(result) {
 
   const db = getFirestore();
   const gratitude = db.collection("gratitude");
-  // await gratitude
-  //   .where("id", "==", result.id)
-  //   .where("date", "==", result.date[0])
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       doc.ref
-  //         .delete()
-  //         .then(() => {
-  //           console.log("Deleted success");
-  //         })
-  //         .catch((err) => {
-  //           console.log(err);
-  //         });
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+
   try {
     for (let i = 0; i < result.date.length; i++) {
       const snapshot = await gratitude
@@ -132,7 +120,6 @@ async function deleteGratitude(result) {
       }
 
       snapshot.forEach((doc) => {
-        // console.log(`deleted`);
         doc.ref.delete();
       });
     }

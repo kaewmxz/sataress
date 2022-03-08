@@ -27,7 +27,7 @@ async function saveMood(result) {
   return res;
 }
 
-async function getMood(id, days) {
+async function getMood(id, range) {
   var admin = require("firebase-admin");
 
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
@@ -49,13 +49,21 @@ async function getMood(id, days) {
   let moods_dict = {};
   let res = [];
 
-  if (days != undefined) {
+  if (range != undefined) {
     snapshot.forEach((doc) => {
-      const date1 = new Date(doc.data().dateToCheck);
-      const date2 = new Date();
-      const diffTime = Math.abs(date2 - date1);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays <= days) {
+      // const date1 = new Date(doc.data().dateToCheck);
+      // const date2 = new Date();
+      // const diffTime = Math.abs(date2 - date1);
+      // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      // if (diffDays <= days) {
+      //   moods_arr = moods_arr.concat(doc.data().mood);
+      // }
+      const date3 = new Date(doc.data().dateToCheck);
+      const date1 = new Date(range[0]);
+      const date2 = new Date(range[1]);
+      if (date1 <= date3 && date3 <= date2) {
+        // arr.push(date3.getDate());
+        //Try
         moods_arr = moods_arr.concat(doc.data().mood);
       }
     });
@@ -202,7 +210,7 @@ async function getMoodDates(id, date) {
   return res_dict;
 }
 
-async function getMoodIntense(id, days) {
+async function getMoodIntense(id, range) {
   var admin = require("firebase-admin");
 
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
@@ -231,13 +239,20 @@ async function getMoodIntense(id, days) {
   //   intensity_arr = intensity_arr.concat(doc.data().intensity);
   // });
 
-  if (days != undefined) {
+  if (range != undefined) {
     snapshot.forEach((doc) => {
-      const date1 = new Date(doc.data().dateToCheck);
-      const date2 = new Date();
-      const diffTime = Math.abs(date2 - date1);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays <= days) {
+      // const date1 = new Date(doc.data().dateToCheck);
+      // const date2 = new Date();
+      // const diffTime = Math.abs(date2 - date1);
+      // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      // if (diffDays <= days) {
+      //   moods_arr = moods_arr.concat(doc.data().mood);
+      //   intensity_arr = intensity_arr.concat(doc.data().intensity);
+      // }
+      const date3 = new Date(doc.data().dateToCheck);
+      const date1 = new Date(range[0]);
+      const date2 = new Date(range[1]);
+      if (date1 <= date3 && date3 <= date2) {
         moods_arr = moods_arr.concat(doc.data().mood);
         intensity_arr = intensity_arr.concat(doc.data().intensity);
       }
