@@ -6,8 +6,6 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
 import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
@@ -32,10 +30,6 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-const Toggle = withTheme(styled.div`
-  position: absolute;
-  top: 142px;
-`);
 
 const GraphBox1 = withTheme(styled.div`
   position: absolute;
@@ -48,6 +42,13 @@ const GraphBox1 = withTheme(styled.div`
     padding: 0px;
   }
 `);
+const GraphBoxname1 = withTheme(styled.div`
+position:absolute;
+margin-top: 160px;
+margin-left:12px;
+color: #84C78B;
+
+`);
 const GraphBox2 = withTheme(styled.div`
   position: absolute;
   width: 307px;
@@ -59,7 +60,12 @@ const GraphBox2 = withTheme(styled.div`
     padding: 0px;
   }
 `);
-
+const GraphBoxname2 = withTheme(styled.div`
+  position:absolute;
+  margin-top: 160px;
+  margin-left:12px;
+  color: #84C78B;
+  `);
 const GraphBox3 = withTheme(styled.div`
   position: absolute;
   width: 307px;
@@ -71,6 +77,13 @@ const GraphBox3 = withTheme(styled.div`
     padding: 0px;
   }
 `);
+
+const GraphBoxname3 = withTheme(styled.div`
+  position:absolute;
+  margin-top: 160px;
+  margin-left:12px;
+  color: #84C78B;
+  `);
 
 const theme = createTheme({
   palette: {
@@ -175,59 +188,55 @@ const Graph = () => {
       <ThemeProvider theme={theme}>
         <Box component="span">
           <Grid container justify="center" direction="row">
-            {/* <Toggle>
-              <ToggleButtonGroup
-                color="primary"
-                value={alignment}
-                exclusive
-                onChange={handleChange}
-              >
-                <ToggleButton color="Wbutton" value={7}>
-                  สัปดาห์
-                </ToggleButton>
-                <ToggleButton color="Mbutton" value={30}>
-                  เดือน
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Toggle> */}
 
             {/* Time range */}
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateRangePicker
-                startText="Check-in"
-                endText="Check-out"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(startProps, endProps) => (
-                  <React.Fragment>
-                    <TextField {...startProps} />
-                    <Box sx={{ mx: 2 }}> to </Box>
-                    <TextField {...endProps} />
-                  </React.Fragment>
-                )}
-              />
+              <Grid container justify="center" style={{ marginTop: 110, padding: 30 }}>
+                <DateRangePicker
+                  startText="Check-in"
+                  endText="Check-out"
+                  value={value}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  renderInput={(startProps, endProps) => (
+                    <React.Fragment>
+                      <TextField {...startProps} />
+                      <Box sx={{ mx: 3 }}> to </Box>
+                      <TextField {...endProps} />
+                    </React.Fragment>
+                  )}
+                />
+              </Grid>
             </LocalizationProvider>
 
 
-            <GraphBox1 style={{ marginTop: 230 }}>
-              <BarChart width={307} height={182} data={moodCount}>
+            <GraphBox1 style={{ marginTop: 230, color: "red" }}>
+              <GraphBoxname1>นับอารมณ์</GraphBoxname1>
+              <Grid container justify = "center" style = {{marginLeft:-30,marginTop:12}}>
+              <BarChart width={290} height={170} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
                 <YAxis />
                 <Bar dataKey="count" fill="#8884d8" />
               </BarChart>
+              </Grid>
             </GraphBox1>
+
             <GraphBox2 style={{ marginTop: 450 }}>
-              <BarChart width={307} height={182} data={moodIntense}>
+              <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์</GraphBoxname2>
+              <Grid container justify = "center" style = {{marginLeft:-30,marginTop:12}}>
+              <BarChart width={290} height={170} data={moodIntense}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="mood" />
                 <YAxis />
                 <Bar dataKey="average" fill="#8884d8" />
               </BarChart>
+              </Grid>
             </GraphBox2>
+
             <GraphBox3 style={{ marginTop: 670 }}>
+              <GraphBoxname3>Wordcloud</GraphBoxname3>
               <SimpleWordcloud />
             </GraphBox3>
           </Grid>
