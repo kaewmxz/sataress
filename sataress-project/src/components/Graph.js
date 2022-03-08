@@ -14,6 +14,10 @@ import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import DateRangePicker from "@mui/lab/DateRangePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -85,6 +89,8 @@ const Graph = () => {
   const [moodCount, setmoodCount] = useState([]);
   const [moodIntense, setmoodIntense] = useState([]);
   const [gratitude, setGratitude] = useState([]);
+  const [value, setValue] = React.useState([null, null]);
+
   useEffect(() => {
     if (currentUser) {
       const fetchmoodCount = async () => {
@@ -103,7 +109,7 @@ const Graph = () => {
       };
       const fetchgratitude = async () => {
         const result = await axios.get("http://localhost:4000/gratitude/", {
-          params: { id: currentUser.uid, days: alignment },
+          params: { id: currentUser.uid },
         });
 
         setGratitude(result.data.message);
@@ -113,6 +119,7 @@ const Graph = () => {
       fetchgratitude();
     }
   }, []);
+
   const SimpleWordcloud = () => {
     return (
       <ReactWordcloud
@@ -121,35 +128,37 @@ const Graph = () => {
       />
     );
   };
+
   // These two const used for the weekly/monthly togglebuttons
-  const [alignment, setAlignment] = useState([]);
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-    const fetchmoodCount = async () => {
-      const result = await axios.get("http://localhost:4000/mood/", {
-        params: { id: currentUser.uid, days: alignment },
-      });
-      setmoodCount(result.data.message);
-    };
-    const fetchmoodIntense = async () => {
-      const result = await axios.get("http://localhost:4000/mood-intense/", {
-        params: { id: currentUser.uid, days: alignment },
-      });
+  // const [alignment, setAlignment] = useState([]);
+  // const handleChange = (event, newAlignment) => {
+  //   setAlignment(newAlignment);
+  //   const fetchmoodCount = async () => {
+  //     const result = await axios.get("http://localhost:4000/mood/", {
+  //       params: { id: currentUser.uid, days: alignment },
+  //     });
+  //     setmoodCount(result.data.message);
+  //   };
+  //   const fetchmoodIntense = async () => {
+  //     const result = await axios.get("http://localhost:4000/mood-intense/", {
+  //       params: { id: currentUser.uid, days: alignment },
+  //     });
 
-      setmoodIntense(result.data.message);
-    };
-    const fetchgratitude = async () => {
-      const result = await axios.get("http://localhost:4000/gratitude/", {
-        params: { id: currentUser.uid, days: alignment },
-      });
+  //     setmoodIntense(result.data.message);
+  //   };
+  //   const fetchgratitude = async () => {
+  //     const result = await axios.get("http://localhost:4000/gratitude/", {
+  //       params: { id: currentUser.uid, days: alignment },
+  //     });
 
-      setGratitude(result.data.message);
-    };
-    fetchmoodCount();
-    fetchmoodIntense();
-    fetchgratitude();
-  };
-  console.log(alignment);
+  //     setGratitude(result.data.message);
+  //   };
+  //   fetchmoodCount();
+  //   fetchmoodIntense();
+  //   fetchgratitude();
+  // };
+  // console.log(alignment);
+
   if (!currentUser) {
     return (
       <Routes>
@@ -166,7 +175,7 @@ const Graph = () => {
       <ThemeProvider theme={theme}>
         <Box component="span">
           <Grid container justify="center" direction="row">
-            <Toggle>
+            {/* <Toggle>
               <ToggleButtonGroup
                 color="primary"
                 value={alignment}
@@ -180,7 +189,28 @@ const Graph = () => {
                   เดือน
                 </ToggleButton>
               </ToggleButtonGroup>
-            </Toggle>
+            </Toggle> */}
+
+            {/* Time range */}
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DateRangePicker
+                startText="Check-in"
+                endText="Check-out"
+                value={value}
+                onChange={(newValue) => {
+                  setValue(newValue);
+                }}
+                renderInput={(startProps, endProps) => (
+                  <React.Fragment>
+                    <TextField {...startProps} />
+                    <Box sx={{ mx: 2 }}> to </Box>
+                    <TextField {...endProps} />
+                  </React.Fragment>
+                )}
+              />
+            </LocalizationProvider>
+
+
             <GraphBox1 style={{ marginTop: 230 }}>
               <BarChart width={307} height={182} data={moodCount}>
                 <CartesianGrid strokeDasharray="3 3" />

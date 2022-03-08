@@ -144,18 +144,62 @@ async function getMoodDates(id, date) {
     console.log("No matching documents.");
     return;
   }
-  let arr = [];
+
+  // let arr = [];
+  let test_arr = [];
+  let moods_arr = [];
+  let intensity_arr = [];
+
+  let res_dict = {
+    Disgusted: [],
+    Happy: [],
+    Sad: [],
+    Fearful: [],
+    Stressed: [],
+    Neutral: [],
+    Surprised: [],
+    Angry: [],
+  };
+
   snapshot.forEach((doc) => {
     const date3 = new Date(doc.data().dateToCheck);
     const date1 = new Date(date[0]);
     const date2 = new Date(date[1]);
-    // console.log(date3.getDate())
     if (date1 <= date3 && date3 <= date2) {
-      arr.push(date3.getDate());
+      // arr.push(date3.getDate());
+      //Try
+      test_arr.push(doc.data().dateToCheck);
     }
   });
-  console.log(arr);
-  return arr;
+
+  // Try to get mood in each day.
+  let dict = {};
+  for (let i = 0; i < test_arr.length; i++) {
+    const snap = await gratitude
+      .where("id", "==", id)
+      .where("dateToCheck", "==", test_arr[i])
+      .get();
+    if (snap.empty) {
+    }
+    snap.forEach((doc) => {
+      moods_arr = moods_arr.concat(doc.data().mood);
+      intensity_arr = intensity_arr.concat(doc.data().intensity);
+    });
+
+    for (let i = 0; i < moods_arr.length; i++) {
+      dict[[moods_arr[i]]] = intensity_arr[i];
+    }
+
+    res_dict[
+      Object.keys(dict).reduce((a, b) => (dict[a] > dict[b] ? a : b))
+    ].push(new Date(test_arr[i]).getDate());
+    dict = {};
+    moods_arr = [];
+    intensity_arr = [];
+  }
+
+  console.log(res_dict);
+  return res_dict;
 }
 
 async function getMoodIntense(id, days) {
