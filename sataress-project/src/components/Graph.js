@@ -6,8 +6,6 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
 import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
@@ -33,11 +31,6 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-const Toggle = withTheme(styled.div`
-  position: absolute;
-  top: 142px;
-`);
-
 const GraphBox1 = withTheme(styled.div`
   position: absolute;
   width: 307px;
@@ -48,6 +41,12 @@ const GraphBox1 = withTheme(styled.div`
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
+`);
+const GraphBoxname1 = withTheme(styled.div`
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 12px;
+  color: #84c78b;
 `);
 const GraphBox2 = withTheme(styled.div`
   position: absolute;
@@ -60,7 +59,12 @@ const GraphBox2 = withTheme(styled.div`
     padding: 0px;
   }
 `);
-
+const GraphBoxname2 = withTheme(styled.div`
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 12px;
+  color: #84c78b;
+`);
 const GraphBox3 = withTheme(styled.div`
   position: absolute;
   width: 307px;
@@ -71,6 +75,13 @@ const GraphBox3 = withTheme(styled.div`
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
+`);
+
+const GraphBoxname3 = withTheme(styled.div`
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 12px;
+  color: #84c78b;
 `);
 
 const theme = createTheme({
@@ -188,48 +199,72 @@ const Graph = () => {
       <ThemeProvider theme={theme}>
         <Box component="span">
           <Grid container justify="center" direction="row">
+
             {/* Time range */}
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateRangePicker
-                startText="Beginning date"
-                endText="End date"
-                value={value}
-                minDate={minDate}
-                maxDate={maxDate}
-                disableFuture={true}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                onAccept={(newValue) => {
-                  handleSubmit(newValue);
-                }}
-                renderInput={(startProps, endProps) => (
-                  <React.Fragment>
-                    <TextField {...startProps} />
-                    <Box sx={{ mx: 2 }}> to </Box>
-                    <TextField {...endProps} />
-                  </React.Fragment>
-                )}
-              />
+              <Grid
+                container
+                justify="center"
+                style={{ marginTop: 110, padding: 30 }}
+              >
+                <DateRangePicker
+                  startText="Start date"
+                  endText="End date"
+                  value={value}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  disableFuture={true}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  onAccept={(newValue) => {
+                    handleSubmit(newValue);
+                  }}
+                  renderInput={(startProps, endProps) => (
+                    <React.Fragment>
+                      <TextField {...startProps} />
+                      <Box sx={{ mx: 3 }}> to </Box>
+                      <TextField {...endProps} />
+                    </React.Fragment>
+                  )}
+                />
+              </Grid>
             </LocalizationProvider>
 
-            <GraphBox1 style={{ marginTop: 230 }}>
-              <BarChart width={307} height={182} data={moodCount}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mood" />
-                <YAxis />
-                <Bar dataKey="count" fill="#8884d8" />
-              </BarChart>
+            <GraphBox1 style={{ marginTop: 230, color: "red" }}>
+              <GraphBoxname1>นับอารมณ์</GraphBoxname1>
+              <Grid
+                container
+                justify="center"
+                style={{ marginLeft: -30, marginTop: 35 }}
+              >
+                <BarChart width={290} height={130} data={moodCount}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="mood" />
+                  <YAxis />
+                  <Bar dataKey="count" fill="#8884d8" />
+                </BarChart>
+              </Grid>
             </GraphBox1>
+
             <GraphBox2 style={{ marginTop: 450 }}>
-              <BarChart width={307} height={182} data={moodIntense}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mood" />
-                <YAxis />
-                <Bar dataKey="average" fill="#8884d8" />
-              </BarChart>
+              <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์</GraphBoxname2>
+              <Grid
+                container
+                justify="center"
+                style={{ marginLeft: -30, marginTop: 35 }}
+              >
+                <BarChart width={290} height={130} data={moodIntense}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="mood" />
+                  <YAxis />
+                  <Bar dataKey="average" fill="#8884d8" />
+                </BarChart>
+              </Grid>
             </GraphBox2>
+
             <GraphBox3 style={{ marginTop: 670 }}>
+              <GraphBoxname3>Wordcloud</GraphBoxname3>
               <SimpleWordcloud />
             </GraphBox3>
           </Grid>
