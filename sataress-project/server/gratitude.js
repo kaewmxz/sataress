@@ -36,15 +36,8 @@ async function getGratitude(id, range) {
   let grat_arr = [];
   let grats_dict = {};
   let res = [];
-  if (range != undefined) {
+  if (range != null) {
     snapshot.forEach((doc) => {
-      // const date1 = new Date(doc.data().dateToCheck);
-      // const date2 = new Date();
-      // const diffTime = Math.abs(date2 - date1);
-      // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      // if (diffDays <= days) {
-      //   grat_arr.push(doc.data().gratitude);
-      // }
       const date3 = new Date(doc.data().dateToCheck);
       const date1 = new Date(range[0]);
       const date2 = new Date(range[1]);

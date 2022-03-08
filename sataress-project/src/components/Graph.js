@@ -6,7 +6,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
 import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
@@ -100,6 +100,7 @@ const theme = createTheme({
 const date = new Date();
 const minDate = new Date("2022-01-01T00:00:00.000");
 const maxDate = new Date("2022-12-31T00:00:00.000");
+const barColors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#84c78b"];
 
 const Graph = () => {
   const { currentUser } = useContext(AuthContext);
@@ -199,7 +200,6 @@ const Graph = () => {
       <ThemeProvider theme={theme}>
         <Box component="span">
           <Grid container justify="center" direction="row">
-
             {/* Time range */}
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <Grid
@@ -242,7 +242,15 @@ const Graph = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="mood" />
                   <YAxis />
-                  <Bar dataKey="count" fill="#8884d8" />
+                  <Bar dataKey="count" fill="#84c78b">
+  
+                    {moodCount.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={barColors[index % 20]}
+                      />
+                    ))}
+                  </Bar>
                 </BarChart>
               </Grid>
             </GraphBox1>
@@ -258,7 +266,14 @@ const Graph = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="mood" />
                   <YAxis />
-                  <Bar dataKey="average" fill="#8884d8" />
+                  <Bar dataKey="average" fill="#84c78b">
+                    {moodIntense.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={barColors[index % 20]}
+                      />
+                    ))}
+                  </Bar>
                 </BarChart>
               </Grid>
             </GraphBox2>
