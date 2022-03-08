@@ -163,21 +163,21 @@ const materialTheme = createMuiTheme({
     MuiPickersCalendarHeader: {
       switchHeader: {
         backgroundColor: "transparent",
-        color:"#69A454",
+        color: "#69A454",
       },
       //day style
-      dayLabel:{
-        fontWeight:"bold",
-        padding:"2px",
+      dayLabel: {
+        fontWeight: "bold",
+        padding: "2px",
       },
-      iconButton:{
-        color:"#69A454",
+      iconButton: {
+        color: "#69A454",
       },
     },
     //bg calendar body
-    MuiPickersStaticWrapper:{
-      staticWrapperRoot:{
-        backgroundColor:"transparent",
+    MuiPickersStaticWrapper: {
+      staticWrapperRoot: {
+        backgroundColor: "transparent",
       },
     },
   },
@@ -254,8 +254,15 @@ export default function CustomCalendar() {
   const today = new Date(); // just Date object of today
   const sunnyDays = [1, 6, 10, 24, 15]; // array of sunny days 1st,6th etc
   let days = [];
-  const [daysWithDot, setDaysWithDot] = useState([]);
-  console.log(today);
+  const [happyDay, setHappyDay] = useState([]);
+  const [sadDay, setSadDay] = useState([]);
+  const [stressedDay, setStressedDay] = useState([]);
+  const [surprisedDay, setSurprisedDay] = useState([]);
+  const [fearfulDay, setFearfulDay] = useState([]);
+  const [neutralDay, setNeutralDay] = useState([]);
+  const [angryDay, setAngryDay] = useState([]);
+  const [disgustedDay, setDisgustedDay] = useState([]);
+  // console.log(today);
 
   useEffect(() => {
     if (currentUser) {
@@ -277,51 +284,147 @@ export default function CustomCalendar() {
       moment(date).clone().endOf("month").format("MM/D/YYYY"),
     ];
 
-    console.log(variables);
-
     try {
       const result = await axios.get("http://localhost:4000/mood-dates", {
         params: { id: currentUser.uid, date: variables },
       });
-
-      console.log(result);
-      // setDaysWithDot(
-      //   result.data.message)
-      // );
-      setDaysWithDot(result.data.message.map((day) => day));
+      setHappyDay(result.data.message.Happy.map((day) => day));
+      setSadDay(result.data.message.Sad.map((day) => day));
+      setStressedDay(result.data.message.Stressed.map((day) => day));
+      setSurprisedDay(result.data.message.Surprised.map((day) => day));
+      setFearfulDay(result.data.message.Fearful.map((day) => day));
+      setNeutralDay(result.data.message.Neutral.map((day) => day));
+      setAngryDay(result.data.message.Angry.map((day) => day));
+      setDisgustedDay(result.data.message.Disgusted.map((day) => day));
     } catch (err) {
       console.log(err);
     }
   };
+
   const handleChange = (newDate) => {
     setDate(newDate);
-    // const dateToPass = [];
-    // dateToPass.push(date)
-    // setTimeout(() => navigate("/CalendarLogs", { state: { date: date } }), 1000);
     navigate("/CalendarLogs", { state: { date: newDate } });
   };
-  console.log(daysWithDot);
 
   function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
     //generate boolean
-    const isSunny = sunnyDays.includes(day.getDate());
-    const isSelected = day.getDate() === selectedDate.getDate();
+    const isHappy = happyDay.includes(day.getDate());
+    const isSad = sadDay.includes(day.getDate());
+    const isStressed = stressedDay.includes(day.getDate());
+    const isSurprised = surprisedDay.includes(day.getDate());
+    const isFearful = fearfulDay.includes(day.getDate());
+    const isDisgusted = disgustedDay.includes(day.getDate());
+    const isNeutral = neutralDay.includes(day.getDate());
+    const isAngry = angryDay.includes(day.getDate());
+    // const isSelected = day.getDate() === selectedDate.getDate();
     const isToday =
       day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
     let dateTile;
     if (isInCurrentMonth) {
       //conditionally return appropriate Element of date tile.
-      if (isSunny) {
+      if (isHappy) {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
           >
-            <Grid item  style={{ marginLeft: "5px", marginTop: "5px" }}>
-              <WbSunnyIcon style={{ color: "orange" }} />
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              {/* <WbSunnyIcon style={{ color: "orange" }} /> */}
+              <span role="img" aria-label="happy" style={{fontSize: '24px'}}>
+                😊
+              </span>
             </Grid>
-            <Grid item>
-              {/* {day.getDate()} */}
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isSad) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              <span role="img" aria-label="sad" style={{fontSize: '24px'}}>
+                😭
+              </span>
             </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isStressed) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              <span role="img" aria-label="sad" style={{fontSize: '24px'}}> 
+                😣
+              </span>
+            </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isSurprised) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              <span role="img" aria-label="surprised" style={{fontSize: '24px'}}>
+                😯
+              </span>
+            </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isFearful) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              <span role="img" aria-label="fearful" style={{fontSize: '24px'}}>
+                😰
+              </span>
+            </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isDisgusted) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              <span role="img" aria-label="disgusted" style={{fontSize: '24px'}}>
+                🤢
+              </span>
+            </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isNeutral) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
+              <span role="img" aria-label="neutral" style={{fontSize: '24px'}}>
+                😶
+              </span>
+            </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
+          </Paper>
+        );
+      } else if (isAngry) {
+        dateTile = (
+          <Paper
+            className={isToday ? classes.todayPaper : classes.normalDayPaper}
+          >
+            <Grid item style={{ marginLeft: "6px", marginTop: "6px" }}>
+              <span role="img" aria-label="sad" style={{fontSize: '24px'}}>
+                😡
+              </span>
+            </Grid>
+            <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
         );
       } else {
