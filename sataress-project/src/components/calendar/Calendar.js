@@ -341,7 +341,6 @@ export default function CustomCalendar() {
                 onChange={(newDate) => handleChange(newDate)}
                 onMonthChange={onPickerViewChange}
                 variant="static"
-                // disablePast={true}
                 disableFuture={true}
                 // using our function
                 renderDay={(

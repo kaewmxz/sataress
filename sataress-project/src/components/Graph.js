@@ -6,8 +6,6 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from "recharts";
 import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
@@ -18,6 +16,7 @@ import TextField from "@mui/material/TextField";
 import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import moment from "moment";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -32,11 +31,6 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-const Toggle = withTheme(styled.div`
-  position: absolute;
-  top: 142px;
-`);
-
 const GraphBox1 = withTheme(styled.div`
   position: absolute;
   width: 307px;
@@ -47,6 +41,12 @@ const GraphBox1 = withTheme(styled.div`
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
+`);
+const GraphBoxname1 = withTheme(styled.div`
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 12px;
+  color: #84c78b;
 `);
 const GraphBox2 = withTheme(styled.div`
   position: absolute;
@@ -59,7 +59,12 @@ const GraphBox2 = withTheme(styled.div`
     padding: 0px;
   }
 `);
-
+const GraphBoxname2 = withTheme(styled.div`
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 12px;
+  color: #84c78b;
+`);
 const GraphBox3 = withTheme(styled.div`
   position: absolute;
   width: 307px;
@@ -70,6 +75,13 @@ const GraphBox3 = withTheme(styled.div`
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
+`);
+
+const GraphBoxname3 = withTheme(styled.div`
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 12px;
+  color: #84c78b;
 `);
 
 const theme = createTheme({
@@ -84,6 +96,11 @@ const theme = createTheme({
     },
   },
 });
+
+const date = new Date();
+const minDate = new Date("2022-01-01T00:00:00.000");
+const maxDate = new Date("2022-12-31T00:00:00.000");
+
 const Graph = () => {
   const { currentUser } = useContext(AuthContext);
   const [moodCount, setmoodCount] = useState([]);
@@ -93,23 +110,30 @@ const Graph = () => {
 
   useEffect(() => {
     if (currentUser) {
+      const variables = [
+        moment(date).clone().startOf("month").format("M/D/YYYY"),
+        moment(date).clone().endOf("month").format("MM/D/YYYY"),
+      ];
+
       const fetchmoodCount = async () => {
         const result = await axios.get("http://localhost:4000/mood/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, range: variables },
         });
 
         setmoodCount(result.data.message);
       };
+
       const fetchmoodIntense = async () => {
         const result = await axios.get("http://localhost:4000/mood-intense/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, range: variables },
         });
 
         setmoodIntense(result.data.message);
       };
+
       const fetchgratitude = async () => {
         const result = await axios.get("http://localhost:4000/gratitude/", {
-          params: { id: currentUser.uid },
+          params: { id: currentUser.uid, range: variables },
         });
 
         setGratitude(result.data.message);
@@ -128,36 +152,36 @@ const Graph = () => {
       />
     );
   };
+  console.log(value);
 
-  // These two const used for the weekly/monthly togglebuttons
-  // const [alignment, setAlignment] = useState([]);
-  // const handleChange = (event, newAlignment) => {
-  //   setAlignment(newAlignment);
-  //   const fetchmoodCount = async () => {
-  //     const result = await axios.get("http://localhost:4000/mood/", {
-  //       params: { id: currentUser.uid, days: alignment },
-  //     });
-  //     setmoodCount(result.data.message);
-  //   };
-  //   const fetchmoodIntense = async () => {
-  //     const result = await axios.get("http://localhost:4000/mood-intense/", {
-  //       params: { id: currentUser.uid, days: alignment },
-  //     });
+  const handleSubmit = async (values) => {
+    const fetchmoodCount = async () => {
+      const result = await axios.get("http://localhost:4000/mood/", {
+        params: { id: currentUser.uid, range: values },
+      });
 
-  //     setmoodIntense(result.data.message);
-  //   };
-  //   const fetchgratitude = async () => {
-  //     const result = await axios.get("http://localhost:4000/gratitude/", {
-  //       params: { id: currentUser.uid, days: alignment },
-  //     });
+      setmoodCount(result.data.message);
+    };
 
-  //     setGratitude(result.data.message);
-  //   };
-  //   fetchmoodCount();
-  //   fetchmoodIntense();
-  //   fetchgratitude();
-  // };
-  // console.log(alignment);
+    const fetchmoodIntense = async () => {
+      const result = await axios.get("http://localhost:4000/mood-intense/", {
+        params: { id: currentUser.uid, range: values },
+      });
+
+      setmoodIntense(result.data.message);
+    };
+
+    const fetchgratitude = async () => {
+      const result = await axios.get("http://localhost:4000/gratitude/", {
+        params: { id: currentUser.uid, range: values },
+      });
+
+      setGratitude(result.data.message);
+    };
+    fetchmoodCount();
+    fetchmoodIntense();
+    fetchgratitude();
+  };
 
   if (!currentUser) {
     return (
@@ -175,59 +199,72 @@ const Graph = () => {
       <ThemeProvider theme={theme}>
         <Box component="span">
           <Grid container justify="center" direction="row">
-            {/* <Toggle>
-              <ToggleButtonGroup
-                color="primary"
-                value={alignment}
-                exclusive
-                onChange={handleChange}
-              >
-                <ToggleButton color="Wbutton" value={7}>
-                  สัปดาห์
-                </ToggleButton>
-                <ToggleButton color="Mbutton" value={30}>
-                  เดือน
-                </ToggleButton>
-              </ToggleButtonGroup>
-            </Toggle> */}
 
             {/* Time range */}
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DateRangePicker
-                startText="Check-in"
-                endText="Check-out"
-                value={value}
-                onChange={(newValue) => {
-                  setValue(newValue);
-                }}
-                renderInput={(startProps, endProps) => (
-                  <React.Fragment>
-                    <TextField {...startProps} />
-                    <Box sx={{ mx: 2 }}> to </Box>
-                    <TextField {...endProps} />
-                  </React.Fragment>
-                )}
-              />
+              <Grid
+                container
+                justify="center"
+                style={{ marginTop: 110, padding: 30 }}
+              >
+                <DateRangePicker
+                  startText="Start date"
+                  endText="End date"
+                  value={value}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  disableFuture={true}
+                  onChange={(newValue) => {
+                    setValue(newValue);
+                  }}
+                  onAccept={(newValue) => {
+                    handleSubmit(newValue);
+                  }}
+                  renderInput={(startProps, endProps) => (
+                    <React.Fragment>
+                      <TextField {...startProps} />
+                      <Box sx={{ mx: 3 }}> to </Box>
+                      <TextField {...endProps} />
+                    </React.Fragment>
+                  )}
+                />
+              </Grid>
             </LocalizationProvider>
 
-
-            <GraphBox1 style={{ marginTop: 230 }}>
-              <BarChart width={307} height={182} data={moodCount}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mood" />
-                <YAxis />
-                <Bar dataKey="count" fill="#8884d8" />
-              </BarChart>
+            <GraphBox1 style={{ marginTop: 230, color: "red" }}>
+              <GraphBoxname1>นับอารมณ์</GraphBoxname1>
+              <Grid
+                container
+                justify="center"
+                style={{ marginLeft: -30, marginTop: 35 }}
+              >
+                <BarChart width={290} height={130} data={moodCount}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="mood" />
+                  <YAxis />
+                  <Bar dataKey="count" fill="#8884d8" />
+                </BarChart>
+              </Grid>
             </GraphBox1>
+
             <GraphBox2 style={{ marginTop: 450 }}>
-              <BarChart width={307} height={182} data={moodIntense}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="mood" />
-                <YAxis />
-                <Bar dataKey="average" fill="#8884d8" />
-              </BarChart>
+              <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์</GraphBoxname2>
+              <Grid
+                container
+                justify="center"
+                style={{ marginLeft: -30, marginTop: 35 }}
+              >
+                <BarChart width={290} height={130} data={moodIntense}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="mood" />
+                  <YAxis />
+                  <Bar dataKey="average" fill="#8884d8" />
+                </BarChart>
+              </Grid>
             </GraphBox2>
+
             <GraphBox3 style={{ marginTop: 670 }}>
+              <GraphBoxname3>Wordcloud</GraphBoxname3>
               <SimpleWordcloud />
             </GraphBox3>
           </Grid>

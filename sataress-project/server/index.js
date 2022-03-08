@@ -86,9 +86,9 @@ app.post("/dass-result", jsonParser, urlEncoded, function (req, res, next) {
 
 app.get("/mood", (req, res, next) => {
   const id = req.query.id;
-  const days = req.query.days;
+  const range = req.query.range;
   // console.log(id);
-  getMood(id, days)
+  getMood(id, range)
     .then((response) => {
       res.send({ message: response });
     })
@@ -125,9 +125,9 @@ app.get("/mood-dates", (req, res, next) => {
 
 app.get("/mood-intense", (req, res, next) => {
   const id = req.query.id;
-  const days = req.query.days;
+  const range = req.query.range;
   // console.log(id);
-  getMoodIntense(id, days)
+  getMoodIntense(id, range)
     .then((response) => {
       res.send({ message: response });
     })
@@ -225,9 +225,9 @@ app.post(
 
 app.get("/gratitude", (req, res, next) => {
   const id = req.query.id;
-  const days = req.query.days;
+  const range = req.query.range;
   console.log(id);
-  getGratitude(id,days)
+  getGratitude(id,range)
     .then((response) => {
       res.send({ message: response });
     })
