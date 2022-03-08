@@ -100,7 +100,7 @@ const theme = createTheme({
 const date = new Date();
 const minDate = new Date("2022-01-01T00:00:00.000");
 const maxDate = new Date("2022-12-31T00:00:00.000");
-const barColors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#84c78b"];
+const barColors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#84c78b", "#1f77b4", "#ff7f0e", "#2ca02c", "#84c78b"];
 
 const Graph = () => {
   const { currentUser } = useContext(AuthContext);
@@ -250,8 +250,8 @@ const Graph = () => {
                 style={{ marginLeft: -30, marginTop: 35 }}
               >
                 <BarChart width={290} height={130} data={moodCount}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="mood" />
+                  {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                  <XAxis dataKey="mood" textAnchor= "end"  verticalAnchor= "middle" interval={0} angle={-26.4} fontSize={12} />
                   <YAxis />
                   <Bar dataKey="count" fill="#84c78b">
                     {moodCount.map((entry, index) => (
@@ -272,9 +272,9 @@ const Graph = () => {
                 justify="center"
                 style={{ marginLeft: -30, marginTop: 35 }}
               >
-                <BarChart width={290} height={130} data={moodIntense}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="mood" />
+                <BarChart width={290} height={140} data={moodIntense}>
+                  {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                  <XAxis dataKey="mood" textAnchor= "end"  verticalAnchor= "middle" interval={0} angle={-26.4} fontSize={12} />
                   <YAxis />
                   <Bar dataKey="average" fill="#84c78b">
                     {moodIntense.map((entry, index) => (
