@@ -111,37 +111,7 @@ const Graph = () => {
 
   useEffect(() => {
     if (currentUser) {
-      const variables = [
-        moment(date).clone().startOf("month").format("M/D/YYYY"),
-        moment(date).clone().endOf("month").format("MM/D/YYYY"),
-      ];
-
-      const fetchmoodCount = async () => {
-        const result = await axios.get("http://localhost:4000/mood/", {
-          params: { id: currentUser.uid, range: variables },
-        });
-
-        setmoodCount(result.data.message);
-      };
-
-      const fetchmoodIntense = async () => {
-        const result = await axios.get("http://localhost:4000/mood-intense/", {
-          params: { id: currentUser.uid, range: variables },
-        });
-
-        setmoodIntense(result.data.message);
-      };
-
-      const fetchgratitude = async () => {
-        const result = await axios.get("http://localhost:4000/gratitude/", {
-          params: { id: currentUser.uid, range: variables },
-        });
-
-        setGratitude(result.data.message);
-      };
-      fetchmoodCount();
-      fetchmoodIntense();
-      fetchgratitude();
+      handleClose();
     }
   }, []);
 
@@ -155,7 +125,47 @@ const Graph = () => {
   };
   console.log(value);
 
+  const handleClose = async () => {
+    const variables = [
+      moment(date).clone().startOf("month").format("M/D/YYYY"),
+      moment(date).clone().endOf("month").format("MM/D/YYYY"),
+    ];
+
+    const fetchmoodCount = async () => {
+      const result = await axios.get("http://localhost:4000/mood/", {
+        params: { id: currentUser.uid, range: variables },
+      });
+
+      setmoodCount(result.data.message);
+    };
+
+    const fetchmoodIntense = async () => {
+      const result = await axios.get("http://localhost:4000/mood-intense/", {
+        params: { id: currentUser.uid, range: variables },
+      });
+
+      setmoodIntense(result.data.message);
+    };
+
+    const fetchgratitude = async () => {
+      const result = await axios.get("http://localhost:4000/gratitude/", {
+        params: { id: currentUser.uid, range: variables },
+      });
+
+      setGratitude(result.data.message);
+    };
+    fetchmoodCount();
+    fetchmoodIntense();
+    fetchgratitude();
+  };
+
   const handleSubmit = async (values) => {
+    if (values[0] == null || values[1] == null) {
+      values[0] = moment(date).clone().startOf("month").format("M/D/YYYY");
+
+      values[1] = moment(date).clone().endOf("month").format("MM/D/YYYY");
+    }
+    console.log(values);
     const fetchmoodCount = async () => {
       const result = await axios.get("http://localhost:4000/mood/", {
         params: { id: currentUser.uid, range: values },
@@ -214,6 +224,7 @@ const Graph = () => {
                   minDate={minDate}
                   maxDate={maxDate}
                   disableFuture={true}
+                  disableCloseOnSelect={false}
                   onChange={(newValue) => {
                     setValue(newValue);
                   }}
@@ -243,7 +254,6 @@ const Graph = () => {
                   <XAxis dataKey="mood" />
                   <YAxis />
                   <Bar dataKey="count" fill="#84c78b">
-  
                     {moodCount.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
