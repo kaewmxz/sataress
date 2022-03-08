@@ -32,13 +32,9 @@ const Bg = withTheme(styled.div`
 
 const MoodInfo = (props) => {
   const {mood, intensity, thoughts, activity, dateToCheck} = props;
-  let emoji = "";
-  if (mood == "happy") {
-    emoji = "a";
-  }
   return (
     <Grid container>
-      <Card sx={{width: 200, marginTop:20}}>
+      <Card sx={{width:220,marginTop:20}}>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             {dateToCheck}
@@ -103,17 +99,42 @@ const Log = () => {
   let rows = [];
   try {
     for (let i = 0; i < data.length; i++) {
+      for (let j = 0; j< data[i].mood.length; j++) {
+        if (data[i].mood[j] == "Happy"){
+          data[i].mood[j] = "Happy😊"
+        }
+        else if (data[i].mood[j] == "Sad") {
+          data[i].mood[j] = "Sad😭"
+        }
+        else if (data[i].mood[j] == "Stressed") {
+          data[i].mood[j] = "Stressed😣";
+        }
+        else if (data[i].mood[j] == "Surprised") {
+          data[i].mood[j] = "Surprised😯";
+        }
+        else if (data[i].mood[j] == "Fearful") {
+          data[i].mood[j] = "Fearful😰";
+        }
+        else if (data[i].mood[j] == "Disgusted") {
+          data[i].mood[j] = "Disgusted🤢";
+        }
+        else if (data[i].mood[j] == "Neutral") {
+          data[i].mood[j] = "Neutral😶";
+        }
+        else if (data[i].mood[j] == "Angry") {
+          data[i].mood[j] = "Angry😡";
+        }
+      }
       rows.push(
         createData(
           data[i].date,
           data[i].activity,
-          data[i].mood.toString(),
-          data[i].intensity.toString(),
+          data[i].mood,
+          data[i].intensity,
           data[i].thoughts
         )
       );
     }
-    console.log(rows);
   } catch (err) {
     // console.log(err);
   }
