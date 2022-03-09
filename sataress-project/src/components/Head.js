@@ -20,9 +20,8 @@ const Head = withTheme(styled.div`
 
   const Name = withTheme(styled.div`
     position: absolute;
-    font-family: Roboto;
+    font-family: 'Roboto Slab', serif;
     font-style: normal;
-    font-weight: bold;
     top: 60px;
     ${(props) => props.theme.breakpoints.up("xs")} {
       font-size: 18px;

@@ -150,6 +150,7 @@ const Log = () => {
             <TableCell
               key={headCell.id}
               align="left"
+              sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}
             >
                 {headCell.label}
                 {orderBy === headCell.id ? (
@@ -197,7 +198,7 @@ const Log = () => {
       >
         {numSelected > 0 ? (
           <Typography
-            sx={{ flex: '1 1 100%',fontFamily: "Roboto" }}
+            sx={{ flex: '1 1 100%',fontFamily: "Roboto slab" }}
             color="inherit"
             variant="subtitle1"
             component="div"
@@ -206,7 +207,7 @@ const Log = () => {
           </Typography>
         ) : (
           <Typography
-            sx={{ flex: '1 1 100%' ,fontFamily: "Roboto"}}
+            sx={{ flex: '1 1 100%' ,fontFamily: "Roboto slab"}}
             variant="h6"
             id="tableTitle"
             component="div"
@@ -278,7 +279,7 @@ const Log = () => {
             <EnhancedTableToolbar numSelected={selected.length} />
             <TableContainer>
               <Table>
-                <EnhancedTableHead/>
+                <EnhancedTableHead />
                 <TableBody>
                   {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                     rows.slice().sort(getComparator(order, orderBy)) */}
@@ -297,6 +298,7 @@ const Log = () => {
                           tabIndex={-1}
                           key={row.date}
                           selected={isItemSelected}
+                          sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}
                         >
                           <TableCell padding="checkbox">
                             <Checkbox
@@ -312,10 +314,11 @@ const Log = () => {
                             id={labelId}
                             scope="row"
                             padding="none"
+                            sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}
                           >
                             {row.date}
                           </TableCell>
-                          <TableCell>{row.gratitude}</TableCell>
+                          <TableCell sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}>{row.gratitude}</TableCell>
                         </TableRow>
                       );
                     })}
