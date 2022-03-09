@@ -28,7 +28,7 @@ import axios from "axios";
 const materialTheme = createMuiTheme({
   overrides: {
     MuiPickersToolbar: {
-      toolbar: { backgroundColor: "#8bc34a" },
+      toolbar: { backgroundColor: "#8bc34a"},
     },
     //bg calendar header
     MuiPickersCalendarHeader: {
@@ -40,6 +40,7 @@ const materialTheme = createMuiTheme({
       dayLabel: {
         fontWeight: "bold",
         padding: "2px",
+        fontFamily:"Roboto Slab, serif, Noto Sans Thai"
       },
       iconButton: {
         color: "#69A454",
@@ -51,6 +52,11 @@ const materialTheme = createMuiTheme({
         backgroundColor: "transparent",
       },
     },
+    MuiTypography: {
+      body1:{
+        fontFamily:"Roboto Slab, serif, Noto Sans Thai",
+      }
+    }
   },
 });
 

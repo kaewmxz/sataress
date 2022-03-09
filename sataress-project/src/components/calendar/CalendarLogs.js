@@ -30,25 +30,25 @@ const Bg = withTheme(styled.div`
 `);
 
 const MoodInfo = (props) => {
-  const { mood, intensity, thoughts, activity, dateToCheck } = props;
+  const {mood, intensity, thoughts, activity, date} = props;
   return (
     <Grid container justify="center">
       <Card sx={{ width: 300, m: 1 }}>
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {dateToCheck}
+          <Typography gutterBottom variant="h6" component="div" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+            {date}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Activity:{activity}
+          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Mood:{mood + ""}
+          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          Mood:{mood+""}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Intensity:{intensity + ""}
+          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          Intensity:{intensity+""}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Thoghts:{thoughts}
+          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          Thoghts:{thoughts}
           </Typography>
         </CardContent>
       </Card>
