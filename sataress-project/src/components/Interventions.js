@@ -50,19 +50,22 @@ const Boxbreathing = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+top: 142px;
+filter: drop-shadow(0px 4px 4px rgba(189, 0, 255, 0.25));
 ${(props) => props.theme.breakpoints.only("xs")} {
-  padding-left:10px;
+  padding: 0px;
 }
 `);
+
 
 const Progressive = withTheme(styled.div`
 position: absolute;
 width: 320.7px;
 height: 182px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+top: 346px;
+filter: drop-shadow(0px 4px 4px rgba(119, 251, 188, 0.75));
 ${(props) => props.theme.breakpoints.only("xs")} {
-  padding-left:10px;
+  padding: 0px;
 }
 `);
 
@@ -82,14 +85,14 @@ const Interventions = () => {
       <Box>
       <Grid container justify="center" direction = "row">
         <Title style={{ marginTop: 135 }}>Interventions</Title>
-          <Boxbreathing style={{ marginTop: 205 }}>
+          <Boxbreathing style={{ marginTop:40}}>
             <Link to="/Boxbreathing">
-              <img src="/image/BoxBreathing.png" width="311px" height="228px" />
+              <img src="/image/Boxb.png" width="311px" height="228px" />
             </Link>
           </Boxbreathing>
-          <Progressive style={{ marginTop: 460, paddingBottom:130}}>
+          <Progressive style={{marginTop:50,paddingBottom:130}}>
             <Link to="/Progressive">
-              <img src="/image/Progressive.png" width="311px" height="228px" />
+              <img src="/image/Prog.png" width="311px" height="228px" />
             </Link>
           </Progressive>
       </Grid>

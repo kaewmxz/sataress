@@ -9,7 +9,6 @@ import { AuthContext } from "./Auth";
 import {
   BarChart,
   Bar,
-  CartesianGrid,
   XAxis,
   YAxis,
   Cell,
@@ -25,6 +24,7 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import moment from "moment";
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -44,7 +44,7 @@ const GraphBox1 = withTheme(styled.div`
   width: 307px;
   height: 182px;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -61,7 +61,7 @@ const GraphBox2 = withTheme(styled.div`
   width: 307px;
   height: 182px;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -78,7 +78,7 @@ const GraphBox3 = withTheme(styled.div`
   width: 307px;
   height: 182px;
   background: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -109,14 +109,14 @@ const date = new Date();
 const minDate = new Date("2022-01-01T00:00:00.000");
 const maxDate = new Date("2022-12-31T00:00:00.000");
 const barColors = [
-  "#1f77b4",
-  "#ff7f0e",
-  "#2ca02c",
-  "#84c78b",
-  "#1f77b4",
-  "#ff7f0e",
-  "#2ca02c",
-  "#84c78b",
+  "#F3DD8C",
+  "#FD9D74",
+  "#F57474",
+  "#96DBA5",
+  "#8590EF",
+  "#5CB7BD",
+  "#55D6DE",
+  "#F9ACF1",
 ];
 
 const Graph = () => {
@@ -218,7 +218,7 @@ const Graph = () => {
   };
 
   const handleSubmit = async (values) => {
-     
+
     if (values[0] == null || values[1] == null) {
       values[0] = moment(date).clone().startOf("month").format("M/D/YYYY");
 

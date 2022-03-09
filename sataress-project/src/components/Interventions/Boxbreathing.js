@@ -50,10 +50,10 @@ const Boxbreathing = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
-                <Image style={{ marginTop: 205 }}>
-                    <img src="/image/boxBreathing.png" width="311px" height="228px" />
+                <Image style={{ marginTop: 130 }}>
+                    <img src="/image/Boxb.png" width="311px" height="228px" />
                 </Image>
-                <Card sx={{ maxWidth: 500, marginTop: 60 ,marginBottom:5}}>
+                <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             Box breathing

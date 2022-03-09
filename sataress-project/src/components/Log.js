@@ -272,7 +272,7 @@ const Log = () => {
     <div>
       <Bg />
       <Head />
-      <Paper sx={{width: "80%", maxWidth: "100%", mx:"auto", my:25, p:3}}>
+      <Paper sx={{width: "80%", maxWidth: "100%", mx:"auto", my:20, p:3}}>
         <Grid container>
           <Grid item xs={12}>
             <EnhancedTableToolbar numSelected={selected.length} />

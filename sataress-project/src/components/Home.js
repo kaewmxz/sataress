@@ -32,7 +32,7 @@ const Calendar = withTheme(styled.div`
   width: 320.7px;
   height: 182px;
   top: 142px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(255, 184, 0, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
@@ -43,7 +43,7 @@ const Graph = withTheme(styled.div`
   width: 320.7px;
   height: 182px;
   top: 346px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(1, 240, 255, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
@@ -54,7 +54,7 @@ const Article = withTheme(styled.div`
   width: 320.7px;
   height: 182px;
   top: 550px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow( 0px 4px 4px rgba(97, 255, 94, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }

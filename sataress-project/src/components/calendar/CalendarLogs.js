@@ -29,31 +29,30 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-
 const MoodInfo = (props) => {
-  const {mood, intensity, thoughts, activity, dateToCheck} = props;
+  const { mood, intensity, thoughts, activity, dateToCheck } = props;
   return (
-    <Grid container>
-      <Card sx={{width:220,marginTop:20}}>
+    <Grid container justify="center">
+      <Card sx={{ width: 300, m: 1 }}>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             {dateToCheck}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Activity:{activity}
+            Activity:{activity}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Mood:{mood+""}
+            Mood:{mood + ""}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Intensity:{intensity+""}
+            Intensity:{intensity + ""}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-          Thoghts:{thoughts}
+            Thoghts:{thoughts}
           </Typography>
         </CardContent>
       </Card>
-      </Grid>
+    </Grid>
   )
 }
 
@@ -99,8 +98,8 @@ const Log = () => {
   let rows = [];
   try {
     for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j< data[i].mood.length; j++) {
-        if (data[i].mood[j] == "Happy"){
+      for (let j = 0; j < data[i].mood.length; j++) {
+        if (data[i].mood[j] == "Happy") {
           data[i].mood[j] = "Happy😊"
         }
         else if (data[i].mood[j] == "Sad") {
@@ -142,9 +141,21 @@ const Log = () => {
     <div>
       <Bg />
       <Head />
-      {data.map((data,id) => (
-        <MoodInfo key={id} {...data}/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      {data.map((data, id) => (
+        <MoodInfo key={id} {...data} />
       ))}
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <BottomNavigationBar />
     </div>
   );
