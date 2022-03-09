@@ -6,7 +6,15 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Cell } from "recharts";
+import {
+  BarChart,
+  Bar,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Cell,
+  LabelList,
+} from "recharts";
 import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
@@ -100,7 +108,16 @@ const theme = createTheme({
 const date = new Date();
 const minDate = new Date("2022-01-01T00:00:00.000");
 const maxDate = new Date("2022-12-31T00:00:00.000");
-const barColors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#84c78b", "#1f77b4", "#ff7f0e", "#2ca02c", "#84c78b"];
+const barColors = [
+  "#1f77b4",
+  "#ff7f0e",
+  "#2ca02c",
+  "#84c78b",
+  "#1f77b4",
+  "#ff7f0e",
+  "#2ca02c",
+  "#84c78b",
+];
 
 const Graph = () => {
   const { currentUser } = useContext(AuthContext);
@@ -136,7 +153,28 @@ const Graph = () => {
         params: { id: currentUser.uid, range: variables },
       });
 
-      setmoodCount(result.data.message);
+      const countResult = result.data.message.map((o) => {
+        if (o.mood == "Happy") {
+          o.emoji = "😊";
+        } else if (o.mood == "Stressed") {
+          o.emoji = "😣";
+        } else if (o.mood == "Sad") {
+          o.emoji = "😭";
+        } else if (o.mood == "Surprised") {
+          o.emoji = "😯";
+        } else if (o.mood == "Fearful") {
+          o.emoji = "😰";
+        } else if (o.mood == "Disgusted") {
+          o.emoji = "🤢";
+        } else if (o.mood == "Neutral") {
+          o.emoji = "😶";
+        } else if (o.mood == "Angry") {
+          o.emoji = "😡";
+        }
+        return o;
+      });
+
+      setmoodCount(countResult);
     };
 
     const fetchmoodIntense = async () => {
@@ -144,7 +182,27 @@ const Graph = () => {
         params: { id: currentUser.uid, range: variables },
       });
 
-      setmoodIntense(result.data.message);
+      const intensityResult = result.data.message.map((o) => {
+        if (o.mood == "Happy") {
+          o.emoji = "😊";
+        } else if (o.mood == "Stressed") {
+          o.emoji = "😣";
+        } else if (o.mood == "Sad") {
+          o.emoji = "😭";
+        } else if (o.mood == "Surprised") {
+          o.emoji = "😯";
+        } else if (o.mood == "Fearful") {
+          o.emoji = "😰";
+        } else if (o.mood == "Disgusted") {
+          o.emoji = "🤢";
+        } else if (o.mood == "Neutral") {
+          o.emoji = "😶";
+        } else if (o.mood == "Angry") {
+          o.emoji = "😡";
+        }
+        return o;
+      });
+      setmoodIntense(intensityResult);
     };
 
     const fetchgratitude = async () => {
@@ -160,18 +218,41 @@ const Graph = () => {
   };
 
   const handleSubmit = async (values) => {
+     
     if (values[0] == null || values[1] == null) {
       values[0] = moment(date).clone().startOf("month").format("M/D/YYYY");
 
       values[1] = moment(date).clone().endOf("month").format("MM/D/YYYY");
     }
     console.log(values);
+
     const fetchmoodCount = async () => {
       const result = await axios.get("http://localhost:4000/mood/", {
         params: { id: currentUser.uid, range: values },
       });
 
-      setmoodCount(result.data.message);
+      const countResult = result.data.message.map((o) => {
+        if (o.mood == "Happy") {
+          o.emoji = "😊";
+        } else if (o.mood == "Stressed") {
+          o.emoji = "😣";
+        } else if (o.mood == "Sad") {
+          o.emoji = "😭";
+        } else if (o.mood == "Surprised") {
+          o.emoji = "😯";
+        } else if (o.mood == "Fearful") {
+          o.emoji = "😰";
+        } else if (o.mood == "Disgusted") {
+          o.emoji = "🤢";
+        } else if (o.mood == "Neutral") {
+          o.emoji = "😶";
+        } else if (o.mood == "Angry") {
+          o.emoji = "😡";
+        }
+        return o;
+      });
+
+      setmoodCount(countResult);
     };
 
     const fetchmoodIntense = async () => {
@@ -179,7 +260,27 @@ const Graph = () => {
         params: { id: currentUser.uid, range: values },
       });
 
-      setmoodIntense(result.data.message);
+      const intensityResult = result.data.message.map((o) => {
+        if (o.mood == "Happy") {
+          o.emoji = "😊";
+        } else if (o.mood == "Stressed") {
+          o.emoji = "😣";
+        } else if (o.mood == "Sad") {
+          o.emoji = "😭";
+        } else if (o.mood == "Surprised") {
+          o.emoji = "😯";
+        } else if (o.mood == "Fearful") {
+          o.emoji = "😰";
+        } else if (o.mood == "Disgusted") {
+          o.emoji = "🤢";
+        } else if (o.mood == "Neutral") {
+          o.emoji = "😶";
+        } else if (o.mood == "Angry") {
+          o.emoji = "😡";
+        }
+        return o;
+      });
+      setmoodIntense(intensityResult);
     };
 
     const fetchgratitude = async () => {
@@ -201,6 +302,7 @@ const Graph = () => {
       </Routes>
     );
   }
+  console.log(moodIntense);
 
   return (
     <div>
@@ -249,9 +351,16 @@ const Graph = () => {
                 justify="center"
                 style={{ marginLeft: -30, marginTop: 35 }}
               >
-                <BarChart width={290} height={130} data={moodCount}>
+                <BarChart width={290} height={140} data={moodCount}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                  <XAxis dataKey="mood" textAnchor= "end"  verticalAnchor= "middle" interval={0} angle={-26.4} fontSize={12} />
+                  <XAxis
+                    dataKey="mood"
+                    textAnchor="end"
+                    verticalAnchor="middle"
+                    interval={0}
+                    angle={-26.4}
+                    fontSize={12}
+                  />
                   <YAxis />
                   <Bar dataKey="count" fill="#84c78b">
                     {moodCount.map((entry, index) => (
@@ -260,6 +369,7 @@ const Graph = () => {
                         fill={barColors[index % 20]}
                       />
                     ))}
+                    <LabelList dataKey="emoji" position="inside" />
                   </Bar>
                 </BarChart>
               </Grid>
@@ -274,7 +384,14 @@ const Graph = () => {
               >
                 <BarChart width={290} height={140} data={moodIntense}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                  <XAxis dataKey="mood" textAnchor= "end"  verticalAnchor= "middle" interval={0} angle={-26.4} fontSize={12} />
+                  <XAxis
+                    dataKey="mood"
+                    textAnchor="end"
+                    verticalAnchor="middle"
+                    interval={0}
+                    angle={-26.4}
+                    fontSize={12}
+                  />
                   <YAxis />
                   <Bar dataKey="average" fill="#84c78b">
                     {moodIntense.map((entry, index) => (
@@ -283,6 +400,7 @@ const Graph = () => {
                         fill={barColors[index % 20]}
                       />
                     ))}
+                    <LabelList dataKey="emoji" position="inside" />
                   </Bar>
                 </BarChart>
               </Grid>
