@@ -351,7 +351,7 @@ const Graph = () => {
                 justify="center"
                 style={{ marginLeft: -30, marginTop: 35 }}
               >
-                <BarChart width={290} height={130} data={moodCount}>
+                <BarChart width={290} height={140} data={moodCount}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
                   <XAxis
                     dataKey="mood"
