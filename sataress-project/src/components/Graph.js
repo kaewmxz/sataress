@@ -345,7 +345,7 @@ const Graph = () => {
             </LocalizationProvider>
 
             <GraphBox1 style={{ marginTop: 230, color: "red" }}>
-              <GraphBoxname1>นับอารมณ์</GraphBoxname1>
+              <GraphBoxname1>นับจำนวนอารมณ์</GraphBoxname1>
               <Grid
                 container
                 justify="center"
