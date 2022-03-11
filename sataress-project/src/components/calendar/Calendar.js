@@ -1,11 +1,9 @@
-import DateFnsUtils from "@date-io/date-fns";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import StaticDatePicker from "@mui/lab/StaticDatePicker";
 import { Paper, Grid } from "@material-ui/core";
-import { createMuiTheme } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/styles";
 import { makeStyles } from "@material-ui/core/styles";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import BottomNavigationBar from "../BottomNavigationBar ";
+import TextField from "@mui/material/TextField";
 import Header from "../Head";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
@@ -25,38 +23,38 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import moment from "moment";
 import axios from "axios";
 
-const materialTheme = createMuiTheme({
-  overrides: {
-    MuiPickersToolbar: {
-      toolbar: { backgroundColor: "#8bc34a"},
-    },
-    //bg calendar header
-    MuiPickersCalendarHeader: {
-      switchHeader: {
-        backgroundColor: "transparent",
-        color: "#69A454",
-      },
-      //day style
-      dayLabel: {
-        fontWeight: "bold",
-        padding: "2px",
-        fontFamily:"Roboto Slab, serif, Noto Sans Thai"
-      },
-      iconButton: {
-        color: "#69A454",
+const theme = createTheme({
+  components: {
+    // Name of the component
+
+    MuiPickerStaticWrapper: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          // fontFamily: '"Roboto Slab", serif',
+          backgroundColor: "transparent",
+        },
       },
     },
-    //bg calendar body
-    MuiPickersStaticWrapper: {
-      staticWrapperRoot: {
-        backgroundColor: "transparent",
+    MuiCalendarPicker: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          // fontFamily: '"Roboto Slab", serif, Noto Sans Thai',
+        },
       },
     },
-    MuiTypography: {
-      body1:{
-        fontFamily:"Roboto Slab, serif, Noto Sans Thai",
-      }
-    }
+    PrivatePickersFadeTransitionGroup: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          // fontFamily: '"Roboto Slab", serif, Noto Sans Thai',
+        },
+      },
+    },
   },
 });
 
@@ -139,6 +137,7 @@ export default function CustomCalendar() {
   const [neutralDay, setNeutralDay] = useState([]);
   const [angryDay, setAngryDay] = useState([]);
   const [disgustedDay, setDisgustedDay] = useState([]);
+  const [value, setValue] = React.useState(null);
   // console.log(today);
 
   useEffect(() => {
@@ -179,11 +178,12 @@ export default function CustomCalendar() {
   };
 
   const handleChange = (newDate) => {
+    console.log("hey");
     setDate(newDate);
     navigate("/CalendarLogs", { state: { date: newDate } });
   };
 
-  function getDayElement(day, selectedDate, isInCurrentMonth, dayComponent) {
+  function getDayElement(day, selectedDate, isInCurrentMonth) {
     //generate boolean
     const isHappy = happyDay.includes(day.getDate());
     const isSad = sadDay.includes(day.getDate());
@@ -197,16 +197,19 @@ export default function CustomCalendar() {
     const isToday =
       day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
     let dateTile;
-    if (isInCurrentMonth) {
+    if (isInCurrentMonth.outsideCurrentMonth == false) {
       //conditionally return appropriate Element of date tile.
       if (isHappy) {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
               {/* <WbSunnyIcon style={{ color: "orange" }} /> */}
-              <span role="img" aria-label="happy" style={{fontSize: '24px'}}>
+              <span role="img" aria-label="happy" style={{ fontSize: "24px" }}>
                 😊
               </span>
             </Grid>
@@ -217,9 +220,12 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="sad" style={{fontSize: '24px'}}>
+              <span role="img" aria-label="sad" style={{ fontSize: "24px" }}>
                 😭
               </span>
             </Grid>
@@ -230,9 +236,12 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="sad" style={{fontSize: '24px'}}> 
+              <span role="img" aria-label="sad" style={{ fontSize: "24px" }}>
                 😣
               </span>
             </Grid>
@@ -243,9 +252,16 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="surprised" style={{fontSize: '24px'}}>
+              <span
+                role="img"
+                aria-label="surprised"
+                style={{ fontSize: "24px" }}
+              >
                 😯
               </span>
             </Grid>
@@ -256,9 +272,16 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="fearful" style={{fontSize: '24px'}}>
+              <span
+                role="img"
+                aria-label="fearful"
+                style={{ fontSize: "24px" }}
+              >
                 😰
               </span>
             </Grid>
@@ -269,9 +292,16 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="disgusted" style={{fontSize: '24px'}}>
+              <span
+                role="img"
+                aria-label="disgusted"
+                style={{ fontSize: "24px" }}
+              >
                 🤢
               </span>
             </Grid>
@@ -282,9 +312,16 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="neutral" style={{fontSize: '24px'}}>
+              <span
+                role="img"
+                aria-label="neutral"
+                style={{ fontSize: "24px" }}
+              >
                 😶
               </span>
             </Grid>
@@ -295,9 +332,12 @@ export default function CustomCalendar() {
         dateTile = (
           <Paper
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            onClick={() => {
+              handleChange(day);
+            }}
           >
             <Grid item style={{ marginLeft: "6px", marginTop: "6px" }}>
-              <span role="img" aria-label="sad" style={{fontSize: '24px'}}>
+              <span role="img" aria-label="sad" style={{ fontSize: "24px" }}>
                 😡
               </span>
             </Grid>
@@ -329,44 +369,44 @@ export default function CustomCalendar() {
         </Paper>
       );
     }
+
     return dateTile;
   }
+
   return (
     <div>
       <Bg />
       <Header />
+
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Grid container justify="center" style={{ marginTop: 145 }}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <ThemeProvider theme={materialTheme}>
-              <DatePicker
-                disableToolbar={true}
-                minDate={minDate}
-                maxDate={maxDate}
-                value={selectedDate}
-                onChange={(newDate) => handleChange(newDate)}
-                onMonthChange={onPickerViewChange}
-                variant="static"
-                disableFuture={true}
-                // using our function
-                renderDay={(
-                  day,
-                  selectedDate,
-                  isInCurrentMonth,
-                  dayComponent
-                ) =>
-                  getDayElement(
-                    day,
-                    selectedDate,
-                    isInCurrentMonth,
-                    dayComponent
-                  )
-                }
-              />
-            </ThemeProvider>
-          </MuiPickersUtilsProvider>
+        <Grid container justify="center" style={{ marginTop: 160 }}>
+          <ThemeProvider theme={theme}>
+            <StaticDatePicker
+              displayStaticWrapperAs="desktop"
+              renderDay={(day, selectedDate, isInCurrentMonth) =>
+                getDayElement(day, selectedDate, isInCurrentMonth)
+              }
+              disableToolbar={true}
+              minDate={minDate}
+              maxDate={maxDate}
+              value={selectedDate}
+              onChange={(newDate) => console.log(newDate)}
+              onMonthChange={onPickerViewChange}
+              views={["day"]}
+              variant="static"
+              disableFuture={true}
+              renderInput={(params) => (
+                <TextField
+                  sx={{ fontFamily: "Roboto Slab, serif, Noto Sans Thai" }}
+                  fullWidth
+                  {...params}
+                />
+              )}
+            />
+          </ThemeProvider>
         </Grid>
       </LocalizationProvider>
+
       <BottomNavigationBar />
     </div>
   );
