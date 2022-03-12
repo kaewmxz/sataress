@@ -34,6 +34,10 @@ const Btn = withTheme(styled.div`
 text-align:center;
 `);
 
+const handleClick = (e) => {
+    console.log("hello")
+}
+
 const Boxbreathing = () => {
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
@@ -68,7 +72,7 @@ const Boxbreathing = () => {
                         </Typography>
                         <br/>
                         <Btn>
-                            <button style={{ fontSize: 18, color: "#FE440A" , fontFamily:'Roboto Slab, serif, Noto Sans Thai', border: "none", background:"none"}}>Play</button>
+                            <button onClick={(e) => handleClick(e)} style={{ cursor:"pointer",fontSize: 18, color: "#FE440A" , fontFamily:'Roboto Slab, serif, Noto Sans Thai', border: "none", background:"none"}}>Play</button>
                         </Btn>
                         <br/>
                         <br/>
