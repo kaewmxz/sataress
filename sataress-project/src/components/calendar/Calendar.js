@@ -201,20 +201,17 @@ export default function CustomCalendar() {
       //conditionally return appropriate Element of date tile.
       if (isHappy) {
         dateTile = (
-          <Paper
+          <div
             className={isToday ? classes.todayPaper : classes.normalDayPaper}
             onClick={() => {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              {/* <WbSunnyIcon style={{ color: "orange" }} /> */}
-              <span role="img" aria-label="happy" style={{ fontSize: "24px" }}>
-                😊
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/happy.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
-          </Paper>
+          </div>
         );
       } else if (isSad) {
         dateTile = (
@@ -224,10 +221,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="sad" style={{ fontSize: "24px" }}>
-                😭
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/sad.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
@@ -240,10 +235,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span role="img" aria-label="sad" style={{ fontSize: "24px" }}>
-                😣
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/stressed.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
@@ -256,14 +249,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span
-                role="img"
-                aria-label="surprised"
-                style={{ fontSize: "24px" }}
-              >
-                😯
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/surprised.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
@@ -276,14 +263,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span
-                role="img"
-                aria-label="fearful"
-                style={{ fontSize: "24px" }}
-              >
-                😰
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/fearful.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
@@ -296,14 +277,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span
-                role="img"
-                aria-label="disgusted"
-                style={{ fontSize: "24px" }}
-              >
-                🤢
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/disgusted.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
@@ -316,14 +291,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "1.2px", marginTop: "0.5px" }}>
-              <span
-                role="img"
-                aria-label="neutral"
-                style={{ fontSize: "24px" }}
-              >
-                😶
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/neutral.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
@@ -336,10 +305,8 @@ export default function CustomCalendar() {
               handleChange(day);
             }}
           >
-            <Grid item style={{ marginLeft: "6px", marginTop: "6px" }}>
-              <span role="img" aria-label="sad" style={{ fontSize: "24px" }}>
-                😡
-              </span>
+            <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
+              <img src={"/image/angry.png"} width={37} height={37} />
             </Grid>
             <Grid item>{/* {day.getDate()} */}</Grid>
           </Paper>
