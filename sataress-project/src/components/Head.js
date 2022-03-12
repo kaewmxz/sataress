@@ -20,7 +20,7 @@ const Head = withTheme(styled.div`
 
   const Name = withTheme(styled.div`
     position: absolute;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Source Serif Pro', serif;
     font-style: normal;
     top: 60px;
     ${(props) => props.theme.breakpoints.up("xs")} {
@@ -44,69 +44,6 @@ const Head = withTheme(styled.div`
       right: 130px;
     }
   `);
-
-  // const Fire = withTheme(styled.div`
-  //   position: absolute;
-  //   width: 23px;
-  //   height: 30px;
-  //   top: 75px;
-  //   ${(props) => props.theme.breakpoints.up("xs")} {
-  //     right: 110px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("sm")} {
-  //     right: 138px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("md")} {
-  //     right: 180px;
-  //     margin-top: 5px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("lg")} {
-  //     right: 230px;
-  //     margin-top: 10px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("xl")} {
-  //     right: 265px;
-  //     margin-top: 20px;
-  //   }
-  // `);
-
-  // const Streak = withTheme(styled.div`
-  //   position: absolute;
-  //   top: 85px;
-  //   font-family: Roboto;
-  //   font-style: normal;
-  //   font-weight: bold;
-  //   line-height: 12px;
-  //   text-align: center;
-  //   ${(props) => props.theme.breakpoints.up("xs")} {
-  //     right: 40px;
-  //     font-size: 10px;
-  //     width: 68.94px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("sm")} {
-  //     font-size: 10px;
-  //     width: 90px;
-  //     right: 55px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("md")} {
-  //     font-size: 14px;
-  //     margin-top: 5px;
-  //     width: 135px;
-  //     right: 60px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("lg")} {
-  //     font-size: 16px;
-  //     margin-top: 10px;
-  //     width: 137px;
-  //     right: 105px;
-  //   }
-  //   ${(props) => props.theme.breakpoints.up("xl")} {
-  //     font-size: 20px;
-  //     margin-top: 20px;
-  //     width: 188px;
-  //     right: 100px;
-  //   }
-  // `);
 
   const Logout = withTheme(styled.div`
     position: absolute;
@@ -154,10 +91,6 @@ export default function Header() {
         </Profile>
       </Head>
       <Name>Hi, {name}</Name>
-      {/* <Fire>
-        <img src="/image/fire.png" width="23px"></img>
-      </Fire>
-      <Streak>Current Streak</Streak> */}
       <Logout>
         <PopupSignout></PopupSignout>
       </Logout>

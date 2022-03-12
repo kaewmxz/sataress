@@ -123,14 +123,12 @@ const Log = () => {
       numeric: false,
       disablePadding: true,
       label: 'Date',
-      fontFamily:'Roboto',
     },
     {
       id: 'Gratitude',
       numeric: true,
       disablePadding: false,
       label: 'Gratitude',
-      fontFamily:'Roboto',
     },
   ];
   
@@ -150,7 +148,7 @@ const Log = () => {
             <TableCell
               key={headCell.id}
               align="left"
-              sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}
+              sx = {{fontFamily:'Source Serif Pro, serif'}}
             >
                 {headCell.label}
                 {orderBy === headCell.id ? (
@@ -198,7 +196,7 @@ const Log = () => {
       >
         {numSelected > 0 ? (
           <Typography
-            sx={{ flex: '1 1 100%',fontFamily: "Roboto slab" }}
+            sx={{ flex: '1 1 100%',fontFamily: 'Roboto Slab, serif, Noto Sans Thai' }}
             color="inherit"
             variant="subtitle1"
             component="div"
@@ -207,7 +205,7 @@ const Log = () => {
           </Typography>
         ) : (
           <Typography
-            sx={{ flex: '1 1 100%' ,fontFamily: "Roboto slab"}}
+            sx={{ flex: '1 1 100%' ,fontFamily: 'Roboto Slab, serif, Noto Sans Thai'}}
             variant="h6"
             id="tableTitle"
             component="div"
@@ -298,7 +296,7 @@ const Log = () => {
                           tabIndex={-1}
                           key={row.date}
                           selected={isItemSelected}
-                          sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}
+                          sx = {{fontFamily:'Source Serif Pro, serif'}}
                         >
                           <TableCell padding="checkbox">
                             <Checkbox
@@ -314,11 +312,11 @@ const Log = () => {
                             id={labelId}
                             scope="row"
                             padding="none"
-                            sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}
+                            sx = {{fontFamily:'Source Serif Pro, serif'}}
                           >
                             {row.date}
                           </TableCell>
-                          <TableCell sx = {{fontFamily:'Roboto Slab, serif, Noto Sans Thai'}}>{row.gratitude}</TableCell>
+                          <TableCell sx = {{fontFamily:'Source Serif Pro, serif'}}>{row.gratitude}</TableCell>
                         </TableRow>
                       );
                     })}

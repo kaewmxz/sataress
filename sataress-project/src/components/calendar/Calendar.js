@@ -26,7 +26,6 @@ import axios from "axios";
 const theme = createTheme({
   components: {
     // Name of the component
-
     MuiPickerStaticWrapper: {
       styleOverrides: {
         // Name of the slot
