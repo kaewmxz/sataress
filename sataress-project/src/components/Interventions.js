@@ -24,13 +24,11 @@ const Bg = withTheme(styled.div`
 
 const Title = withTheme(styled.div`
 position: absolute;
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
+font-family: "Roboto Slab, serif, Noto Sans Thai";
 line-height: 41px;
 color: #000000;
 ${(props) => props.theme.breakpoints.only("xs")} {
-  font-size: 32px;
+  font-size: 26px;
 }
 ${(props) => props.theme.breakpoints.up("sm")} {
   font-size: 32px;
@@ -84,7 +82,7 @@ const Interventions = () => {
       <Header />
       <Box>
       <Grid container justify="center" direction = "row">
-        <Title style={{ marginTop: 135 }}>Interventions</Title>
+        <Title style={{ marginTop: 135, fontFamily:'Roboto Slab, serif, Noto Sans Thai' }}>Interventions</Title>
           <Boxbreathing style={{ marginTop:40}}>
             <Link to="/Boxbreathing">
               <img src="/image/Boxb.png" width="311px" height="228px" />

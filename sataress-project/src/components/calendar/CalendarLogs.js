@@ -33,7 +33,7 @@ const MoodInfo = (props) => {
   const {mood, intensity, thoughts, activity, date} = props;
   return (
     <Grid container justify="center" >
-      <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#F6ECEC"}}>
+      <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
             {date}

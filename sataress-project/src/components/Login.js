@@ -30,7 +30,7 @@ position: relative;
 width: 240px;
 bottom:40px;
 left: 5px;
-font-family: Roboto Mono;
+font-family: Roboto Slab, serif, Noto Sans Thai';
 font-style: bold;
 font-weight: 500;
 font-size: 18px;
