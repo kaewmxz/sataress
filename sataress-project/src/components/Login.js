@@ -25,26 +25,9 @@ const Logo = withTheme(styled.div`
   position: relative;
 `);
 
-const Text = withTheme(styled.div`
-position: relative;
-width: 240px;
-bottom:40px;
-left: 5px;
-font-family: Roboto Slab, serif, Noto Sans Thai';
-font-style: bold;
-font-weight: 500;
-font-size: 18px;
-text-align: right;
-color: #FFFFFF;
-`);
-
-const GButton = withTheme(styled.div`
-    position: relative;
-`);
 
 
 const Login = () => {
-  const theme = useTheme();
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
 
@@ -67,14 +50,9 @@ const Login = () => {
       <Box sx = {{width:370, height:600,mx:"auto", paddingY:"auto"}}>
         <Grid container justifyContent="center">
             <Logo>
-              <img src="/image/Logo.png" width="320" />
+              <img src="/image/logo.png" width="320" />
             </Logo>
-            <Text>“Your illness is not your identity.
-              Your chemistry is not your character.”
-               — Rick Warren</Text>
-            <GButton>
-              <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
-            </GButton>
+              <GoogleButton onClick={googleLogin} style = {{position:"relative"}}>Sign in with Google</GoogleButton>
             </Grid>
       </Box>
     </div >
