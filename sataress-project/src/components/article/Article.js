@@ -46,7 +46,7 @@ const Article = () => {
         image="../image/ar1.png"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Yoga
+        ดูแลสุขภาพจิตของคุณด้วย 5 ขั้นตอน
         </Typography>
         </Link>
     </Card>
@@ -58,7 +58,7 @@ const Article = () => {
         image="../image/ar2.png"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Yoga2
+        แผนการคลายเครียดง่ายๆ ที่โต๊ะทำงานสามารถทำได้ 4 ขั้นตอน
         </Typography>
     </Link>
     </Card>
@@ -71,7 +71,7 @@ const Article = () => {
         alt="green iguana"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Yoga3
+        แค่ยิ้มและหัวเราะ ก็ทำให้ร่างกายผ่อนคลาย สุขภาพจิตดีขึ้น
         </Typography>
         </Link>
     </Card>
