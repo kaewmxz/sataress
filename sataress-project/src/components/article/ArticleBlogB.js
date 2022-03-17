@@ -58,7 +58,7 @@ const ArticleBlogB = () => {
                     onClick = {() => handleClick()}
                     sx={{ fontSize: 15, mt: 15, ml: -20, position: "absolute", cursor:"pointer" }} color="gray" />
                 <Image style={{ marginTop: 130 }}>
-                    <img src="/image/Boxb.png" width="311px" height="228px" />
+                    <img src="/image/ar2.png" width="311px" height="228px" />
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
