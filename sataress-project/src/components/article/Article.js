@@ -38,39 +38,36 @@ const Article = () => {
     <div>
       <Bg />
       <Header />
-
-      <Card sx={{width: 345,mt:18,mx:"auto"}}>
+      <Card sx={{width: 345,mt:18,mx:"auto",boxShadow:"0px 3px 3px #92FC9C;"}}>
       <Link to ="/ArticleBlog-1">
       <CardMedia
         component="img"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
+        image="../image/ar1.png"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
         ดูแลสุขภาพจิตของคุณด้วย 5 ขั้นตอน
         </Typography>
         </Link>
     </Card>
-    <Card sx={{ width: 345,mt:3,mx:"auto"}}>
+    <Card sx={{ width: 345,mt:3,mx:"auto",boxShadow:"0px 3px 3px #92FC9C;"}}>
     <Link to ="/ArticleBlog-2">
       <CardMedia
         component="img"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
+        image="../image/ar2.png"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
         แผนการคลายเครียดง่ายๆ ที่โต๊ะทำงานสามารถทำได้ 4 ขั้นตอน
         </Typography>
     </Link>
     </Card>
-    <Card sx={{ width: 345,mt:3,mx:"auto",mb:11}}>
+    <Card sx={{ width: 345,mt:3,mx:"auto",mb:11,boxShadow:"0px 3px 3px #92FC9C;"}}>
     <Link to ="/ArticleBlog-3">
       <CardMedia
         component="img"
         height="140"
-        image="/image/Boxb.png"
+        image="../image/ar3.png"
         alt="green iguana"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
@@ -78,7 +75,6 @@ const Article = () => {
         </Typography>
         </Link>
     </Card>
-
       <BottomNavigationBar/>
     </div>
   );

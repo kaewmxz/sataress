@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import "./style.css";
 import Messages from "./Messages";
-import { Grid, Container, Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import CancelIcon from "@mui/icons-material/Cancel";
