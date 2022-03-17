@@ -28,9 +28,6 @@ const Bg = withTheme(styled.div`
 
 const Image = withTheme(styled.div`
 position: absolute;
-width: 320.7px;
-height: 182px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `);
 
 
@@ -58,8 +55,9 @@ const ArticleBlogB = () => {
                     onClick = {() => handleClick()}
                     sx={{ fontSize: 15, mt: 15, ml: -20, position: "absolute", cursor:"pointer" }} color="gray" />
                 <Image style={{ marginTop: 130 }}>
-                    <img src="/image/Boxb.png" width="311px" height="228px" />
+                    <img src="/image/ar2.png" width="311px" height="228px" />
                 </Image>
+                <br/>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, CardContent } from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Header from "../Head";
@@ -38,16 +38,18 @@ const Article = () => {
     <div>
       <Bg />
       <Header />
-      <Card sx={{width: 345,mt:18,mx:"auto",boxShadow:"0px 3px 3px #92FC9C;"}}>
+      <Card sx={{width: 345,mt:18,mx:"auto",boxShadow:"0px 3px 3px #92FC9C"}}>
       <Link to ="/ArticleBlog-1">
       <CardMedia
         component="img"
         height="140"
         image="../image/ar1.png"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+      <CardContent>
+      <Typography gutterBottom variant="h8" component="div"  color="text.secondary" style={{marginLeft:40}}>
         ดูแลสุขภาพจิตของคุณด้วย 5 ขั้นตอน
         </Typography>
+      </CardContent>
         </Link>
     </Card>
     <Card sx={{ width: 345,mt:3,mx:"auto",boxShadow:"0px 3px 3px #92FC9C;"}}>
@@ -57,9 +59,11 @@ const Article = () => {
         height="140"
         image="../image/ar2.png"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-        แผนการคลายเครียดง่ายๆ ที่โต๊ะทำงานสามารถทำได้ 4 ขั้นตอน
+      <CardContent>
+      <Typography gutterBottom variant="h8" component="div"  color="text.secondary" style={{marginLeft:40}}>
+      แผนการคลายเครียดง่ายๆ ที่โต๊ะทำงานสามารถทำได้ 4 ขั้นตอน
         </Typography>
+      </CardContent>
     </Link>
     </Card>
     <Card sx={{ width: 345,mt:3,mx:"auto",mb:11,boxShadow:"0px 3px 3px #92FC9C;"}}>
@@ -69,9 +73,11 @@ const Article = () => {
         height="140"
         image="../image/ar3.png"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-        แค่ยิ้มและหัวเราะ ก็ทำให้ร่างกายผ่อนคลาย สุขภาพจิตดีขึ้น
+       <CardContent>
+      <Typography gutterBottom variant="h8" component="div"  color="text.secondary" style={{marginLeft:40}}>
+      แค่ยิ้มและหัวเราะ ก็ทำให้ร่างกายผ่อนคลาย สุขภาพจิตดีขึ้น
         </Typography>
+      </CardContent>
         </Link>
     </Card>
       <BottomNavigationBar/>
