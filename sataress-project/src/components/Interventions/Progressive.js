@@ -53,10 +53,10 @@ const Progressive = () => {
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+                        <Typography gutterBottom variant="h5" component="div" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
                             Progressive muscle relaxation
                         </Typography>
-                        <Typography variant="h6" color="text.secondary" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+                        <Typography variant="h6" color="text.secondary" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
                             Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit.
                             Donec ut maximus sem.

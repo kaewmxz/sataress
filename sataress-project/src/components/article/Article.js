@@ -47,7 +47,7 @@ const Article = () => {
         image="/static/images/cards/contemplative-reptile.jpg"
         alt="green iguana"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
+        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Yoga
         </Typography>
         </Link>
@@ -60,7 +60,7 @@ const Article = () => {
         image="/static/images/cards/contemplative-reptile.jpg"
         alt="green iguana"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
+        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Yoga2
         </Typography>
     </Link>
@@ -73,7 +73,7 @@ const Article = () => {
         image="/image/Boxb.png"
         alt="green iguana"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
+        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Yoga3
         </Typography>
         </Link>
