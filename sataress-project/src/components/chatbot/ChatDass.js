@@ -72,6 +72,7 @@ const Chat = () => {
   const handleMessageSubmit = async (message) => {
     const data = {
       message,
+      userId: currentUser.uid,
     };
     try {
       const response = await axios.post("http://localhost:4000/dass-21", data);
@@ -257,7 +258,7 @@ const Chat = () => {
         replyMap["21"];
       replyMap["date"] = dateTime.join("/");
       replyMap["id"] = currentUser.uid;
-      // save result 
+      // save result
       axios
         .post("http://localhost:4000/dass-result", replyMap)
         .catch((error) => {

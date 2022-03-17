@@ -12,8 +12,11 @@ import Log from './components/Log';
 import Boxbreathing from './components/Interventions/Boxbreathing';
 import Progressive from './components/Interventions/Progressive';
 import Graph from './components/Graph';
-import Article from './components/Article'
+import Article from './components/article/Article'
 import CalendarLogs from './components/calendar/CalendarLogs'
+import ArticleBlogA from './components/article/ArticleBlogA';
+import ArticleBlogB from './components/article/ArticleBlogB';
+import ArticleBlogC from './components/article/ArticleBlogC';
 
 function App() {
 
@@ -33,6 +36,9 @@ function App() {
           <Route exact path="/Article" element={<Article />} />
           <Route exact path="/Log" element={<Log />} />
           <Route exact path="/CalendarLogs" element={<CalendarLogs />} />
+          <Route exact path="/ArticleBlog-1" element={<ArticleBlogA />} />
+          <Route exact path="/ArticleBlog-2" element={<ArticleBlogB />} />
+          <Route exact path="/ArticleBlog-3" element={<ArticleBlogC />} />
         </Routes>
       </Router>
     </AuthProvider>

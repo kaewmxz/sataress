@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import GoogleButton from "react-google-button";
 import { withTheme } from "@material-ui/styles";
 import styled from "styled-components";
-import { useTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
@@ -19,12 +18,12 @@ const Bg = withTheme(styled.div`
     rgba(254, 68, 10, 0.3) 44.27%
   );
   backdrop-filter: blur(4px);
+  z-index:-1;
 `);
 
 const Logo = withTheme(styled.div`
   position: relative;
 `);
-
 
 
 const Login = () => {

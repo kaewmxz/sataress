@@ -1,34 +1,31 @@
 const dialogflow = require("@google-cloud/dialogflow");
 
 const dialogflowConfig = require("./configs/dialogflowConfig");
-const uuid = require('uuid');
+const uuid = require("uuid");
 const projectId = dialogflowConfig.project_id;
 const configuration = {
   credentials: {
     private_key: dialogflowConfig.private_key,
-    client_email: dialogflowConfig.client_email
-  }
+    client_email: dialogflowConfig.client_email,
+  },
 };
 
 const sessionId = uuid.v4();
 const languageCode = "th";
 const sessionClient = new dialogflow.SessionsClient(configuration);
 
-const sessionPath = sessionClient.projectAgentSessionPath(
-  projectId,
-  sessionId
-);
+async function talkToChatbot(message, userId) {
+  const sessionPath = sessionClient.projectAgentSessionPath(projectId, userId);
 
-async function talkToChatbot(message) {
   console.log("text " + message);
   const botRequest = {
     session: sessionPath,
     queryInput: {
       text: {
         text: message,
-        languageCode
-      }
-    }
+        languageCode,
+      },
+    },
   };
 
   const response = await sessionClient
