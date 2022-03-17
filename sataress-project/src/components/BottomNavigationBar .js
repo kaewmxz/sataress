@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import SelfImprovementIcon from '@mui/icons-material/SelfImprovement';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import TodayIcon from '@mui/icons-material/Today';
 import Fab from '@mui/material/Fab';
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -41,7 +41,7 @@ return (
               </Fab>
             </Link>
             <Link to="/Log">
-              <MenuBookIcon color="Black"
+              <ListAltIcon color="Black"
                 sx={{ fontSize: 35, mx: 2, mt: 1.5 }} />
             </Link>
             <Link to="/Calendar">

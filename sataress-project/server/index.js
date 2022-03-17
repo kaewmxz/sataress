@@ -32,9 +32,9 @@ app.use(express.static("build"));
 
 app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
+  const id = req.body.userId;
   console.log("message " + message);
-
-  talkToChatbot(message)
+  talkToChatbot(message, id)
     .then((response) => {
       res.send({ message: response });
     })
@@ -48,9 +48,10 @@ app.post("/moodtrack", jsonParser, urlEncoded, function (req, res, next) {
 
 app.post("/dass-21", jsonParser, urlEncoded, function (req, res, next) {
   const message = req.body.message;
+  const id = req.body.userId;
   console.log("message " + message);
 
-  talkDASS(message)
+  talkDASS(message, id)
     .then((response) => {
       res.send({ message: response });
     })

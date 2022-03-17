@@ -38,8 +38,8 @@ const Article = () => {
     <div>
       <Bg />
       <Header />
-      <Grid container justify="center" direction = "row">
-      <Card sx={{ width: 345, mt:17, mx:0, p:0}}>
+
+      <Card sx={{width: 345,mt:18,mx:"auto"}}>
       <Link to ="/ArticleBlog-1">
       <CardMedia
         component="img"
@@ -52,7 +52,7 @@ const Article = () => {
         </Typography>
         </Link>
     </Card>
-    <Card sx={{ width: 345, mt:2, mx:0, p:0}}>
+    <Card sx={{ width: 345,mt:3,mx:"auto"}}>
     <Link to ="/ArticleBlog-2">
       <CardMedia
         component="img"
@@ -65,7 +65,7 @@ const Article = () => {
         </Typography>
     </Link>
     </Card>
-    <Card sx={{ width: 345, mt:2, mx:0, p:0, mb:11 }}>
+    <Card sx={{ width: 345,mt:3,mx:"auto",mb:11}}>
     <Link to ="/ArticleBlog-3">
       <CardMedia
         component="img"
@@ -78,7 +78,7 @@ const Article = () => {
         </Typography>
         </Link>
     </Card>
-    </Grid>
+
       <BottomNavigationBar/>
     </div>
   );
