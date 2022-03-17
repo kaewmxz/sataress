@@ -45,7 +45,7 @@ const Article = () => {
         height="140"
         image="../image/ar1.png"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
+        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Yoga
         </Typography>
         </Link>
@@ -57,7 +57,7 @@ const Article = () => {
         height="140"
         image="../image/ar2.png"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
+        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Yoga2
         </Typography>
     </Link>
@@ -70,7 +70,7 @@ const Article = () => {
         image="../image/ar3.png"
         alt="green iguana"
       />
-        <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
+        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Yoga3
         </Typography>
         </Link>

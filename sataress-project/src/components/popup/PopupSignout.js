@@ -58,8 +58,8 @@ return (
       open={open}
       onClose={handleClose}>
       <ThemeProvider theme={theme}>
-        <DialogTitle color="secondary">
-          {"ต้องการออกจากระบบหรือไม่"}
+        <DialogTitle color="secondary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          ต้องการออกจากระบบหรือไม่
         </DialogTitle>
       </ThemeProvider>
       <DialogActions>
@@ -74,8 +74,8 @@ return (
         <Stack spacing = {1} mr = {6} >
             <Button onClick={signOutHandle} variant="contained" color="Yesbutton"
             sx ={{marginTop:-2}}
-            style = {{minWidth:'150px'}}>ใช่</Button>
-            <Button onClick={handleClose} variant="contained" color="Nobutton">ไม่</Button>
+            style = {{minWidth:'150px', fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}>ใช่</Button>
+            <Button onClick={handleClose} variant="contained" color="Nobutton" style = {{fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}>ไม่</Button>
           </Stack>
         </Box>
         </ThemeProvider>

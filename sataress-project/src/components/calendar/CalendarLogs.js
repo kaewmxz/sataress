@@ -35,19 +35,19 @@ const MoodInfo = (props) => {
     <Grid container justify="center" >
       <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          <Typography gutterBottom variant="h6" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
             {date}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Mood:{mood+""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Intensity:{intensity+""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
           Thoghts:{thoughts}
           </Typography>
         </CardContent>

@@ -57,18 +57,11 @@ const Boxbreathing = () => {
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
+                        <Typography gutterBottom variant="h5" component="div" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
                             Box breathing
                         </Typography>
-                        <Typography variant="h6" color="text.secondary" fontFamily='Roboto Slab, serif, Noto Sans Thai'>
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.
-                            Donec ut maximus sem.
-                            Vivamus condimentum tort
-                            or non neque condimentum,
-                            sed dictum purus hendrerit.
-                            Donec a nunc pulvinar, porta
-                            neque a, .
+                        <Typography variant="h6" color="text.secondary" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
+                           สวัสดีชาวไทย
                         </Typography>
                         <br/>
                         <Btn>

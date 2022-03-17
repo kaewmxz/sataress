@@ -20,7 +20,7 @@ const Head = withTheme(styled.div`
 
   const Name = withTheme(styled.div`
     position: absolute;
-    font-family: 'Source Serif Pro', serif;
+    font-family: 'Source Serif Pro, serif, Noto Sans Thai';
     font-style: normal;
     top: 60px;
     ${(props) => props.theme.breakpoints.up("xs")} {
