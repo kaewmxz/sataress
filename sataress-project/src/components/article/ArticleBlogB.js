@@ -9,6 +9,9 @@ import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -30,7 +33,14 @@ height: 182px;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `);
 
+
+
 const ArticleBlogB = () => {
+    let navigate = useNavigate();
+    const handleClick = () => {
+        console.log("error")
+        navigate("/Article");
+    };
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
         return (
@@ -44,6 +54,9 @@ const ArticleBlogB = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
+            <ArrowBackIosNewIcon
+                    onClick = {() => handleClick()}
+                    sx={{ fontSize: 15, mt: 15, ml: -20, position: "absolute", cursor:"pointer" }} color="gray" />
                 <Image style={{ marginTop: 130 }}>
                     <img src="/image/Boxb.png" width="311px" height="228px" />
                 </Image>
