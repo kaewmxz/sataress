@@ -49,9 +49,9 @@ const Login = () => {
       <Box sx = {{width:370, height:600,mx:"auto", paddingY:"auto"}}>
         <Grid container justifyContent="center">
             <Logo>
-              <img src="/image/logo.png" height="300"/>
+              <img src="/image/logo.png" width="320" />
             </Logo>
-            <GoogleButton style={{position:"relative"}} onClick={googleLogin}>Sign in with Google</GoogleButton>
+              <GoogleButton onClick={googleLogin} style = {{position:"relative"}}>Sign in with Google</GoogleButton>
             </Grid>
       </Box>
     </div >
