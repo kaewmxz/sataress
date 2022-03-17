@@ -38,8 +38,8 @@ const Article = () => {
     <div>
       <Bg />
       <Header />
-      <Grid container justify="center" direction = "row">
-      <Card sx={{ width: 345, mt:17, mx:0, p:0}}>
+      <Grid container justify="center">
+      <Card sx={{width: 345, mt:17, mx:0, p:0}}>
       <Link to ="/ArticleBlog-1">
       <CardMedia
         component="img"
