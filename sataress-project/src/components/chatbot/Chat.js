@@ -67,7 +67,9 @@ const Chat = () => {
   const handleMessageSubmit = async (message) => {
     const data = {
       message,
+      userId : currentUser.uid,
     };
+    console.log(data)
     try {
       const response = await axios.post(
         "http://localhost:4000/moodtrack",
@@ -146,7 +148,17 @@ const Chat = () => {
     } else if (reply.action == "Stressed") {
       mood.push("Stressed");
     } else if (reply.action == "Rate") {
-      intensity.push(reply.parameters.fields.number.numberValue);
+      if (reply.parameters.fields.number.numberValue < 1){
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+      else if (reply.parameters.fields.number.numberValue > 10){
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+      else{
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
     } else if (reply.action == "End") {
       const date = new Date();
       const dateTime = [
@@ -170,7 +182,6 @@ const Chat = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log("error")
     const message = {
       text: currentMessage,
       isBot: false,
