@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid, Container } from '@material-ui/core';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import BottomNavigationBar from "./BottomNavigationBar ";
-import Header from "./Head";
-import { AuthContext } from "./Auth";
+import BottomNavigationBar from "../BottomNavigationBar ";
+import Header from "../Head";
+import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
@@ -40,6 +40,7 @@ const Article = () => {
       <Header />
       <Grid container justify="center" direction = "row">
       <Card sx={{ width: 345, mt:17, mx:0, p:0}}>
+      <Link to ="/ArticleBlog-1">
       <CardMedia
         component="img"
         height="140"
@@ -49,8 +50,10 @@ const Article = () => {
         <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
           Yoga
         </Typography>
+        </Link>
     </Card>
     <Card sx={{ width: 345, mt:2, mx:0, p:0}}>
+    <Link to ="/ArticleBlog-2">
       <CardMedia
         component="img"
         height="140"
@@ -58,19 +61,22 @@ const Article = () => {
         alt="green iguana"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
-          Boxing
+          Yoga2
         </Typography>
+    </Link>
     </Card>
     <Card sx={{ width: 345, mt:2, mx:0, p:0, mb:11 }}>
+    <Link to ="/ArticleBlog-3">
       <CardMedia
         component="img"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image="/image/Boxb.png"
         alt="green iguana"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily="Roboto Slab, serif, Noto Sans Thai">
-          Muay Thai
+          Yoga3
         </Typography>
+        </Link>
     </Card>
     </Grid>
       <BottomNavigationBar/>

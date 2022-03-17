@@ -205,7 +205,7 @@ const Chat = () => {
             <img
               src="../image/transparent_bg.png"
               width={70}
-              style={{ marginLeft: -215, marginTop: 5, position: "relative" }}
+              style={{ marginLeft: -215, marginTop: 15, position: "relative" }}
             />
             <Text>Nong Krati</Text>
             <Link to="/">

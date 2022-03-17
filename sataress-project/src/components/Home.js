@@ -11,7 +11,7 @@ import { getAuth, getRedirectResult } from "firebase/auth";
 import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -88,7 +88,7 @@ const Home = () => {
         const result = await axios.get("http://localhost:4000/user-firstTime", {
           params: { id: currentUser.uid },
         });
-        console.log(result);
+        // console.log(result);
         try {
           setFirstTime(result.data.message[0].firstTime);
         } catch {
@@ -139,7 +139,7 @@ const Home = () => {
           const date2 = new Date();
           const diffTime = Math.abs(date2 - date1);
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-          console.log(diffDays);
+          // console.log(diffDays);
           if (diffDays > 13) {
             //navigate to DASS-21
             navigate("/DASS21");
@@ -162,7 +162,7 @@ const Home = () => {
           {/* Calendar card */}
 
           <Box component="span">
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Calendar>
                 <Link to="/Calendar">
                   <img

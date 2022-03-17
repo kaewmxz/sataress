@@ -75,7 +75,6 @@ const Boxbreathing = () => {
                             <button onClick={(e) => handleClick(e)} style={{ cursor:"pointer",fontSize: 18, color: "#FE440A" , fontFamily:'Roboto Slab, serif, Noto Sans Thai', border: "none", background:"none"}}>Play</button>
                         </Btn>
                         <br/>
-                        <br/>
                     </CardContent>
                 </Card>
             </Grid>
