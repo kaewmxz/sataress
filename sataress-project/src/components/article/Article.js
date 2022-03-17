@@ -68,7 +68,6 @@ const Article = () => {
         component="img"
         height="140"
         image="../image/ar3.png"
-        alt="green iguana"
       />
         <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
         แค่ยิ้มและหัวเราะ ก็ทำให้ร่างกายผ่อนคลาย สุขภาพจิตดีขึ้น
