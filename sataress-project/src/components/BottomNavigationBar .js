@@ -8,7 +8,6 @@ import Fab from '@mui/material/Fab';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
-import { makeStyles } from '@mui/styles';
 
 const theme = createTheme({
   palette: {

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import GoogleButton from "react-google-button";
 import { withTheme } from "@material-ui/styles";
 import styled from "styled-components";
-import { useTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
@@ -19,32 +18,15 @@ const Bg = withTheme(styled.div`
     rgba(254, 68, 10, 0.3) 44.27%
   );
   backdrop-filter: blur(4px);
+  z-index:-1;
 `);
 
 const Logo = withTheme(styled.div`
   position: relative;
 `);
 
-const Text = withTheme(styled.div`
-position: relative;
-width: 240px;
-bottom:40px;
-left: 5px;
-font-family: Roboto Slab, serif, Noto Sans Thai';
-font-style: bold;
-font-weight: 500;
-font-size: 18px;
-text-align: right;
-color: #FFFFFF;
-`);
-
-const GButton = withTheme(styled.div`
-    position: relative;
-`);
-
 
 const Login = () => {
-  const theme = useTheme();
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
 
@@ -67,14 +49,9 @@ const Login = () => {
       <Box sx = {{width:370, height:600,mx:"auto", paddingY:"auto"}}>
         <Grid container justifyContent="center">
             <Logo>
-              <img src="/image/Logo.png" width="320" />
+              <img src="/image/logo.png" height="300"/>
             </Logo>
-            <Text>“Your illness is not your identity.
-              Your chemistry is not your character.”
-               — Rick Warren</Text>
-            <GButton>
-              <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
-            </GButton>
+            <GoogleButton style={{position:"relative"}} onClick={googleLogin}>Sign in with Google</GoogleButton>
             </Grid>
       </Box>
     </div >
