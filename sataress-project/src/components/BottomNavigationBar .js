@@ -27,12 +27,12 @@ return (
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={10}>
           <BottomNavigation style = {{ boxShadow: "inset 0px 4px 4px rgba(251, 24, 24, 0.36)", borderRadius: 5, background: "#FFE9E9"}}>
             <Link to="/">
-              <HomeIcon color="Black"
-                sx={{ fontSize: 35, mx: 2, mt: 1.5 }} />
+              <img src = "../image/home.png" width="30"
+                style={{marginTop:13,marginLeft:15,marginRight:15}} />
             </Link>
             <Link to="/Interventions">
-              < SelfImprovementIcon color="Black"
-                sx={{ fontSize: 35, mx: 2, mt: 1.5 }} />
+            <img src = "../image/relaxation.png" width="30"
+                style={{marginTop:13,marginLeft:15,marginRight:15}} />
             </Link>
             <Link to="/Moodtrack">
               <Fab size="large"
@@ -41,12 +41,12 @@ return (
               </Fab>
             </Link>
             <Link to="/Log">
-              <ListAltIcon color="Black"
-                sx={{ fontSize: 35, mx: 2, mt: 1.5 }} />
+            <img src = "../image/log-file.png" width="30"
+                style={{marginTop:13,marginLeft:15,marginRight:15}} />
             </Link>
             <Link to="/Calendar">
-              <TodayIcon color="Black"
-                sx={{ fontSize: 35, mx: 2, mt: 1.75 }} />
+            <img src = "../image/calendaricon.png" width="30"
+                style={{marginTop:13,marginLeft:15,marginRight:15}} />
             </Link>
           </BottomNavigation>
         </Paper>
