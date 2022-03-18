@@ -72,7 +72,6 @@ const Article = () => {
         component="img"
         height="140"
         image="../image/ar3.png"
-        alt="green iguana"
       />
        <CardContent>
       <Typography gutterBottom variant="h8" component="div"  color="text.secondary" style={{marginLeft:40}}>
