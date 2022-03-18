@@ -435,16 +435,123 @@ export default function CustomCalendar() {
       }
     } else {
       if (isInCurrentMonth.outsideCurrentMonth == false) {
-        dateTile = (
-          <Paper
-            className={isToday ? classes.todayPaper : classes.normalDayPaper}
-          >
-            <Grid item></Grid>
-            <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
-              {day.getDate()}
-            </Grid>
-          </Paper>
-        );
+        if (isHappy) {
+          dateTile = (
+            <div
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </div>
+          );
+        } else if (isSad) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        } else if (isStressed) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        } else if (isSurprised) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+              }
+            </Paper>
+          );
+        } else if (isFearful) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        } else if (isDisgusted) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        } else if (isNeutral) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        } else if (isAngry) {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
+            >
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        } else {
+          dateTile = (
+            <Paper
+              className={isToday ? classes.todayPaper : classes.normalDayPaper}
+            >
+              <Grid item></Grid>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+                {day.getDate()}
+              </Grid>
+            </Paper>
+          );
+        }
       } else {
         dateTile = (
           <Paper className={classes.notInThisMonthDayPaper}>
