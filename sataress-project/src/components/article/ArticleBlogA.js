@@ -2,14 +2,20 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid } from '@material-ui/core';
-import { Routes, Route, Navigate} from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+<<<<<<< HEAD
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+=======
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Fab from '@mui/material/Fab';
+>>>>>>> d493458c68f3b11415c55ae956c5f41c3990cb87
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -26,9 +32,6 @@ const Bg = withTheme(styled.div`
 
 const Image = withTheme(styled.div`
 position: absolute;
-width: 320.7px;
-height: 182px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `);
 
 const theme = createTheme({
@@ -45,6 +48,11 @@ const theme = createTheme({
   });
 
 const ArticleBlogA = () => {
+    let navigate = useNavigate();
+    const handleClick = () => {
+        console.log("error")
+        navigate("/Article");
+    };
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
         return (
@@ -59,10 +67,14 @@ const ArticleBlogA = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
-                <Image style={{ marginTop: 130 }}>
-                    <img src="/image/Boxb.png" width="311px" height="228px" />
+                    <ArrowBackIosNewIcon
+                        onClick={() => handleClick()}
+                        sx={{fontSize:15,mt: 16, ml: -19, position: "absolute", cursor: "pointer" }}/>
+                <Image style={{ marginTop: 150 }}>
+                    <img src="/image/ar1.png" width="311px" height="228px" />
                 </Image>
-                <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
+                <br />
+                <Card sx={{ maxWidth: 500, marginTop: 45, marginBottom: 5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                         ดูแลสุขภาพจิตของคุณด้วย 5 ขั้นตอน
