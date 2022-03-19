@@ -167,8 +167,8 @@ const MoodInfo = (props) => {
           <Typography variant="body2" color="text.primary">
             Mood:{mood + ""}
           </Typography>
-          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-            Thoghts:{thoughts}
+          <Typography variant="body2" color="text.primary">
+            Thoughts:{thoughts}
           </Typography>
           </Grid>
         <CalendarCardDot1 />

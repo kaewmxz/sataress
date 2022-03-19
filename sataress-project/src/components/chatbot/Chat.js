@@ -48,7 +48,7 @@ const Text = withTheme(styled.div`
   font-size: 22px;
   margin-top: -44px;
   margin-left: -50px;
-  font-family: Noto Sans,Kanit,sans-serif;
+  font-family: Noto Sans, Kanit, sans-serif;
 `);
 
 const CBT = withTheme(styled.div`
@@ -56,7 +56,9 @@ const CBT = withTheme(styled.div`
   margin-top: -19px;
   margin-left: 265px;
 `);
+
 const random = Math.random().toString();
+
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -69,7 +71,7 @@ const Chat = () => {
     intensity = [];
     handleMessageSubmit("บันทึกอารมณ์");
   }, []);
-  
+
   const handleMessageSubmit = async (message) => {
     const data = {
       message,
@@ -101,38 +103,6 @@ const Chat = () => {
   const handleMessageChange = (event) => {
     setCurrentMessage(event.target.value);
   };
-
-  // const extractReply = (reply) => {
-  //   if (reply.action == "Greeting.Greeting-custom") {
-  //     replyMap["activity"] = reply.parameters.fields.activty.stringValue;
-  //   } else if (reply.action == "Greeting.Greeting-custom.Tendtobehappy-yes") {
-  //     replyMap["mood"] = "happy";
-  //   } else if (
-  //     reply.action ==
-  //     "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom"
-  //   ) {
-  //     replyMap["intensity"] = reply.parameters.fields.number.numberValue;
-  //   } else if (
-  //     reply.action ==
-  //     "Greeting.Greeting-custom.Tendtobehappy-yes.Happy-yes-custom.Happy-thoughts-custom"
-  //   ) {
-  //     const date = new Date();
-  //     const dateTime = [
-  //       date.getMonth() + 1,
-  //       date.getDate().toString(),
-  //       date.getFullYear().toString(),
-  //     ];
-  //     replyMap["thoughts"] = reply.queryText;
-  //     replyMap["date"] = dateTime.join("/");
-  //     replyMap["id"] = currentUser.uid;
-  //     axios
-  //       .post("http://localhost:4000/mood-result", replyMap)
-  //       .catch((error) => {
-  //         console.log("Error: ", error);
-  //       });
-  //   } else {
-  //   }
-  // };
 
   const extractReply = (reply) => {
     if (reply.action == "Activity") {
@@ -281,7 +251,14 @@ const Chat = () => {
               style={{ marginLeft: -215, marginTop: 15, position: "relative" }}
             />
             <Text>Nong Krati</Text>
-            <Link to="/">
+            <Link
+              to="/"
+              onClick={() =>
+                setTimeout(() => {
+                  window.location.reload(false);
+                }, 0.05)
+              }
+            >
               <CBT>
                 <CancelIcon sx={{ fontSize: 15 }} color="gray" />
               </CBT>
