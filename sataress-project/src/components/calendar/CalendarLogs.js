@@ -2,19 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -30,31 +25,52 @@ const Bg = withTheme(styled.div`
 `);
 
 const MoodInfo = (props) => {
-  const {mood, intensity, thoughts, activity, date} = props;
+  const { mood, thoughts, activity, date } = props;
   return (
-    <Grid container justify="center" >
-      <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
+    <Grid container justify="center">
+      <Card
+        sx={{ width: 300, m: 1 }}
+        style={{
+          backgroundColor: "#FFFF",
+          borderStyle: "double",
+          borderColor: "#91E59A",
+        }}
+      >
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="div"
+            fontFamily="Source Serif Pro, serif, Noto Sans Thai"
+          >
             {date}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Activity:{activity}
+          <Typography
+            variant="body2"
+            color="text.primary"
+            fontFamily="Source Serif Pro, serif, Noto Sans Thai"
+          >
+            Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Mood:{mood+""}
+          <Typography
+            variant="body2"
+            color="text.primary"
+            fontFamily="Source Serif Pro, serif, Noto Sans Thai"
+          >
+            Mood:{mood + ""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Intensity:{intensity+""}
-          </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Thoghts:{thoughts}
+          <Typography
+            variant="body2"
+            color="text.primary"
+            fontFamily="Source Serif Pro, serif, Noto Sans Thai"
+          >
+            Thoghts:{thoughts}
           </Typography>
         </CardContent>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
 const Log = () => {
   const { currentUser } = useContext(AuthContext);
@@ -100,28 +116,29 @@ const Log = () => {
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < data[i].mood.length; j++) {
         if (data[i].mood[j] == "Happy") {
-          data[i].mood[j] = "Happy😊"
-        }
-        else if (data[i].mood[j] == "Sad") {
-          data[i].mood[j] = "Sad😭"
-        }
-        else if (data[i].mood[j] == "Stressed") {
+          data[i].mood[j] = "Happy😊";
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Sad") {
+          data[i].mood[j] = "Sad😭";
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Stressed") {
           data[i].mood[j] = "Stressed😣";
-        }
-        else if (data[i].mood[j] == "Surprised") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Surprised") {
           data[i].mood[j] = "Surprised😯";
-        }
-        else if (data[i].mood[j] == "Fearful") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Fearful") {
           data[i].mood[j] = "Fearful😰";
-        }
-        else if (data[i].mood[j] == "Disgusted") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Disgusted") {
           data[i].mood[j] = "Disgusted🤢";
-        }
-        else if (data[i].mood[j] == "Neutral") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Neutral") {
           data[i].mood[j] = "Neutral😶";
-        }
-        else if (data[i].mood[j] == "Angry") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Angry") {
           data[i].mood[j] = "Angry😡";
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
         }
       }
       rows.push(
@@ -137,6 +154,7 @@ const Log = () => {
   } catch (err) {
     // console.log(err);
   }
+
   return (
     <div>
       <Bg />
