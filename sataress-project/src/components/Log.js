@@ -25,7 +25,20 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { visuallyHidden } from '@mui/utils';
 import axios from "axios";
-import { autocompleteClasses } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily:'Noto Sans,Kanit,sans-serif'
+        },
+      },
+    }
+  }
+});
 
 const Bg = withTheme(styled.div`
     position: fixed;
@@ -148,7 +161,7 @@ const Log = () => {
             <TableCell
               key={headCell.id}
               align="left"
-              sx = {{fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}
+              sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}
             >
                 {headCell.label}
                 {orderBy === headCell.id ? (
@@ -184,6 +197,7 @@ const Log = () => {
     }
   
     return (
+      <ThemeProvider theme={theme}>
       <Toolbar
         sx={{
           pl: { sm: 2 },
@@ -196,7 +210,7 @@ const Log = () => {
       >
         {numSelected > 0 ? (
           <Typography
-            sx={{ flex: '1 1 100%',fontFamily:'Source Serif Pro, serif, Noto Sans Thai' }}
+            sx={{ flex: '1 1 100%'}}
             color="inherit"
             variant="subtitle1"
             component="div"
@@ -205,7 +219,7 @@ const Log = () => {
           </Typography>
         ) : (
           <Typography
-            sx={{ flex: '1 1 100%' ,fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}
+            sx={{ flex: '1 1 100%'}}
             variant="h6"
             id="tableTitle"
             component="div"
@@ -226,6 +240,7 @@ const Log = () => {
           </Tooltip>
         )}
       </Toolbar>
+      </ThemeProvider>
     );
   };
   
@@ -297,7 +312,7 @@ const Log = () => {
                           tabIndex={-1}
                           key={row.date}
                           selected={isItemSelected}
-                          sx = {{fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}
+                          sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}
                         >
                           <TableCell padding="checkbox">
                             <Checkbox
@@ -313,11 +328,11 @@ const Log = () => {
                             id={labelId}
                             scope="row"
                             padding="none"
-                            sx = {{fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}
+                            sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}
                           >
                             {row.date}
                           </TableCell>
-                          <TableCell sx = {{fontFamily:'Source Serif Pro, serif, Noto Sans Thai'}}>{row.gratitude}</TableCell>
+                          <TableCell sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}>{row.gratitude}</TableCell>
                         </TableRow>
                       );
                     })}

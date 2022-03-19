@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -29,30 +30,45 @@ const Bg = withTheme(styled.div`
   );
 `);
 
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily:'Noto Sans,Kanit,sans-serif'
+        },
+      },
+    }
+  }
+});
+
 const MoodInfo = (props) => {
   const {mood, intensity, thoughts, activity, date} = props;
   return (
+    <ThemeProvider theme={theme}>
     <Grid container justify="center" >
       <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography gutterBottom variant="h6" component="div">
             {date}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary">
           Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary">
           Mood:{mood+""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary">
           Intensity:{intensity+""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary">
           Thoghts:{thoughts}
           </Typography>
         </CardContent>
       </Card>
     </Grid>
+    </ThemeProvider>
   )
 }
 

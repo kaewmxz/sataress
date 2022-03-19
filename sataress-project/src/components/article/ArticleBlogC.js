@@ -9,6 +9,7 @@ import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -30,6 +31,19 @@ height: 182px;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `);
 
+const theme = createTheme({
+    components: {
+      // Name of the component
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily:'Noto Sans,Kanit,sans-serif'
+          },
+        },
+      }
+    }
+  });
+
 const ArticleBlogC = () => {
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
@@ -41,6 +55,7 @@ const ArticleBlogC = () => {
     }
     return (
         <div>
+             <ThemeProvider theme={theme}>
             <Bg />
             <Head />
             <Grid container justify="center">
@@ -49,11 +64,11 @@ const ArticleBlogC = () => {
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography gutterBottom variant="h5" component="div">
                         แค่ยิ้มและหัวเราะ ก็ทำให้ร่างกายผ่อนคลาย สุขภาพจิตดีขึ้น
                         </Typography>
-                        <Typography variant="h6" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>การยิ้ม เป็นการลงทุน เพื่อสุขภาพกายและใจ</Typography>
-                        <Typography variant="h7" color="text.secondary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography variant="h6" color="text.primary">การยิ้ม เป็นการลงทุน เพื่อสุขภาพกายและใจ</Typography>
+                        <Typography variant="h7" color="text.secondary">
                         เมื่อคุณยิ้มทุกครั้งจะกระตุ้นให้เกิดปฏิกิริยาทางเคมีในสมอง เพื่อปล่อยฮอร์โมนโดพามีน (Dopamine) และเซโรโทนิน (Serotonin) ออกมา
                         <br/>
                         โดพามีนส่งผลให้เกิดความรู้สึกมีความสุข ส่วนเซโรโทนินนั้นเกี่ยวข้องกับการผ่อนคลายความเครียด 
@@ -70,20 +85,21 @@ const ArticleBlogC = () => {
                         ผู้มีประสบการณ์หลายคนแนะนำว่า เพียงแค่ยิ้มให้ตัวเองหน้ากระจกทุกเช้า โดยอาจบอกถ้อยคำที่ให้กำลังใจตัวเองไปด้วย ก็จะกลายเป็นคนที่มีสมาธิดีขึ้น 
                         และมีความกล้าแสดงออกมากกว่าเดิม หรือบางครั้งถ้าเกิดเหตุการณ์ไม่เป็นใจขึ้นระหว่างวัน การยิ้มในช่วงเวลาสั้นๆ ก็สามารถช่วยปรับอารมณ์ให้ดีขึ้นได้
                         </Typography>
-                        <Typography variant="h6" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>ญาติสนิทของการยิ้มก็คือการหัวเราะ</Typography>
-                        <Typography variant="h7" color="text.secondary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography variant="h6" color="text.primary">ญาติสนิทของการยิ้มก็คือการหัวเราะ</Typography>
+                        <Typography variant="h7" color="text.secondary">
                         การระเบิดเสียงหัวเราะออกมาย่อมหมายถึงจิตใจถูกเติมเต็มไปด้วยความสุขจนทะลักออกมา มักทำให้ทั้งตัวเองและคนรอบข้างรู้สึกอารมณ์ดีขึ้นตามไปด้วย แต่ไม่ใช่เพียงเท่านั้น สิ่งที่เกิดขึ้นทันทีเมื่อหัวเราะ คือการพาออกซิเจนเข้าสู่ร่างกาย ส่งผลถึงการกระตุ้นหัวใจ ปอด และกล้ามเนื้อ รวมถึงทำให้สมองหลั่งเอนดอร์ฟิน (Endorphine) ออกมามากขึ้น รวมทั้งเป็นการเพิ่มอัตราการเต้นของหัวใจและความดันโลหิตชั่วครู่ จากนั้นลดให้ต่ำลง ผลคือเกิดความรู้สึกผ่อนคลายตามมา
                         <br/>
                         การยิ้มเป็นสิ่งที่ลงทุนน้อยและได้ผลมาก ผู้ให้ก็มีความสุข ผู้รับก็สบายใจ รู้เช่นนี้แล้ว เราจึงควรยิ้มให้มากขึ้น เพราะแค่การยิ้มให้กันนิดๆ ในแต่ละวัน จะส่งผลดีต่อทั้งตัวคุณและสังคม
                         </Typography>
                         <br/>
-                        <Typography variant="h7" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>แหล่งที่มา https://hd.co.th/smiling-laughing-relaxes-the-body</Typography>
+                        <Typography variant="h7" color="text.primary">แหล่งที่มา https://hd.co.th/smiling-laughing-relaxes-the-body</Typography>
                         <br/>
                         <br/>
                     </CardContent>
                 </Card>
             </Grid>
             <BottomNavigationBar/>
+            </ThemeProvider>
         </div>
     );
 };

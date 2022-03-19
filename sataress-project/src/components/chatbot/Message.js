@@ -10,7 +10,7 @@ const Message = ({ message }) => {
             style={{
               paddingLeft: "16px",
               paddingRight: "10px",
-              fontFamily: "Montserrat",
+              fontFamily: 'Noto Sans,Kanit,sans-serif',
               paddingTop: "10px",
               paddingBottom: "10px",
               fontWeight: 700
@@ -25,7 +25,7 @@ const Message = ({ message }) => {
             style={{
               paddingLeft: "16px",
               paddingRight: "10px",
-              fontFamily: "Montserrat",
+              fontFamily: 'Noto Sans,Kanit,sans-serif',
               fontWeight: 700
             }}
           >
