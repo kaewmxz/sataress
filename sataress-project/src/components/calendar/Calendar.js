@@ -574,12 +574,14 @@ export default function CustomCalendar() {
           </ThemeProvider>
         </Grid>
       </LocalizationProvider>
+      <Grid container justify = "center">
       <FormControlLabel
         style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
         control={<Switch defaultChecked />}
         label="Emoji"
         onChange={(e) => handleEmoji(e)}
       />
+      </Grid>
       <BottomNavigationBar />
     </div>
   );
