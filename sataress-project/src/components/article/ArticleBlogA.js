@@ -9,13 +9,10 @@ import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-<<<<<<< HEAD
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-=======
 import { useNavigate } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Fab from '@mui/material/Fab';
->>>>>>> d493458c68f3b11415c55ae956c5f41c3990cb87
 
 const Bg = withTheme(styled.div`
   position: fixed;

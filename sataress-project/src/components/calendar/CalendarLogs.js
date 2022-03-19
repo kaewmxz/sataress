@@ -8,14 +8,10 @@ import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-=======
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
->>>>>>> d493458c68f3b11415c55ae956c5f41c3990cb87
->>>>>>> 6df2a65bd74319b8af8d228ac777e46cffb8ef1c
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -140,7 +136,7 @@ const CalendarCardLine2 = withTheme(styled.div`
 const MoodInfo = (props) => {
   const { mood, intensity, thoughts, activity, date } = props;
   return (
-    <ThemeProvider theme={theme}>
+
     <Grid container justify="center" >
       <CalendarCard>
         <CalendarCardInnerCircle>
@@ -184,7 +180,7 @@ const MoodInfo = (props) => {
         <CalendarCardLine2 />
       </CalendarCardBottom>
     </Grid>
-    </ThemeProvider>
+
   )
 }
 
