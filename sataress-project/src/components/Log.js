@@ -287,7 +287,7 @@ const Log = () => {
       <Bg />
       <Head />
       <Paper sx={{width: "80%", maxWidth: "100%", mx:"auto", my:20, p:3}}
-       style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
+       style={{backgroundColor: "#ffff",filter: "drop-shadow(0px 4px 4px rgba(255, 146, 146, 0.78))" }}>
         <Grid container>
           <Grid item xs={12}>
             <EnhancedTableToolbar numSelected={selected.length} />
