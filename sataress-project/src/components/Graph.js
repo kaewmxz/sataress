@@ -6,14 +6,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Cell,
-  LabelList,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Cell, LabelList } from "recharts";
 import axios from "axios";
 import ReactWordcloud from "react-wordcloud";
 import "tippy.js/dist/tippy.css";
@@ -24,7 +17,6 @@ import DateRangePicker from "@mui/lab/DateRangePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import moment from "moment";
-
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -42,7 +34,7 @@ const Bg = withTheme(styled.div`
 const GraphBox1 = withTheme(styled.div`
   position: absolute;
   width: 307px;
-  height: 182px;
+  height: 240px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
@@ -59,7 +51,7 @@ const GraphBoxname1 = withTheme(styled.div`
 const GraphBox2 = withTheme(styled.div`
   position: absolute;
   width: 307px;
-  height: 182px;
+  height: 240px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
@@ -218,7 +210,6 @@ const Graph = () => {
   };
 
   const handleSubmit = async (values) => {
-
     if (values[0] == null || values[1] == null) {
       values[0] = moment(date).clone().startOf("month").format("M/D/YYYY");
 
@@ -351,22 +342,44 @@ const Graph = () => {
                 justify="center"
                 style={{ marginLeft: -30, marginTop: 35 }}
               >
-                <BarChart width={290} height={140} data={moodCount}>
+                <BarChart width={290} height={200} data={moodCount}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
                   <XAxis
                     dataKey="mood"
+                    type="category"
                     textAnchor="end"
                     verticalAnchor="middle"
                     interval={0}
                     angle={-26.4}
                     fontSize={12}
                   />
-                  <YAxis />
+                  <YAxis minTickGap={1} scale="linear" />
                   <Bar dataKey="count" fill="#84c78b">
                     {moodCount.map((entry, index) => (
+                      // <Cell
+                      //   key={`cell-${index}`}
+                      //   fill={barColors[index % 20]}
+                      // />
                       <Cell
-                        key={`cell-${index}`}
-                        fill={barColors[index % 20]}
+                        fill={
+                          moodCount[index].mood === "Happy"
+                            ? barColors[0]
+                            : moodCount[index].mood === "Surprised"
+                            ? barColors[1]
+                            : moodCount[index].mood === "Stressed"
+                            ? barColors[6]
+                            : moodCount[index].mood === "Disgusted"
+                            ? barColors[3]
+                            : moodCount[index].mood === "Fearful"
+                            ? barColors[4]
+                            : moodCount[index].mood === "Sad"
+                            ? barColors[5]
+                            : moodCount[index].mood === "Angry"
+                            ? barColors[2]
+                            : moodCount[index].mood === "Neutral"
+                            ? barColors[7]
+                            : "#0"
+                        }
                       />
                     ))}
                     <LabelList dataKey="emoji" position="inside" />
@@ -375,14 +388,14 @@ const Graph = () => {
               </Grid>
             </GraphBox1>
 
-            <GraphBox2 style={{ marginTop: 450 }}>
+            <GraphBox2 style={{ marginTop: 500 }}>
               <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์</GraphBoxname2>
               <Grid
                 container
                 justify="center"
                 style={{ marginLeft: -30, marginTop: 35 }}
               >
-                <BarChart width={290} height={140} data={moodIntense}>
+                <BarChart width={290} height={200} data={moodIntense}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
                   <XAxis
                     dataKey="mood"
@@ -392,12 +405,33 @@ const Graph = () => {
                     angle={-26.4}
                     fontSize={12}
                   />
-                  <YAxis />
+                  <YAxis
+                    minTickGap={1}
+                    domain={[0, "dataMax"]}
+                    scale="linear"
+                  />
                   <Bar dataKey="average" fill="#84c78b">
                     {moodIntense.map((entry, index) => (
                       <Cell
-                        key={`cell-${index}`}
-                        fill={barColors[index % 20]}
+                        fill={
+                          moodCount[index].mood === "Happy"
+                            ? barColors[0]
+                            : moodCount[index].mood === "Surprised"
+                            ? barColors[1]
+                            : moodCount[index].mood === "Stressed"
+                            ? barColors[6]
+                            : moodCount[index].mood === "Disgusted"
+                            ? barColors[3]
+                            : moodCount[index].mood === "Fearful"
+                            ? barColors[4]
+                            : moodCount[index].mood === "Sad"
+                            ? barColors[5]
+                            : moodCount[index].mood === "Angry"
+                            ? barColors[2]
+                            : moodCount[index].mood === "Neutral"
+                            ? barColors[7]
+                            : "#0"
+                        }
                       />
                     ))}
                     <LabelList dataKey="emoji" position="inside" />
@@ -406,7 +440,7 @@ const Graph = () => {
               </Grid>
             </GraphBox2>
 
-            <GraphBox3 style={{ marginTop: 670 }}>
+            <GraphBox3 style={{ marginTop: 780 }}>
               <GraphBoxname3>Wordcloud</GraphBoxname3>
               <SimpleWordcloud />
             </GraphBox3>
