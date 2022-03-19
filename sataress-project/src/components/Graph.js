@@ -414,21 +414,21 @@ const Graph = () => {
                     {moodIntense.map((entry, index) => (
                       <Cell
                         fill={
-                          moodCount[index].mood === "Happy"
+                          moodIntense[index].mood === "Happy"
                             ? barColors[0]
-                            : moodCount[index].mood === "Surprised"
+                            : moodIntense[index].mood === "Surprised"
                             ? barColors[1]
-                            : moodCount[index].mood === "Stressed"
+                            : moodIntense[index].mood === "Stressed"
                             ? barColors[6]
-                            : moodCount[index].mood === "Disgusted"
+                            : moodIntense[index].mood === "Disgusted"
                             ? barColors[3]
-                            : moodCount[index].mood === "Fearful"
+                            : moodIntense[index].mood === "Fearful"
                             ? barColors[4]
-                            : moodCount[index].mood === "Sad"
+                            : moodIntense[index].mood === "Sad"
                             ? barColors[5]
-                            : moodCount[index].mood === "Angry"
+                            : moodIntense[index].mood === "Angry"
                             ? barColors[2]
-                            : moodCount[index].mood === "Neutral"
+                            : moodIntense[index].mood === "Neutral"
                             ? barColors[7]
                             : "#0"
                         }
