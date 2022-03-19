@@ -168,7 +168,7 @@ const MoodInfo = (props) => {
             Mood:{mood + ""}
           </Typography>
           <Typography variant="body2" color="text.primary">
-            Thoghts:{thoughts}
+            Thoughts:{thoughts}
           </Typography>
           </Grid>
         <CalendarCardDot1 />
