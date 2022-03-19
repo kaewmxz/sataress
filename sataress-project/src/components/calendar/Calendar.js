@@ -60,7 +60,6 @@ const theme = createTheme({
   },
 });
 
-
 const Bg = withTheme(styled.div`
   position: fixed;
   width: 100%;
@@ -348,7 +347,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975"}}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </div>
@@ -361,7 +367,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -374,7 +387,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -387,7 +407,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
               }
@@ -401,7 +428,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -414,7 +448,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -427,7 +468,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -440,7 +488,14 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid
+                item
+                style={{
+                  marginLeft: "9px",
+                  marginTop: "9px",
+                  color: "#F85975",
+                }}
+              >
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -451,7 +506,7 @@ export default function CustomCalendar() {
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
             >
               <Grid item></Grid>
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px"}}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -510,21 +565,21 @@ export default function CustomCalendar() {
               disableFuture={true}
               renderInput={(params) => (
                 <TextField
-                  sx={{ fontFamily: 'Noto Sans,Kanit,sans-serif' }}
+                  sx={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
                   fullWidth
                   {...params}
                 />
               )}
             />
           </ThemeProvider>
-                      <FormControlLabel
-              style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
-              control={<Switch defaultChecked />}
-              label="Emoji"
-              onChange={(e) => handleEmoji(e)}
-            />
         </Grid>
       </LocalizationProvider>
+      <FormControlLabel
+        style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
+        control={<Switch defaultChecked />}
+        label="Emoji"
+        onChange={(e) => handleEmoji(e)}
+      />
       <BottomNavigationBar />
     </div>
   );

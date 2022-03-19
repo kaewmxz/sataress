@@ -157,9 +157,6 @@ const MoodInfo = (props) => {
             Mood:{mood + ""}
           </Typography>
           <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-            Intensity:{intensity + ""}
-          </Typography>
-          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
             Thoghts:{thoughts}
           </Typography>
           </Grid>
