@@ -13,8 +13,6 @@ import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -29,29 +27,158 @@ const Bg = withTheme(styled.div`
   );
 `);
 
+const CalendarCardDot1 = withTheme(styled.div`
+position:absolute;
+top:-12px;
+left:245px;
+height: 6px;
+  width: 6px;
+  background-color:#6EC177;
+  border-radius: 50%;
+  display: inline-block;
+`);
+
+const CalendarCardDot2 = withTheme(styled.div`
+position:absolute;
+top:-12px;
+left:260px;
+height: 6px;
+  width: 6px;
+  background-color:#E8B83F;
+  border-radius: 50%;
+  display: inline-block;
+
+`);
+
+const CalendarCardDot3 = withTheme(styled.div`
+position:absolute;
+top:-12px;
+left:275px;
+height: 6px;
+  width: 6px;
+  background-color: #FF5E5E;;
+  border-radius: 50%;
+  display: inline-block;
+
+`);
+
+const CalendarCard = withTheme(styled.div`
+position:absolute;
+margin:1px;
+width: 304px;
+height: 210px;
+background: #FFFFFF;
+border: 17px solid #FFEEB5;
+box-sizing: border-box;
+box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+`);
+
+const CalendarCardInnerCircle = withTheme(styled.div`
+position:absolute;
+width: 34px;
+height: 34px;
+left: 15px;
+top: 10px;
+background: #FFFFFF;
+border: 3px solid #5EC0C7;
+border-radius: 50%;
+box-sizing: border-box;
+`);
+
+const CalendarCardInnerDate = withTheme(styled.div`
+position: absolute;
+width: 120px;
+height: 28px;
+left: 60px;
+top: 14px;
+background: #5EC0C7;
+opacity: 0.25;
+border: 1px solid #5EC0C7;
+box-sizing: border-box;
+`);
+
+const CalendarCardBottom = withTheme(styled.div`
+position: absolute;
+top:337px;
+width: 304px;
+height: 35px;
+background: #B0D9FF;
+`);
+
+const CalendarCardDot4 = withTheme(styled.div`
+position:absolute;
+top:5px;
+left:40px;
+height: 26px;
+  width: 26px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: inline-block;
+  `);
+
+const CalendarCardLine1 = withTheme(styled.div`
+  position: absolute;
+  width: 70px;
+  height:0px;
+  left: 110px;
+  top: 15px;
+  
+  border: 4px solid #FFFFFF;
+  `);
+const CalendarCardLine2 = withTheme(styled.div`
+  position: absolute;
+  width: 70px;
+  height: 0px;
+  left: 188px;
+  top:15px;
+  
+  border: 4px solid #FF5858;
+  `);
 const MoodInfo = (props) => {
-  const {mood, intensity, thoughts, activity, date} = props;
+  const { mood, intensity, thoughts, activity, date } = props;
   return (
     <Grid container justify="center" >
-      <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+      <CalendarCard>
+        <CalendarCardInnerCircle>
+          <img src = "../image/cali.png" width = "20" 
+          style={{marginTop:3,marginLeft:4}}/>
+          </CalendarCardInnerCircle>
+          <CalendarCardInnerDate>
+          <Typography gutterBottom variant="h6" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'
+          style={{marginLeft:15, fontWeight:"bold", color:"black"}}>
             {date}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Activity:{activity}
+          </CalendarCardInnerDate>
+          <Grid item style={{marginTop:55,marginLeft:30}}>
+          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+            Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Mood:{mood+""}
+          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+            Mood:{mood + ""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Intensity:{intensity+""}
+          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+            Intensity:{intensity + ""}
           </Typography>
-          <Typography variant="body2" color="text.primary"  fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
-          Thoghts:{thoughts}
+          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+            Thoghts:{thoughts}
           </Typography>
-        </CardContent>
-      </Card>
+          </Grid>
+        <CalendarCardDot1 />
+        <CalendarCardDot2 />
+        <CalendarCardDot3 />
+      </CalendarCard>
+      <CalendarCardBottom>
+        <img src="../image/play-buttonbackward.png" width="12"
+        style={{ marginLeft:18, marginTop: 12 }} />
+        <CalendarCardDot4>
+          <img src="../image/pause.png" width="12" 
+          style={{ marginLeft: 7, marginTop: 7 }} />
+        </CalendarCardDot4>
+        <img src="../image/play-button.png" width="12" 
+        style={{ marginLeft: 46, marginTop: 12 }}/>
+        <CalendarCardLine1 />
+        <CalendarCardLine2 />
+      </CalendarCardBottom>
     </Grid>
   )
 }

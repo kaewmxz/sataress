@@ -613,14 +613,14 @@ export default function CustomCalendar() {
               )}
             />
           </ThemeProvider>
+                      <FormControlLabel
+              style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
+              control={<Switch defaultChecked />}
+              label="Emoji"
+              onChange={(e) => handleEmoji(e)}
+            />
         </Grid>
       </LocalizationProvider>
-      <FormControlLabel
-      style={{marginLeft:235,marginTop:-30,color:"#95C3BB"}}
-        control={<Switch defaultChecked />}
-        label="Emoji"
-        onChange={(e) => handleEmoji(e)}
-      />
       <BottomNavigationBar />
     </div>
   );
