@@ -60,6 +60,7 @@ const theme = createTheme({
   },
 });
 
+
 const Bg = withTheme(styled.div`
   position: fixed;
   width: 100%;
@@ -586,12 +587,6 @@ export default function CustomCalendar() {
     <div>
       <Bg />
       <Header />
-      <FormControlLabel
-        control={<Switch defaultChecked />}
-        label="Emoji"
-        onChange={(e) => handleEmoji(e)}
-      />
-
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Grid container justify="center" style={{ marginTop: 160 }}>
           <ThemeProvider theme={theme}>
@@ -620,7 +615,12 @@ export default function CustomCalendar() {
           </ThemeProvider>
         </Grid>
       </LocalizationProvider>
-
+      <FormControlLabel
+      style={{marginLeft:235,marginTop:-30,color:"#95C3BB"}}
+        control={<Switch defaultChecked />}
+        label="Emoji"
+        onChange={(e) => handleEmoji(e)}
+      />
       <BottomNavigationBar />
     </div>
   );
