@@ -2,17 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+=======
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+>>>>>>> d493458c68f3b11415c55ae956c5f41c3990cb87
+>>>>>>> 6df2a65bd74319b8af8d228ac777e46cffb8ef1c
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -137,6 +140,7 @@ const CalendarCardLine2 = withTheme(styled.div`
 const MoodInfo = (props) => {
   const { mood, intensity, thoughts, activity, date } = props;
   return (
+    <ThemeProvider theme={theme}>
     <Grid container justify="center" >
       <CalendarCard>
         <CalendarCardInnerCircle>
@@ -180,6 +184,7 @@ const MoodInfo = (props) => {
         <CalendarCardLine2 />
       </CalendarCardBottom>
     </Grid>
+    </ThemeProvider>
   )
 }
 
@@ -227,28 +232,29 @@ const Log = () => {
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < data[i].mood.length; j++) {
         if (data[i].mood[j] == "Happy") {
-          data[i].mood[j] = "Happy😊"
-        }
-        else if (data[i].mood[j] == "Sad") {
-          data[i].mood[j] = "Sad😭"
-        }
-        else if (data[i].mood[j] == "Stressed") {
+          data[i].mood[j] = "Happy😊";
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Sad") {
+          data[i].mood[j] = "Sad😭";
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Stressed") {
           data[i].mood[j] = "Stressed😣";
-        }
-        else if (data[i].mood[j] == "Surprised") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Surprised") {
           data[i].mood[j] = "Surprised😯";
-        }
-        else if (data[i].mood[j] == "Fearful") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Fearful") {
           data[i].mood[j] = "Fearful😰";
-        }
-        else if (data[i].mood[j] == "Disgusted") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Disgusted") {
           data[i].mood[j] = "Disgusted🤢";
-        }
-        else if (data[i].mood[j] == "Neutral") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Neutral") {
           data[i].mood[j] = "Neutral😶";
-        }
-        else if (data[i].mood[j] == "Angry") {
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
+        } else if (data[i].mood[j] == "Angry") {
           data[i].mood[j] = "Angry😡";
+          data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
         }
       }
       rows.push(
@@ -264,6 +270,7 @@ const Log = () => {
   } catch (err) {
     // console.log(err);
   }
+
   return (
     <div>
       <Bg />

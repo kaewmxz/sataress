@@ -10,7 +10,7 @@ import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -25,6 +25,19 @@ const Bg = withTheme(styled.div`
   );
 `);
 
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily:'Noto Sans,Kanit,sans-serif'
+        },
+      },
+    }
+  }
+});
+
 const Article = () => {
   const { currentUser } = useContext(AuthContext);
   if (!currentUser) {
@@ -36,6 +49,7 @@ const Article = () => {
   }
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <Bg />
       <Header />
       <Card sx={{width: 345,mt:18,mx:"auto",boxShadow:"0px 3px 3px #92FC9C"}}>
@@ -81,6 +95,7 @@ const Article = () => {
         </Link>
     </Card>
       <BottomNavigationBar/>
+      </ThemeProvider>
     </div>
   );
 };

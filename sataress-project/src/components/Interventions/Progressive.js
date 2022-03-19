@@ -9,6 +9,7 @@ import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -34,6 +35,19 @@ const Btn = withTheme(styled.div`
 text-align:center;
 `);
 
+const theme = createTheme({
+    components: {
+      // Name of the component
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily:'Noto Sans,Kanit,sans-serif'
+          },
+        },
+      }
+    }
+});
+
 const Progressive = () => {
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
@@ -45,6 +59,7 @@ const Progressive = () => {
     }
     return (
         <div>
+            <ThemeProvider theme={theme}>
             <Bg />
             <Head />
             <Grid container justify="center">
@@ -53,10 +68,10 @@ const Progressive = () => {
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography gutterBottom variant="h5" component="div">
                             Progressive muscle relaxation
                         </Typography>
-                        <Typography variant="h6" color="text.secondary" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography variant="h6" color="text.secondary">
                             Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit.
                             Donec ut maximus sem.
@@ -68,13 +83,14 @@ const Progressive = () => {
                         </Typography>
                         <br/>
                         <Btn>
-                            <button style={{ fontSize: 18, color: "#FE440A" , fontFamily:'Roboto Slab, serif, Noto Sans Thai', border: "none", background:"none"}}>Play</button>
+                            <button style={{ fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
                         </Btn>
                         <br/>
                     </CardContent>
                 </Card>
             </Grid>
             <BottomNavigationBar />
+            </ThemeProvider>
         </div>
     );
 };
