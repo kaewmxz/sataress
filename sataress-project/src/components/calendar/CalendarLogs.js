@@ -8,14 +8,9 @@ import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-<<<<<<< HEAD
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-=======
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
->>>>>>> d493458c68f3b11415c55ae956c5f41c3990cb87
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -47,30 +42,47 @@ const MoodInfo = (props) => {
   const { mood, thoughts, activity, date } = props;
   return (
     <ThemeProvider theme={theme}>
-    <Grid container justify="center" >
-      <Card sx={{ width: 300, m: 1 }} style={{backgroundColor: "#FFFF", borderStyle:"double",borderColor:"#91E59A"}}>
+    <Grid container justify="center">
+      <Card
+        sx={{ width: 300, m: 1 }}
+        style={{
+          backgroundColor: "#FFFF",
+          borderStyle: "double",
+          borderColor: "#91E59A",
+        }}
+      >
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography
+            gutterBottom
+            variant="h6"
+            component="div"
+          >
             {date}
           </Typography>
-          <Typography variant="body2" color="text.primary">
-          Activity:{activity}
+          <Typography
+            variant="body2"
+            color="text.primary"
+          >
+            Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.primary">
-          Mood:{mood+""}
+          <Typography
+            variant="body2"
+            color="text.primary"
+          >
+            Mood:{mood + ""}
           </Typography>
-          <Typography variant="body2" color="text.primary">
-          Intensity:{intensity+""}
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-          Thoghts:{thoughts}
+          <Typography
+            variant="body2"
+            color="text.primary"
+          >
+            Thoghts:{thoughts}
           </Typography>
         </CardContent>
       </Card>
     </Grid>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 const Log = () => {
   const { currentUser } = useContext(AuthContext);
