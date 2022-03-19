@@ -12,7 +12,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
-
 const Bg = withTheme(styled.div`
   position: fixed;
   width: 100%;
@@ -133,10 +132,24 @@ const CalendarCardLine2 = withTheme(styled.div`
   
   border: 4px solid #FF5858;
   `);
+
+  const theme = createTheme({
+    components: {
+      // Name of the component
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily:'Noto Sans,Kanit,sans-serif'
+          },
+        },
+      }
+    }
+  });
+
 const MoodInfo = (props) => {
   const { mood, intensity, thoughts, activity, date } = props;
   return (
-
+    <ThemeProvider theme={theme}>
     <Grid container justify="center" >
       <CalendarCard>
         <CalendarCardInnerCircle>
@@ -144,16 +157,16 @@ const MoodInfo = (props) => {
           style={{marginTop:3,marginLeft:4}}/>
           </CalendarCardInnerCircle>
           <CalendarCardInnerDate>
-          <Typography gutterBottom variant="h6" component="div" fontFamily='Source Serif Pro, serif, Noto Sans Thai'
+          <Typography gutterBottom variant="h6" component="div"
           style={{marginLeft:15, fontWeight:"bold", color:"black"}}>
             {date}
           </Typography>
           </CalendarCardInnerDate>
           <Grid item style={{marginTop:55,marginLeft:30}}>
-          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary">
             Activity:{activity}
           </Typography>
-          <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
+          <Typography variant="body2" color="text.primary">
             Mood:{mood + ""}
           </Typography>
           <Typography variant="body2" color="text.primary" fontFamily='Source Serif Pro, serif, Noto Sans Thai'>
@@ -177,7 +190,7 @@ const MoodInfo = (props) => {
         <CalendarCardLine2 />
       </CalendarCardBottom>
     </Grid>
-
+    </ThemeProvider>
   )
 }
 
