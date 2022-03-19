@@ -10,7 +10,7 @@ import { withTheme } from "@material-ui/core/styles";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 let replyMap = new Map();
 let mood = [];
@@ -55,21 +55,26 @@ const CBT = withTheme(styled.div`
   margin-top: -19px;
   margin-left: 265px;
 `);
-
+const random = Math.random().toString();
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const { currentUser } = useContext(AuthContext);
+  const sessionId = currentUser.uid + random;
+  console.log(sessionId);
   useEffect(() => {
+    replyMap = new Map();
+    mood = [];
+    intensity = [];
     handleMessageSubmit("บันทึกอารมณ์");
   }, []);
 
   const handleMessageSubmit = async (message) => {
     const data = {
       message,
-      userId : currentUser.uid,
+      userId: sessionId,
     };
-    console.log(data)
+    console.log(data);
     try {
       const response = await axios.post(
         "http://localhost:4000/moodtrack",
@@ -147,16 +152,84 @@ const Chat = () => {
       mood.push("Neutral");
     } else if (reply.action == "Stressed") {
       mood.push("Stressed");
-    } else if (reply.action == "Rate") {
-      if (reply.parameters.fields.number.numberValue < 1){
+    } else if (reply.action == "Sad-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
         reply.parameters.fields.number.numberValue = 1;
         intensity.push(reply.parameters.fields.number.numberValue);
-      }
-      else if (reply.parameters.fields.number.numberValue > 10){
+      } else if (reply.parameters.fields.number.numberValue > 10) {
         reply.parameters.fields.number.numberValue = 10;
         intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
       }
-      else{
+    } else if (reply.action == "Happy-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+    } else if (reply.action == "Stressed-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+    } else if (reply.action == "Fearful-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+    } else if (reply.action == "Disgusted-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+    } else if (reply.action == "Neutral-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+    } else if (reply.action == "Angry-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
+        intensity.push(reply.parameters.fields.number.numberValue);
+      }
+    } else if (reply.action == "Surprised-Rate") {
+      if (reply.parameters.fields.number.numberValue < 1) {
+        reply.parameters.fields.number.numberValue = 1;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else if (reply.parameters.fields.number.numberValue > 10) {
+        reply.parameters.fields.number.numberValue = 10;
+        intensity.push(reply.parameters.fields.number.numberValue);
+      } else {
         intensity.push(reply.parameters.fields.number.numberValue);
       }
     } else if (reply.action == "End") {
@@ -177,8 +250,8 @@ const Chat = () => {
         });
     } else {
     }
-    replyMap['mood'] = mood;
-    replyMap['intensity'] = intensity;
+    replyMap["mood"] = mood;
+    replyMap["intensity"] = intensity;
   };
 
   const handleSubmit = async (event) => {
@@ -231,11 +304,13 @@ const Chat = () => {
                 placeholder="Say something..."
                 className="messageInputField"
               />
-              <Button onClick={handleSubmit}
+              <Button
+                onClick={handleSubmit}
                 value={currentMessage}
-                endIcon={<SendIcon sx={{ marginRight: 2 }}
-                color="pink"></SendIcon>}>
-              </Button>
+                endIcon={
+                  <SendIcon sx={{ marginRight: 2 }} color="pink"></SendIcon>
+                }
+              ></Button>
             </div>
           </div>
         </div>
