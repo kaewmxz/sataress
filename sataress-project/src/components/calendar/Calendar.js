@@ -216,18 +216,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src="/image/happy.png" width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </div>
           );
         } else if (isSad) {
@@ -241,18 +229,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/sad.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else if (isStressed) {
@@ -266,18 +242,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/stressed.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else if (isSurprised) {
@@ -291,18 +255,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/surprised.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else if (isFearful) {
@@ -316,18 +268,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/fearful.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else if (isDisgusted) {
@@ -341,18 +281,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/disgusted.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else if (isNeutral) {
@@ -366,18 +294,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/neutral.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else if (isAngry) {
@@ -391,18 +307,6 @@ export default function CustomCalendar() {
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
                 <img src={"/image/angry.png"} width={37} height={37} />
               </Grid>
-              {/* <Grid
-                item
-                style={{
-                  marginLeft: "8px",
-                  marginTop: "-34px",
-                  color: "white",
-                  fontSize: "20px",
-                  position: "absolute",
-                }}
-              >
-                {day.getDate()}
-              </Grid> */}
             </Paper>
           );
         } else {
@@ -444,7 +348,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975"}}>
                 {day.getDate()}
               </Grid>
             </div>
@@ -457,7 +361,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -470,7 +374,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -483,7 +387,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
               }
@@ -497,7 +401,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -510,7 +414,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -523,7 +427,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -536,7 +440,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -547,7 +451,7 @@ export default function CustomCalendar() {
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
             >
               <Grid item></Grid>
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px"}}>
                 {day.getDate()}
               </Grid>
             </Paper>
