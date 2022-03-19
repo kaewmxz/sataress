@@ -9,8 +9,6 @@ import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 
 const Bg = withTheme(styled.div`
   position: fixed;
