@@ -348,7 +348,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975"}}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </div>
@@ -361,7 +361,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -374,7 +374,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -387,7 +387,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
               }
@@ -401,7 +401,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -414,7 +414,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -427,7 +427,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -440,7 +440,7 @@ export default function CustomCalendar() {
                 handleChange(day);
               }}
             >
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color:"#F85975" }}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px", color: "#F85975" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -451,7 +451,7 @@ export default function CustomCalendar() {
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
             >
               <Grid item></Grid>
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px"}}>
+              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -517,14 +517,16 @@ export default function CustomCalendar() {
               )}
             />
           </ThemeProvider>
-                      <FormControlLabel
-              style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
-              control={<Switch defaultChecked />}
-              label="Emoji"
-              onChange={(e) => handleEmoji(e)}
-            />
         </Grid>
       </LocalizationProvider>
+      <Grid container justify="center">
+        <FormControlLabel
+          style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
+          control={<Switch defaultChecked />}
+          label="Emoji"
+          onChange={(e) => handleEmoji(e)}
+        />
+      </Grid>
       <BottomNavigationBar />
     </div>
   );
