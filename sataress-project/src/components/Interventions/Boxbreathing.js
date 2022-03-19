@@ -9,6 +9,7 @@ import { AuthContext } from "../Auth";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -38,6 +39,19 @@ const handleClick = (e) => {
     console.log("hello")
 }
 
+const theme = createTheme({
+    components: {
+      // Name of the component
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily:'Noto Sans,Kanit,sans-serif'
+          },
+        },
+      }
+    }
+});
+
 const Boxbreathing = () => {
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
@@ -49,6 +63,7 @@ const Boxbreathing = () => {
     }
     return (
         <div>
+            <ThemeProvider theme={theme}>
             <Bg />
             <Head />
             <Grid container justify="center">
@@ -57,21 +72,22 @@ const Boxbreathing = () => {
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography gutterBottom variant="h5" component="div">
                             Box breathing
                         </Typography>
-                        <Typography variant="h6" color="text.secondary" fontFamily = 'Source Serif Pro, serif, Noto Sans Thai'>
+                        <Typography variant="h6" color="text.secondary">
                            สวัสดีชาวไทย
                         </Typography>
                         <br/>
                         <Btn>
-                            <button onClick={(e) => handleClick(e)} style={{ cursor:"pointer",fontSize: 18, color: "#FE440A" , fontFamily:'Roboto Slab, serif, Noto Sans Thai', border: "none", background:"none"}}>Play</button>
+                            <button onClick={(e) => handleClick(e)} style={{ cursor:"pointer",fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
                         </Btn>
                         <br/>
                     </CardContent>
                 </Card>
             </Grid>
             <BottomNavigationBar/>
+            </ThemeProvider>
         </div>
     );
 };

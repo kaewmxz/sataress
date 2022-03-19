@@ -48,6 +48,7 @@ const Text = withTheme(styled.div`
   font-size: 22px;
   margin-top: -44px;
   margin-left: -50px;
+  font-family: Noto Sans,Kanit,sans-serif;
 `);
 
 const CBT = withTheme(styled.div`
@@ -68,7 +69,7 @@ const Chat = () => {
     intensity = [];
     handleMessageSubmit("บันทึกอารมณ์");
   }, []);
-
+  
   const handleMessageSubmit = async (message) => {
     const data = {
       message,
@@ -268,7 +269,6 @@ const Chat = () => {
       console.log(replyMap);
     }
   };
-
   return (
     <div>
       <Bg />
