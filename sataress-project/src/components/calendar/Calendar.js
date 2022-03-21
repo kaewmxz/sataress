@@ -34,7 +34,7 @@ const theme = createTheme({
         // Name of the slot
         root: {
           // Some CSS
-          // fontFamily: '"Roboto Slab", serif',
+          // fontFamily: 'Noto Sans,Kanit,sans-serif',
           backgroundColor: "transparent",
         },
       },
@@ -44,7 +44,7 @@ const theme = createTheme({
         // Name of the slot
         root: {
           // Some CSS
-          // fontFamily: '"Roboto Slab", serif, Noto Sans Thai',
+          // fontFamily: 'Noto Sans,Kanit,sans-serif',
         },
       },
     },
@@ -54,6 +54,13 @@ const theme = createTheme({
         root: {
           // Some CSS
           // fontFamily: '"Roboto Slab", serif, Noto Sans Thai',
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Noto Sans,Kanit,sans-serif",
         },
       },
     },
@@ -543,11 +550,11 @@ export default function CustomCalendar() {
 
   return (
     <div>
-      <Bg />
-      <Header />
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Grid container justify="center" style={{ marginTop: 160 }}>
-          <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Bg />
+        <Header />
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <Grid container justify="center" style={{ marginTop: 160 }}>
             <StaticDatePicker
               displayStaticWrapperAs="desktop"
               renderDay={(day, selectedDate, isInCurrentMonth) =>
@@ -570,17 +577,22 @@ export default function CustomCalendar() {
                 />
               )}
             />
-          </ThemeProvider>
+          </Grid>
+        </LocalizationProvider>
+        <Grid container justify="center">
+          <FormControlLabel
+            style={{
+              marginLeft: 235,
+              marginTop: -30,
+              color: "#95C3BB",
+              fontFamily: "Noto Sans,Kanit,sans-serif",
+            }}
+            control={<Switch defaultChecked />}
+            label="Emoji"
+            onChange={(e) => handleEmoji(e)}
+          />
         </Grid>
-      </LocalizationProvider>
-      <Grid container justify="center">
-        <FormControlLabel
-          style={{ marginLeft: 235, marginTop: -30, color: "#95C3BB" }}
-          control={<Switch defaultChecked />}
-          label="Emoji"
-          onChange={(e) => handleEmoji(e)}
-        />
-      </Grid>
+      </ThemeProvider>
       <BottomNavigationBar />
     </div>
   );
