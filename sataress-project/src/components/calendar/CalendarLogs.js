@@ -95,7 +95,8 @@ box-sizing: border-box;
 
 const CalendarCardBottom = withTheme(styled.div`
 position: absolute;
-top:337px;
+top:193px;
+left:-17px;
 width: 304px;
 height: 35px;
 background: #B0D9FF;
@@ -145,10 +146,10 @@ const CalendarCardLine2 = withTheme(styled.div`
   });
 
 const MoodInfo = (props) => {
-  const { mood, intensity, thoughts, activity, date } = props;
+  const { mood,thoughts, activity, date } = props;
   return (
     <ThemeProvider theme={theme}>
-    <Grid container justify="center" >
+    <Grid container justify="center" style={{marginBottom:40}} >
       <CalendarCard>
         <CalendarCardInnerCircle>
           <img src = "../image/cali.png" width = "20" 
@@ -174,7 +175,6 @@ const MoodInfo = (props) => {
         <CalendarCardDot1 />
         <CalendarCardDot2 />
         <CalendarCardDot3 />
-      </CalendarCard>
       <CalendarCardBottom>
         <img src="../image/play-buttonbackward.png" width="12"
         style={{ marginLeft:18, marginTop: 12 }} />
@@ -187,6 +187,19 @@ const MoodInfo = (props) => {
         <CalendarCardLine1 />
         <CalendarCardLine2 />
       </CalendarCardBottom>
+      </CalendarCard>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
     </Grid>
     </ThemeProvider>
   )
