@@ -71,7 +71,7 @@ const ArticleBlogA = () => {
                     <img src="/image/ar1.png" width="311px" height="228px" />
                 </Image>
                 <br />
-                <Card sx={{ maxWidth: 500, marginTop: 45, marginBottom: 5 }}>
+                <Card sx={{ maxWidth: 450, marginTop: 45, marginBottom: 5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                         ดูแลสุขภาพจิตของคุณด้วย 5 ขั้นตอน
