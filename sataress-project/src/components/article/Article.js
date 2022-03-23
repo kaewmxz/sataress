@@ -75,7 +75,7 @@ const Article = () => {
       />
       <CardContent>
       <Typography gutterBottom variant="h8" component="div"  color="text.secondary" style={{marginLeft:40}}>
-      แผนการคลายเครียดง่ายๆ ที่โต๊ะทำงานสามารถทำได้ 4 ขั้นตอน
+      วิธีหยุดความคิดเชิงลบ
         </Typography>
       </CardContent>
     </Link>
@@ -89,7 +89,7 @@ const Article = () => {
       />
        <CardContent>
       <Typography gutterBottom variant="h8" component="div"  color="text.secondary" style={{marginLeft:40}}>
-      แค่ยิ้มและหัวเราะ ก็ทำให้ร่างกายผ่อนคลาย สุขภาพจิตดีขึ้น
+      ความเชื่อมโยงระหว่างสุขภาพจิตและสภาพร่างกาย
         </Typography>
       </CardContent>
         </Link>
