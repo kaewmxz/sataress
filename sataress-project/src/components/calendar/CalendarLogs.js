@@ -145,7 +145,8 @@ const CalendarCardLine2 = withTheme(styled.div`
   });
 
 const MoodInfo = (props) => {
-  const { mood, intensity, thoughts, activity, date } = props;
+  const { mood, thoughts, activity, date } = props;
+  console.log(activity)
   return (
     <ThemeProvider theme={theme}>
     <Grid container justify="center" >
@@ -161,20 +162,19 @@ const MoodInfo = (props) => {
           </Typography>
           </CalendarCardInnerDate>
           <Grid item style={{marginTop:55,marginLeft:30}}>
-          <Typography variant="body2" color="text.primary">
-            Activity:{activity}
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-            Mood:{mood + ""}
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-            Thoughts:{thoughts}
-          </Typography>
+            <Typography variant="body2" color="text.primary">
+              Activity:{activity}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              Mood:{mood + ""}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              Thoughts:{thoughts}
+            </Typography>
           </Grid>
         <CalendarCardDot1 />
         <CalendarCardDot2 />
         <CalendarCardDot3 />
-      </CalendarCard>
       <CalendarCardBottom>
         <img src="../image/play-buttonbackward.png" width="12"
         style={{ marginLeft:18, marginTop: 12 }} />
@@ -187,6 +187,7 @@ const MoodInfo = (props) => {
         <CalendarCardLine1 />
         <CalendarCardLine2 />
       </CalendarCardBottom>
+      </CalendarCard>
     </Grid>
     </ThemeProvider>
   )
@@ -266,7 +267,6 @@ const Log = () => {
           data[i].date,
           data[i].activity,
           data[i].mood,
-          data[i].intensity,
           data[i].thoughts
         )
       );
@@ -274,7 +274,6 @@ const Log = () => {
   } catch (err) {
     // console.log(err);
   }
-
   return (
     <div>
       <Bg />
@@ -287,7 +286,7 @@ const Log = () => {
       <br />
       <br />
       {data.map((data, id) => (
-        <MoodInfo key={id} {...data} />
+        <MoodInfo key={id} {...data}/>
       ))}
       <br />
       <br />
