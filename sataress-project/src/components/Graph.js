@@ -351,7 +351,8 @@ const Graph = () => {
                     verticalAnchor="middle"
                     interval={0}
                     angle={-26.4}
-                    fontSize={12}
+                    fontSize={10}
+                    fontFamily="Noto Sans,Kanit,sans-serif"
                   />
                   <YAxis minTickGap={1} scale="linear" />
                   <Bar dataKey="count" fill="#84c78b">
@@ -403,7 +404,8 @@ const Graph = () => {
                     verticalAnchor="middle"
                     interval={0}
                     angle={-26.4}
-                    fontSize={12}
+                    fontSize={10}
+                    fontFamily="Noto Sans,Kanit,sans-serif"
                   />
                   <YAxis
                     minTickGap={1}
