@@ -1,9 +1,5 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import HomeIcon from "@mui/icons-material/Home";
-import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import TodayIcon from "@mui/icons-material/Today";
 import Fab from "@mui/material/Fab";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import Paper from "@mui/material/Paper";
@@ -42,9 +38,9 @@ export default function BottomNavigationBar() {
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
             </Link>
-            <Link to="/Interventions">
+            <Link to="/Log">
               <img
-                src="../image/relaxation.png"
+                src="../image/log-file.png"
                 width="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
@@ -54,16 +50,16 @@ export default function BottomNavigationBar() {
                 <img src="./image/transparent_bg.png" width="70"></img>
               </Fab>
             </Link>
-            <Link to="/Log">
+            <Link to="/Interventions">
               <img
-                src="../image/log-file.png"
+                src="../image/relaxation.png"
                 width="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
             </Link>
-            <Link to="/Calendar">
+            <Link to="/Article">
               <img
-                src="../image/calendaricon.png"
+                src="../image/novel.png"
                 width="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
