@@ -162,15 +162,15 @@ const MoodInfo = (props) => {
           </Typography>
           </CalendarCardInnerDate>
           <Grid item style={{marginTop:55,marginLeft:30}}>
-          <Typography variant="body2" color="text.primary">
-            Activity:{activity}
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-            Mood:{mood + ""}
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-            Thoughts:{thoughts}
-          </Typography>
+            <Typography variant="body2" color="text.primary">
+              Activity:{activity}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              Mood:{mood + ""}
+            </Typography>
+            <Typography variant="body2" color="text.primary">
+              Thoughts:{thoughts}
+            </Typography>
           </Grid>
         <CalendarCardDot1 />
         <CalendarCardDot2 />
@@ -279,7 +279,6 @@ const Log = () => {
           data[i].date,
           data[i].activity,
           data[i].mood,
-          data[i].intensity,
           data[i].thoughts
         )
       );
@@ -287,7 +286,6 @@ const Log = () => {
   } catch (err) {
     // console.log(err);
   }
-
   return (
     <div>
       <Bg />
@@ -300,7 +298,7 @@ const Log = () => {
       <br />
       <br />
       {data.map((data, id) => (
-        <MoodInfo key={id} {...data} />
+        <MoodInfo key={id} {...data}/>
       ))}
       <br />
       <br />
