@@ -172,7 +172,7 @@ const Home = () => {
                 </Link>
               </Graph>
               {/* {Article card} */}
-              <GratitudeJournal>
+              <GratitudeJournal style = {{paddingBottom:90}}>
                   <PopupGratitude/>
               </GratitudeJournal>
             </Grid>
