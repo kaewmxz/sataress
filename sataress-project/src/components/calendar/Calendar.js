@@ -208,6 +208,9 @@ export default function CustomCalendar() {
     const isToday =
       day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
     let dateTile;
+    if (day.getDate() < 10) {
+
+    }
     if (show) {
       if (isInCurrentMonth.outsideCurrentMonth == false) {
         //conditionally return appropriate Element of date tile.
@@ -321,7 +324,7 @@ export default function CustomCalendar() {
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
             >
               <Grid item></Grid>
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ textAlign: "center", marginTop: "9px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -335,7 +338,7 @@ export default function CustomCalendar() {
               item
               style={{
                 color: "lightGrey",
-                marginLeft: "9px",
+                textAlign: "center",
                 marginTop: "9px",
               }}
             >
@@ -357,7 +360,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -377,7 +380,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -397,7 +400,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -417,7 +420,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -437,7 +440,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -457,7 +460,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -477,7 +480,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -497,7 +500,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  marginLeft: "9px",
+                  textAlign:"center",
                   marginTop: "9px",
                   color: "#F85975",
                 }}
@@ -512,7 +515,7 @@ export default function CustomCalendar() {
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
             >
               <Grid item></Grid>
-              <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
+              <Grid item style={{ textAlign:"center", marginTop: "9px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -526,7 +529,7 @@ export default function CustomCalendar() {
               item
               style={{
                 color: "lightGrey",
-                marginLeft: "9px",
+                textAlign:"center",
                 marginTop: "9px",
               }}
             >

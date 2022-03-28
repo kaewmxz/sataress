@@ -24,144 +24,149 @@ const Bg = withTheme(styled.div`
 `);
 
 const CalendarCardDot1 = withTheme(styled.div`
-position:absolute;
-top:-12px;
-left:245px;
-height: 6px;
+  position: absolute;
+  top: -12px;
+  left: 245px;
+  height: 6px;
   width: 6px;
-  background-color:#6EC177;
+  background-color: #6ec177;
   border-radius: 50%;
   display: inline-block;
 `);
 
 const CalendarCardDot2 = withTheme(styled.div`
-position:absolute;
-top:-12px;
-left:260px;
-height: 6px;
+  position: absolute;
+  top: -12px;
+  left: 260px;
+  height: 6px;
   width: 6px;
-  background-color:#E8B83F;
+  background-color: #e8b83f;
   border-radius: 50%;
   display: inline-block;
-
 `);
 
 const CalendarCardDot3 = withTheme(styled.div`
-position:absolute;
-top:-12px;
-left:275px;
-height: 6px;
+  position: absolute;
+  top: -12px;
+  left: 275px;
+  height: 6px;
   width: 6px;
-  background-color: #FF5E5E;;
+  background-color: #ff5e5e;
   border-radius: 50%;
   display: inline-block;
-
 `);
 
 const CalendarCard = withTheme(styled.div`
-position:absolute;
-margin:1px;
-width: 304px;
-height: 210px;
-background: #FFFFFF;
-border: 17px solid #FFEEB5;
-box-sizing: border-box;
-box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  margin: 1px;
+  width: 304px;
+  height: 210px;
+  background: #ffffff;
+  border: 17px solid #ffeeb5;
+  box-sizing: border-box;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 `);
 
 const CalendarCardInnerCircle = withTheme(styled.div`
-position:absolute;
-width: 34px;
-height: 34px;
-left: 15px;
-top: 10px;
-background: #FFFFFF;
-border: 3px solid #5EC0C7;
-border-radius: 50%;
-box-sizing: border-box;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  left: 15px;
+  top: 10px;
+  background: #ffffff;
+  border: 3px solid #5ec0c7;
+  border-radius: 50%;
+  box-sizing: border-box;
 `);
 
 const CalendarCardInnerDate = withTheme(styled.div`
-position: absolute;
-width: 120px;
-height: 28px;
-left: 60px;
-top: 14px;
-background: #5EC0C7;
-opacity: 0.25;
-border: 1px solid #5EC0C7;
-box-sizing: border-box;
+  position: absolute;
+  width: 120px;
+  height: 28px;
+  left: 60px;
+  top: 14px;
+  background: #5ec0c7;
+  opacity: 0.25;
+  border: 1px solid #5ec0c7;
+  box-sizing: border-box;
 `);
 
 const CalendarCardBottom = withTheme(styled.div`
-position: absolute;
-top:193px;
-left:-17px;
-width: 304px;
-height: 35px;
-background: #B0D9FF;
+  position: absolute;
+  top: 193px;
+  left: -17px;
+  width: 304px;
+  height: 35px;
+  background: #b0d9ff;
 `);
 
 const CalendarCardDot4 = withTheme(styled.div`
-position:absolute;
-top:5px;
-left:40px;
-height: 26px;
+  position: absolute;
+  top: 5px;
+  left: 40px;
+  height: 26px;
   width: 26px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 50%;
   display: inline-block;
-  `);
+`);
 
 const CalendarCardLine1 = withTheme(styled.div`
   position: absolute;
   width: 70px;
-  height:0px;
+  height: 0px;
   left: 110px;
   top: 15px;
-  
-  border: 4px solid #FFFFFF;
-  `);
+
+  border: 4px solid #ffffff;
+`);
 const CalendarCardLine2 = withTheme(styled.div`
   position: absolute;
   width: 70px;
   height: 0px;
   left: 188px;
-  top:15px;
-  
-  border: 4px solid #FF5858;
-  `);
+  top: 15px;
 
-  const theme = createTheme({
-    components: {
-      // Name of the component
-      MuiTypography: {
-        styleOverrides: {
-          root: {
-            fontFamily:'Noto Sans,Kanit,sans-serif'
-          },
+  border: 4px solid #ff5858;
+`);
+
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Noto Sans,Kanit,sans-serif",
         },
-      }
-    }
-  });
+      },
+    },
+  },
+});
 
 const MoodInfo = (props) => {
-  const { mood,thoughts, activity, date } = props;
+  const { mood, thoughts, activity, date } = props;
   return (
     <ThemeProvider theme={theme}>
-    <Grid container justify="center" style={{marginBottom:40}} >
-      <CalendarCard>
-        <CalendarCardInnerCircle>
-          <img src = "../image/cali.png" width = "20" 
-          style={{marginTop:3,marginLeft:4}}/>
+      <Grid container justify="center" style={{ marginBottom: 40 }}>
+        <CalendarCard>
+          <CalendarCardInnerCircle>
+            <img
+              src="../image/cali.png"
+              width="20"
+              style={{ marginTop: 3, marginLeft: 4 }}
+            />
           </CalendarCardInnerCircle>
           <CalendarCardInnerDate>
-          <Typography gutterBottom variant="h6" component="div"
-          style={{marginLeft:15, fontWeight:"bold", color:"black"}}>
-            {date}
-          </Typography>
+            <Typography
+              gutterBottom
+              variant="h6"
+              component="div"
+              style={{ marginLeft: 15, fontWeight: "bold", color: "black" }}
+            >
+              {date}
+            </Typography>
           </CalendarCardInnerDate>
-          <Grid item style={{marginTop:55,marginLeft:30}}>
+          <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
             <Typography variant="body2" color="text.primary">
               Activity:{activity}
             </Typography>
@@ -172,38 +177,47 @@ const MoodInfo = (props) => {
               Thoughts:{thoughts}
             </Typography>
           </Grid>
-        <CalendarCardDot1 />
-        <CalendarCardDot2 />
-        <CalendarCardDot3 />
-      <CalendarCardBottom>
-        <img src="../image/play-buttonbackward.png" width="12"
-        style={{ marginLeft:18, marginTop: 12 }} />
-        <CalendarCardDot4>
-          <img src="../image/pause.png" width="12" 
-          style={{ marginLeft: 7, marginTop: 7 }} />
-        </CalendarCardDot4>
-        <img src="../image/play-button.png" width="12" 
-        style={{ marginLeft: 46, marginTop: 12 }}/>
-        <CalendarCardLine1 />
-        <CalendarCardLine2 />
-      </CalendarCardBottom>
-      </CalendarCard>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-    </Grid>
+          <CalendarCardDot1 />
+          <CalendarCardDot2 />
+          <CalendarCardDot3 />
+          <CalendarCardBottom>
+            <img
+              src="../image/play-buttonbackward.png"
+              width="12"
+              style={{ marginLeft: 18, marginTop: 12 }}
+            />
+            <CalendarCardDot4>
+              <img
+                src="../image/pause.png"
+                width="12"
+                style={{ marginLeft: 7, marginTop: 7 }}
+              />
+            </CalendarCardDot4>
+            <img
+              src="../image/play-button.png"
+              width="12"
+              style={{ marginLeft: 46, marginTop: 12 }}
+            />
+            <CalendarCardLine1 />
+            <CalendarCardLine2 />
+          </CalendarCardBottom>
+        </CalendarCard>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </Grid>
     </ThemeProvider>
-  )
-}
+  );
+};
 
 const Log = () => {
   const { currentUser } = useContext(AuthContext);
@@ -298,7 +312,7 @@ const Log = () => {
       <br />
       <br />
       {data.map((data, id) => (
-        <MoodInfo key={id} {...data}/>
+        <MoodInfo key={id} {...data} />
       ))}
       <br />
       <br />
