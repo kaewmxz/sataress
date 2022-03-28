@@ -15,6 +15,7 @@ const {
   addGratitude,
   getGratitude,
   getGratitudeTable,
+  getGratitudeLogs,
   deleteGratitude,
 } = require("./gratitude");
 var jsonParser = bodyParser.json();
@@ -241,6 +242,19 @@ app.get("/gratitude-table", (req, res, next) => {
   const id = req.query.id;
   console.log(id);
   getGratitudeTable(id)
+    .then((response) => {
+      res.send({ message: response });
+    })
+    .catch((error) => {
+      console.log("Something went wrong: " + error);
+    });
+});
+
+app.get("/gratitude-logs", (req, res, next) => {
+  const id = req.query.id;
+  const date = req.query.date;
+  // console.log(id);
+  getGratitudeLogs(id, date)
     .then((response) => {
       res.send({ message: response });
     })

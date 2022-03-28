@@ -129,6 +129,7 @@ const Graph = () => {
       <ReactWordcloud
         style={{ maxWidth: 300, maxHeight: 180, paddingBottom: 100 }}
         words={gratitude}
+        options={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
       />
     );
   };
@@ -147,20 +148,28 @@ const Graph = () => {
 
       const countResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
+          o.mood = "มีความสุข";
           o.emoji = "😊";
         } else if (o.mood == "Stressed") {
+          o.mood = "เครียด";
           o.emoji = "😣";
         } else if (o.mood == "Sad") {
+          o.mood = "เศร้า";
           o.emoji = "😭";
         } else if (o.mood == "Surprised") {
+          o.mood = "ประหลาดใจ";
           o.emoji = "😯";
         } else if (o.mood == "Fearful") {
+          o.mood = "หวาดกลัว";
           o.emoji = "😰";
         } else if (o.mood == "Disgusted") {
+          o.mood = "รังเกียจ";
           o.emoji = "🤢";
         } else if (o.mood == "Neutral") {
+          o.mood = "เฉยๆ";
           o.emoji = "😶";
         } else if (o.mood == "Angry") {
+          o.mood = "โกรธ";
           o.emoji = "😡";
         }
         return o;
@@ -176,20 +185,28 @@ const Graph = () => {
 
       const intensityResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
+          o.mood = "มีความสุข";
           o.emoji = "😊";
         } else if (o.mood == "Stressed") {
+          o.mood = "เครียด";
           o.emoji = "😣";
         } else if (o.mood == "Sad") {
+          o.mood = "เศร้า";
           o.emoji = "😭";
         } else if (o.mood == "Surprised") {
+          o.mood = "ประหลาดใจ";
           o.emoji = "😯";
         } else if (o.mood == "Fearful") {
+          o.mood = "หวาดกลัว";
           o.emoji = "😰";
         } else if (o.mood == "Disgusted") {
+          o.mood = "รังเกียจ";
           o.emoji = "🤢";
         } else if (o.mood == "Neutral") {
+          o.mood = "เฉยๆ";
           o.emoji = "😶";
         } else if (o.mood == "Angry") {
+          o.mood = "โกรธ";
           o.emoji = "😡";
         }
         return o;
@@ -224,20 +241,28 @@ const Graph = () => {
 
       const countResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
+          o.mood = "มีความสุข";
           o.emoji = "😊";
         } else if (o.mood == "Stressed") {
+          o.mood = "เครียด";
           o.emoji = "😣";
         } else if (o.mood == "Sad") {
+          o.mood = "เศร้า";
           o.emoji = "😭";
         } else if (o.mood == "Surprised") {
+          o.mood = "ประหลาดใจ";
           o.emoji = "😯";
         } else if (o.mood == "Fearful") {
+          o.mood = "หวาดกลัว";
           o.emoji = "😰";
         } else if (o.mood == "Disgusted") {
+          o.mood = "รังเกียจ";
           o.emoji = "🤢";
         } else if (o.mood == "Neutral") {
+          o.mood = "เฉยๆ";
           o.emoji = "😶";
         } else if (o.mood == "Angry") {
+          o.mood = "โกรธ";
           o.emoji = "😡";
         }
         return o;
@@ -253,20 +278,28 @@ const Graph = () => {
 
       const intensityResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
+          o.mood = "มีความสุข";
           o.emoji = "😊";
         } else if (o.mood == "Stressed") {
+          o.mood = "เครียด";
           o.emoji = "😣";
         } else if (o.mood == "Sad") {
+          o.mood = "เศร้า";
           o.emoji = "😭";
         } else if (o.mood == "Surprised") {
+          o.mood = "ประหลาดใจ";
           o.emoji = "😯";
         } else if (o.mood == "Fearful") {
+          o.mood = "หวาดกลัว";
           o.emoji = "😰";
         } else if (o.mood == "Disgusted") {
+          o.mood = "รังเกียจ";
           o.emoji = "🤢";
         } else if (o.mood == "Neutral") {
+          o.mood = "เฉยๆ";
           o.emoji = "😶";
         } else if (o.mood == "Angry") {
+          o.mood = "โกรธ";
           o.emoji = "😡";
         }
         return o;
@@ -351,7 +384,8 @@ const Graph = () => {
                     verticalAnchor="middle"
                     interval={0}
                     angle={-26.4}
-                    fontSize={12}
+                    fontSize={10}
+                    fontFamily="Noto Sans,Kanit,sans-serif"
                   />
                   <YAxis minTickGap={1} scale="linear" />
                   <Bar dataKey="count" fill="#84c78b">
@@ -362,21 +396,21 @@ const Graph = () => {
                       // />
                       <Cell
                         fill={
-                          moodCount[index].mood === "Happy"
+                          moodCount[index].mood === "มีความสุข"
                             ? barColors[0]
-                            : moodCount[index].mood === "Surprised"
+                            : moodCount[index].mood === "ประหลาดใจ"
                             ? barColors[1]
-                            : moodCount[index].mood === "Stressed"
+                            : moodCount[index].mood === "เครียด"
                             ? barColors[6]
-                            : moodCount[index].mood === "Disgusted"
+                            : moodCount[index].mood === "รังเกียจ"
                             ? barColors[3]
-                            : moodCount[index].mood === "Fearful"
+                            : moodCount[index].mood === "หวาดกลัว"
                             ? barColors[4]
-                            : moodCount[index].mood === "Sad"
+                            : moodCount[index].mood === "เศร้า"
                             ? barColors[5]
-                            : moodCount[index].mood === "Angry"
+                            : moodCount[index].mood === "โกรธ"
                             ? barColors[2]
-                            : moodCount[index].mood === "Neutral"
+                            : moodCount[index].mood === "เฉยๆ"
                             ? barColors[7]
                             : "#0"
                         }
@@ -403,7 +437,8 @@ const Graph = () => {
                     verticalAnchor="middle"
                     interval={0}
                     angle={-26.4}
-                    fontSize={12}
+                    fontSize={10}
+                    fontFamily="Noto Sans,Kanit,sans-serif"
                   />
                   <YAxis
                     minTickGap={1}
@@ -414,21 +449,21 @@ const Graph = () => {
                     {moodIntense.map((entry, index) => (
                       <Cell
                         fill={
-                          moodIntense[index].mood === "Happy"
+                          moodIntense[index].mood === "มีความสุข"
                             ? barColors[0]
-                            : moodIntense[index].mood === "Surprised"
+                            : moodIntense[index].mood === "ประหลาดใจ"
                             ? barColors[1]
-                            : moodIntense[index].mood === "Stressed"
+                            : moodIntense[index].mood === "เครียด"
                             ? barColors[6]
-                            : moodIntense[index].mood === "Disgusted"
+                            : moodIntense[index].mood === "รังเกียจ"
                             ? barColors[3]
-                            : moodIntense[index].mood === "Fearful"
+                            : moodIntense[index].mood === "หวาดกลัว"
                             ? barColors[4]
-                            : moodIntense[index].mood === "Sad"
+                            : moodIntense[index].mood === "เศร้า"
                             ? barColors[5]
-                            : moodIntense[index].mood === "Angry"
+                            : moodIntense[index].mood === "โกรธ"
                             ? barColors[2]
-                            : moodIntense[index].mood === "Neutral"
+                            : moodIntense[index].mood === "เฉยๆ"
                             ? barColors[7]
                             : "#0"
                         }

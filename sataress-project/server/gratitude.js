@@ -88,6 +88,38 @@ async function getGratitudeTable(id) {
   return grat_arr;
 }
 
+async function getGratitudeLogs(id, date) {
+  var admin = require("firebase-admin");
+  var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
+
+  if (admin.apps.length === 0) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+    });
+  }
+
+  const db = getFirestore();
+  const gratitude = db.collection("gratitude");
+  const snapshot = await gratitude.where("id", "==", id).get();
+  if (snapshot.empty) {
+    console.log("No matching documents.");
+    return;
+  }
+  let arr = [];
+  snapshot.forEach((doc) => {
+    const date1 = new Date(doc.data().dateToCheck);
+    const date2 = new Date(date);
+    if (
+      date1.getDate() == date2.getDate() &&
+      date1.getMonth() == date2.getMonth()
+    ) {
+      arr.push(doc.data().gratitude);
+    }
+  });
+  console.log(arr);
+  return arr;
+}
+
 async function deleteGratitude(result) {
   var admin = require("firebase-admin");
   var serviceAccount = require("./configs/senior-project-105f0-firebase-adminsdk-n6vca-2612fcc05a.json");
@@ -126,5 +158,6 @@ module.exports = {
   addGratitude,
   getGratitude,
   getGratitudeTable,
+  getGratitudeLogs,
   deleteGratitude,
 };
