@@ -73,9 +73,9 @@ const ArticleBlogA = () => {
               position: "absolute",
               cursor: "pointer",
             }}
-          />
+          /> 
           <Image style={{ marginTop: 150 }}>
-            <img src="/image/ar1.png" width="311px" height="228px" />
+            <img src="/image/arco1.png" width="320.7px" height="182px" />
           </Image>
           <br />
           <Card sx={{ maxWidth: 500, marginTop: 45, marginBottom: 5 }}>

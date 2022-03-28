@@ -68,7 +68,7 @@ const ArticleBlogC = () => {
                     onClick={() => handleClick()}
                     sx={{ fontSize: 15, mt: 15, ml: -20, position: "absolute", cursor: "pointer" }} color="gray" />
                 <Image style={{ marginTop: 130 }}>
-                    <img src="/image/ar3.png" width="311px" height="228px" />
+                    <img src="/image/arco3.png" width="320.7px" height="182px" />
                 </Image>
                 <br/>
                 <Card sx={{ maxWidth: 450, marginTop: 45, marginBottom: 5 }}>

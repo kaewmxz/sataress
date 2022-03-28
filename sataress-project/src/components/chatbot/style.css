@@ -60,10 +60,10 @@ h1, p {
   border-bottom-right-radius: 30px 30px;
   border-top-right-radius: 30px 30px;
   border-bottom-left-radius: 30px 30px;
-  background-color: #B9B9B9;
+  background-color: #E3E0E0;
   margin-left: 17px;
   float: left;
-  color: white;
+  color:black;
   margin-bottom: 10px;
 }
 
@@ -75,7 +75,7 @@ h1, p {
   float: right;
   background-color: #FFB2B2;
   margin-bottom: 10px;
-  color: white;
+  color:white;
 }
 
 .messagesSection::-webkit-scrollbar {

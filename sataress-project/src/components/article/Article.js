@@ -2,15 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid, Container, CardContent } from "@material-ui/core";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Grid, Box } from "@material-ui/core";
+import { Routes, Route, Navigate } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Header from "../Head";
 import { AuthContext } from "../Auth";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -25,18 +22,38 @@ const Bg = withTheme(styled.div`
   );
 `);
 
-const theme = createTheme({
-  components: {
-    // Name of the component
-    MuiTypography: {
-      styleOverrides: {
-        root: {
-          fontFamily: "Noto Sans,Kanit,sans-serif",
-        },
-      },
-    },
-  },
-});
+const Ar1 = withTheme(styled.div`
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 142px;
+  filter: drop-shadow(0px 4px 4px rgba(253, 6, 6, 0.25));
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
+`);
+
+const Ar2 = withTheme(styled.div`
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 346px;
+  filter: drop-shadow(0px 4px 4px rgba(238, 215, 7, 0.37));
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
+`);
+
+const Ar3 = withTheme(styled.div`
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  top: 550px;
+  filter: drop-shadow( 0px 4px 4px rgba(0, 117, 255, 0.25));
+  ${(props) => props.theme.breakpoints.only("xs")} {
+    padding: 0px;
+  }
+`);
 
 const Article = () => {
   const { currentUser } = useContext(AuthContext);
@@ -49,81 +66,38 @@ const Article = () => {
   }
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        <Bg />
-        <Header />
-        <Card
-          sx={{
-            width: 345,
-            mt: 18,
-            mx: "auto",
-            boxShadow: "0px 3px 3px #92FC9C",
-          }}
-        >
-          <Link to="/ArticleBlog-1">
-            <CardMedia component="img" height="140" image="../image/ar1.png" />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h8"
-                component="div"
-                color="text.secondary"
-                style={{ marginLeft: 40 }}
-              >
-                วิธีหลีกเลี่ยงอาการหมดไฟ
-              </Typography>
-            </CardContent>
-          </Link>
-        </Card>
-        <Card
-          sx={{
-            width: 345,
-            mt: 3,
-            mx: "auto",
-            boxShadow: "0px 3px 3px #92FC9C;",
-          }}
-        >
-          <Link to="/ArticleBlog-2">
-            <CardMedia component="img" height="140" image="../image/ar2.png" />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h8"
-                component="div"
-                color="text.secondary"
-                style={{ marginLeft: 40 }}
-              >
-                วิธีหยุดความคิดเชิงลบ
-              </Typography>
-            </CardContent>
-          </Link>
-        </Card>
-        <Card
-          sx={{
-            width: 345,
-            mt: 3,
-            mx: "auto",
-            mb: 11,
-            boxShadow: "0px 3px 3px #92FC9C;",
-          }}
-        >
-          <Link to="/ArticleBlog-3">
-            <CardMedia component="img" height="140" image="../image/ar3.png" />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h8"
-                component="div"
-                color="text.secondary"
-                style={{ marginLeft: 40 }}
-              >
-                ความเชื่อมโยงระหว่างสุขภาพจิตและสภาพร่างกาย
-              </Typography>
-            </CardContent>
-          </Link>
-        </Card>
-        <BottomNavigationBar />
-      </ThemeProvider>
+      <Bg />
+      <Header />
+      <Box component="span">
+        <Grid container justifyContent="center">
+          <Ar1>
+            <Link to="/ArticleBlog-1">
+              <img
+                src="/image/arco1.png"
+                width="320.7px"
+                height="183px"
+              />
+            </Link>
+          </Ar1>
+          <Ar2>
+            <Link to="/ArticleBlog-2">
+              <img
+                src="/image/arco2.png"
+                width="320.7px"
+                height="183px" />
+            </Link>
+          </Ar2>
+          <Ar3 style={{ paddingBottom: 90 }}>
+            <Link to="/ArticleBlog-3">
+              <img
+                src="/image/arco3.png"
+                width="320.7px"
+                height="183px" />
+            </Link>
+          </Ar3>
+        </Grid>
+      </Box>
+      <BottomNavigationBar />
     </div>
   );
 };
