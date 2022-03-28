@@ -53,11 +53,14 @@ const CBT = withTheme(styled.div`
   margin-left: 265px;
 `);
 
+const random = Math.random().toString();
+
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const { currentUser } = useContext(AuthContext);
-
+  const sessionId = currentUser.uid + random;
+  console.log(sessionId)
   useEffect(() => {
     if (!currentUser) {
       return (
@@ -72,7 +75,7 @@ const Chat = () => {
   const handleMessageSubmit = async (message) => {
     const data = {
       message,
-      userId: currentUser.uid,
+      userId: sessionId,
     };
     try {
       const response = await axios.post("http://localhost:4000/dass-21", data);

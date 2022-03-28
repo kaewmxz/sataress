@@ -49,7 +49,7 @@ const Graph = withTheme(styled.div`
   }
 `);
 
-const Article = withTheme(styled.div`
+const GratitudeJournal = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
@@ -60,13 +60,6 @@ const Article = withTheme(styled.div`
   }
 `);
 
-const Gratitude = withTheme(styled.div`
-  position: absolute;
-  top: 754px;
-  ${(props) => props.theme.breakpoints.only("xs")} {
-    padding: 0px;
-  }
-`);
 
 const Home = () => {
   // get datetime
@@ -179,19 +172,9 @@ const Home = () => {
                 </Link>
               </Graph>
               {/* {Article card} */}
-              <Article>
-                <Link to="/Article">
-                  <img
-                    src="/image/article.png"
-                    width="320.7px"
-                    height="183px"
-                  />
-                </Link>
-              </Article>
-              {/* Gratitude journal button */}
-              <Gratitude style={{ paddingBottom: 90 }}>
-                <PopupGratitude />
-              </Gratitude>
+              <GratitudeJournal style = {{paddingBottom:90}}>
+                  <PopupGratitude/>
+              </GratitudeJournal>
             </Grid>
           </Box>
           <BottomNavigationBar />

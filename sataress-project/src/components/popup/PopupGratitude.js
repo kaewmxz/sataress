@@ -10,7 +10,6 @@ import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { AuthContext } from "../Auth";
-import { Alert } from "@mui/material";
 
 export default function PopupGratitude() {
   const [open, setOpen] = React.useState(false);
@@ -28,9 +27,9 @@ export default function PopupGratitude() {
     const date = new Date();
     let time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     let day = date.getDate().toString() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear().toString();
-    if(date.getMinutes() < 10){
+    if (date.getMinutes() < 10) {
       time = date.getHours() + ':0' + date.getMinutes() + ":" + date.getSeconds();
-      }
+    }
     let dateTime = day + " " + time;
     const data = {
       gratitude: e.target[0].value,
@@ -59,9 +58,13 @@ export default function PopupGratitude() {
   });
   return (
     <div>
-      <Button onClick={handleClickOpen}>
-        <img src="/image/gratitude.png" width="243px" height="31px" />
-      </Button>
+        <img
+          src="/image/gratitudej.png"
+          width="320.7px"
+          height="183px"
+          onClick={handleClickOpen}
+          style={{cursor:"pointer"}}
+        />
       <Dialog open={open} onClose={handleClose}>
         <ThemeProvider theme={theme}>
           <DialogTitle mt={2} color="secondary">
@@ -86,7 +89,7 @@ export default function PopupGratitude() {
             <ThemeProvider theme={theme}>
               <Stack mt={1} mb={1} >
                 <Button type="submit" variant="contained" color="Addbutton"
-                sx = {{marginRight:13,marginTop:-2}}>
+                  sx={{ marginRight: 13, marginTop: -2 }}>
                   บันทึก
                 </Button>
               </Stack>

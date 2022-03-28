@@ -57,6 +57,7 @@ const CalendarCardDot3 = withTheme(styled.div`
 `);
 
 const CalendarCard = withTheme(styled.div`
+<<<<<<< HEAD
   position: absolute;
   margin: 1px;
   width: 304px;
@@ -65,6 +66,15 @@ const CalendarCard = withTheme(styled.div`
   border: 17px solid #ffeeb5;
   box-sizing: border-box;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+=======
+position:absolute;
+margin:1px;
+width: 304px;
+background: #FFFFFF;
+border: 17px solid #FFEEB5;
+box-sizing: border-box;
+box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+>>>>>>> 9a98e3efb552f88ff7fc66f07331ca9721109669
 `);
 
 const CalendarCardInnerCircle = withTheme(styled.div`
@@ -91,44 +101,44 @@ const CalendarCardInnerDate = withTheme(styled.div`
   box-sizing: border-box;
 `);
 
-const CalendarCardBottom = withTheme(styled.div`
-  position: absolute;
-  top: 193px;
-  left: -17px;
-  width: 304px;
-  height: 35px;
-  background: #b0d9ff;
-`);
+// const CalendarCardBottom = withTheme(styled.div`
+// position: absolute;
+// top:193px;
+// left:-17px;
+// width: 304px;
+// height: 35px;
+// background: #B0D9FF;
+// `);
 
-const CalendarCardDot4 = withTheme(styled.div`
-  position: absolute;
-  top: 5px;
-  left: 40px;
-  height: 26px;
-  width: 26px;
-  background: #ffffff;
-  border-radius: 50%;
-  display: inline-block;
-`);
+// const CalendarCardDot4 = withTheme(styled.div`
+// position:absolute;
+// top:5px;
+// left:40px;
+// height: 26px;
+//   width: 26px;
+//   background: #FFFFFF;
+//   border-radius: 50%;
+//   display: inline-block;
+//   `);
 
-const CalendarCardLine1 = withTheme(styled.div`
-  position: absolute;
-  width: 70px;
-  height: 0px;
-  left: 110px;
-  top: 15px;
-
-  border: 4px solid #ffffff;
-`);
-const CalendarCardLine2 = withTheme(styled.div`
-  position: absolute;
-  width: 70px;
-  height: 0px;
-  left: 188px;
-  top: 15px;
-
-  border: 4px solid #ff5858;
-`);
+// const CalendarCardLine1 = withTheme(styled.div`
+//   position: absolute;
+//   width: 70px;
+//   height:0px;
+//   left: 110px;
+//   top: 15px;
+  
+//   border: 4px solid #FFFFFF;
+//   `);
+// const CalendarCardLine2 = withTheme(styled.div`
+//   position: absolute;
+//   width: 70px;
+//   height: 0px;
+//   left: 188px;
+//   top:15px;
+  
+//   border: 4px solid #FF5858;
+//   `);
 
 const theme = createTheme({
   components: {
@@ -176,45 +186,37 @@ const MoodInfo = (props) => {
             <Typography variant="body2" color="text.primary">
               Thoughts:{thoughts}
             </Typography>
+            <br/>
           </Grid>
-          <CalendarCardDot1 />
-          <CalendarCardDot2 />
-          <CalendarCardDot3 />
-          <CalendarCardBottom>
-            <img
-              src="../image/play-buttonbackward.png"
-              width="12"
-              style={{ marginLeft: 18, marginTop: 12 }}
-            />
-            <CalendarCardDot4>
-              <img
-                src="../image/pause.png"
-                width="12"
-                style={{ marginLeft: 7, marginTop: 7 }}
-              />
-            </CalendarCardDot4>
-            <img
-              src="../image/play-button.png"
-              width="12"
-              style={{ marginLeft: 46, marginTop: 12 }}
-            />
-            <CalendarCardLine1 />
-            <CalendarCardLine2 />
-          </CalendarCardBottom>
-        </CalendarCard>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </Grid>
+        <CalendarCardDot1 />
+        <CalendarCardDot2 />
+        <CalendarCardDot3 />
+      {/* <CalendarCardBottom>
+        <img src="../image/play-buttonbackward.png" width="12"
+        style={{ marginLeft:18, marginTop: 12 }} />
+        <CalendarCardDot4>
+          <img src="../image/pause.png" width="12" 
+          style={{ marginLeft: 7, marginTop: 7 }} />
+        </CalendarCardDot4>
+        <img src="../image/play-button.png" width="12" 
+        style={{ marginLeft: 46, marginTop: 12 }}/>
+        <CalendarCardLine1 />
+        <CalendarCardLine2 />
+      </CalendarCardBottom> */}
+      </CalendarCard>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+    </Grid>
     </ThemeProvider>
   );
 };
