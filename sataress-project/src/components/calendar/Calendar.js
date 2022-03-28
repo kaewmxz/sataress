@@ -319,6 +319,9 @@ export default function CustomCalendar() {
           dateTile = (
             <Paper
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
             >
               <Grid item></Grid>
               <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>
@@ -510,6 +513,9 @@ export default function CustomCalendar() {
           dateTile = (
             <Paper
               className={isToday ? classes.todayPaper : classes.normalDayPaper}
+              onClick={() => {
+                handleChange(day);
+              }}
             >
               <Grid item></Grid>
               <Grid item style={{ marginLeft: "9px", marginTop: "9px" }}>

@@ -129,6 +129,7 @@ const Graph = () => {
       <ReactWordcloud
         style={{ maxWidth: 300, maxHeight: 180, paddingBottom: 100 }}
         words={gratitude}
+        options={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
       />
     );
   };
