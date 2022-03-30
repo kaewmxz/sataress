@@ -10,6 +10,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
+import Box from '@mui/material/Box';
 import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
@@ -64,7 +65,7 @@ const CalendarCardDot3 = withTheme(styled.div`
 `);
 
 const CalendarCard = withTheme(styled.div`
-  position: absolute;
+  position: relative;
   margin: 1px;
   width: 304px;
   background: #ffffff;
@@ -74,11 +75,11 @@ const CalendarCard = withTheme(styled.div`
 `);
 
 const CalendarCard2 = withTheme(styled.div`
-  position: absolute;
+  position: relative;
   margin: 1px;
   width: 304px;
   background: #ffffff;
-  border: 17px solid #ff5e5e;
+  border: 17px solid #B0D9FF;
   box-sizing: border-box;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 `);
@@ -107,45 +108,6 @@ const CalendarCardInnerDate = withTheme(styled.div`
   box-sizing: border-box;
 `);
 
-// const CalendarCardBottom = withTheme(styled.div`
-// position: absolute;
-// top:193px;
-// left:-17px;
-// width: 304px;
-// height: 35px;
-// background: #B0D9FF;
-// `);
-
-// const CalendarCardDot4 = withTheme(styled.div`
-// position:absolute;
-// top:5px;
-// left:40px;
-// height: 26px;
-//   width: 26px;
-//   background: #FFFFFF;
-//   border-radius: 50%;
-//   display: inline-block;
-//   `);
-
-// const CalendarCardLine1 = withTheme(styled.div`
-//   position: absolute;
-//   width: 70px;
-//   height:0px;
-//   left: 110px;
-//   top: 15px;
-
-//   border: 4px solid #FFFFFF;
-//   `);
-// const CalendarCardLine2 = withTheme(styled.div`
-//   position: absolute;
-//   width: 70px;
-//   height: 0px;
-//   left: 188px;
-//   top:15px;
-
-//   border: 4px solid #FF5858;
-//   `);
-
 const theme = createTheme({
   components: {
     // Name of the component
@@ -162,12 +124,7 @@ const theme = createTheme({
 const MoodInfo = (props) => {
   const { mood, thoughts, activity, date } = props;
   return (
-    <ThemeProvider theme={theme}>
-      <Grid
-        container
-        justify="center"
-        style={{ marginBottom: 40, marginTop: 50 }}
-      >
+      <Grid container justifyContent="center">
         <CalendarCard>
           <CalendarCardInnerCircle>
             <img
@@ -181,7 +138,7 @@ const MoodInfo = (props) => {
               gutterBottom
               variant="h6"
               component="div"
-              style={{ marginLeft: 15, fontWeight: "bold", color: "black" }}
+              style={{ marginLeft: 12, fontWeight: "bold", color: "black" }}
             >
               {date}
             </Typography>
@@ -205,45 +162,19 @@ const MoodInfo = (props) => {
           <CalendarCardDot1 />
           <CalendarCardDot2 />
           <CalendarCardDot3 />
-          {/* <CalendarCardBottom>
-        <img src="../image/play-buttonbackward.png" width="12"
-        style={{ marginLeft:18, marginTop: 12 }} />
-        <CalendarCardDot4>
-          <img src="../image/pause.png" width="12" 
-          style={{ marginLeft: 7, marginTop: 7 }} />
-        </CalendarCardDot4>
-        <img src="../image/play-button.png" width="12" 
-        style={{ marginLeft: 46, marginTop: 12 }}/>
-        <CalendarCardLine1 />
-        <CalendarCardLine2 />
-      </CalendarCardBottom> */}
         </CalendarCard>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </Grid>
-    </ThemeProvider>
   );
 };
 
 const GratitudeInfo = (gratitude) => {
   if (gratitude.length) {
     return (
-      <ThemeProvider theme={theme}>
-        <Grid container justify="center" style={{ marginBottom: 40 }}>
+        <Grid container justify="center">
           <CalendarCard2>
             <CalendarCardInnerCircle>
               <img
-                src="../image/cali.png"
+                src="../image/book.png"
                 width="20"
                 style={{ marginTop: 3, marginLeft: 4 }}
               />
@@ -254,7 +185,7 @@ const GratitudeInfo = (gratitude) => {
                 variant="h6"
                 component="div"
                 style={{
-                  marginLeft: 15,
+                  marginLeft: 12,
                   fontWeight: "bold",
                   color: "black",
                   fontSize: 15,
@@ -275,20 +206,7 @@ const GratitudeInfo = (gratitude) => {
             <CalendarCardDot2 />
             <CalendarCardDot3 />
           </CalendarCard2>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
         </Grid>
-      </ThemeProvider>
     );
   }
 };
@@ -415,22 +333,16 @@ const Log = () => {
           }}
         />
       </Grid>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      {data.map((data, id) => (
-        <MoodInfo key={id} {...data} />
+      <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+      {data.map((data, id) =>
+      (
+          <Grid item xs = {12} style={{marginTop:10}}>
+            <MoodInfo key={id} {...data}/>
+          </Grid>
       ))}
-      {GratitudeInfo(data2)}
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        <Grid item xs={12} style={{marginTop:10, marginBottom:100}}>
+          {GratitudeInfo(data2)}
+        </Grid>
       <BottomNavigationBar />
     </div>
   );
