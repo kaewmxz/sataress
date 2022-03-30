@@ -327,7 +327,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item></Grid>
-              <Grid item style={{ textAlign: "center", marginTop: "9px" }}>
+              <Grid item style={{ textAlign: "center", marginTop: "6px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -342,7 +342,7 @@ export default function CustomCalendar() {
               style={{
                 color: "lightGrey",
                 textAlign: "center",
-                marginTop: "9px",
+                marginTop: "5px",
               }}
             >
               {day.getDate()}
@@ -364,7 +364,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -384,7 +384,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -404,7 +404,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -424,7 +424,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -444,7 +444,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -464,7 +464,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -484,7 +484,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -504,7 +504,7 @@ export default function CustomCalendar() {
                 item
                 style={{
                   textAlign:"center",
-                  marginTop: "9px",
+                  marginTop: "5px",
                   color: "#F85975",
                 }}
               >
@@ -521,7 +521,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item></Grid>
-              <Grid item style={{ textAlign:"center", marginTop: "9px" }}>
+              <Grid item style={{ textAlign:"center", marginTop: "5px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -536,7 +536,7 @@ export default function CustomCalendar() {
               style={{
                 color: "lightGrey",
                 textAlign:"center",
-                marginTop: "9px",
+                marginTop: "5px",
               }}
             >
               {day.getDate()}
@@ -592,7 +592,7 @@ export default function CustomCalendar() {
           <FormControlLabel
             style={{
               marginLeft: 235,
-              marginTop: -30,
+              marginTop:5,
               color: "#95C3BB",
               fontFamily: "Noto Sans,Kanit,sans-serif",
             }}
