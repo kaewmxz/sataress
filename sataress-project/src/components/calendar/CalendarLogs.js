@@ -124,6 +124,7 @@ const theme = createTheme({
 const MoodInfo = (props) => {
   const { mood, thoughts, activity, date } = props;
   return (
+    <ThemeProvider theme={theme}>
       <Grid container justifyContent="center">
         <CalendarCard>
           <CalendarCardInnerCircle>
@@ -164,12 +165,14 @@ const MoodInfo = (props) => {
           <CalendarCardDot3 />
         </CalendarCard>
       </Grid>
+    </ThemeProvider>
   );
 };
 
 const GratitudeInfo = (gratitude) => {
   if (gratitude.length) {
     return (
+      <ThemeProvider theme={theme}>
         <Grid container justify="center">
           <CalendarCard2>
             <CalendarCardInnerCircle>
@@ -207,6 +210,7 @@ const GratitudeInfo = (gratitude) => {
             <CalendarCardDot3 />
           </CalendarCard2>
         </Grid>
+      </ThemeProvider>
     );
   }
 };
@@ -333,14 +337,14 @@ const Log = () => {
           }}
         />
       </Grid>
-      <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-      {data.map((data, id) =>
-      (
-          <Grid item xs = {12} style={{marginTop:10}}>
-            <MoodInfo key={id} {...data}/>
+        <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+        {data.map((data, id) =>
+        (
+          <Grid item xs={12} style={{ marginTop: 10 }}>
+            <MoodInfo key={id} {...data} />
           </Grid>
-      ))}
-        <Grid item xs={12} style={{marginTop:10, marginBottom:100}}>
+        ))}
+        <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
           {GratitudeInfo(data2)}
         </Grid>
       <BottomNavigationBar />
