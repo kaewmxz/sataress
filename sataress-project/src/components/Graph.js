@@ -46,6 +46,7 @@ const GraphBoxname1 = withTheme(styled.div`
   position: absolute;
   margin-top: 10px;
   margin-left: 12px;
+  font-family: Noto Sans,Kanit,sans-serif;
   color: #84c78b;
 `);
 const GraphBox2 = withTheme(styled.div`
@@ -63,6 +64,7 @@ const GraphBoxname2 = withTheme(styled.div`
   position: absolute;
   margin-top: 10px;
   margin-left: 12px;
+  font-family: Noto Sans,Kanit,sans-serif;
   color: #84c78b;
 `);
 const GraphBox3 = withTheme(styled.div`
@@ -81,6 +83,7 @@ const GraphBoxname3 = withTheme(styled.div`
   position: absolute;
   margin-top: 10px;
   margin-left: 12px;
+  font-family: Noto Sans,Kanit,sans-serif;
   color: #84c78b;
 `);
 
