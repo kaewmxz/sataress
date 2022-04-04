@@ -16,7 +16,6 @@ import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -326,16 +325,16 @@ const Log = () => {
       <Bg />
       <Head />
       <Grid container justify="center">
-        <ArrowBackIosNewIcon
-          onClick={() => handleClick()}
-          sx={{
-            fontSize: 15,
-            mt: 20,
-            ml: -19,
-            position: "absolute",
-            cursor: "pointer",
-          }}
-        />
+      <img src = "../image/backicon.png"
+            onClick={() => handleClick()}
+            width = "22"
+           style = {{
+               marginTop:120,
+               marginLeft:-135,
+              position: "absolute",
+              cursor: "pointer",
+            }}
+          /> 
       </Grid>
         <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
         {data.map((data, id) =>
