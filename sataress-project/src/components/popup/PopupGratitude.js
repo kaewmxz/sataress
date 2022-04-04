@@ -59,7 +59,7 @@ export default function PopupGratitude() {
   return (
     <div>
         <img
-          src="/image/gratitudej.png"
+          src="/image/graj.png"
           width="320.7px"
           height="183px"
           onClick={handleClickOpen}

@@ -6,7 +6,6 @@ import { Grid } from "@material-ui/core";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from "./Auth";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
-import Box from '@mui/material/Box';
 
 const Bg = withTheme(styled.div`
   position:fixed ;
@@ -18,11 +17,14 @@ const Bg = withTheme(styled.div`
     rgba(254, 68, 10, 0.3) 44.27%
   );
   backdrop-filter: blur(4px);
-  z-index:-1;
 `);
 
 const Logo = withTheme(styled.div`
-  position: relative;
+position:relative;
+width: 100%; 
+text-align: center;
+margin-top:50%;
+display:block;
 `);
 
 
@@ -46,14 +48,17 @@ const Login = () => {
   return (
     <div>
       <Bg />
-      <Box sx = {{width:370, height:600,mx:"auto", paddingY:"auto"}}>
-        <Grid container justifyContent="center">
-            <Logo>
-              <img src="/image/logo.png" width="320" />
-            </Logo>
-              <GoogleButton onClick={googleLogin} style = {{position:"relative"}}>Sign in with Google</GoogleButton>
-            </Grid>
-      </Box>
+      <Grid container justifyContent="center"
+        alignItems="center" direction="column">
+        <Grid item xs={12}>
+          <Logo>
+            <img src="/image/logo.png" width="320" />
+          </Logo>
+        </Grid>
+        <Grid item xs={12}>
+          <GoogleButton onClick={googleLogin} style={{ position: "relative"}}>Sign in with Google</GoogleButton>
+        </Grid>
+      </Grid>
     </div >
   );
 };
