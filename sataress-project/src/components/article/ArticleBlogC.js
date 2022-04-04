@@ -95,6 +95,10 @@ const ArticleBlogC = () => {
                         <br/>
                         <Typography variant="h7" color="text.primary">แหล่งที่มา https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health</Typography>
                         <br/>
+                        <Typography variant="h7" color="text.primary">
+                          วันที่เผยแพร่ 4 เมษายน 2565
+                        </Typography>
+                        <br/>
                         <br/>
                     </CardContent>
                 </Card>

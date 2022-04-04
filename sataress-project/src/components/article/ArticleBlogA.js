@@ -130,6 +130,10 @@ const ArticleBlogA = () => {
               <Typography variant="h7" color="text.primary">
                 แหล่งที่มา https://www.psycom.net/avoiding-burnout
               </Typography>
+              <br/>
+              <Typography variant="h7" color="text.primary">
+                วันที่เผยแพร่ 4 เมษายน 2565
+              </Typography>
               <br />
               <br />
             </CardContent>

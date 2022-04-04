@@ -208,9 +208,6 @@ export default function CustomCalendar() {
     const isToday =
       day.getDate() === today.getDate() && day.getMonth() === today.getMonth();
     let dateTile;
-    if (day.getDate() < 10) {
-
-    }
     if (show) {
       if (isInCurrentMonth.outsideCurrentMonth == false) {
         //conditionally return appropriate Element of date tile.

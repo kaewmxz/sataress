@@ -76,12 +76,13 @@ const Boxbreathing = () => {
                             Box breathing
                         </Typography>
                         <Typography variant="h6" color="text.secondary">
-                           สวัสดีชาวไทย
+                            Box Breathing หรือที่เรียกว่า Square Breathing เป็นเทคนิคการหายใจลึกๆ ที่สามารถช่วยในการหายใจช้าลง มันทำงานโดยเบี่ยงเบนความสนใจในขณะที่นับถึงสี่ ทำให้ระบบประสาทสงบลง และบรรเทาความเครียดในร่างกาย ข้อดีของการหายใจแบบกล่อง ได้แก่ ความสามารถในการจัดการกับความตื่นตระหนกและความเครียดเมื่อรู้สึกหนักใจ เช่นเดียวกับความสามารถในการนอนหลับเมื่อมีอาการนอนไม่หลับ นอกจากนี้ยังช่วยลดคอร์ติซอล (ฮอร์โมนความเครียด) ซึ่งช่วยลดความดันโลหิตและทำให้อารมณ์ดีขึ้น
                         </Typography>
                         <br/>
                         <Btn>
                             <button onClick={(e) => handleClick(e)} style={{ cursor:"pointer",fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
                         </Btn>
+                        <br/>
                         <br/>
                     </CardContent>
                 </Card>

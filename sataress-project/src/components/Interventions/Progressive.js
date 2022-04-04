@@ -72,19 +72,20 @@ const Progressive = () => {
                             Progressive muscle relaxation
                         </Typography>
                         <Typography variant="h6" color="text.secondary">
-                            Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit.
-                            Donec ut maximus sem.
-                            Vivamus condimentum tort
-                            or non neque condimentum,
-                            sed dictum purus hendrerit.
-                            Donec a nunc pulvinar, porta
-                            neque a, .
+                            Progressive muscle relaxation (PMR) เป็นเทคนิคการผ่อนคลายกล้ามเนื้อ ทำให้เกิดการเกร็งและผ่อนคลายกล้ามเนื้อทีละส่วน ซึ่งช่วยในการปลดปล่อยความตึงเครียดของร่างกายซึ่งสามารถช่วยบรรเทาความเครียดและความวิตกกังวล
+                            กรอบการทำงานสำหรับการได้รับการผ่อนคลายในระดับนี้จัดทำโดย PMR จำเป็นต้องเน้นกลุ่มกล้ามเนื้อทีละส่วน ช่วยให้คุณตระหนักถึงความเครียดในสถานที่นั้นๆ
+                            <br/>
+                            ก่อนผ่อนคลาย ควรเกร็งกล้ามเนื้อแต่ละส่วนด้วย การกระทำนี้ช่วยเพิ่มบรรยากาศที่ผ่อนคลายของพื้นที่
+                            <br/>
+                            PMR ได้รับการพิสูจน์ในการศึกษาแล้วว่ามีประโยชน์หลายประการ รวมถึงการบรรเทาอาการปวดและการนอนหลับที่ดีขึ้น อาการไมเกรนกำเริบ ความดันโลหิตซิสโตลิก และอาการ TMJ อาจลดลงทั้งหมด
+                            <br/>
+                            PMR สามารถทำได้ในความเป็นส่วนตัวของบ้านของคุณเอง เพื่อผลลัพธ์สูงสุด ให้ฝึกวิธีนี้เป็นประจำ มันอาจทำให้คุณรู้สึกผ่อนคลายและจิตใจสงบขึ้นเมื่อเวลาผ่านไป
                         </Typography>
                         <br/>
                         <Btn>
                             <button style={{ fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
                         </Btn>
+                        <br/>
                         <br/>
                     </CardContent>
                 </Card>
