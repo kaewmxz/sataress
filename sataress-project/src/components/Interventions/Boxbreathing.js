@@ -11,7 +11,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -74,12 +73,12 @@ const Boxbreathing = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
-            <ArrowBackIosNewIcon
+            <img src = "../image/backicon.png"
             onClick={() => handleClick()}
-            sx={{
-              fontSize: 15,
-              mt: 15,
-              ml: -19,
+            width = "22"
+           style = {{
+               marginTop:120,
+               marginLeft:-135,
               position: "absolute",
               cursor: "pointer",
             }}

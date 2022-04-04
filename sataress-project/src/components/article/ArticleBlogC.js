@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 
 
 const Bg = withTheme(styled.div`
@@ -64,10 +64,17 @@ const ArticleBlogC = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
-                <ArrowBackIosNewIcon
-                    onClick={() => handleClick()}
-                    sx={{ fontSize: 15, mt: 15, ml: -20, position: "absolute", cursor: "pointer" }} color="gray" />
-                <Image style={{ marginTop: 130 }}>
+            <img src = "../image/backicon.png"
+            onClick={() => handleClick()}
+            width = "22"
+           style = {{
+               marginTop:120,
+               marginLeft:-135,
+              position: "absolute",
+              cursor: "pointer",
+            }}
+          /> 
+                <Image style={{ marginTop: 150 }}>
                     <img src="/image/arco3.png" width="320.7px" height="182px" />
                 </Image>
                 <br/>
