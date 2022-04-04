@@ -71,7 +71,7 @@ const Progressive = () => {
                         <Typography gutterBottom variant="h5" component="div">
                             Progressive muscle relaxation
                         </Typography>
-                        <Typography variant="h6" color="text.secondary">
+                        <Typography variant="h7" color="text.secondary">
                             Progressive muscle relaxation (PMR) เป็นเทคนิคการผ่อนคลายกล้ามเนื้อ ทำให้เกิดการเกร็งและผ่อนคลายกล้ามเนื้อทีละส่วน ซึ่งช่วยในการปลดปล่อยความตึงเครียดของร่างกายซึ่งสามารถช่วยบรรเทาความเครียดและความวิตกกังวล
                             กรอบการทำงานสำหรับการได้รับการผ่อนคลายในระดับนี้จัดทำโดย PMR จำเป็นต้องเน้นกลุ่มกล้ามเนื้อทีละส่วน ช่วยให้คุณตระหนักถึงความเครียดในสถานที่นั้นๆ
                             <br/>
@@ -82,10 +82,17 @@ const Progressive = () => {
                             PMR สามารถทำได้ในความเป็นส่วนตัวของบ้านของคุณเอง เพื่อผลลัพธ์สูงสุด ให้ฝึกวิธีนี้เป็นประจำ มันอาจทำให้คุณรู้สึกผ่อนคลายและจิตใจสงบขึ้นเมื่อเวลาผ่านไป
                         </Typography>
                         <br/>
+                        <Typography variant="h7" color="text.primary">
+                            แหล่งที่มา https://www.healthline.com/health/progressive-muscle-relaxation
+                        </Typography>
+                        <br/>
+                        <Typography variant="h7" color="text.primary">
+                            วันที่เผยแพร่ 4 เมษายน 2565
+                        </Typography>
+                        <br/>
                         <Btn>
                             <button style={{ fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
                         </Btn>
-                        <br/>
                         <br/>
                     </CardContent>
                 </Card>
