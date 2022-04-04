@@ -10,6 +10,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -53,6 +55,11 @@ const theme = createTheme({
 });
 
 const Boxbreathing = () => {
+    let navigate = useNavigate();
+    const handleClick = () => {
+        console.log("error")
+        navigate("/Interventions");
+    };
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
         return (
@@ -67,6 +74,16 @@ const Boxbreathing = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
+            <ArrowBackIosNewIcon
+            onClick={() => handleClick()}
+            sx={{
+              fontSize: 15,
+              mt: 15,
+              ml: -19,
+              position: "absolute",
+              cursor: "pointer",
+            }}
+          /> 
                 <Image style={{ marginTop: 130 }}>
                     <img src="/image/Boxb.png" width="311px" height="228px" />
                 </Image>
