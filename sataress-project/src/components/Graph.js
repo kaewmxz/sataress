@@ -46,7 +46,7 @@ const GraphBoxname1 = withTheme(styled.div`
   position: absolute;
   margin-top: 10px;
   margin-left: 12px;
-  font-family: Noto Sans,Kanit,sans-serif;
+  font-family: Noto Sans, Kanit, sans-serif;
   color: #84c78b;
 `);
 const GraphBox2 = withTheme(styled.div`
@@ -64,7 +64,7 @@ const GraphBoxname2 = withTheme(styled.div`
   position: absolute;
   margin-top: 10px;
   margin-left: 12px;
-  font-family: Noto Sans,Kanit,sans-serif;
+  font-family: Noto Sans, Kanit, sans-serif;
   color: #84c78b;
 `);
 const GraphBox3 = withTheme(styled.div`
@@ -83,7 +83,7 @@ const GraphBoxname3 = withTheme(styled.div`
   position: absolute;
   margin-top: 10px;
   margin-left: 12px;
-  font-family: Noto Sans,Kanit,sans-serif;
+  font-family: Noto Sans, Kanit, sans-serif;
   color: #84c78b;
 `);
 
@@ -143,7 +143,7 @@ const Graph = () => {
       moment(date).clone().startOf("month").format("M/D/YYYY"),
       moment(date).clone().endOf("month").format("MM/D/YYYY"),
     ];
-
+    setValue(variables);
     const fetchmoodCount = async () => {
       const result = await axios.get("http://localhost:4000/mood/", {
         params: { id: currentUser.uid, range: variables },
@@ -372,7 +372,7 @@ const Graph = () => {
             </LocalizationProvider>
 
             <GraphBox1 style={{ marginTop: 230, color: "red" }}>
-              <GraphBoxname1>นับจำนวนอารมณ์</GraphBoxname1>
+              <GraphBoxname1>นับจำนวนอารมณ์ (ครั้ง)</GraphBoxname1>
               <Grid
                 container
                 justify="center"
@@ -390,7 +390,7 @@ const Graph = () => {
                     fontSize={10}
                     fontFamily="Noto Sans,Kanit,sans-serif"
                   />
-                  <YAxis minTickGap={1} scale="linear" />
+                  <YAxis allowDecimals={false} allowDataOverflow={true} scale="auto" />
                   <Bar dataKey="count" fill="#84c78b">
                     {moodCount.map((entry, index) => (
                       // <Cell
@@ -426,7 +426,7 @@ const Graph = () => {
             </GraphBox1>
 
             <GraphBox2 style={{ marginTop: 500 }}>
-              <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์</GraphBoxname2>
+              <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์ (ระดับ)</GraphBoxname2>
               <Grid
                 container
                 justify="center"

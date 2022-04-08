@@ -59,12 +59,15 @@ const CBT = withTheme(styled.div`
 
 const random = Math.random().toString();
 
+function timeout(delay) {
+  return new Promise((res) => setTimeout(res, delay));
+}
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const { currentUser } = useContext(AuthContext);
   const sessionId = currentUser.uid + random;
-  console.log(sessionId)
+  console.log(sessionId);
   useEffect(() => {
     if (!currentUser) {
       return (
@@ -73,7 +76,41 @@ const Chat = () => {
         </Routes>
       );
     }
-    handleMessageSubmit("ประเมิน");
+
+    const checkFirstTime = async () => {
+      const dassFirstTime = await axios.get(
+        "http://localhost:4000/dass-firstTime",
+        {
+          params: { id: currentUser.uid },
+        }
+      );
+      if (dassFirstTime.data.message === "") {
+        await timeout(100);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "สวัสดี เราชื่อกระทินะ ต่อไปนี้เธอจะคุยกับเราครั้งแรกเพื่อทำความรู้จักกัน",
+            isBot: true,
+          },
+        ]);
+      } else {
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "สวัสดี",
+            isBot: true,
+          },
+        ]);
+      }
+    };
+
+    const startChat = async () => {
+      await timeout(100);
+      handleMessageSubmit("ประเมิน");
+    };
+    checkFirstTime();
+    startChat();
+    // handleMessageSubmit("ประเมิน");
   }, []);
 
   const handleMessageSubmit = async (message) => {
@@ -92,6 +129,7 @@ const Chat = () => {
           text: response.data.message.fulfillmentMessages[i].text.text,
           isBot: true,
         };
+        await timeout(100);
         setResponses((responses) => [...responses, responseData]);
       }
       return response.data.message;
@@ -282,6 +320,55 @@ const Chat = () => {
       } catch (e) {
         console.log(e);
       }
+      if (replyMap["stress"] <= 7 && replyMap["stress"] >= 0) {
+        replyMap["stress"] = "ปกติ";
+      } else if (replyMap["stress"] <= 9 && replyMap["stress"] >= 8) {
+        replyMap["stress"] = "น้อย";
+      } else if (replyMap["stress"] <= 12 && replyMap["stress"] >= 10) {
+        replyMap["stress"] = "ปานกลาง";
+      } else if (replyMap["stress"] <= 16 && replyMap["stress"] >= 13) {
+        replyMap["stress"] = "รุนแรง";
+      } else if (replyMap["stress"] >= 17) {
+        replyMap["stress"] = "รุนแรงอย่างมาก";
+      }
+
+      if (replyMap["anxiety"] <= 3 && replyMap["anxiety"] >= 0) {
+        replyMap["anxiety"] = "ปกติ";
+      } else if (replyMap["anxiety"] <= 5 && replyMap["anxiety"] >= 4) {
+        replyMap["anxiety"] = "น้อย";
+      } else if (replyMap["anxiety"] <= 7 && replyMap["anxiety"] >= 6) {
+        replyMap["anxiety"] = "ปานกลาง";
+      } else if (replyMap["anxiety"] <= 9 && replyMap["anxiety"] >= 8) {
+        replyMap["anxiety"] = "รุนแรง";
+      } else if (replyMap["anxiety"] >= 10) {
+        replyMap["anxiety"] = "รุนแรงอย่างมาก";
+      }
+
+      if (replyMap["depression"] <= 4 && replyMap["depression"] >= 0) {
+        replyMap["depression"] = "ปกติ";
+      } else if (replyMap["depression"] <= 6 && replyMap["depression"] >= 5) {
+        replyMap["depression"] = "น้อย";
+      } else if (replyMap["depression"] <= 10 && replyMap["depression"] >= 7) {
+        replyMap["depression"] = "ปานกลาง";
+      } else if (replyMap["depression"] <= 13 && replyMap["depression"] >= 11) {
+        replyMap["depression"] = "รุนแรง";
+      } else if (replyMap["depression"] >= 14) {
+        replyMap["depression"] = "รุนแรงอย่างมาก";
+      }
+
+      setResponses((responses) => [
+        ...responses,
+        {
+          text:
+            "ความเครียด: " +
+            replyMap["stress"] +
+            " ความกังวล: " +
+            replyMap["anxiety"] +
+            " ความเศร้า: " +
+            replyMap["depression"],
+          isBot: true,
+        },
+      ]);
     } else {
     }
   };
