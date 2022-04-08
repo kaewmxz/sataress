@@ -10,6 +10,32 @@ import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { AuthContext } from "../Auth";
+import Typography from "@mui/material/Typography";
+
+const theme = createTheme({
+  palette: {
+    Addbutton: {
+      main: "#ef9a9a",
+      contrastText: "#ffff",
+    },
+  },
+  typography: {
+    allVariants: {
+      fontFamily: 'Noto Sans,Kanit,sans-serif',
+    },
+  },
+  components: {
+    // Name of the component
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Noto Sans,Kanit,sans-serif",
+        },
+      },
+    },
+  },
+});
+
 
 export default function PopupGratitude() {
   const [open, setOpen] = React.useState(false);
@@ -45,18 +71,8 @@ export default function PopupGratitude() {
     }
   };
 
-  const theme = createTheme({
-    palette: {
-      Addbutton: {
-        main: "#ef9a9a",
-        contrastText: "#ffff",
-      },
-      secondary: {
-        main: "#ef9a9a",
-      },
-    },
-  });
   return (
+    <ThemeProvider theme={theme}>
     <div>
         <img
           src="/image/graj.png"
@@ -66,18 +82,24 @@ export default function PopupGratitude() {
           style={{cursor:"pointer"}}
         />
       <Dialog open={open} onClose={handleClose}>
-        <ThemeProvider theme={theme}>
-          <DialogTitle mt={2} color="secondary">
-            {"คุณรู้สึกขอบคุณกับสิ่งใดในวันนี้"}
-          </DialogTitle>
-        </ThemeProvider>
+          <DialogContent mt={2} sx={{textAlign:"center", color:"#ef9a9a", fontSize:"1.3rem"}}>
+          <Typography variant="h7">
+          คุณรู้สึกขอบคุณกับสิ่งใดในวันนี้
+          </Typography>
+          </DialogContent>
+          <DialogContent sx={{mt:"-20px",mb:"-20px", fontSize:"0.9rem"}}>
+          <Typography variant="h7" color="text.secondary">
+          "ความรู้สึกขอบคุณคือ ความรู้สึกที่ขอบคุณหรือยินดีกับประสบการณ์ที่เกิดขึ้นในชีวิต
+          <br/>สิ่งที่ขอบคุณอาจจะเป็นเรื่องราวที่เกิดขึ้นอะไรก็ได้ในวันนี้ที่เรารู้สึกขอบคุณหรือยินดี อาจจะเป็นเรื่องร้ายหรือเรื่องดีแต่เราก็ผ่านมันมาได้"
+          </Typography>
+          </DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogContent>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                "& .MuiTextField-root": { width: "32ch" },
+                "& .MuiTextField-root": { width: "auto"},
               }}
             >
               <TextField required>
@@ -85,18 +107,17 @@ export default function PopupGratitude() {
               </TextField>
             </Box>
           </DialogContent>
-          <DialogActions>
-            <ThemeProvider theme={theme}>
+          <DialogActions sx={{justifyContent:"center"}}>
               <Stack mt={1} mb={1} >
                 <Button type="submit" variant="contained" color="Addbutton"
-                  sx={{ marginRight: 13, marginTop: -2 }}>
+                  sx={{marginTop: -2}}>
                   บันทึก
                 </Button>
               </Stack>
-            </ThemeProvider>
           </DialogActions>
         </form>
       </Dialog>
     </div>
+    </ThemeProvider>
   );
 }

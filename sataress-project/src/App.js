@@ -18,7 +18,6 @@ import ArticleBlogA from './components/article/ArticleBlogA';
 import ArticleBlogB from './components/article/ArticleBlogB';
 import ArticleBlogC from './components/article/ArticleBlogC';
 
-
 function App() {
 
   return (
