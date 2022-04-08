@@ -17,6 +17,7 @@ import CalendarLogs from './components/calendar/CalendarLogs'
 import ArticleBlogA from './components/article/ArticleBlogA';
 import ArticleBlogB from './components/article/ArticleBlogB';
 import ArticleBlogC from './components/article/ArticleBlogC';
+import FirstTime from './components/FirstTime';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/ArticleBlog-1" element={<ArticleBlogA />} />
           <Route exact path="/ArticleBlog-2" element={<ArticleBlogB />} />
           <Route exact path="/ArticleBlog-3" element={<ArticleBlogC />} />
+          <Route exact path="/FirstTime" element={<FirstTime />} />
         </Routes>
       </Router>
     </AuthProvider>
