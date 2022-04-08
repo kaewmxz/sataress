@@ -10,7 +10,9 @@ import { withTheme } from "@material-ui/core/styles";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
+import PopupInformation from "./PopupInformation";
 import { Routes, Route, Navigate } from "react-router-dom";
+
 let replyMap = new Map();
 
 const theme = createTheme({
@@ -52,6 +54,7 @@ const CBT = withTheme(styled.div`
   margin-top: -19px;
   margin-left: 265px;
 `);
+
 
 const random = Math.random().toString();
 
@@ -298,14 +301,15 @@ const Chat = () => {
   };
   const theme = createTheme({
     palette: {
-      Black: {
-        main: "#212121",
+      gray: {
+        main: "#757575",
       },
-      Pink: {
-        main: "#f8bbd0",
+      pink: {
+        main: "#FF8080",
       },
     },
   });
+
   return (
     <div>
       <Bg />
@@ -317,12 +321,13 @@ const Chat = () => {
               width={70}
               style={{ marginLeft: -215, marginTop: 5, position: "relative" }}
             />
-            <Text>Nong Krati</Text>
+            <Text>Nong Krati</Text>   
             <Link to="/">
               <CBT>
-                <CancelIcon sx={{ fontSize: 15 }} color="Black" />
+                <CancelIcon sx={{ fontSize: 15 }} color="gray" />
               </CBT>
             </Link>
+            <PopupInformation/>
           </Head>
         </Grid>
         <div className="chatSection">
@@ -342,7 +347,7 @@ const Chat = () => {
                 className="messageInputField"
               />
               <div onTap={handleSubmit}>
-                <SendIcon sx={{ marginRight: 2 }}>
+                <SendIcon sx={{ marginRight: 2 }} color = "pink">
                   <g>
                     <path
                       d="m511.35 52.881-122 400c-3.044 9.919-14.974 13.828-23.29 7.67-7.717-5.727-203.749-151.217-214.37-159.1l-142.1-54.96c-5.79-2.24-9.6-7.81-9.59-14.02.01-6.21 3.85-11.77 9.65-13.98l482-184c5.824-2.232 12.488-.626 16.67 4.17 3.37 3.87 4.55 9.24 3.03 14.22z"

@@ -11,6 +11,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
+import PopupInformation from "./PopupInformation";
 
 let replyMap = new Map();
 let mood = [];
@@ -56,6 +57,7 @@ const CBT = withTheme(styled.div`
   margin-top: -19px;
   margin-left: 265px;
 `);
+
 
 const random = Math.random().toString();
 
