@@ -1,6 +1,7 @@
 import {initializeApp} from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithRedirect, signOut } from "firebase/auth"
 import { getFirestore } from 'firebase/firestore';
+import { getPerformance } from "firebase/performance";
 
 
 const firebaseConfig = {
@@ -14,6 +15,7 @@ const firebaseConfig = {
   };
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+  const perf = getPerformance(app);
 
 export const db = getFirestore();
 export const auth = getAuth();

@@ -12,6 +12,7 @@ import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
 import { useNavigate } from "react-router-dom";
+import FirstTime from "./FirstTime";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -118,9 +119,9 @@ const Home = () => {
             params: { id: currentUser.uid },
           }
         );
-        // if (dassFirstTime.data.message === "") {
-        //   navigate("/DASS21");
-        // }
+        if (dassFirstTime.data.message === "") {
+          navigate("/FirstTime");
+        }
       };
       const checkBiweek = async () => {
         const result = await axios.get("http://localhost:4000/bi-week-check", {
