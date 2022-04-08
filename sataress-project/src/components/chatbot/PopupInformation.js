@@ -39,7 +39,6 @@ export default function PopupInformation() {
         setOpenInfo(false);
     };
 
-
     return (
         <div>
             <ThemeProvider theme={theme}>
