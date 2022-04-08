@@ -58,7 +58,9 @@ const CBT = withTheme(styled.div`
 `);
 
 const random = Math.random().toString();
-
+function timeout(delay) {
+  return new Promise((res) => setTimeout(res, delay));
+}
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -92,6 +94,7 @@ const Chat = () => {
           text: response.data.message.fulfillmentMessages[i].text.text,
           isBot: true,
         };
+        await timeout(100);
         setResponses((responses) => [...responses, responseData]);
       }
       return response.data.message;
@@ -124,85 +127,30 @@ const Chat = () => {
     } else if (reply.action == "Stressed") {
       mood.push("Stressed");
     } else if (reply.action == "Sad-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
+      // if (reply.parameters.fields.number.numberValue < 1) {
+      //   reply.parameters.fields.number.numberValue = 1;
+      //   intensity.push(reply.parameters.fields.number.numberValue);
+      // } else if (reply.parameters.fields.number.numberValue > 10) {
+      //   reply.parameters.fields.number.numberValue = 10;
+      //   intensity.push(reply.parameters.fields.number.numberValue);
+      // } else {
+      //   intensity.push(reply.parameters.fields.number.numberValue);
+      // }
     } else if (reply.action == "Happy-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Stressed-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Fearful-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Disgusted-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Neutral-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Angry-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Surprised-Rate") {
-      if (reply.parameters.fields.number.numberValue < 1) {
-        reply.parameters.fields.number.numberValue = 1;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else if (reply.parameters.fields.number.numberValue > 10) {
-        reply.parameters.fields.number.numberValue = 10;
-        intensity.push(reply.parameters.fields.number.numberValue);
-      } else {
-        intensity.push(reply.parameters.fields.number.numberValue);
-      }
+      intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "End") {
       const date = new Date();
       const dateTime = [

@@ -60,7 +60,7 @@ const Log = () => {
   const [orderBy, setOrderBy] = React.useState('Gratitude');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const handleClick = (event, date) => {
   const selectedIndex = selected.indexOf(date);
     let newSelected = [];

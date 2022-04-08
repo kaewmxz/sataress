@@ -118,9 +118,9 @@ const Home = () => {
             params: { id: currentUser.uid },
           }
         );
-        // if (dassFirstTime.data.message === "") {
-        //   navigate("/DASS21");
-        // }
+        if (dassFirstTime.data.message === "") {
+          navigate("/DASS21");
+        }
       };
       const checkBiweek = async () => {
         const result = await axios.get("http://localhost:4000/bi-week-check", {

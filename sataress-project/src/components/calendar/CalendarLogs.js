@@ -10,7 +10,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
@@ -78,7 +78,7 @@ const CalendarCard2 = withTheme(styled.div`
   margin: 1px;
   width: 304px;
   background: #ffffff;
-  border: 17px solid #B0D9FF;
+  border: 17px solid #b0d9ff;
   box-sizing: border-box;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 `);
@@ -246,6 +246,7 @@ const Log = () => {
           const result = await axios.get("http://localhost:4000/mood-logs", {
             params: { id: currentUser.uid, date: location.state.date },
           });
+          console.log(result.data.message);
           setData(result.data.message);
         } catch (err) {
           console.log(err);
@@ -288,7 +289,7 @@ const Log = () => {
           data[i].mood[j] = "เศร้า😭";
           data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
         } else if (data[i].mood[j] == "Stressed") {
-          data[i].mood[j] = "เสียใจ😣";
+          data[i].mood[j] = "เครียด😣";
           data[i].mood[j] = data[i].mood[j] + "(" + data[i].intensity[j] + ")";
         } else if (data[i].mood[j] == "Surprised") {
           data[i].mood[j] = "ประหลาดใจ😯";
@@ -325,27 +326,27 @@ const Log = () => {
       <Bg />
       <Head />
       <Grid container justify="center">
-      <img src = "../image/backicon.png"
-            onClick={() => handleClick()}
-            width = "22"
-           style = {{
-               marginTop:120,
-               marginLeft:-135,
-              position: "absolute",
-              cursor: "pointer",
-            }}
-          /> 
+        <img
+          src="../image/backicon.png"
+          onClick={() => handleClick()}
+          width="22"
+          style={{
+            marginTop: 120,
+            marginLeft: -135,
+            position: "absolute",
+            cursor: "pointer",
+          }}
+        />
       </Grid>
-        <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-        {data.map((data, id) =>
-        (
-          <Grid item xs={12} style={{ marginTop: 10 }}>
-            <MoodInfo key={id} {...data} />
-          </Grid>
-        ))}
-        <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
-          {GratitudeInfo(data2)}
+      <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+      {data.map((data, id) => (
+        <Grid item xs={12} style={{ marginTop: 10 }}>
+          <MoodInfo key={id} {...data} />
         </Grid>
+      ))}
+      <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
+        {GratitudeInfo(data2)}
+      </Grid>
       <BottomNavigationBar />
     </div>
   );
