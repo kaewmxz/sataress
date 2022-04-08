@@ -12,7 +12,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
 
-
 let replyMap = new Map();
 let mood = [];
 let intensity = [];
@@ -57,7 +56,6 @@ const CBT = withTheme(styled.div`
   margin-top: -19px;
   margin-left: 265px;
 `);
-
 
 const random = Math.random().toString();
 function timeout(delay) {
@@ -130,15 +128,6 @@ const Chat = () => {
       mood.push("Stressed");
     } else if (reply.action == "Sad-Rate") {
       intensity.push(parseInt(reply.parameters.fields.number.stringValue));
-      // if (reply.parameters.fields.number.numberValue < 1) {
-      //   reply.parameters.fields.number.numberValue = 1;
-      //   intensity.push(reply.parameters.fields.number.numberValue);
-      // } else if (reply.parameters.fields.number.numberValue > 10) {
-      //   reply.parameters.fields.number.numberValue = 10;
-      //   intensity.push(reply.parameters.fields.number.numberValue);
-      // } else {
-      //   intensity.push(reply.parameters.fields.number.numberValue);
-      // }
     } else if (reply.action == "Happy-Rate") {
       intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "Stressed-Rate") {
@@ -176,12 +165,29 @@ const Chat = () => {
   };
 
   const handleSubmit = async (event) => {
-    const message = {
-      text: currentMessage,
-      isBot: false,
-    };
-    let reply;
-    if (event.key == "Enter") {
+    if (currentMessage != "") {
+      const message = {
+        text: currentMessage,
+        isBot: false,
+      };
+      let reply;
+      if (event.key == "Enter") {
+        setResponses((responses) => [...responses, message]);
+        setCurrentMessage("");
+        reply = await handleMessageSubmit(message.text);
+        extractReply(reply);
+        console.log(replyMap);
+      }
+    }
+  };
+
+  const handleClick = async () => {
+    if (currentMessage != "") {
+      const message = {
+        text: currentMessage,
+        isBot: false,
+      };
+      let reply;
       setResponses((responses) => [...responses, message]);
       setCurrentMessage("");
       reply = await handleMessageSubmit(message.text);
@@ -189,6 +195,7 @@ const Chat = () => {
       console.log(replyMap);
     }
   };
+
   return (
     <div>
       <Bg />
@@ -232,8 +239,8 @@ const Chat = () => {
                 className="messageInputField"
               />
               <Button
-                onClick={handleSubmit}
-                value={currentMessage}
+                onClick={handleClick}
+                // value={currentMessage}
                 endIcon={
                   <SendIcon sx={{ marginRight: 2 }} color="pink"></SendIcon>
                 }

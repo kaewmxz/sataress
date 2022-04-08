@@ -56,7 +56,6 @@ const CBT = withTheme(styled.div`
   margin-left: 265px;
 `);
 
-
 const random = Math.random().toString();
 
 function timeout(delay) {
@@ -145,129 +144,234 @@ const Chat = () => {
   const extractReply = (reply) => {
     console.log(reply);
     if (reply.action == "2") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["1"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["1"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["1"] = 0;
       }
     } else if (reply.action == "3") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["2"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["2"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["2"] = 0;
       }
     } else if (reply.action == "4") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["3"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["3"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["3"] = 0;
       }
     } else if (reply.action == "5") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["4"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["4"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["4"] = 0;
       }
     } else if (reply.action == "6") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["5"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["5"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["5"] = 0;
       }
     } else if (reply.action == "7") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["6"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["6"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["6"] = 0;
       }
     } else if (reply.action == "8") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["7"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["7"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["7"] = 0;
       }
     } else if (reply.action == "9") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["8"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["8"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["8"] = 0;
       }
     } else if (reply.action == "10") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["9"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["9"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["9"] = 0;
       }
     } else if (reply.action == "11") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["10"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["10"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["10"] = 0;
       }
     } else if (reply.action == "12") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["11"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["11"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["11"] = 0;
       }
     } else if (reply.action == "13") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["12"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["12"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["12"] = 0;
       }
     } else if (reply.action == "14") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["13"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["13"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["13"] = 0;
       }
     } else if (reply.action == "15") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["14"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["14"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["14"] = 0;
       }
-    } else if (reply.action == "15end") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["15"] = reply.parameters.fields.number.numberValue;
+    } else if (reply.action == "16") {
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["15"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["15"] = 0;
       }
-      handleMessageSubmit("โอเค");
+      // handleMessageSubmit("โอเค");
     } else if (reply.action == "17") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["16"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["16"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["16"] = 0;
       }
     } else if (reply.action == "18") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["17"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["17"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["17"] = 0;
       }
     } else if (reply.action == "19") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["18"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["18"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["18"] = 0;
       }
     } else if (reply.action == "20") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["19"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["19"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["19"] = 0;
       }
     } else if (reply.action == "21") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["20"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["20"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["20"] = 0;
       }
     } else if (reply.action == "end") {
-      if (reply.parameters.fields.number.kind != "stringValue") {
-        replyMap["21"] = reply.parameters.fields.number.numberValue;
+      if (
+        reply.parameters.fields.number.stringValue == "0" ||
+        reply.parameters.fields.number.stringValue == "1" ||
+        reply.parameters.fields.number.stringValue == "2" ||
+        reply.parameters.fields.number.stringValue == "3"
+      ) {
+        replyMap["21"] = parseInt(reply.parameters.fields.number.stringValue);
       } else {
         replyMap["21"] = 0;
       }
@@ -374,12 +478,29 @@ const Chat = () => {
   };
 
   const handleSubmit = async (event) => {
-    const message = {
-      text: currentMessage,
-      isBot: false,
-    };
-    let reply;
-    if (event.key == "Enter") {
+    if (currentMessage != "") {
+      const message = {
+        text: currentMessage,
+        isBot: false,
+      };
+      let reply;
+      if (event.key == "Enter") {
+        setResponses((responses) => [...responses, message]);
+        setCurrentMessage("");
+        reply = await handleMessageSubmit(message.text);
+        extractReply(reply);
+        console.log(replyMap);
+      }
+    }
+  };
+
+  const handleClick = async () => {
+    if (currentMessage != "") {
+      const message = {
+        text: currentMessage,
+        isBot: false,
+      };
+      let reply;
       setResponses((responses) => [...responses, message]);
       setCurrentMessage("");
       reply = await handleMessageSubmit(message.text);
@@ -387,6 +508,7 @@ const Chat = () => {
       console.log(replyMap);
     }
   };
+
   const theme = createTheme({
     palette: {
       gray: {
@@ -435,8 +557,8 @@ const Chat = () => {
                 className="messageInputField"
               />
               <Button
-                onClick={handleSubmit}
-                value={currentMessage}
+                onClick={handleClick}
+                // value={currentMessage}
                 endIcon={
                   <SendIcon sx={{ marginRight: 2 }} color="pink"></SendIcon>
                 }
