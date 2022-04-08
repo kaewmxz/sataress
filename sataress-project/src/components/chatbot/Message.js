@@ -11,8 +11,6 @@ const Message = ({ message }) => {
               paddingLeft: "16px",
               paddingRight: "10px",
               fontFamily: 'Noto Sans,Kanit,sans-serif',
-              paddingTop: "10px",
-              paddingBottom: "10px",
               fontWeight: 100
             }}
           >
