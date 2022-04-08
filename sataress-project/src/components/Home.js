@@ -13,6 +13,7 @@ import "../css/home.css";
 import Header from "./Head";
 import { useNavigate } from "react-router-dom";
 
+
 const Bg = withTheme(styled.div`
   position: fixed;
   width: 100%;

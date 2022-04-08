@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
 
+
 let replyMap = new Map();
 let mood = [];
 let intensity = [];
@@ -56,6 +57,7 @@ const CBT = withTheme(styled.div`
   margin-top: -19px;
   margin-left: 265px;
 `);
+
 
 const random = Math.random().toString();
 function timeout(delay) {
