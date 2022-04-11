@@ -128,7 +128,7 @@ const Chat = () => {
           text: response.data.message.fulfillmentMessages[i].text.text,
           isBot: true,
         };
-        await timeout(1000);
+        await timeout(1200);
         setResponses((responses) => [...responses, responseData]);
       }
       return response.data.message;

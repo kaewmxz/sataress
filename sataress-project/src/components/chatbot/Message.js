@@ -8,6 +8,7 @@ const Message = ({ message }) => {
         <div className="botCard">
           <p
             style={{
+              textAlign:"left",
               paddingLeft: "16px",
               paddingRight: "10px",
               fontFamily: 'Noto Sans,Kanit,sans-serif',
@@ -21,6 +22,7 @@ const Message = ({ message }) => {
         <div className="userCard">
           <p
             style={{
+              textAlign:"right",
               paddingLeft: "16px",
               paddingRight: "10px",
               fontFamily: 'Noto Sans,Kanit,sans-serif',
