@@ -72,7 +72,7 @@ export default function PopupInformation() {
                          variant="contained" 
                          color="Addbutton"
                          onClick={handleCloseInfo}
-                  sx={{ margin:1 }}>
+                  sx={{ mb:1,mr:1, mt:-1 }}>
                   ปิด
                 </Button>
                     </DialogActions>
