@@ -84,7 +84,7 @@ const Chat = () => {
         }
       );
       if (dassFirstTime.data.message === "") {
-        await timeout(100);
+        await timeout(1000);
         setResponses((responses) => [
           ...responses,
           {
@@ -104,7 +104,7 @@ const Chat = () => {
     };
 
     const startChat = async () => {
-      await timeout(100);
+      await timeout(1000);
       handleMessageSubmit("ประเมิน");
     };
     checkFirstTime();
@@ -128,7 +128,7 @@ const Chat = () => {
           text: response.data.message.fulfillmentMessages[i].text.text,
           isBot: true,
         };
-        await timeout(100);
+        await timeout(1000);
         setResponses((responses) => [...responses, responseData]);
       }
       return response.data.message;
