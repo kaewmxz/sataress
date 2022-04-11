@@ -27,6 +27,11 @@ const theme = createTheme({
             main: "#212121",
         },
     },
+      typography: {
+        allVariants: {
+          fontFamily: 'Noto Sans,Kanit,sans-serif',
+        },
+      },
 });
 export default function PopupInformation() {
     const [openInfo, setOpenInfo] = React.useState(false);
