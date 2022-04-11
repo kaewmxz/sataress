@@ -67,17 +67,17 @@ const ArticleBlogB = () => {
             onClick={() => handleClick()}
             width = "22"
            style = {{
-               marginTop:120,
-               marginLeft:-135,
+               marginTop:160,
+               marginLeft:-165,
               position: "absolute",
               cursor: "pointer",
             }}
           /> 
-                <Image style={{ marginTop: 150 }}>
+                <Image style={{ marginTop: 190 }}>
                     <img src="/image/arco2.png" width="320.7px" height="182px" />
                 </Image>
                 <br/>
-                <Card sx={{ maxWidth: 450, marginTop: 45,marginBottom:5 }}>
+                <Card sx={{ maxWidth: 450, marginTop: 47,marginBottom:5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                         วิธีหยุดความคิดเชิงลบ
