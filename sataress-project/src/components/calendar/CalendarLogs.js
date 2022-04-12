@@ -10,7 +10,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
-import Box from "@mui/material/Box";
 import Head from "../Head";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
@@ -331,8 +330,8 @@ const Log = () => {
           onClick={() => handleClick()}
           width="22"
           style={{
-            marginTop: 120,
-            marginLeft: -135,
+            marginTop: 160,
+            marginLeft: -165,
             position: "absolute",
             cursor: "pointer",
           }}

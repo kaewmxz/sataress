@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -72,7 +72,7 @@ export default function PopupInformation() {
                          variant="contained" 
                          color="Addbutton"
                          onClick={handleCloseInfo}
-                  sx={{ margin:1 }}>
+                  sx={{ mb:1,mr:1, mt:-1 }}>
                   ปิด
                 </Button>
                     </DialogActions>

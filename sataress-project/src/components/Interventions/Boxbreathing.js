@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid } from '@material-ui/core';
@@ -96,16 +96,16 @@ const Boxbreathing = () => {
             onClick={() => handleClick()}
             width = "22"
            style = {{
-               marginTop:120,
-               marginLeft:-135,
+               marginTop:160,
+               marginLeft:-165,
               position: "absolute",
               cursor: "pointer",
             }}
           /> 
-                <Image style={{ marginTop: 130 }}>
+                <Image style={{ marginTop: 170 }}>
                     <img src="/image/Boxb.png" width="311px" height="228px" />
                 </Image>
-                <Card sx={{ maxWidth: 500, marginTop: 45,marginBottom:5 }}>
+                <Card sx={{ maxWidth: 500, marginTop: 50,marginBottom:5 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
                             Box breathing

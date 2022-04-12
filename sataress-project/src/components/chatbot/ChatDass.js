@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import "./style.css";
 import Messages from "./Messages";
-import { Grid, Container, Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -84,7 +84,7 @@ const Chat = () => {
         }
       );
       if (dassFirstTime.data.message === "") {
-        await timeout(100);
+        await timeout(1000);
         setResponses((responses) => [
           ...responses,
           {
@@ -104,7 +104,7 @@ const Chat = () => {
     };
 
     const startChat = async () => {
-      await timeout(100);
+      // await timeout(500);
       handleMessageSubmit("ประเมิน");
     };
     checkFirstTime();
@@ -128,7 +128,11 @@ const Chat = () => {
           text: response.data.message.fulfillmentMessages[i].text.text,
           isBot: true,
         };
-        await timeout(100);
+        if (response.data.action == "1") {
+          await timeout(1200);
+        } else {
+          await timeout(600);
+        }
         setResponses((responses) => [...responses, responseData]);
       }
       return response.data.message;
@@ -463,13 +467,21 @@ const Chat = () => {
       setResponses((responses) => [
         ...responses,
         {
-          text:
-            "ความเครียด: " +
-            replyMap["stress"] +
-            " ความกังวล: " +
-            replyMap["anxiety"] +
-            " ความเศร้า: " +
-            replyMap["depression"],
+          text: "ความเครียด: " + replyMap["stress"],
+          isBot: true,
+        },
+      ]);
+      setResponses((responses) => [
+        ...responses,
+        {
+          text: " ความกังวล: " + replyMap["anxiety"],
+          isBot: true,
+        },
+      ]);
+      setResponses((responses) => [
+        ...responses,
+        {
+          text: " ความเศร้า: " + replyMap["depression"],
           isBot: true,
         },
       ]);

@@ -26,7 +26,7 @@ const Ar1 = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 142px;
+  top: 157px;
   filter: drop-shadow(0px 4px 4px rgba(253, 6, 6, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -37,7 +37,7 @@ const Ar2 = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 346px;
+  top: 361px;
   filter: drop-shadow(0px 4px 4px rgba(238, 215, 7, 0.37));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -48,7 +48,7 @@ const Ar3 = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 550px;
+  top: 565px;
   filter: drop-shadow( 0px 4px 4px rgba(0, 117, 255, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
