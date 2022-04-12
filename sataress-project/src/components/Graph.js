@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid, Box } from "@material-ui/core";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";

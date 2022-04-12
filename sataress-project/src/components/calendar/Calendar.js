@@ -13,9 +13,7 @@ import {
   Route,
   Navigate,
   useNavigate,
-  useLocation,
 } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import "./DatePicker.css";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -24,7 +22,6 @@ import moment from "moment";
 import axios from "axios";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { set } from "date-fns";
 
 const theme = createTheme({
   components: {
