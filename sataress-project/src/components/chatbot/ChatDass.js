@@ -104,7 +104,7 @@ const Chat = () => {
     };
 
     const startChat = async () => {
-      await timeout(1000);
+      // await timeout(500);
       handleMessageSubmit("ประเมิน");
     };
     checkFirstTime();
@@ -128,7 +128,11 @@ const Chat = () => {
           text: response.data.message.fulfillmentMessages[i].text.text,
           isBot: true,
         };
-        await timeout(1200);
+        if (response.data.action == "1") {
+          await timeout(1200);
+        } else {
+          await timeout(600);
+        }
         setResponses((responses) => [...responses, responseData]);
       }
       return response.data.message;
@@ -463,13 +467,21 @@ const Chat = () => {
       setResponses((responses) => [
         ...responses,
         {
-          text:
-            "ความเครียด: " +
-            replyMap["stress"] +
-            " ความกังวล: " +
-            replyMap["anxiety"] +
-            " ความเศร้า: " +
-            replyMap["depression"],
+          text: "ความเครียด: " + replyMap["stress"],
+          isBot: true,
+        },
+      ]);
+      setResponses((responses) => [
+        ...responses,
+        {
+          text: " ความกังวล: " + replyMap["anxiety"],
+          isBot: true,
+        },
+      ]);
+      setResponses((responses) => [
+        ...responses,
+        {
+          text: " ความเศร้า: " + replyMap["depression"],
           isBot: true,
         },
       ]);
