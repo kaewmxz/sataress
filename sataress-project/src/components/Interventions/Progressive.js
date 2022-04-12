@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import PopupPMR from "./PopPMR";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -108,7 +109,7 @@ const Progressive = () => {
                         </Typography>
                         <br/>
                         <Btn>
-                            <button style={{ fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
+                           <PopupPMR/>
                         </Btn>
                         <br/>
                     </CardContent>

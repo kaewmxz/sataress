@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-
+import PopupBox from "./PopBox";
 const Bg = withTheme(styled.div`
   position: fixed;
   width: 100%;
@@ -36,9 +36,7 @@ const Btn = withTheme(styled.div`
 text-align:center;
 `);
 
-const handleClick = (e) => {
-    console.log("hello")
-}
+
 
 const theme = createTheme({
     components: {
@@ -59,6 +57,26 @@ const Boxbreathing = () => {
         console.log("error")
         navigate("/Interventions");
     };
+    const [openInfo, setOpenInfo] = useState(false);
+    const handleClickOpenInfo = () => {
+        setOpenInfo(true);
+        console.log("click")
+        return (
+            <div>
+                 <iframe
+                    src="https://youtu.be/zbjzsRckIE8"
+                    frameborder="0"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen
+                    title="video"
+                />{" "}
+            </div>
+        )
+    };
+
+    const handleCloseInfo = () => {
+        setOpenInfo(false);
+    };
     const { currentUser } = useContext(AuthContext);
     if (!currentUser) {
         return (
@@ -72,6 +90,7 @@ const Boxbreathing = () => {
             <ThemeProvider theme={theme}>
             <Bg />
             <Head />
+           
             <Grid container justify="center">
             <img src = "../image/backicon.png"
             onClick={() => handleClick()}
@@ -104,7 +123,7 @@ const Boxbreathing = () => {
                         </Typography>
                         <br/>
                         <Btn>
-                            <button onClick={(e) => handleClick(e)} style={{ cursor:"pointer",fontSize: 18, color: "#FE440A" , fontFamily:'Noto Sans,Kanit,sans-serif', border: "none", background:"none"}}>Play</button>
+                            <PopupBox/>
                         </Btn>
                         <br/>
                     </CardContent>
