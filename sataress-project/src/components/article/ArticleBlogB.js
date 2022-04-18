@@ -103,7 +103,7 @@ const ArticleBlogB = () => {
               <br />
               <Typography variant="h7" color="text.primary" style={{ wordWrap: "break-word" }}>
               แหล่งที่มา : 
-               <a href=" https://www.psycom.net/negative-thinking"> https://www.psycom.net/negative-thinking</a>
+               <a href=" https://www.psycom.net/negative-thinking" style={{color:"gray"}}> https://www.psycom.net/negative-thinking</a>
               </Typography>
               <br />
               <Typography variant="h7" color="text.primary">

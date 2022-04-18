@@ -102,7 +102,7 @@ const ArticleBlogC = () => {
                         <br/>
                         <Typography variant="h7" color="text.primary">
                           แหล่งที่มา : <br/>
-                        <a href = "https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health">https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health</a>
+                        <a href = "https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health" style={{color:"gray"}}>https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health</a>
                         </Typography>
                         <br/>
                         <Typography variant="h7" color="text.primary">

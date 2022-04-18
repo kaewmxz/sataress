@@ -116,7 +116,7 @@ const Boxbreathing = () => {
                         <br/>
                         <Typography variant="h7" color="text.primary">
                             แหล่งที่มา : 
-                            <a href = "https://www.webmd.com/balance/what-is-box-breathing">https://www.webmd.com/balance/what-is-box-breathing</a>
+                            <a href = "https://www.webmd.com/balance/what-is-box-breathing" style={{color:"gray"}}>https://www.webmd.com/balance/what-is-box-breathing</a>
                         </Typography>
                         <br/>
                         <Typography variant="h7" color="text.primary">
