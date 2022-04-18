@@ -127,7 +127,8 @@ const ArticleBlogA = () => {
               </Typography>
               <br />
               <Typography variant="h7" color="text.primary">
-                แหล่งที่มา https://www.psycom.net/avoiding-burnout
+                แหล่งที่มา : 
+               <a href="https://www.psycom.net/avoiding-burnout" style={{color:"gray"}}>https://www.psycom.net/avoiding-burnout</a>
               </Typography>
               <br/>
               <Typography variant="h7" color="text.primary">

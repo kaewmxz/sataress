@@ -100,7 +100,10 @@ const ArticleBlogC = () => {
                         ปัจจัยเหล่านี้ช่วยลดโอกาสเกิดปัญหาที่เกี่ยวข้องกับสุขภาพจิตและสุขภาพร่างกาย
                         </Typography>
                         <br/>
-                        <Typography variant="h7" color="text.primary">แหล่งที่มา https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health</Typography>
+                        <Typography variant="h7" color="text.primary">
+                          แหล่งที่มา : <br/>
+                        <a href = "https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health" style={{color:"gray"}}>https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health</a>
+                        </Typography>
                         <br/>
                         <Typography variant="h7" color="text.primary">
                           วันที่เผยแพร่ 4 เมษายน 2565
