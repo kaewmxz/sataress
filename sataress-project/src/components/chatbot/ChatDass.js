@@ -64,6 +64,7 @@ function timeout(delay) {
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const sessionId = currentUser.uid + random;
   console.log(sessionId);
@@ -369,6 +370,7 @@ const Chat = () => {
         replyMap["20"] = 0;
       }
     } else if (reply.action == "end") {
+      setDisabled(true);
       if (
         reply.parameters.fields.number.stringValue == "0" ||
         reply.parameters.fields.number.stringValue == "1" ||
@@ -564,6 +566,7 @@ const Chat = () => {
                 type="text"
                 value={currentMessage}
                 onChange={handleMessageChange}
+                disabled={disabled}
                 onKeyDown={handleSubmit}
                 placeholder="Say something..."
                 className="messageInputField"
