@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 let replyMap = new Map();
 let mood = [];
 let intensity = [];
+let dict = {};
 
 const theme = createTheme({
   palette: {
@@ -64,6 +65,7 @@ function timeout(delay) {
 const Chat = () => {
   const [responses, setResponses] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const sessionId = currentUser.uid + random;
   console.log(sessionId);
@@ -143,6 +145,7 @@ const Chat = () => {
     } else if (reply.action == "Surprised-Rate") {
       intensity.push(parseInt(reply.parameters.fields.number.stringValue));
     } else if (reply.action == "End") {
+      setDisabled(true);
       const date = new Date();
       const dateTime = [
         date.getMonth() + 1,
@@ -160,8 +163,19 @@ const Chat = () => {
         });
     } else {
     }
-    replyMap["mood"] = mood;
-    replyMap["intensity"] = intensity;
+    if (intensity.length > mood.length) {
+      intensity.splice(intensity.length - 2, 1);
+    }
+    if (mood.length - intensity.length > 1) {
+      mood.splice(mood.length - 2, 1);
+    }
+
+    for (let i = 0; i < mood.length; i++) {
+      dict[[mood[i]]] = intensity[i];
+    }
+
+    replyMap["mood"] = Object.keys(dict);
+    replyMap["intensity"] = Object.values(dict);
   };
 
   const handleSubmit = async (event) => {
@@ -235,6 +249,7 @@ const Chat = () => {
                 value={currentMessage}
                 onChange={handleMessageChange}
                 onKeyDown={handleSubmit}
+                disabled={disabled}
                 placeholder="Say something..."
                 className="messageInputField"
               />

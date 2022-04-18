@@ -170,40 +170,40 @@ async function getMoodDates(id, date) {
   };
 
   snapshot.forEach((doc) => {
-    const date3 = new Date(doc.data().dateToCheck);
+    const date3 = new Date(doc.data().date);
     const date1 = new Date(date[0]);
     const date2 = new Date(date[1]);
     if (date1 <= date3 && date3 <= date2) {
-      // arr.push(date3.getDate());
-      //Try
-      test_arr.push(doc.data().dateToCheck);
+      //Push unique dates
+      if (!test_arr.includes(doc.data().date)) test_arr.push(doc.data().date);
     }
   });
-
+  console.log(test_arr);
   // Try to get mood in each day.
   let dict = {};
   for (let i = 0; i < test_arr.length; i++) {
     const snap = await gratitude
       .where("id", "==", id)
-      .where("dateToCheck", "==", test_arr[i])
+      .where("date", "==", test_arr[i])
       .get();
     if (snap.empty) {
-    }
-    snap.forEach((doc) => {
-      moods_arr = moods_arr.concat(doc.data().mood);
-      intensity_arr = intensity_arr.concat(doc.data().intensity);
-    });
+    } else {
+      snap.forEach((doc) => {
+        moods_arr = moods_arr.concat(doc.data().mood);
+        intensity_arr = intensity_arr.concat(doc.data().intensity);
+      });
 
-    for (let i = 0; i < moods_arr.length; i++) {
-      dict[[moods_arr[i]]] = intensity_arr[i];
-    }
+      for (let i = 0; i < moods_arr.length; i++) {
+        dict[[moods_arr[i]]] = intensity_arr[i];
+      }
 
-    res_dict[
-      Object.keys(dict).reduce((a, b) => (dict[a] > dict[b] ? a : b))
-    ].push(new Date(test_arr[i]).getDate());
-    dict = {};
-    moods_arr = [];
-    intensity_arr = [];
+      res_dict[
+        Object.keys(dict).reduce((a, b) => (dict[a] > dict[b] ? a : b))
+      ].push(new Date(test_arr[i]).getDate());
+      dict = {};
+      moods_arr = [];
+      intensity_arr = [];
+    }
   }
 
   console.log(res_dict);
