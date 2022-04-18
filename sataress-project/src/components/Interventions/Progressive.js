@@ -101,7 +101,8 @@ const Progressive = () => {
                         </Typography>
                         <br/>
                         <Typography variant="h7" color="text.primary">
-                            แหล่งที่มา https://www.healthline.com/health/progressive-muscle-relaxation
+                            แหล่งที่มา :
+                            <a href = "https://www.healthline.com/health/progressive-muscle-relaxation">https://www.healthline.com/health/progressive-muscle-relaxation</a>
                         </Typography>
                         <br/>
                         <Typography variant="h7" color="text.primary">
