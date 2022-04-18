@@ -49,8 +49,8 @@ export default function PopupSignout() {
 
 return (
   <div>
-     <IconButton size="small">
-            <LogoutIcon fontSize="inherit" onClick={handleClickOpen}/>
+     <IconButton size="small" onClick={handleClickOpen}>
+            <LogoutIcon fontSize="inherit"/>
           </IconButton>
     <Dialog
       open={open}
