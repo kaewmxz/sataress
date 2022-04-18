@@ -1,4 +1,5 @@
 const { getFirestore } = require("firebase-admin/firestore");
+const { doc } = require("firebase/firestore");
 
 async function addGratitude(result) {
   var admin = require("firebase-admin");
@@ -75,7 +76,7 @@ async function getGratitudeTable(id) {
 
   const db = getFirestore();
   const gratitude = db.collection("gratitude");
-  const snapshot = await gratitude.where("id", "==", id).orderBy('date','desc').get();
+  const snapshot = await gratitude.where("id", "==", id).orderBy('dateToCheck','desc').get();
   if (snapshot.empty) {
     console.log("No matching documents.");
     return;

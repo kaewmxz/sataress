@@ -52,8 +52,14 @@ export default function PopupGratitude() {
     const date = new Date();
     let time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     let day = date.getDate().toString() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear().toString();
+    if (date.getHours() < 10) {
+      time = "0" + date.getHours() + ':' + date.getMinutes() + ":" + date.getSeconds();
+    }
     if (date.getMinutes() < 10) {
       time = date.getHours() + ':0' + date.getMinutes() + ":" + date.getSeconds();
+    }
+    if (date.getSeconds() < 10) {
+      time = date.getHours() + ":" + date.getMinutes() + ":0" + date.getSeconds();
     }
     let dateTime = day + " " + time;
     const data = {

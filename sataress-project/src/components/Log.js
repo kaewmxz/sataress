@@ -256,6 +256,7 @@ const Log = () => {
           params: { id: currentUser.uid },
         });
         setData(result.data.message);
+        console.log(data)
       } catch(err) {
         console.log(err);
       }
