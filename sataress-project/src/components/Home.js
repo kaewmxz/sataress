@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
@@ -56,24 +56,17 @@ const GratitudeJournal = withTheme(styled.div`
   width: 320.7px;
   height: 182px;
   top: 550px;
-  filter: drop-shadow( 0px 4px 4px rgba(97, 255, 94, 0.25));
+  filter: drop-shadow(0px 4px 4px rgba(97, 255, 94, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
   }
 `);
 
-
 const Home = () => {
   // get datetime
   const date = new Date();
-  const dateTime = [
-    date.getMonth() + 1,
-    date.getDate().toString(),
-    date.getFullYear().toString(),
-  ];
   const { currentUser } = useContext(AuthContext);
   const auth = getAuth();
-  const [firstTime, setFirstTime] = useState(true);
   const username = currentUser.displayName;
   const str = username.split(" ", 2);
   let navigate = useNavigate();
@@ -83,12 +76,6 @@ const Home = () => {
         const result = await axios.get("http://localhost:4000/user-firstTime", {
           params: { id: currentUser.uid },
         });
-        // console.log(result);
-        try {
-          setFirstTime(result.data.message[0].firstTime);
-        } catch {
-          console.log("Empty data");
-        }
         if (result.data.message === "") {
           console.log("check");
           getRedirectResult(auth)
@@ -101,7 +88,6 @@ const Home = () => {
                 lastname: str[1],
                 photo: user.photoURL,
                 date: date,
-                firstTime: false,
               };
               axios
                 .post("http://localhost:4000/users", data)
@@ -111,7 +97,7 @@ const Home = () => {
                 .catch((err) => console.log(err));
             })
             .catch((error) => {
-              //console.log(error)
+              console.log(error);
             });
         }
         const dassFirstTime = await axios.get(
@@ -128,13 +114,11 @@ const Home = () => {
         const result = await axios.get("http://localhost:4000/bi-week-check", {
           params: { id: currentUser.uid },
         });
-        // console.log(result);
         try {
           const date1 = new Date(result.data.message[0].date);
           const date2 = new Date();
           const diffTime = Math.abs(date2 - date1);
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-          // console.log(diffDays);
           if (diffDays > 13) {
             //navigate to DASS-21
             navigate("/DASS21");
