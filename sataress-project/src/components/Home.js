@@ -12,6 +12,8 @@ import axios from "axios";
 import "../css/home.css";
 import Header from "./Head";
 import { useNavigate } from "react-router-dom";
+import PreloadImage from 'react-preload-image'
+
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -158,22 +160,28 @@ const Home = () => {
             <Grid container justifyContent="center">
               <Calendar>
                 <Link to="/Calendar">
-                  <img
-                    src="/image/calendar.png"
+                  <PreloadImage
+                    src="/image/calendar.avif"
                     width="320.7px"
                     height="183px"
+                    lazy
                   />
                 </Link>
               </Calendar>
               {/* {Graph card} */}
               <Graph>
                 <Link to="/Graph">
-                  <img src="/image/graph.png" width="320.7px" height="183px" />
+                <PreloadImage
+                    src="/image/graph.avif"
+                    width="320.7px" 
+                    height="183px"
+                    lazy
+                  />
                 </Link>
               </Graph>
               {/* {Article card} */}
-              <GratitudeJournal style = {{paddingBottom:90}}>
-                  <PopupGratitude/>
+              <GratitudeJournal style={{ paddingBottom: 90 }}>
+                <PopupGratitude />
               </GratitudeJournal>
             </Grid>
           </Box>

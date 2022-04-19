@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { AuthContext } from "../Auth";
 import Typography from "@mui/material/Typography";
+import PreloadImage from 'react-preload-image'
 
 const theme = createTheme({
   palette: {
@@ -80,7 +81,7 @@ export default function PopupGratitude() {
     <ThemeProvider theme={theme}>
     <div>
         <img
-          src="/image/graj.png"
+          src="/image/graj.avif"
           width="320.7px"
           height="183px"
           onClick={handleClickOpen}

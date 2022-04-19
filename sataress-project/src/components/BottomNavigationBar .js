@@ -33,34 +33,38 @@ export default function BottomNavigationBar() {
           >
             <Link to="/">
               <img
-                src="../image/home.png"
+                src="../image/home.avif"
                 width="30"
+                height="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
             </Link>
             <Link to="/Log">
               <img
-                src="../image/log-file.png"
+                src="../image/log-file.avif"
                 width="30"
+                height="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
             </Link>
             <Link to="/Moodtrack">
               <Fab size="large" sx={{ mx: 2, mt: -3 }}>
-                <img src="./image/transparent_bg.png" width="70"></img>
+                <img src="./image/transparent_bg.avif" width="70" height="70"></img>
               </Fab>
             </Link>
             <Link to="/Interventions">
               <img
-                src="../image/relaxation.png"
+                src="../image/relaxation.avif"
                 width="30"
+                height="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
             </Link>
             <Link to="/Article">
               <img
-                src="../image/novel.png"
+                src="../image/novel.avif"
                 width="30"
+                height="30"
                 style={{ marginTop: 13, marginLeft: 15, marginRight: 15 }}
               />
             </Link>
