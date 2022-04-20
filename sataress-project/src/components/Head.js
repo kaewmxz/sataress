@@ -85,7 +85,7 @@ export default function Header() {
   return (
     <div>
       <Head>
-        <img src="/image/head.png" width="300px"></img>
+        <img src="/image/head.avif" width="300px"></img>
         <Profile>
           <Avatar alt="" src={image} sx={{ width: 67, height: 67 }}></Avatar>
         </Profile>

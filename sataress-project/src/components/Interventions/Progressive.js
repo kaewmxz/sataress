@@ -80,60 +80,45 @@ const Progressive = () => {
               position: "absolute",
               cursor: "pointer",
             }}
-          />
-          <Image style={{ marginTop: 170 }}>
-            <img src="/image/Prog.png" width="311px" height="228px" />
-          </Image>
-          <Card sx={{ maxWidth: 500, marginTop: 50, marginBottom: 5 }}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Progressive muscle relaxation
-              </Typography>
-              <Typography variant="h7" color="text.secondary">
-                Progressive muscle relaxation (PMR)
-                เป็นเทคนิคการผ่อนคลายกล้ามเนื้อ
-                ทำให้เกิดการเกร็งและผ่อนคลายกล้ามเนื้อทีละส่วน
-                ซึ่งช่วยในการปลดปล่อยความตึงเครียดของร่างกายซึ่งสามารถช่วยบรรเทาความเครียดและความวิตกกังวล
-                กรอบการทำงานสำหรับการได้รับการผ่อนคลายในระดับนี้จัดทำโดย PMR
-                จำเป็นต้องเน้นกลุ่มกล้ามเนื้อทีละส่วน
-                ช่วยให้คุณตระหนักถึงความเครียดในสถานที่นั้นๆ
-                <br />
-                ก่อนผ่อนคลาย ควรเกร็งกล้ามเนื้อแต่ละส่วนด้วย
-                การกระทำนี้ช่วยเพิ่มบรรยากาศที่ผ่อนคลายของพื้นที่
-                <br />
-                PMR ได้รับการพิสูจน์ในการศึกษาแล้วว่ามีประโยชน์หลายประการ
-                รวมถึงการบรรเทาอาการปวดและการนอนหลับที่ดีขึ้น อาการไมเกรนกำเริบ
-                ความดันโลหิตซิสโตลิก และอาการ TMJ อาจลดลงทั้งหมด
-                <br />
-                PMR สามารถทำได้ในความเป็นส่วนตัวของบ้านของคุณเอง
-                เพื่อผลลัพธ์สูงสุด ให้ฝึกวิธีนี้เป็นประจำ
-                มันอาจทำให้คุณรู้สึกผ่อนคลายและจิตใจสงบขึ้นเมื่อเวลาผ่านไป
-              </Typography>
-              <br />
-              <Typography variant="h7" color="text.primary">
-                แหล่งที่มา : <br />
-                <a
-                  href="https://www.healthline.com/health/progressive-muscle-relaxation"
-                  style={{ color: "gray" }}
-                >
-                  https://www.healthline.com/health/progressive-muscle-relaxation
-                </a>
-              </Typography>
-              <br />
-              <Typography variant="h7" color="text.primary">
-                วันที่เผยแพร่ 4 เมษายน 2565
-              </Typography>
-              <br />
-              <Btn>
-                <PopupPMR />
-              </Btn>
-              <br />
-            </CardContent>
-          </Card>
-        </Grid>
-        <BottomNavigationBar />
-      </ThemeProvider>
-    </div>
-  );
+          /> 
+                <Image style={{ marginTop: 170 }}>
+                    <img src="/image/Prog.avif" width="311px" height="228px" />
+                </Image>
+                <Card sx={{ maxWidth: 500, marginTop: 50,marginBottom:5 }}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Progressive muscle relaxation
+                        </Typography>
+                        <Typography variant="h7" color="text.secondary">
+                            Progressive muscle relaxation (PMR) เป็นเทคนิคการผ่อนคลายกล้ามเนื้อ ทำให้เกิดการเกร็งและผ่อนคลายกล้ามเนื้อทีละส่วน ซึ่งช่วยในการปลดปล่อยความตึงเครียดของร่างกายซึ่งสามารถช่วยบรรเทาความเครียดและความวิตกกังวล
+                            กรอบการทำงานสำหรับการได้รับการผ่อนคลายในระดับนี้จัดทำโดย PMR จำเป็นต้องเน้นกลุ่มกล้ามเนื้อทีละส่วน ช่วยให้คุณตระหนักถึงความเครียดในสถานที่นั้นๆ
+                            <br/>
+                            ก่อนผ่อนคลาย ควรเกร็งกล้ามเนื้อแต่ละส่วนด้วย การกระทำนี้ช่วยเพิ่มบรรยากาศที่ผ่อนคลายของพื้นที่
+                            <br/>
+                            PMR ได้รับการพิสูจน์ในการศึกษาแล้วว่ามีประโยชน์หลายประการ รวมถึงการบรรเทาอาการปวดและการนอนหลับที่ดีขึ้น อาการไมเกรนกำเริบ ความดันโลหิตซิสโตลิก และอาการ TMJ อาจลดลงทั้งหมด
+                            <br/>
+                            PMR สามารถทำได้ในความเป็นส่วนตัวของบ้านของคุณเอง เพื่อผลลัพธ์สูงสุด ให้ฝึกวิธีนี้เป็นประจำ มันอาจทำให้คุณรู้สึกผ่อนคลายและจิตใจสงบขึ้นเมื่อเวลาผ่านไป
+                        </Typography>
+                        <br/>
+                        <Typography variant="h7" color="text.primary">
+                            แหล่งที่มา : <br/>
+                            <a href = "https://www.healthline.com/health/progressive-muscle-relaxation" style={{color:"gray"}}>https://www.healthline.com/health/progressive-muscle-relaxation</a>
+                        </Typography>
+                        <br/>
+                        <Typography variant="h7" color="text.primary">
+                            วันที่เผยแพร่ 4 เมษายน 2565
+                        </Typography>
+                        <br/>
+                        <Btn>
+                           <PopupPMR/>
+                        </Btn>
+                        <br/>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <BottomNavigationBar />
+            </ThemeProvider>
+        </div>
+    );
 };
 export default Progressive;

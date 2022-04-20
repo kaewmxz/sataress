@@ -127,7 +127,7 @@ const MoodInfo = (props) => {
         <CalendarCard>
           <CalendarCardInnerCircle>
             <img
-              src="../image/cali.png"
+              src="../image/cali.avif"
               width="20"
               style={{ marginTop: 3, marginLeft: 4 }}
             />
@@ -175,7 +175,7 @@ const GratitudeInfo = (gratitude) => {
           <CalendarCard2>
             <CalendarCardInnerCircle>
               <img
-                src="../image/book.png"
+                src="../image/book.avif"
                 width="20"
                 style={{ marginTop: 3, marginLeft: 4 }}
               />
@@ -326,7 +326,7 @@ const Log = () => {
       <Head />
       <Grid container justify="center">
         <img
-          src="../image/backicon.png"
+          src="../image/backicon.avif"
           onClick={() => handleClick()}
           width="22"
           style={{

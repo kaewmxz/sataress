@@ -85,12 +85,12 @@ const Interventions = () => {
         <Title style={{ marginTop: 135}}>Relaxations</Title>
           <Boxbreathing style={{ marginTop:40}}>
             <Link to="/Boxbreathing">
-              <img src="/image/Boxb.png" width="311px" height="228px" />
+              <img src="/image/Boxb.avif" width="311px" height="228px" />
             </Link>
           </Boxbreathing>
           <Progressive style={{marginTop:50,paddingBottom:130}}>
             <Link to="/Progressive">
-              <img src="/image/Prog.png" width="311px" height="228px" />
+              <img src="/image/Prog.avif" width="311px" height="228px" />
             </Link>
           </Progressive>
       </Grid>

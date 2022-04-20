@@ -81,51 +81,38 @@ const Boxbreathing = () => {
               position: "absolute",
               cursor: "pointer",
             }}
-          />
-          <Image style={{ marginTop: 170 }}>
-            <img src="/image/Boxb.png" width="311px" height="228px" />
-          </Image>
-          <Card sx={{ maxWidth: 500, marginTop: 50, marginBottom: 5 }}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Box breathing
-              </Typography>
-              <Typography variant="h7" color="text.secondary">
-                Box Breathing หรือที่เรียกว่า Square Breathing
-                เป็นเทคนิคการหายใจลึกๆ ที่สามารถช่วยในการหายใจช้าลง
-                มันทำงานโดยเบี่ยงเบนความสนใจในขณะที่นับถึงสี่
-                ทำให้ระบบประสาทสงบลง และบรรเทาความเครียดในร่างกาย
-                ข้อดีของการหายใจแบบกล่อง ได้แก่
-                ความสามารถในการจัดการกับความตื่นตระหนกและความเครียดเมื่อรู้สึกหนักใจ
-                เช่นเดียวกับความสามารถในการนอนหลับเมื่อมีอาการนอนไม่หลับ
-                นอกจากนี้ยังช่วยลดคอร์ติซอล (ฮอร์โมนความเครียด)
-                ซึ่งช่วยลดความดันโลหิตและทำให้อารมณ์ดีขึ้น
-              </Typography>
-              <br />
-              <Typography variant="h7" color="text.primary">
-                แหล่งที่มา :
-                <a
-                  href="https://www.webmd.com/balance/what-is-box-breathing"
-                  style={{ color: "gray" }}
-                >
-                  https://www.webmd.com/balance/what-is-box-breathing
-                </a>
-              </Typography>
-              <br />
-              <Typography variant="h7" color="text.primary">
-                วันที่เผยแพร่ 4 เมษายน 2565
-              </Typography>
-              <br />
-              <Btn>
-                <PopupBox />
-              </Btn>
-              <br />
-            </CardContent>
-          </Card>
-        </Grid>
-        <BottomNavigationBar />
-      </ThemeProvider>
-    </div>
-  );
+          /> 
+                <Image style={{ marginTop: 170 }}>
+                    <img src="/image/Boxb.avif" width="311px" height="228px" />
+                </Image>
+                <Card sx={{ maxWidth: 500, marginTop: 50,marginBottom:5 }}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                            Box breathing
+                        </Typography>
+                        <Typography variant="h7" color="text.secondary">
+                            Box Breathing หรือที่เรียกว่า Square Breathing เป็นเทคนิคการหายใจลึกๆ ที่สามารถช่วยในการหายใจช้าลง มันทำงานโดยเบี่ยงเบนความสนใจในขณะที่นับถึงสี่ ทำให้ระบบประสาทสงบลง และบรรเทาความเครียดในร่างกาย ข้อดีของการหายใจแบบกล่อง ได้แก่ ความสามารถในการจัดการกับความตื่นตระหนกและความเครียดเมื่อรู้สึกหนักใจ เช่นเดียวกับความสามารถในการนอนหลับเมื่อมีอาการนอนไม่หลับ นอกจากนี้ยังช่วยลดคอร์ติซอล (ฮอร์โมนความเครียด) ซึ่งช่วยลดความดันโลหิตและทำให้อารมณ์ดีขึ้น
+                        </Typography>
+                        <br/>
+                        <Typography variant="h7" color="text.primary">
+                            แหล่งที่มา : 
+                            <a href = "https://www.webmd.com/balance/what-is-box-breathing" style={{color:"gray"}}>https://www.webmd.com/balance/what-is-box-breathing</a>
+                        </Typography>
+                        <br/>
+                        <Typography variant="h7" color="text.primary">
+                            วันที่เผยแพร่ 4 เมษายน 2565
+                        </Typography>
+                        <br/>
+                        <Btn>
+                            <PopupBox/>
+                        </Btn>
+                        <br/>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <BottomNavigationBar/>
+            </ThemeProvider>
+        </div>
+    );
 };
 export default Boxbreathing;
