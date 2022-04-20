@@ -21,9 +21,17 @@ const Bg = withTheme(styled.div`
 
 const Logo = withTheme(styled.div`
 position:relative;
-width: 100%; 
-text-align: center;
-margin-top:50%;
+top:40vh;
+left:50%;
+transform: translate(-50%,-50%);
+display:block;
+`);
+
+const GB = withTheme(styled.div`
+position:relative;
+top:15vh;
+left:50%;
+transform: translate(-50%,-50%);
 display:block;
 `);
 
@@ -52,11 +60,13 @@ const Login = () => {
         alignItems="center" direction="column">
         <Grid item xs={12}>
           <Logo>
-            <img src="/image/logo.png" width="320" />
+            <img src="/image/logo.avif" width="320" />
           </Logo>
         </Grid>
         <Grid item xs={12}>
-          <GoogleButton onClick={googleLogin} style={{ position: "relative"}}>Sign in with Google</GoogleButton>
+          <GB>
+          <GoogleButton onClick={googleLogin}>Sign in with Google</GoogleButton>
+          </GB>
         </Grid>
       </Grid>
     </div >
