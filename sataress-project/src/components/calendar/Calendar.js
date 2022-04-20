@@ -133,8 +133,6 @@ export default function CustomCalendar() {
   const [selectedDate, setDate] = useState(new Date());
   const classes = styles(); // import those CSS
   const today = new Date(); // just Date object of today
-  const sunnyDays = [1, 6, 10, 24, 15]; // array of sunny days 1st,6th etc
-  let days = [];
   const [happyDay, setHappyDay] = useState([]);
   const [sadDay, setSadDay] = useState([]);
   const [stressedDay, setStressedDay] = useState([]);
@@ -143,7 +141,6 @@ export default function CustomCalendar() {
   const [neutralDay, setNeutralDay] = useState([]);
   const [angryDay, setAngryDay] = useState([]);
   const [disgustedDay, setDisgustedDay] = useState([]);
-  const [value, setValue] = React.useState(null);
   const [show, setShow] = React.useState(true);
   // console.log(today);
 

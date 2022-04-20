@@ -1,14 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid } from '@material-ui/core';
-import { Routes, Route, Navigate} from 'react-router-dom';
+import { Grid } from "@material-ui/core";
+import { Routes, Route, Navigate } from "react-router-dom";
 import BottomNavigationBar from "../BottomNavigationBar ";
 import Head from "../Head";
 import { AuthContext } from "../Auth";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import PopupBox from "./PopBox";
@@ -26,78 +26,58 @@ const Bg = withTheme(styled.div`
 `);
 
 const Image = withTheme(styled.div`
-position: absolute;
-width: 320.7px;
-height: 182px;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  position: absolute;
+  width: 320.7px;
+  height: 182px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `);
 
 const Btn = withTheme(styled.div`
-text-align:center;
+  text-align: center;
 `);
 
-
-
 const theme = createTheme({
-    components: {
-      // Name of the component
-      MuiTypography: {
-        styleOverrides: {
-          root: {
-            fontFamily:'Noto Sans,Kanit,sans-serif'
-          },
+  components: {
+    // Name of the component
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Noto Sans,Kanit,sans-serif",
         },
-      }
-    }
+      },
+    },
+  },
 });
 
 const Boxbreathing = () => {
-    let navigate = useNavigate();
-    const handleClick = () => {
-        console.log("error")
-        navigate("/Interventions");
-    };
-    const [openInfo, setOpenInfo] = useState(false);
-    const handleClickOpenInfo = () => {
-        setOpenInfo(true);
-        console.log("click")
-        return (
-            <div>
-                 <iframe
-                    src="https://youtu.be/zbjzsRckIE8"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media"
-                    allowfullscreen
-                    title="video"
-                />{" "}
-            </div>
-        )
-    };
+  let navigate = useNavigate();
+  const handleClick = () => {
+    console.log("error");
+    navigate("/Interventions");
+  };
 
-    const handleCloseInfo = () => {
-        setOpenInfo(false);
-    };
-    const { currentUser } = useContext(AuthContext);
-    if (!currentUser) {
-        return (
-            <Routes>
-                <Route path="/" element={<Navigate replace to="/" />}></Route>
-            </Routes>
-        )
-    }
+  const { currentUser } = useContext(AuthContext);
+  if (!currentUser) {
     return (
-        <div>
-            <ThemeProvider theme={theme}>
-            <Bg />
-            <Head />
-           
-            <Grid container justify="center">
-            <img src = "../image/backicon.png"
+      <Routes>
+        <Route path="/" element={<Navigate replace to="/" />}></Route>
+      </Routes>
+    );
+  }
+  return (
+    <div>
+      <ThemeProvider theme={theme}>
+        <Bg />
+        <Head />
+
+        <Grid container justify="center">
+          <img
+            src="../image/backicon.png"
             onClick={() => handleClick()}
-            width = "22"
-           style = {{
-               marginTop:160,
-               marginLeft:-165,
+            width="22"
+            style={{
+              marginTop: 160,
+              marginLeft: -165,
               position: "absolute",
               cursor: "pointer",
             }}
