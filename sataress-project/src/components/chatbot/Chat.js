@@ -99,6 +99,7 @@ const Chat = () => {
         await timeout(100);
         setResponses((responses) => [...responses, responseData]);
       }
+      console.log(response.data.message);
       return response.data.message;
     } catch (error) {
       console.log("error: ", error);
@@ -173,7 +174,10 @@ const Chat = () => {
     for (let i = 0; i < mood.length; i++) {
       dict[[mood[i]]] = intensity[i];
     }
-
+    dict = Object.entries(dict).reduce(
+      (a, [k, v]) => (v === undefined ? a : ((a[k] = v), a)),
+      {}
+    );
     replyMap["mood"] = Object.keys(dict);
     replyMap["intensity"] = Object.values(dict);
   };
