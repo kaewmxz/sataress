@@ -64,7 +64,7 @@ const ArticleBlogC = () => {
             <Bg />
             <Head />
             <Grid container justify="center">
-            <img src = "../image/backicon.png"
+            <img src = "../image/backicon.avif"
             onClick={() => handleClick()}
             width = "22"
            style = {{
@@ -75,7 +75,7 @@ const ArticleBlogC = () => {
             }}
           /> 
                 <Image style={{ marginTop: 190 }}>
-                    <img src="/image/arco3.png" width="320.7px" height="182px" />
+                    <img src="/image/arco3.avif" width="320.7px" height="182px" />
                 </Image>
                 <br/>
                 <Card sx={{ maxWidth: 450, marginTop: 47, marginBottom: 5 }}>
