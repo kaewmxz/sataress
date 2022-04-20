@@ -541,7 +541,7 @@ const Chat = () => {
         <Grid container justifyContent="center" direction="column">
           <Head>
             <img
-              src="../image/transparent_bg.png"
+              src="../image/transparent_bg.avif"
               width={70}
               style={{ marginLeft: -215, marginTop: 5, position: "relative" }}
             />

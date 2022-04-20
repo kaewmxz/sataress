@@ -73,7 +73,7 @@ const Article = () => {
           <Ar1>
             <Link to="/ArticleBlog-1">
               <img
-                src="/image/arco1.png"
+                src="/image/arco1.avif"
                 width="320.7px"
                 height="183px"
               />
@@ -82,7 +82,7 @@ const Article = () => {
           <Ar2>
             <Link to="/ArticleBlog-2">
               <img
-                src="/image/arco2.png"
+                src="/image/arco2.avif"
                 width="320.7px"
                 height="183px" />
             </Link>
@@ -90,7 +90,7 @@ const Article = () => {
           <Ar3 style={{ paddingBottom: 90 }}>
             <Link to="/ArticleBlog-3">
               <img
-                src="/image/arco3.png"
+                src="/image/arco3.avif"
                 width="320.7px"
                 height="183px" />
             </Link>

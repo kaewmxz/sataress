@@ -82,7 +82,7 @@ const Progressive = () => {
             }}
           /> 
                 <Image style={{ marginTop: 170 }}>
-                    <img src="/image/Prog.png" width="311px" height="228px" />
+                    <img src="/image/Prog.avif" width="311px" height="228px" />
                 </Image>
                 <Card sx={{ maxWidth: 500, marginTop: 50,marginBottom:5 }}>
                     <CardContent>

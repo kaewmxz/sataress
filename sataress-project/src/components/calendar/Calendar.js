@@ -217,7 +217,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src="/image/happy.png" width={37} height={37} />
+                <img src="/image/happy.avif" width={37} height={37} />
               </Grid>
             </div>
           );
@@ -230,7 +230,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/sad.png"} width={37} height={37} />
+                <img src={"/image/sad.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
@@ -243,7 +243,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/stressed.png"} width={37} height={37} />
+                <img src={"/image/stressed.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
@@ -256,7 +256,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/surprised.png"} width={37} height={37} />
+                <img src={"/image/surprised.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
@@ -269,7 +269,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/fearful.png"} width={37} height={37} />
+                <img src={"/image/fearful.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
@@ -282,7 +282,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/disgusted.png"} width={37} height={37} />
+                <img src={"/image/disgusted.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
@@ -295,7 +295,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/neutral.png"} width={37} height={37} />
+                <img src={"/image/neutral.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
@@ -308,7 +308,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item style={{ marginLeft: "-0.9px", marginTop: "-1px" }}>
-                <img src={"/image/angry.png"} width={37} height={37} />
+                <img src={"/image/angry.avif"} width={37} height={37} />
               </Grid>
             </Paper>
           );
