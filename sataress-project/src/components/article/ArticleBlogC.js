@@ -65,7 +65,6 @@ const ArticleBlogC = () => {
               position: "absolute",
               cursor: "pointer",
             }}
-<<<<<<< HEAD
           /> 
                 <Image style={{ marginTop: 190 }}>
                     <img src="/image/arco3.avif" width="320.7px" height="182px" />
@@ -110,64 +109,5 @@ const ArticleBlogC = () => {
             </ThemeProvider>
         </div>
     );
-=======
-          />
-          <Image style={{ marginTop: 190 }}>
-            <img src="/image/arco3.png" width="320.7px" height="182px" />
-          </Image>
-          <br />
-          <Card sx={{ maxWidth: 450, marginTop: 47, marginBottom: 5 }}>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                ความเชื่อมโยงระหว่างสุขภาพจิตและสภาพร่างกาย
-              </Typography>
-              <Typography variant="h7" color="text.secondary">
-                ความเชื่อมโยงกันหลายอย่างระหว่างสุขภาพจิตและสภาพร่างกายมีส่งผลกระทบอย่างมากต่อคุณภาพของชีวิตผู้คนและมีผลกระทบต่อสังคมอย่างมากล้น
-                <br />
-                องค์การอนามัยโลก (WHO) ให้คำจำกัดความว่า
-                "การมีสุขภาพสมบูรณ์ที่แข็งแรง ต้องรวมทั้งทางร่างกาย จิตใจ
-                และสังคม
-                มิใช่เพียงแค่การปราศจากโรคภัยไข้เจ็บหรือทุพพลภาพเท่านั้น"
-                <br />
-                ไม่มีที่ใดให้ความสำคัญระหว่างสุขภาพจิตและสุขภาพร่างกายมากไปกว่าด้านใดด้านหนึ่ง
-                ทั้งสองมีความสัมพันธ์ร่วมกัน:
-                <br />
-                ถ้าสุขภาพจิตไม่ปกติเป็นปัจจัยเสี่ยงต่อสภาพร่างกายผิดปกติ
-                <br />
-                ผู้ที่มีภาวะสุขภาพจิตไม่ปกติ
-                จะมีความเสี่ยงสูงที่จะประสบกับภาวะร่างกายผิดปกติเรื้อรัง
-                <br />
-                ผู้ที่มีสภาพร่างกายผิดปกติเรื้อรัง
-                จะมีความเสี่ยงที่จะมีสุขภาพจิตผิดปกติ
-                <br />
-                ปัจจัยสำคัญในการป้องกันปัญหาเหล่านี้คือ การออกกำลังกาย
-                รับประทานอาหารที่มีคุณค่าทางโภชนาการครบ 5 หมู่
-                และการพักผ่อนที่เพียงพอ
-                ปัจจัยเหล่านี้ช่วยลดโอกาสเกิดปัญหาที่เกี่ยวข้องกับสุขภาพจิตและสุขภาพร่างกาย
-              </Typography>
-              <br />
-              <Typography variant="h7" color="text.primary">
-                แหล่งที่มา : <br />
-                <a
-                  href="https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health"
-                  style={{ color: "gray" }}
-                >
-                  https://ontario.cmha.ca/documents/connection-between-mental-and-physical-health
-                </a>
-              </Typography>
-              <br />
-              <Typography variant="h7" color="text.primary">
-                วันที่เผยแพร่ 4 เมษายน 2565
-              </Typography>
-              <br />
-              <br />
-            </CardContent>
-          </Card>
-        </Grid>
-        <BottomNavigationBar />
-      </ThemeProvider>
-    </div>
-  );
->>>>>>> 44e43fe736b696bf53802203f610cd8560694a39
 };
 export default ArticleBlogC;
