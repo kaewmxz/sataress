@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
@@ -11,7 +11,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -63,16 +62,17 @@ const ArticleBlogA = () => {
         <Bg />
         <Head />
         <Grid container justify="center">
-        <img src = "../image/backicon.png"
+          <img
+            src="../image/backicon.png"
             onClick={() => handleClick()}
-            width = "22"
-           style = {{
-               marginTop:160,
-               marginLeft:-165,
+            width="22"
+            style={{
+              marginTop: 160,
+              marginLeft: -165,
               position: "absolute",
               cursor: "pointer",
             }}
-          /> 
+          />
           <Image style={{ marginTop: 190 }}>
             <img src="/image/arco1.png" width="320.7px" height="182px" />
           </Image>
@@ -127,10 +127,15 @@ const ArticleBlogA = () => {
               </Typography>
               <br />
               <Typography variant="h7" color="text.primary">
-                แหล่งที่มา : 
-               <a href="https://www.psycom.net/avoiding-burnout" style={{color:"gray"}}>https://www.psycom.net/avoiding-burnout</a>
+                แหล่งที่มา :
+                <a
+                  href="https://www.psycom.net/avoiding-burnout"
+                  style={{ color: "gray" }}
+                >
+                  https://www.psycom.net/avoiding-burnout
+                </a>
               </Typography>
-              <br/>
+              <br />
               <Typography variant="h7" color="text.primary">
                 วันที่เผยแพร่ 4 เมษายน 2565
               </Typography>
