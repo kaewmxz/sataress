@@ -13,6 +13,7 @@ import SendIcon from "@mui/icons-material/Send";
 import PopupInformation from "./PopupInformation";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import IconButton from '@mui/material/IconButton';
 
 let replyMap = new Map();
 
@@ -50,11 +51,6 @@ const Text = withTheme(styled.div`
   margin-left: -50px;
 `);
 
-const CBT = withTheme(styled.div`
-  position: relative;
-  margin-top: -19px;
-  margin-left: 265px;
-`);
 
 const random = Math.random().toString();
 
@@ -547,9 +543,10 @@ const Chat = () => {
             />
             <Text>Nong Krati</Text>
             <Link to="/">
-              <CBT>
-                <CancelIcon sx={{ fontSize: 15.5 }} color="gray" />
-              </CBT>
+            <IconButton size="small"
+                sx = {{marginTop:-5.5,marginLeft:28}}>
+                   <CancelIcon sx={{ fontSize: 20 }} color="gray" />
+                </IconButton>
             </Link>
             <PopupInformation />
           </Head>
