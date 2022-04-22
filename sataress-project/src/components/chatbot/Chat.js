@@ -235,7 +235,7 @@ const Chat = () => {
               }
             >
               <CBT>
-                <CancelIcon sx={{ fontSize: 15 }} color="gray" />
+                <CancelIcon sx={{ fontSize: 15.5 }} color="gray" />
               </CBT>
             </Link>
           </Head>
