@@ -48,8 +48,8 @@ export default function PopupInformation() {
         <div>
             <ThemeProvider theme={theme}>
                 <IconButton size="small"
-                sx = {{marginTop:-5.8,marginLeft:25}}>
-                    <InfoIcon fontSize="inherit" sx={{ fontSize: "16px", color: "Black" }} onClick={handleClickOpenInfo} />
+                sx = {{marginTop:-10,marginLeft:18}}>
+                    <InfoIcon fontSize="inherit" sx={{ fontSize: 20, color: "#F56B74" }} onClick={handleClickOpenInfo} />
                 </IconButton>
                 <Dialog
                     open={openInfo}
