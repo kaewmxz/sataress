@@ -11,7 +11,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import PopupPMR from "./PopPMR";
 
 const Bg = withTheme(styled.div`
   position: fixed;
@@ -37,6 +36,10 @@ const Btn = withTheme(styled.div`
   text-align: center;
 `);
 
+const Video = withTheme(styled.div`
+  text-align: center;
+`);
+
 const theme = createTheme({
   components: {
     // Name of the component
@@ -53,7 +56,6 @@ const theme = createTheme({
 const Progressive = () => {
   let navigate = useNavigate();
   const handleClick = () => {
-    console.log("error");
     navigate("/Interventions");
   };
   const { currentUser } = useContext(AuthContext);
@@ -109,9 +111,15 @@ const Progressive = () => {
                             วันที่เผยแพร่ 4 เมษายน 2565
                         </Typography>
                         <br/>
-                        <Btn>
-                           <PopupPMR/>
-                        </Btn>
+                        <br/>
+                        <Typography variant="h7" color="text.primary">
+                            วิดีโอตัวอย่าง
+                        </Typography>
+                        <br/>
+                        <br/>
+                        <Video>
+                        <iframe width="330" height="230" src="https://www.youtube.com/embed/LGhvHGJ8j1c?start=140" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        </Video>
                         <br/>
                     </CardContent>
                 </Card>

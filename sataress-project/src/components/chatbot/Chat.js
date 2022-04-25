@@ -11,6 +11,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
+import IconButton from '@mui/material/IconButton';
 
 let replyMap = new Map();
 let mood = [];
@@ -234,9 +235,10 @@ const Chat = () => {
                 }, 0.05)
               }
             >
-              <CBT>
-                <CancelIcon sx={{ fontSize: 15 }} color="gray" />
-              </CBT>
+              <IconButton size="small"
+                sx={{ marginTop: -5.5, marginLeft: 28 }}>
+                <CancelIcon sx={{ fontSize: 20 }} color="gray" />
+              </IconButton>
             </Link>
           </Head>
         </Grid>
