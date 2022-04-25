@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import { Grid, Box } from "@material-ui/core";
-import { Routes, Route, Navigate} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Header from "./Head";
 import { AuthContext } from "./Auth";
@@ -33,8 +33,8 @@ const Bg = withTheme(styled.div`
 
 const GraphBox1 = withTheme(styled.div`
   position: absolute;
-  width: 307px;
-  height: 240px;
+  width: 350px;
+  height: 280px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
@@ -51,8 +51,8 @@ const GraphBoxname1 = withTheme(styled.div`
 `);
 const GraphBox2 = withTheme(styled.div`
   position: absolute;
-  width: 307px;
-  height: 240px;
+  width: 350px;
+  height: 300px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
@@ -69,8 +69,8 @@ const GraphBoxname2 = withTheme(styled.div`
 `);
 const GraphBox3 = withTheme(styled.div`
   position: absolute;
-  width: 307px;
-  height: 182px;
+  width: 350px;
+  height: 200px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(255, 0, 0, 0.25);
   border-radius: 17px;
@@ -119,6 +119,7 @@ const Graph = () => {
   const [moodCount, setmoodCount] = useState([]);
   const [moodIntense, setmoodIntense] = useState([]);
   const [gratitude, setGratitude] = useState([]);
+  const [diffDay, setdiffDay] = useState([]);
   const [value, setValue] = React.useState([null, null]);
 
   useEffect(() => {
@@ -130,7 +131,7 @@ const Graph = () => {
   const SimpleWordcloud = () => {
     return (
       <ReactWordcloud
-        style={{ maxWidth: 300, maxHeight: 180, paddingBottom: 100 }}
+        style={{ maxWidth: 350, maxHeight: 150, paddingBottom: 110 , margin:30, position:'relative'}}
         words={gratitude}
         options={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
       />
@@ -144,6 +145,9 @@ const Graph = () => {
       moment(date).clone().endOf("month").format("MM/D/YYYY"),
     ];
     setValue(variables);
+    setdiffDay(
+      new Date(variables[1]).getDate() - new Date(variables[0]).getDate()
+    );
     const fetchmoodCount = async () => {
       const result = await axios.get("http://localhost:4000/mood/", {
         params: { id: currentUser.uid, range: variables },
@@ -236,7 +240,9 @@ const Graph = () => {
       values[1] = moment(date).clone().endOf("month").format("MM/D/YYYY");
     }
     console.log(values);
-
+    setdiffDay(
+      new Date(values[1]).getDate() - new Date(values[0]).getDate()
+    );
     const fetchmoodCount = async () => {
       const result = await axios.get("http://localhost:4000/mood/", {
         params: { id: currentUser.uid, range: values },
@@ -372,13 +378,13 @@ const Graph = () => {
             </LocalizationProvider>
 
             <GraphBox1 style={{ marginTop: 230, color: "red" }}>
-              <GraphBoxname1>นับจำนวนอารมณ์ (ครั้ง)</GraphBoxname1>
+              <GraphBoxname1>นับจำนวนอารมณ์ (ครั้ง) ในช่วง {diffDay} วัน</GraphBoxname1>
               <Grid
                 container
                 justify="center"
-                style={{ marginLeft: -30, marginTop: 35 }}
+                style={{ marginLeft: -20, marginTop: 60 }}
               >
-                <BarChart width={290} height={200} data={moodCount}>
+                <BarChart width={330} height={210} data={moodCount}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
                   <XAxis
                     dataKey="mood"
@@ -390,7 +396,11 @@ const Graph = () => {
                     fontSize={10}
                     fontFamily="Noto Sans,Kanit,sans-serif"
                   />
-                  <YAxis allowDecimals={false} allowDataOverflow={true} scale="auto" />
+                  <YAxis
+                    allowDecimals={false}
+                    allowDataOverflow={true}
+                    scale="auto"
+                  />
                   <Bar dataKey="count" fill="#84c78b">
                     {moodCount.map((entry, index) => (
                       // <Cell
@@ -425,14 +435,16 @@ const Graph = () => {
               </Grid>
             </GraphBox1>
 
-            <GraphBox2 style={{ marginTop: 500 }}>
-              <GraphBoxname2>ความเข้มข้นเฉลี่ยของแต่ละอารมณ์ (ระดับ)</GraphBoxname2>
+            <GraphBox2 style={{ marginTop: 560 }}>
+              <GraphBoxname2>
+                ความเข้มข้นเฉลี่ยของแต่ละอารมณ์ (ระดับ) <br/>ในช่วง {diffDay} วัน
+              </GraphBoxname2>
               <Grid
                 container
                 justify="center"
-                style={{ marginLeft: -30, marginTop: 35 }}
+                style={{ marginLeft: -20, marginTop: 80 }}
               >
-                <BarChart width={290} height={200} data={moodIntense}>
+                <BarChart width={330} height={210} data={moodIntense}>
                   {/* <CartesianGrid strokeDasharray="3 3" /> */}
                   <XAxis
                     dataKey="mood"
@@ -478,8 +490,8 @@ const Graph = () => {
               </Grid>
             </GraphBox2>
 
-            <GraphBox3 style={{ marginTop: 780 }}>
-              <GraphBoxname3>Wordcloud</GraphBoxname3>
+            <GraphBox3 style={{ marginTop: 890 }}>
+              <GraphBoxname3>สิ่งที่ขอบคุณ ในช่วง {diffDay} วัน </GraphBoxname3>
               <SimpleWordcloud />
             </GraphBox3>
           </Grid>
