@@ -13,7 +13,7 @@ import SendIcon from "@mui/icons-material/Send";
 import PopupInformation from "./PopupInformation";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 
 let replyMap = new Map();
 
@@ -51,7 +51,6 @@ const Text = withTheme(styled.div`
   margin-left: -50px;
 `);
 
-
 const random = Math.random().toString();
 
 function timeout(delay) {
@@ -63,7 +62,7 @@ const Chat = () => {
   const [disabled, setDisabled] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const sessionId = currentUser.uid + random;
-  console.log(sessionId);
+  // console.log(sessionId);
   useEffect(() => {
     if (!currentUser) {
       return (
@@ -101,7 +100,7 @@ const Chat = () => {
     };
 
     const startChat = async () => {
-      // await timeout(500);
+      await timeout(500);
       handleMessageSubmit("ประเมิน");
     };
     checkFirstTime();
@@ -142,7 +141,7 @@ const Chat = () => {
     setCurrentMessage(event.target.value);
   };
 
-  const extractReply = (reply) => {
+  const  extractReply = async (reply) => {
     console.log(reply);
     if (reply.action == "2") {
       if (
@@ -462,6 +461,7 @@ const Chat = () => {
         replyMap["depression"] = "รุนแรงอย่างมาก";
       }
 
+      await timeout(600);
       setResponses((responses) => [
         ...responses,
         {
@@ -469,6 +469,7 @@ const Chat = () => {
           isBot: true,
         },
       ]);
+      await timeout(600);
       setResponses((responses) => [
         ...responses,
         {
@@ -476,6 +477,7 @@ const Chat = () => {
           isBot: true,
         },
       ]);
+      await timeout(600);
       setResponses((responses) => [
         ...responses,
         {
@@ -483,6 +485,70 @@ const Chat = () => {
           isBot: true,
         },
       ]);
+      if (replyMap["stress"] != "ปกติ") {
+        await timeout(600);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "เรามีวิธีช่วยทำให้เธอผ่อนคลายด้วยนะ เธอลองไปทำ Box Breathing หรือ Progressive Muscle Relaxation ดูก็ได้น้า",
+            isBot: true,
+          },
+        ]);
+        await timeout(600);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "เธอสามารถปิดแชทแล้วเข้าไปดูได้ที่ไอคอน Relaxation (ไอคอนที่ 3) ด้านล่างนะ",
+            isBot: true,
+          },
+        ]);
+      } else if (
+        replyMap["anxiety"] != "ปกติ" ||
+        replyMap["depression"] != "ปกติ"
+      ) {
+        await timeout(600);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "เรามีวิธีช่วยทำให้เธอผล่อนคลายด้วยนะ เธอลองไปทำ Progressive Muscle Relaxation ดูก็ได้น้า",
+            isBot: true,
+          },
+        ]);
+        await timeout(600);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "เธอสามารถปิดแชทแล้วเข้าไปดูได้ที่ไอคอน Relaxation (ไอคอนที่ 3) ด้านล่างนะ",
+            isBot: true,
+          },
+        ]);
+      }
+
+      if (
+        replyMap["stress"] == "รุนแรง" ||
+        replyMap["depression"] == "รุนแรง" ||
+        replyMap["anxiety"] == "รุนแรง" ||
+        replyMap["stress"] == "รุนแรงอย่างมาก" ||
+        replyMap["depression"] == "รุนแรงอย่างมาก" ||
+        replyMap["anxiety"] == "รุนแรงอย่างมาก"
+      ) {
+        await timeout(600);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "หรือถ้าเธอรู้สึกไม่ดีและอยากได้ที่ปรึกษา",
+            isBot: true,
+          },
+        ]);
+        await timeout(600);
+        setResponses((responses) => [
+          ...responses,
+          {
+            text: "เธอสามารถติดต่อขอรับคำปรึกษาได้ที่เบอร์นี้นะ 0-2470-8105",
+            isBot: true,
+          },
+        ]);
+      }
     } else {
     }
   };
@@ -543,10 +609,9 @@ const Chat = () => {
             />
             <Text>Nong Krati</Text>
             <Link to="/">
-            <IconButton size="small"
-                sx = {{marginTop:-5.5,marginLeft:28}}>
-                   <CancelIcon sx={{ fontSize: 20 }} color="gray" />
-                </IconButton>
+              <IconButton size="small" sx={{ marginTop: -5.5, marginLeft: 28 }}>
+                <CancelIcon sx={{ fontSize: 20 }} color="gray" />
+              </IconButton>
             </Link>
             <PopupInformation />
           </Head>
