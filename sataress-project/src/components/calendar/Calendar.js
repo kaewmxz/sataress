@@ -8,12 +8,7 @@ import Header from "../Head";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
 import React, { useState, useEffect, useContext } from "react";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Auth";
 import "./DatePicker.css";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -158,6 +153,17 @@ export default function CustomCalendar() {
     );
   }
 
+  const clearState = () => {
+    setHappyDay([]);
+    setSadDay([]);
+    setStressedDay([]);
+    setSurprisedDay([]);
+    setFearfulDay([]);
+    setNeutralDay([]);
+    setAngryDay([]);
+    setDisgustedDay([]);
+  };
+
   const onPickerViewChange = async (date) => {
     const variables = [
       moment(date).clone().startOf("month").format("M/D/YYYY"),
@@ -165,17 +171,29 @@ export default function CustomCalendar() {
     ];
 
     try {
-      const result = await axios.get("http://localhost:4000/mood-dates", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/mood-dates", {
         params: { id: currentUser.uid, date: variables },
       });
-      setHappyDay(result.data.message.Happy.map((day) => day));
-      setSadDay(result.data.message.Sad.map((day) => day));
-      setStressedDay(result.data.message.Stressed.map((day) => day));
-      setSurprisedDay(result.data.message.Surprised.map((day) => day));
-      setFearfulDay(result.data.message.Fearful.map((day) => day));
-      setNeutralDay(result.data.message.Neutral.map((day) => day));
-      setAngryDay(result.data.message.Angry.map((day) => day));
-      setDisgustedDay(result.data.message.Disgusted.map((day) => day));
+      clearState();
+      if (result.data.message.Happy)
+        setHappyDay(result.data.message.Happy.map((day) => day));
+      if (result.data.message.Sad)
+        setSadDay(result.data.message.Sad.map((day) => day));
+      if (result.data.message.Stressed)
+        setStressedDay(result.data.message.Stressed.map((day) => day));
+      if (result.data.message.Surprised)
+        setSurprisedDay(result.data.message.Surprised.map((day) => day));
+      if (result.data.message.Fearful)
+        setFearfulDay(result.data.message.Fearful.map((day) => day));
+      if (result.data.message.Neutral)
+        setNeutralDay(result.data.message.Neutral.map((day) => day));
+      if (result.data.message.Angry)
+        setAngryDay(result.data.message.Angry.map((day) => day));
+      if (result.data.message.Disgusted)
+        setDisgustedDay(result.data.message.Disgusted.map((day) => day));
+      if (Object.keys(result.data.message).length === 0) {
+        clearState();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -354,7 +372,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -374,7 +392,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -394,7 +412,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -414,7 +432,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -434,7 +452,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -454,7 +472,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -474,7 +492,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -494,7 +512,7 @@ export default function CustomCalendar() {
               <Grid
                 item
                 style={{
-                  textAlign:"center",
+                  textAlign: "center",
                   marginTop: "5px",
                   color: "#F85975",
                 }}
@@ -512,7 +530,7 @@ export default function CustomCalendar() {
               }}
             >
               <Grid item></Grid>
-              <Grid item style={{ textAlign:"center", marginTop: "5px" }}>
+              <Grid item style={{ textAlign: "center", marginTop: "5px" }}>
                 {day.getDate()}
               </Grid>
             </Paper>
@@ -526,7 +544,7 @@ export default function CustomCalendar() {
               item
               style={{
                 color: "lightGrey",
-                textAlign:"center",
+                textAlign: "center",
                 marginTop: "5px",
               }}
             >
@@ -583,7 +601,7 @@ export default function CustomCalendar() {
           <FormControlLabel
             style={{
               marginLeft: 235,
-              marginTop:5,
+              marginTop: 5,
               color: "#95C3BB",
               fontFamily: "Noto Sans,Kanit,sans-serif",
             }}

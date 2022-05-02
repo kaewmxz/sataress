@@ -73,7 +73,7 @@ const Home = () => {
   useEffect(() => {
     if (currentUser) {
       const getUser = async () => {
-        const result = await axios.get("http://localhost:4000/user-firstTime", {
+        const result = await axios.get("https://backend-glint.herokuapp.com/user-firstTime", {
           params: { id: currentUser.uid },
         });
         if (result.data.message === "") {
@@ -90,10 +90,10 @@ const Home = () => {
                 date: date,
               };
               axios
-                .post("http://localhost:4000/users", data)
+                .post("/users", data)
                 .catch((err) => console.log(err));
               axios
-                .post("http://localhost:4000/bi-week", data)
+                .post("/bi-week", data)
                 .catch((err) => console.log(err));
             })
             .catch((error) => {
@@ -101,7 +101,7 @@ const Home = () => {
             });
         }
         const dassFirstTime = await axios.get(
-          "http://localhost:4000/dass-firstTime",
+          "https://backend-glint.herokuapp.com/dass-firstTime",
           {
             params: { id: currentUser.uid },
           }
@@ -111,7 +111,7 @@ const Home = () => {
         }
       };
       const checkBiweek = async () => {
-        const result = await axios.get("http://localhost:4000/bi-week-check", {
+        const result = await axios.get("https://backend-glint.herokuapp.com/bi-week-check", {
           params: { id: currentUser.uid },
         });
         try {
@@ -165,7 +165,7 @@ const Home = () => {
               </Graph>
               {/* {Article card} */}
               <GratitudeJournal style={{ paddingBottom: 90 }}>
-                <PopupGratitude />
+                <PopupGratitude/>
               </GratitudeJournal>
             </Grid>
           </Box>

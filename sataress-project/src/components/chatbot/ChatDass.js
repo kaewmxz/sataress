@@ -75,7 +75,7 @@ const Chat = () => {
 
     const checkFirstTime = async () => {
       const dassFirstTime = await axios.get(
-        "http://localhost:4000/dass-firstTime",
+        "https://backend-glint.herokuapp.com/dass-firstTime",
         {
           params: { id: currentUser.uid },
         }
@@ -115,7 +115,7 @@ const Chat = () => {
       userId: sessionId,
     };
     try {
-      const response = await axios.post("http://localhost:4000/dass-21", data);
+      const response = await axios.post("https://backend-glint.herokuapp.com/dass-21", data);
       for (
         let i = 0;
         i < response.data["message"]["fulfillmentMessages"].length;
@@ -411,14 +411,14 @@ const Chat = () => {
       replyMap["id"] = currentUser.uid;
       // save result
       axios
-        .post("http://localhost:4000/dass-result", replyMap)
+        .post("https://backend-glint.herokuapp.com/dass-result", replyMap)
         .catch((error) => {
           console.log("Error: ", error);
         });
       // update date in database
       try {
         axios
-          .post("http://localhost:4000/bi-week-update", {
+          .post("https://backend-glint.herokuapp.com/bi-week-update", {
             id: currentUser.uid,
             date: date,
           })
