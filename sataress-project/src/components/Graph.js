@@ -149,7 +149,7 @@ const Graph = () => {
       new Date(variables[1]).getDate() - new Date(variables[0]).getDate()
     );
     const fetchmoodCount = async () => {
-      const result = await axios.get("http://localhost:4000/mood/", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/mood/", {
         params: { id: currentUser.uid, range: variables },
       });
 
@@ -186,7 +186,7 @@ const Graph = () => {
     };
 
     const fetchmoodIntense = async () => {
-      const result = await axios.get("http://localhost:4000/mood-intense/", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/mood-intense/", {
         params: { id: currentUser.uid, range: variables },
       });
 
@@ -222,7 +222,7 @@ const Graph = () => {
     };
 
     const fetchgratitude = async () => {
-      const result = await axios.get("http://localhost:4000/gratitude/", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/gratitude/", {
         params: { id: currentUser.uid, range: variables },
       });
 
@@ -244,7 +244,7 @@ const Graph = () => {
       new Date(values[1]).getDate() - new Date(values[0]).getDate()
     );
     const fetchmoodCount = async () => {
-      const result = await axios.get("http://localhost:4000/mood/", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/mood/", {
         params: { id: currentUser.uid, range: values },
       });
 
@@ -281,7 +281,7 @@ const Graph = () => {
     };
 
     const fetchmoodIntense = async () => {
-      const result = await axios.get("http://localhost:4000/mood-intense/", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/mood-intense/", {
         params: { id: currentUser.uid, range: values },
       });
 
@@ -317,7 +317,7 @@ const Graph = () => {
     };
 
     const fetchgratitude = async () => {
-      const result = await axios.get("http://localhost:4000/gratitude/", {
+      const result = await axios.get("https://backend-glint.herokuapp.com/gratitude/", {
         params: { id: currentUser.uid, range: values },
       });
 

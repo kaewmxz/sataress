@@ -1,4 +1,6 @@
 {
-  "indexes": [],
-  "fieldOverrides": []
+  "indexes": [
+  ],
+  "fieldOverrides": [
+  ]
 }

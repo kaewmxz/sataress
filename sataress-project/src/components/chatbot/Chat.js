@@ -85,7 +85,7 @@ const Chat = () => {
     console.log(data);
     try {
       const response = await axios.post(
-        "http://localhost:4000/moodtrack",
+        "https://backend-glint.herokuapp.com/moodtrack",
         data
       );
       for (
@@ -159,7 +159,7 @@ const Chat = () => {
       replyMap["dateToCheck"] = date;
       replyMap["id"] = currentUser.uid;
       axios
-        .post("http://localhost:4000/mood-result", replyMap)
+        .post("https://backend-glint.herokuapp.com/mood-result", replyMap)
         .catch((error) => {
           console.log("Error: ", error);
         });

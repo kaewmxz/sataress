@@ -1,29 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { Grid } from '@material-ui/core';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Grid } from "@material-ui/core";
+import { Routes, Route, Navigate } from "react-router-dom";
 import BottomNavigationBar from "./BottomNavigationBar ";
 import Head from "./Head";
 import { AuthContext } from "./Auth";
-import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { visuallyHidden } from '@mui/utils';
+import PropTypes from "prop-types";
+import { alpha } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import Checkbox from "@mui/material/Checkbox";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { visuallyHidden } from "@mui/utils";
 import axios from "axios";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -33,36 +33,36 @@ const theme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          fontFamily:'Noto Sans,Kanit,sans-serif'
+          fontFamily: "Noto Sans,Kanit,sans-serif",
         },
       },
-    }
-  }
+    },
+  },
 });
 
 const Bg = withTheme(styled.div`
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 217px;
-    z-index: -1;
-    background: linear-gradient(
-      180deg,
-      rgba(254, 68, 10, 0) 17.83%,
-      #ffbdbd 95.83%
-    );
-  `);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 217px;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 68, 10, 0) 17.83%,
+    #ffbdbd 95.83%
+  );
+`);
 
 const Log = () => {
   const { currentUser } = useContext(AuthContext);
   const [data, setData] = useState([]);
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('Gratitude');
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("Gratitude");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const handleClick = (event, date) => {
-  const selectedIndex = selected.indexOf(date);
+    const selectedIndex = selected.indexOf(date);
     let newSelected = [];
 
     if (selectedIndex === -1) {
@@ -74,14 +74,14 @@ const Log = () => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
     setSelected(newSelected);
   };
-  console.log(selected);
-  
+  // console.log(selected);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -99,7 +99,7 @@ const Log = () => {
       gratitude,
     };
   }
-  
+
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
@@ -109,13 +109,13 @@ const Log = () => {
     }
     return 0;
   }
-  
+
   function getComparator(order, orderBy) {
-    return order === 'desc'
+    return order === "desc"
       ? (a, b) => descendingComparator(a, b, orderBy)
       : (a, b) => -descendingComparator(a, b, orderBy);
   }
-  
+
   // This method is created for cross-browser compatibility, if you don't
   // need to support IE11, you can use Array.prototype.sort() directly
   function stableSort(array, comparator) {
@@ -129,62 +129,67 @@ const Log = () => {
     });
     return stabilizedThis.map((el) => el[0]);
   }
-  
+
   const headCells = [
     {
-      id: 'date',
+      id: "date",
       numeric: false,
       disablePadding: true,
-      label: 'Date',
+      label: "Date",
     },
     {
-      id: 'Gratitude',
+      id: "Gratitude",
       numeric: true,
       disablePadding: false,
-      label: 'Gratitude',
+      label: "Gratitude",
     },
   ];
-  
+
   function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-      props;
+    const {
+      onSelectAllClick,
+      order,
+      orderBy,
+      numSelected,
+      rowCount,
+      onRequestSort,
+    } = props;
     const createSortHandler = (property) => (event) => {
       onRequestSort(event, property);
     };
-  
+
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
-          </TableCell>
+          <TableCell padding="checkbox"></TableCell>
           {headCells.map((headCell) => (
             <TableCell
               key={headCell.id}
               align="left"
-              sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}
+              sx={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
             >
-                {headCell.label}
-                {orderBy === headCell.id ? (
-                  <Box component="span" sx={visuallyHidden}>
-                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                  </Box>
-                ) : null}
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
+                </Box>
+              ) : null}
             </TableCell>
           ))}
         </TableRow>
       </TableHead>
     );
   }
-  
+
   EnhancedTableHead.propTypes = {
     numSelected: PropTypes.number.isRequired,
     onRequestSort: PropTypes.func.isRequired,
     onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+    order: PropTypes.oneOf(["asc", "desc"]).isRequired,
     orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
   };
-  
+
   const EnhancedTableToolbar = (props) => {
     const { numSelected } = props;
     // const data = { id: currentUser.uid, date: selected};
@@ -192,92 +197,103 @@ const Log = () => {
     const deleteGratitude = () => {
       // console.log(currentUser.uid)
       // console.log(selected)
-      axios.post("http://localhost:4000/gratitude-delete", { id: currentUser.uid, date: selected});
-      window.location.reload();
-    }
-  
+      axios
+        .post("https://backend-glint.herokuapp.com/gratitude-delete", {
+          id: currentUser.uid,
+          date: selected,
+        })
+        .then(() => {
+          setTimeout(() => {}, 100);
+          window.location.reload();
+        });
+    };
+
     return (
       <ThemeProvider theme={theme}>
-      <Toolbar
-        sx={{
-          pl: { sm: 2 },
-          pr: { xs: 1, sm: 1 },
-          ...(numSelected > 0 && {
-            bgcolor: (theme) =>
-              alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-          }),
-        }}
-      >
-        {numSelected > 0 ? (
-          <Typography
-            sx={{ flex: '1 1 100%'}}
-            color="inherit"
-            variant="subtitle1"
-            component="div"
-          >
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography
-            sx={{ flex: '1 1 100%'}}
-            variant="h6"
-            id="tableTitle"
-            component="div"
-          >
-            Gratitude Journal
-          </Typography>
-        )}
-  
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton>
-              <DeleteIcon onClick={deleteGratitude}/>
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton/>
-          </Tooltip>
-        )}
-      </Toolbar>
+        <Toolbar
+          sx={{
+            pl: { sm: 2 },
+            pr: { xs: 1, sm: 1 },
+            ...(numSelected > 0 && {
+              bgcolor: (theme) =>
+                alpha(
+                  theme.palette.primary.main,
+                  theme.palette.action.activatedOpacity
+                ),
+            }),
+          }}
+        >
+          {numSelected > 0 ? (
+            <Typography
+              sx={{ flex: "1 1 100%" }}
+              color="inherit"
+              variant="subtitle1"
+              component="div"
+            >
+              {numSelected} selected
+            </Typography>
+          ) : (
+            <Typography
+              sx={{ flex: "1 1 100%" }}
+              variant="h6"
+              id="tableTitle"
+              component="div"
+            >
+              Gratitude Journal
+            </Typography>
+          )}
+
+          {numSelected > 0 ? (
+            <Tooltip title="Delete">
+              <IconButton>
+                <DeleteIcon onClick={deleteGratitude} />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <Tooltip title="Filter list">
+              <IconButton />
+            </Tooltip>
+          )}
+        </Toolbar>
       </ThemeProvider>
     );
   };
-  
+
   EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
   };
 
-  useEffect(() => { 
-    if(currentUser) {
+  useEffect(() => {
+    if (currentUser) {
       const fetchTable = async () => {
         try {
-          const result = await axios.get("http://localhost:4000/gratitude-table", {
-          params: { id: currentUser.uid },
-        });
-        setData(result.data.message);
-        console.log(data)
-      } catch(err) {
-        console.log(err);
-      }
+          const result = await axios.get(
+            "https://backend-glint.herokuapp.com/gratitude-table",
+            {
+              params: { id: currentUser.uid },
+            }
+          );
+          setData(result.data.message.sort((a,b) => new Date(b.dateToCheck) - new Date(a.dateToCheck)));
+        } catch (err) {
+          console.log(err);
+        }
       };
       fetchTable();
-      
     }
-  }, [])
+  }, []);
 
   if (!currentUser) {
     return (
       <Routes>
         <Route path="/" element={<Navigate replace to="/" />}></Route>
       </Routes>
-    )
+    );
   }
 
   let rows = [];
   try {
     for (let i = 0; i < data.length; i++) {
-      rows.push(createData(data[i].date,data[i].gratitude));
+      rows.push(createData(data[i].date, data[i].gratitude));
     }
     // console.log(rows);
   } catch (err) {
@@ -287,8 +303,13 @@ const Log = () => {
     <div>
       <Bg />
       <Head />
-      <Paper sx={{width: "80%", maxWidth: "100%", mx:"auto", my:20, p:3}}
-       style={{backgroundColor: "#ffff",filter: "drop-shadow(0px 4px 4px rgba(255, 146, 146, 0.78))" }}>
+      <Paper
+        sx={{ width: "80%", maxWidth: "100%", mx: "auto", my: 20, p: 3 }}
+        style={{
+          backgroundColor: "#ffff",
+          filter: "drop-shadow(0px 4px 4px rgba(255, 146, 146, 0.78))",
+        }}
+      >
         <Grid container>
           <Grid item xs={12}>
             <EnhancedTableToolbar numSelected={selected.length} />
@@ -313,14 +334,14 @@ const Log = () => {
                           tabIndex={-1}
                           key={row.date}
                           selected={isItemSelected}
-                          sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}
+                          sx={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
                         >
                           <TableCell padding="checkbox">
                             <Checkbox
                               color="primary"
                               checked={isItemSelected}
                               inputProps={{
-                                'aria-labelledby': labelId,
+                                "aria-labelledby": labelId,
                               }}
                             />
                           </TableCell>
@@ -329,11 +350,15 @@ const Log = () => {
                             id={labelId}
                             scope="row"
                             padding="none"
-                            sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}
+                            sx={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
                           >
                             {row.date}
                           </TableCell>
-                          <TableCell sx = {{fontFamily:'Noto Sans,Kanit,sans-serif'}}>{row.gratitude}</TableCell>
+                          <TableCell
+                            sx={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
+                          >
+                            {row.gratitude}
+                          </TableCell>
                         </TableRow>
                       );
                     })}
@@ -352,7 +377,7 @@ const Log = () => {
           </Grid>
         </Grid>
       </Paper>
-      <BottomNavigationBar/>
+      <BottomNavigationBar />
     </div>
   );
 };

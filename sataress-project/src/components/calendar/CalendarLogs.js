@@ -242,7 +242,7 @@ const Log = () => {
       //For mood logs
       const fetchLogs = async () => {
         try {
-          const result = await axios.get("http://localhost:4000/mood-logs", {
+          const result = await axios.get("https://backend-glint.herokuapp.com/mood-logs", {
             params: { id: currentUser.uid, date: location.state.date },
           });
           console.log(result.data.message);
@@ -256,7 +256,7 @@ const Log = () => {
     //For gratitude
     const fetchGratitude = async () => {
       try {
-        const result = await axios.get("http://localhost:4000/gratitude-logs", {
+        const result = await axios.get("https://backend-glint.herokuapp.com/gratitude-logs", {
           params: { id: currentUser.uid, date: location.state.date },
         });
         setData2(result.data.message);
