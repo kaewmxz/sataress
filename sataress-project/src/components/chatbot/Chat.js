@@ -11,12 +11,13 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SendIcon from "@mui/icons-material/Send";
 import Button from "@mui/material/Button";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 
 let replyMap = new Map();
 let mood = [];
 let intensity = [];
 let dict = {};
+let refreshCheck = 0;
 
 const theme = createTheme({
   palette: {
@@ -163,6 +164,14 @@ const Chat = () => {
         .catch((error) => {
           console.log("Error: ", error);
         });
+    } else if (reply.action == "input.unknown") {
+      if (refreshCheck < 4) {
+        refreshCheck = refreshCheck + 1;
+        console.log(refreshCheck);
+      } else {
+        refreshCheck = 0;
+        window.location.reload();
+      }
     } else {
     }
     if (intensity.length > mood.length) {
@@ -235,8 +244,7 @@ const Chat = () => {
                 }, 0.05)
               }
             >
-              <IconButton size="small"
-                sx={{ marginTop: -5.5, marginLeft: 28 }}>
+              <IconButton size="small" sx={{ marginTop: -5.5, marginLeft: 28 }}>
                 <CancelIcon sx={{ fontSize: 20 }} color="gray" />
               </IconButton>
             </Link>

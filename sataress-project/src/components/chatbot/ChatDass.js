@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 
 let replyMap = new Map();
+let refreshCheck = 0;
 
 const theme = createTheme({
   palette: {
@@ -141,7 +142,7 @@ const Chat = () => {
     setCurrentMessage(event.target.value);
   };
 
-  const  extractReply = async (reply) => {
+  const extractReply = async (reply) => {
     console.log(reply);
     if (reply.action == "2") {
       if (
@@ -548,6 +549,14 @@ const Chat = () => {
             isBot: true,
           },
         ]);
+      }
+    } else if (reply.action == "input.unknown") {
+      if (refreshCheck < 4){
+        refreshCheck = refreshCheck+1;
+        console.log(refreshCheck)
+      }else{
+        refreshCheck = 0;
+        window.location.reload();
       }
     } else {
     }
