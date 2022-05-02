@@ -22,11 +22,33 @@ const Bg = withTheme(styled.div`
   );
 `);
 
+const Title = withTheme(styled.div`
+position: absolute;
+font-family: Noto Sans,Kanit,sans-serif;
+line-height: 41px;
+color: #000000;
+${(props) => props.theme.breakpoints.only("xs")} {
+  font-size: 26px;
+}
+${(props) => props.theme.breakpoints.up("sm")} {
+  font-size: 32px;
+}
+${(props) => props.theme.breakpoints.up("md")} {
+  font-size: 35px;
+}
+${(props) => props.theme.breakpoints.up("lg")} {
+  font-size: 38px;
+}
+${(props) => props.theme.breakpoints.up("xl")} {
+  font-size: 38px;
+}
+`);
+
 const Ar1 = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 157px;
+  top: 197px;
   filter: drop-shadow(0px 4px 4px rgba(253, 6, 6, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -37,7 +59,7 @@ const Ar2 = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 361px;
+  top: 401px;
   filter: drop-shadow(0px 4px 4px rgba(238, 215, 7, 0.37));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -48,7 +70,7 @@ const Ar3 = withTheme(styled.div`
   position: absolute;
   width: 320.7px;
   height: 182px;
-  top: 565px;
+  top: 605px;
   filter: drop-shadow( 0px 4px 4px rgba(0, 117, 255, 0.25));
   ${(props) => props.theme.breakpoints.only("xs")} {
     padding: 0px;
@@ -70,6 +92,7 @@ const Article = () => {
       <Header />
       <Box component="span">
         <Grid container justifyContent="center">
+        <Title style={{ marginTop: 135}}>Articles</Title>
           <Ar1>
             <Link to="/ArticleBlog-1">
               <img
