@@ -90,10 +90,10 @@ const Home = () => {
                 date: date,
               };
               axios
-                .post("/users", data)
+                .post("https://backend-glint.herokuapp.com/users", data)
                 .catch((err) => console.log(err));
               axios
-                .post("/bi-week", data)
+                .post("https://backend-glint.herokuapp.com/bi-week", data)
                 .catch((err) => console.log(err));
             })
             .catch((error) => {

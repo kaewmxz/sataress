@@ -499,7 +499,7 @@ const Chat = () => {
         setResponses((responses) => [
           ...responses,
           {
-            text: "เธอสามารถปิดแชทแล้วเข้าไปดูได้ที่ไอคอน Relaxation (ไอคอนที่ 3) ด้านล่างนะ",
+            text: "เธอสามารถปิดแชทแล้วเข้าไปดูได้ที่ไอคอน Relaxation (ไอคอนที่ 4) ด้านล่างนะ",
             isBot: true,
           },
         ]);
@@ -511,7 +511,7 @@ const Chat = () => {
         setResponses((responses) => [
           ...responses,
           {
-            text: "เรามีวิธีช่วยทำให้เธอผล่อนคลายด้วยนะ เธอลองไปทำ Progressive Muscle Relaxation ดูก็ได้น้า",
+            text: "เรามีวิธีช่วยทำให้เธอผ่อนคลายด้วยนะ เธอลองไปทำ Progressive Muscle Relaxation ดูก็ได้น้า",
             isBot: true,
           },
         ]);
@@ -519,7 +519,7 @@ const Chat = () => {
         setResponses((responses) => [
           ...responses,
           {
-            text: "เธอสามารถปิดแชทแล้วเข้าไปดูได้ที่ไอคอน Relaxation (ไอคอนที่ 3) ด้านล่างนะ",
+            text: "เธอสามารถปิดแชทแล้วเข้าไปดูได้ที่ไอคอน Relaxation (ไอคอนที่ 4) ด้านล่างนะ",
             isBot: true,
           },
         ]);

@@ -131,9 +131,19 @@ const Graph = () => {
   const SimpleWordcloud = () => {
     return (
       <ReactWordcloud
-        style={{ maxWidth: 350, maxHeight: 150, paddingBottom: 110 , margin:30, position:'relative'}}
+        style={{
+          maxWidth: 350,
+          maxHeight: 150,
+          paddingBottom: 110,
+          margin: 30,
+          position: "relative",
+        }}
         words={gratitude}
-        options={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
+        options={{
+          fontFamily: "Noto Sans,Kanit,sans-serif",
+          fontSizes: [13, 18],
+          rotationAngles: [0, 20],
+        }}
       />
     );
   };
@@ -146,12 +156,18 @@ const Graph = () => {
     ];
     setValue(variables);
     setdiffDay(
-      new Date(variables[1]).getDate() - new Date(variables[0]).getDate()
+      Math.abs(
+        (new Date(variables[1]) - new Date(variables[0])) /
+          (1000 * 60 * 60 * 24)
+      )
     );
     const fetchmoodCount = async () => {
-      const result = await axios.get("https://backend-glint.herokuapp.com/mood/", {
-        params: { id: currentUser.uid, range: variables },
-      });
+      const result = await axios.get(
+        "https://backend-glint.herokuapp.com/mood/",
+        {
+          params: { id: currentUser.uid, range: variables },
+        }
+      );
 
       const countResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
@@ -186,9 +202,12 @@ const Graph = () => {
     };
 
     const fetchmoodIntense = async () => {
-      const result = await axios.get("https://backend-glint.herokuapp.com/mood-intense/", {
-        params: { id: currentUser.uid, range: variables },
-      });
+      const result = await axios.get(
+        "https://backend-glint.herokuapp.com/mood-intense/",
+        {
+          params: { id: currentUser.uid, range: variables },
+        }
+      );
 
       const intensityResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
@@ -222,9 +241,12 @@ const Graph = () => {
     };
 
     const fetchgratitude = async () => {
-      const result = await axios.get("https://backend-glint.herokuapp.com/gratitude/", {
-        params: { id: currentUser.uid, range: variables },
-      });
+      const result = await axios.get(
+        "https://backend-glint.herokuapp.com/gratitude/",
+        {
+          params: { id: currentUser.uid, range: variables },
+        }
+      );
 
       setGratitude(result.data.message);
     };
@@ -240,13 +262,14 @@ const Graph = () => {
       values[1] = moment(date).clone().endOf("month").format("MM/D/YYYY");
     }
     console.log(values);
-    setdiffDay(
-      new Date(values[1]).getDate() - new Date(values[0]).getDate()
-    );
+    setdiffDay(new Date(values[1]).getDate() - new Date(values[0]).getDate());
     const fetchmoodCount = async () => {
-      const result = await axios.get("https://backend-glint.herokuapp.com/mood/", {
-        params: { id: currentUser.uid, range: values },
-      });
+      const result = await axios.get(
+        "https://backend-glint.herokuapp.com/mood/",
+        {
+          params: { id: currentUser.uid, range: values },
+        }
+      );
 
       const countResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
@@ -281,9 +304,12 @@ const Graph = () => {
     };
 
     const fetchmoodIntense = async () => {
-      const result = await axios.get("https://backend-glint.herokuapp.com/mood-intense/", {
-        params: { id: currentUser.uid, range: values },
-      });
+      const result = await axios.get(
+        "https://backend-glint.herokuapp.com/mood-intense/",
+        {
+          params: { id: currentUser.uid, range: values },
+        }
+      );
 
       const intensityResult = result.data.message.map((o) => {
         if (o.mood == "Happy") {
@@ -317,9 +343,12 @@ const Graph = () => {
     };
 
     const fetchgratitude = async () => {
-      const result = await axios.get("https://backend-glint.herokuapp.com/gratitude/", {
-        params: { id: currentUser.uid, range: values },
-      });
+      const result = await axios.get(
+        "https://backend-glint.herokuapp.com/gratitude/",
+        {
+          params: { id: currentUser.uid, range: values },
+        }
+      );
 
       setGratitude(result.data.message);
     };
@@ -378,7 +407,9 @@ const Graph = () => {
             </LocalizationProvider>
 
             <GraphBox1 style={{ marginTop: 230, color: "red" }}>
-              <GraphBoxname1>นับจำนวนอารมณ์ (ครั้ง) ในช่วง {diffDay} วัน</GraphBoxname1>
+              <GraphBoxname1>
+                นับจำนวนอารมณ์ (ครั้ง) ในช่วง {diffDay} วัน
+              </GraphBoxname1>
               <Grid
                 container
                 justify="center"
@@ -437,7 +468,8 @@ const Graph = () => {
 
             <GraphBox2 style={{ marginTop: 560 }}>
               <GraphBoxname2>
-                ความเข้มข้นเฉลี่ยของแต่ละอารมณ์ (ระดับ) <br/>ในช่วง {diffDay} วัน
+                ความเข้มข้นเฉลี่ยของแต่ละอารมณ์ (ระดับ) <br />
+                ในช่วง {diffDay} วัน
               </GraphBoxname2>
               <Grid
                 container
