@@ -155,12 +155,9 @@ const Graph = () => {
       moment(date).clone().endOf("month").format("MM/D/YYYY"),
     ];
     setValue(variables);
-    setdiffDay(
-      Math.abs(
-        (new Date(variables[1]) - new Date(variables[0])) /
-          (1000 * 60 * 60 * 24)
-      )
-    );
+    const diffTime = Math.abs(new Date(value[1]) - new Date(value[0]));
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    setdiffDay(diffDays);
     const fetchmoodCount = async () => {
       const result = await axios.get(
         "https://backend-glint.herokuapp.com/mood/",
@@ -262,7 +259,9 @@ const Graph = () => {
       values[1] = moment(date).clone().endOf("month").format("MM/D/YYYY");
     }
     console.log(values);
-    setdiffDay(new Date(values[1]).getDate() - new Date(values[0]).getDate());
+    const diffTime = Math.abs(new Date(value[1]) - new Date(value[0]));
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    setdiffDay(diffDays);
     const fetchmoodCount = async () => {
       const result = await axios.get(
         "https://backend-glint.herokuapp.com/mood/",
