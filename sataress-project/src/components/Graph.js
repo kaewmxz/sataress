@@ -139,7 +139,11 @@ const Graph = () => {
           position: "relative",
         }}
         words={gratitude}
-        options={{ fontFamily: "Noto Sans,Kanit,sans-serif" }}
+        options={{
+          fontFamily: "Noto Sans,Kanit,sans-serif",
+          fontSizes: [13, 18],
+          rotationAngles: [0, 20],
+        }}
       />
     );
   };
