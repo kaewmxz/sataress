@@ -242,9 +242,12 @@ const Log = () => {
       //For mood logs
       const fetchLogs = async () => {
         try {
-          const result = await axios.get("https://backend-glint.herokuapp.com/mood-logs", {
-            params: { id: currentUser.uid, date: location.state.date },
-          });
+          const result = await axios.get(
+            "https://backend-glint.herokuapp.com/mood-logs",
+            {
+              params: { id: currentUser.uid, date: location.state.date },
+            }
+          );
           console.log(result.data.message);
           setData(result.data.message);
         } catch (err) {
@@ -256,9 +259,12 @@ const Log = () => {
     //For gratitude
     const fetchGratitude = async () => {
       try {
-        const result = await axios.get("https://backend-glint.herokuapp.com/gratitude-logs", {
-          params: { id: currentUser.uid, date: location.state.date },
-        });
+        const result = await axios.get(
+          "https://backend-glint.herokuapp.com/gratitude-logs",
+          {
+            params: { id: currentUser.uid, date: location.state.date },
+          }
+        );
         setData2(result.data.message);
       } catch (err) {
         console.log(err);
@@ -338,11 +344,15 @@ const Log = () => {
         />
       </Grid>
       <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-      {data.map((data, id) => (
-        <Grid item xs={12} style={{ marginTop: 10 }}>
-          <MoodInfo key={id} {...data} />
-        </Grid>
-      ))}
+      {() => {
+        try {
+          data.map((data, id) => (
+            <Grid item xs={12} style={{ marginTop: 10 }}>
+              <MoodInfo key={id} {...data} />
+            </Grid>
+          ));
+        } catch (e) {}
+      }}
       <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
         {GratitudeInfo(data2)}
       </Grid>
