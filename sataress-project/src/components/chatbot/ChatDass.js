@@ -49,7 +49,8 @@ const Text = withTheme(styled.div`
   position: relative;
   font-size: 22px;
   margin-top: -44px;
-  margin-left: -50px;
+  margin-left: -40px;
+  font-family: Noto Sans, Kanit, sans-serif;
 `);
 
 const random = Math.random().toString();
@@ -85,7 +86,7 @@ const Chat = () => {
         setResponses((responses) => [
           ...responses,
           {
-            text: "สวัสดี เราชื่อกะทินะ ต่อไปนี้เธอจะคุยกับเราครั้งแรกเพื่อทำความรู้จักกัน",
+            text: "สวัสดี เราชื่อไข่หวานนะ ต่อไปนี้เธอจะคุยกับเราครั้งแรกเพื่อทำความรู้จักกัน",
             isBot: true,
           },
         ]);
@@ -115,7 +116,10 @@ const Chat = () => {
       userId: sessionId,
     };
     try {
-      const response = await axios.post("https://backend-glint.herokuapp.com/dass-21", data);
+      const response = await axios.post(
+        "https://backend-glint.herokuapp.com/dass-21",
+        data
+      );
       for (
         let i = 0;
         i < response.data["message"]["fulfillmentMessages"].length;
@@ -551,10 +555,10 @@ const Chat = () => {
         ]);
       }
     } else if (reply.action == "input.unknown") {
-      if (refreshCheck < 4){
-        refreshCheck = refreshCheck+1;
-        console.log(refreshCheck)
-      }else{
+      if (refreshCheck < 4) {
+        refreshCheck = refreshCheck + 1;
+        console.log(refreshCheck);
+      } else {
         refreshCheck = 0;
         window.location.reload();
       }
@@ -614,9 +618,9 @@ const Chat = () => {
             <img
               src="../image/transparent_bg.avif"
               width={70}
-              style={{ marginLeft: -215, marginTop: 5, position: "relative" }}
+              style={{ marginLeft: -235, marginTop: 5, position: "relative" }}
             />
-            <Text>Nong Kati</Text>
+            <Text>Nong Kaiwan</Text>
             <Link to="/">
               <IconButton size="small" sx={{ marginTop: -5.5, marginLeft: 28 }}>
                 <CancelIcon sx={{ fontSize: 20 }} color="gray" />
