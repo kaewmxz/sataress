@@ -168,53 +168,53 @@ const MoodInfo = (props) => {
 };
 
 const GratitudeInfo = (gratitude) => {
-  if (gratitude.length) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Grid container justify="center">
-          <CalendarCard2>
-            <CalendarCardInnerCircle>
-              <img
-                src="../image/book.avif"
-                width="20"
-                style={{ marginTop: 3, marginLeft: 4 }}
-              />
-            </CalendarCardInnerCircle>
-            <CalendarCardInnerDate>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                style={{
-                  marginLeft: 12,
-                  fontWeight: "bold",
-                  color: "black",
-                  fontSize: 15,
-                }}
-              >
-                {/* {date} */}Gratitude List
-              </Typography>
-            </CalendarCardInnerDate>
-            <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
-              <Typography
-                variant="body2"
-                color="text.primary"
-                style={{ overflowWrap: "break-word", marginRight: "20px" }}
-              >
-                {gratitude.map((data) => (
-                  <li>{data}</li>
-                ))}
-              </Typography>
-              <br />
-            </Grid>
-            <CalendarCardDot1 />
-            <CalendarCardDot2 />
-            <CalendarCardDot3 />
-          </CalendarCard2>
-        </Grid>
-      </ThemeProvider>
-    );
-  }
+  try {
+    if (gratitude.length) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Grid container justify="center">
+            <CalendarCard2>
+              <CalendarCardInnerCircle>
+                <img
+                  src="../image/book.avif"
+                  width="20"
+                  style={{ marginTop: 3, marginLeft: 4 }}
+                />
+              </CalendarCardInnerCircle>
+              <CalendarCardInnerDate>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  style={{
+                    marginLeft: 12,
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: 15,
+                  }}
+                >
+                  {/* {date} */}Gratitude List
+                </Typography>
+              </CalendarCardInnerDate>
+              <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  style={{ overflowWrap: "break-word", marginRight: "20px" }}
+                >
+                  {gratitude ? gratitude.map((data) => <li>{data}</li>) : null}
+                </Typography>
+                <br />
+              </Grid>
+              <CalendarCardDot1 />
+              <CalendarCardDot2 />
+              <CalendarCardDot3 />
+            </CalendarCard2>
+          </Grid>
+        </ThemeProvider>
+      );
+    }
+  } catch (e) {}
 };
 
 const Log = () => {
