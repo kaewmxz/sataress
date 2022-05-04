@@ -85,7 +85,7 @@ const Chat = () => {
         setResponses((responses) => [
           ...responses,
           {
-            text: "สวัสดี เราชื่อกระทินะ ต่อไปนี้เธอจะคุยกับเราครั้งแรกเพื่อทำความรู้จักกัน",
+            text: "สวัสดี เราชื่อกะทินะ ต่อไปนี้เธอจะคุยกับเราครั้งแรกเพื่อทำความรู้จักกัน",
             isBot: true,
           },
         ]);
@@ -616,7 +616,7 @@ const Chat = () => {
               width={70}
               style={{ marginLeft: -215, marginTop: 5, position: "relative" }}
             />
-            <Text>Nong Krati</Text>
+            <Text>Nong Kati</Text>
             <Link to="/">
               <IconButton size="small" sx={{ marginTop: -5.5, marginLeft: 28 }}>
                 <CancelIcon sx={{ fontSize: 20 }} color="gray" />

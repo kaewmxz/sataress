@@ -196,7 +196,11 @@ const GratitudeInfo = (gratitude) => {
               </Typography>
             </CalendarCardInnerDate>
             <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
-              <Typography variant="body2" color="text.primary" style={{overflowWrap:"break-word", marginRight:"20px"}}>
+              <Typography
+                variant="body2"
+                color="text.primary"
+                style={{ overflowWrap: "break-word", marginRight: "20px" }}
+              >
                 {gratitude.map((data) => (
                   <li>{data}</li>
                 ))}
@@ -344,15 +348,13 @@ const Log = () => {
         />
       </Grid>
       <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-      {() => {
-        try {
-          data.map((data, id) => (
+      {data
+        ? data.map((data, id) => (
             <Grid item xs={12} style={{ marginTop: 10 }}>
               <MoodInfo key={id} {...data} />
             </Grid>
-          ));
-        } catch (e) {}
-      }}
+          ))
+        : null}
       <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
         {GratitudeInfo(data2)}
       </Grid>
