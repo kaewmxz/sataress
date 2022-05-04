@@ -196,7 +196,7 @@ const GratitudeInfo = (gratitude) => {
               </Typography>
             </CalendarCardInnerDate>
             <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
-              <Typography variant="body2" color="text.primary">
+              <Typography variant="body2" color="text.primary" style={{overflowWrap:"break-word", marginRight:"20px"}}>
                 {gratitude.map((data) => (
                   <li>{data}</li>
                 ))}
