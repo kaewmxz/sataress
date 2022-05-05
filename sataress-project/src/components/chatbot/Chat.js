@@ -235,7 +235,7 @@ const Chat = () => {
               width={70}
               style={{ marginLeft: -215, marginTop: 15, position: "relative" }}
             />
-            <Text>Nong Krati</Text>
+            <Text>Nong Kati</Text>
             <Link
               to="/"
               onClick={() =>

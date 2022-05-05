@@ -168,49 +168,53 @@ const MoodInfo = (props) => {
 };
 
 const GratitudeInfo = (gratitude) => {
-  if (gratitude.length) {
-    return (
-      <ThemeProvider theme={theme}>
-        <Grid container justify="center">
-          <CalendarCard2>
-            <CalendarCardInnerCircle>
-              <img
-                src="../image/book.avif"
-                width="20"
-                style={{ marginTop: 3, marginLeft: 4 }}
-              />
-            </CalendarCardInnerCircle>
-            <CalendarCardInnerDate>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                style={{
-                  marginLeft: 12,
-                  fontWeight: "bold",
-                  color: "black",
-                  fontSize: 15,
-                }}
-              >
-                {/* {date} */}Gratitude List
-              </Typography>
-            </CalendarCardInnerDate>
-            <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
-              <Typography variant="body2" color="text.primary">
-                {gratitude.map((data) => (
-                  <li>{data}</li>
-                ))}
-              </Typography>
-              <br />
-            </Grid>
-            <CalendarCardDot1 />
-            <CalendarCardDot2 />
-            <CalendarCardDot3 />
-          </CalendarCard2>
-        </Grid>
-      </ThemeProvider>
-    );
-  }
+  try {
+    if (gratitude.length) {
+      return (
+        <ThemeProvider theme={theme}>
+          <Grid container justify="center">
+            <CalendarCard2>
+              <CalendarCardInnerCircle>
+                <img
+                  src="../image/book.avif"
+                  width="20"
+                  style={{ marginTop: 3, marginLeft: 4 }}
+                />
+              </CalendarCardInnerCircle>
+              <CalendarCardInnerDate>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                  style={{
+                    marginLeft: 12,
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: 15,
+                  }}
+                >
+                  {/* {date} */}Gratitude List
+                </Typography>
+              </CalendarCardInnerDate>
+              <Grid item style={{ marginTop: 55, marginLeft: 30 }}>
+                <Typography
+                  variant="body2"
+                  color="text.primary"
+                  style={{ overflowWrap: "break-word", marginRight: "20px" }}
+                >
+                  {gratitude ? gratitude.map((data) => <li>{data}</li>) : null}
+                </Typography>
+                <br />
+              </Grid>
+              <CalendarCardDot1 />
+              <CalendarCardDot2 />
+              <CalendarCardDot3 />
+            </CalendarCard2>
+          </Grid>
+        </ThemeProvider>
+      );
+    }
+  } catch (e) {}
 };
 
 const Log = () => {
@@ -242,9 +246,12 @@ const Log = () => {
       //For mood logs
       const fetchLogs = async () => {
         try {
-          const result = await axios.get("https://backend-glint.herokuapp.com/mood-logs", {
-            params: { id: currentUser.uid, date: location.state.date },
-          });
+          const result = await axios.get(
+            "https://backend-glint.herokuapp.com/mood-logs",
+            {
+              params: { id: currentUser.uid, date: location.state.date },
+            }
+          );
           console.log(result.data.message);
           setData(result.data.message);
         } catch (err) {
@@ -256,9 +263,12 @@ const Log = () => {
     //For gratitude
     const fetchGratitude = async () => {
       try {
-        const result = await axios.get("https://backend-glint.herokuapp.com/gratitude-logs", {
-          params: { id: currentUser.uid, date: location.state.date },
-        });
+        const result = await axios.get(
+          "https://backend-glint.herokuapp.com/gratitude-logs",
+          {
+            params: { id: currentUser.uid, date: location.state.date },
+          }
+        );
         setData2(result.data.message);
       } catch (err) {
         console.log(err);
@@ -338,11 +348,13 @@ const Log = () => {
         />
       </Grid>
       <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
-      {data.map((data, id) => (
-        <Grid item xs={12} style={{ marginTop: 10 }}>
-          <MoodInfo key={id} {...data} />
-        </Grid>
-      ))}
+      {data
+        ? data.map((data, id) => (
+            <Grid item xs={12} style={{ marginTop: 10 }}>
+              <MoodInfo key={id} {...data} />
+            </Grid>
+          ))
+        : null}
       <Grid item xs={12} style={{ marginTop: 10, marginBottom: 100 }}>
         {GratitudeInfo(data2)}
       </Grid>

@@ -155,7 +155,7 @@ const Graph = () => {
       moment(date).clone().endOf("month").format("MM/D/YYYY"),
     ];
     setValue(variables);
-    const diffTime = Math.abs(new Date(value[1]) - new Date(value[0]));
+    const diffTime = Math.abs(new Date(variables[1]) - new Date(variables[0]));
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     setdiffDay(diffDays);
     const fetchmoodCount = async () => {
