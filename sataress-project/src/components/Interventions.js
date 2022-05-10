@@ -82,7 +82,7 @@ const Interventions = () => {
       <Header />
       <Box>
       <Grid container justify="center" direction = "row">
-        <Title style={{ marginTop: 135}}>Relaxations</Title>
+        <Title style={{ marginTop: 135}}>Relaxation</Title>
           <Boxbreathing style={{ marginTop:40}}>
             <Link to="/Boxbreathing">
               <img src="/image/Boxb.avif" width="311px" height="228px" />
